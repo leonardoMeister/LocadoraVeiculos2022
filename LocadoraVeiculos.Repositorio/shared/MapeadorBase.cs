@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 
-namespace LocadoraVeiculos.Repositorio.shared
+namespace LocadoraVeiculos.RepositorioProject.shared
 {
     public abstract class MapeadorBase<T> where T : EntidadeBase
     {

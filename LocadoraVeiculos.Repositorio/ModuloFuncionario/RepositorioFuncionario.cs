@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LocadoraVeiculos.Dominio.shared
+namespace LocadoraVeiculos.RepositorioProject.ModuloFuncionario
 {
-    public abstract class EntidadeBase<T>
+    public class RepositorioFuncionario
     {
-        public int _id;
     }
 }

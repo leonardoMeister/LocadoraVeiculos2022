@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LocadoraVeiculos.WinApp.shared
+namespace LocadoraVeiculos.RepositorioProject.ModuloGrupoVeiculos
 {
-    internal class Class1
+    public class RepositorioGrupoVeiculos
     {
     }
 }

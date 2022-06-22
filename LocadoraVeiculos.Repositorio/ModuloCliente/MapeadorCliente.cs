@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LocadoraVeiculos.Dominio.shared
+namespace LocadoraVeiculos.RepositorioProject.ModuloCliente
 {
-    public abstract class EntidadeBase<T>
+    internal class MapeadorCliente
     {
-        public int _id;
     }
 }

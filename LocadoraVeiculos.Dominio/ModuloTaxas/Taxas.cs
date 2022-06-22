@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LocadoraVeiculos.Dominio.shared;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace LocadoraVeiculos.Dominio.ModuloTaxas
 {
-    internal class Taxas
+    public class Taxas: EntidadeBase
     {
+
     }
 }
