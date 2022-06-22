@@ -6,6 +6,7 @@ using LocadoraVeiculos.RepositorioProject.ModuloFuncionario;
 using LocadoraVeiculos.RepositorioProject.ModuloGrupoVeiculos;
 using LocadoraVeiculos.RepositorioProject.ModuloTaxas;
 using LocadoraVeiculos.RepositorioProject.shared;
+using LocadoraVeiculos.WinApp.ModuloTarefa;
 using LocadoraVeiculos.WinApp.shared;
 using System;
 using System.Collections.Generic;
@@ -21,12 +22,7 @@ namespace LocadoraVeiculos.WinApp
 {
     public partial class TelaPrincipalForm : Form
     {
-        RepositorioTaxas repositorioTaxas;
-        RepositorioGrupoVeiculos repositorioGrupoVeiculos;
-        RepositorioCliente repositorioCliente;
-        RepositorioFuncionario repositorioFuncionario;
-
-        string telaSelecionada;
+        ControladorTarefa controladorTarefa;
 
         private ControladorBase controlador;
         private Dictionary<string, ControladorBase> controladores;
@@ -46,17 +42,11 @@ namespace LocadoraVeiculos.WinApp
 
         private void InicializarRepositorios()
         {
-            repositorioTaxas = new RepositorioTaxas();
-            repositorioCliente = new RepositorioCliente();
-            repositorioFuncionario = new RepositorioFuncionario();
-            repositorioGrupoVeiculos = new RepositorioGrupoVeiculos();
+            controladorTarefa = new ControladorTarefa();
 
             controladores = new Dictionary<string, ControladorBase>();
 
-            //controladores.Add("Tarefas", new ControladorTarefa(repositorioTarefa));
-            //controladores.Add("Contatos", new ControladorContato(repositorioContato));
-            //controladores.Add("Compromissos", new ControladorCompromisso(repositorioCompromisso, repositorioContato));
-            //controladores.Add("Despesas", new ControladorDespesa(repositorioDespesa));
+            controladores.Add("Taxas", new ControladorTarefa());
         }
 
         public static TelaPrincipalForm Instancia
@@ -73,7 +63,7 @@ namespace LocadoraVeiculos.WinApp
         {
             var tipo = opcaoSelecionada.Text;
 
-            telaSelecionada = tipo;
+            controlador = controladores[tipo];
 
             ConfigurarToolbox();
 
@@ -130,7 +120,7 @@ namespace LocadoraVeiculos.WinApp
             btnAgrupar.ToolTipText = configuracao.TooltipAgrupar;
         }
 
-        private void tarefasMenuItem_Click(object sender, EventArgs e)
+        private void taxasMenuItem_Click(object sender, EventArgs e)
         {
             ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
 

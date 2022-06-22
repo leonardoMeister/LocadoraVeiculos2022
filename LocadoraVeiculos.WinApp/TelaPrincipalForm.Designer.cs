@@ -213,8 +213,8 @@
             this.tarefasMenuItem.Name = "tarefasMenuItem";
             this.tarefasMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F1;
             this.tarefasMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.tarefasMenuItem.Text = "Tarefas";
-            this.tarefasMenuItem.Click += new System.EventHandler(this.tarefasMenuItem_Click);
+            this.tarefasMenuItem.Text = "Taxas";
+            this.tarefasMenuItem.Click += new System.EventHandler(this.taxasMenuItem_Click);
             // 
             // cadastrosToolStripMenuItem
             // 

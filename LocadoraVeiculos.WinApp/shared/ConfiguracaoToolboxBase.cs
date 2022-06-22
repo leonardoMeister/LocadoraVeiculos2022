@@ -10,13 +10,13 @@
 
         public abstract string TooltipExcluir { get; }
 
-        public virtual string TooltipAdicionarItens { get; }
+        public abstract string TooltipAdicionarItens { get; }
 
-        public virtual string TooltipAtualizarItens { get; }
+        public abstract string TooltipAtualizarItens { get; }
 
-        public virtual string TooltipFiltrar { get; }
+        public abstract string TooltipFiltrar { get; }
 
-        public virtual string TooltipAgrupar { get; }
+        public abstract string TooltipAgrupar { get; }
 
 
         public virtual bool InserirHabilitado { get { return true; } }
