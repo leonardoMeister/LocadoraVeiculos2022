@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LocadoraVeiculos.Dominio.shared
+namespace LocadoraVeiculos.Dominio.ModuloTaxas
 {
-    public abstract class EntidadeBase
+    internal class ValidadorTaxas
     {
-        public int _id;
     }
 }

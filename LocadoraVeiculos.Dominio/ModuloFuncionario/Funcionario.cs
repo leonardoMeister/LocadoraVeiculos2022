@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LocadoraVeiculos.Dominio.shared
+namespace LocadoraVeiculos.Dominio.ModuloFuncionario
 {
-    public abstract class EntidadeBase
+    internal class Funcionario
     {
-        public int _id;
     }
 }
