@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LocadoraVeiculos.Dominio.shared
 {
-    public abstract class EntidadeBase
+    public abstract class EntidadeBase<T>
     {
         public int _id;
     }
