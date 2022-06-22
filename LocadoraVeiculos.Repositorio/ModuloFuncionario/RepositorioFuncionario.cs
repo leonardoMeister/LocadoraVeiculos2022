@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LocadoraVeiculos.Repositorio.ModuloFuncionario
+namespace LocadoraVeiculos.RepositorioProject.ModuloFuncionario
 {
-    internal class RepositorioFuncionario
+    public class RepositorioFuncionario
     {
     }
 }

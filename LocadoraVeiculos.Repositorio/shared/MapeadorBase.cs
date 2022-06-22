@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LocadoraVeiculos.Repositorio.shared
+namespace LocadoraVeiculos.RepositorioProject.shared
 {
     public abstract class MapeadorBase<T> where T : EntidadeBase
     {

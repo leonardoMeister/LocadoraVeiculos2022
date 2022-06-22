@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LocadoraVeiculos.Repositorio.ModuloGrupoVeiculos
+namespace LocadoraVeiculos.RepositorioProject.ModuloGrupoVeiculos
 {
     internal class MapeadorGrupoVeiculos
     {

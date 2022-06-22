@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LocadoraVeiculos.Repositorio.ModuloCliente
+namespace LocadoraVeiculos.RepositorioProject.ModuloCliente
 {
-    internal class RepositorioCliente
+    public class RepositorioCliente
     {
     }
 }

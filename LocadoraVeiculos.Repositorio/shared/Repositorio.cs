@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using FluentValidation.Results;
 using LocadoraVeiculos.Dominio.shared;
 
-namespace LocadoraVeiculos.Repositorio.shared
+namespace LocadoraVeiculos.RepositorioProject.shared
 {
     public abstract class Repositorio<T, TValidador, TMapeador>
         where T : EntidadeBase

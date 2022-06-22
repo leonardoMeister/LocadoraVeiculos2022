@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32228.430
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocadoraVeiculos.Dominio", "LocadoraVeiculos.Dominio\LocadoraVeiculos.Dominio.csproj", "{7D6EBAAE-D2AA-4100-983E-E4D48D531A34}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocadoraVeiculos.Dominio", "LocadoraVeiculos.Dominio\LocadoraVeiculos.Dominio.csproj", "{7D6EBAAE-D2AA-4100-983E-E4D48D531A34}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocadoraVeiculos.Testes", "LocadoraVeiculos.Testes\LocadoraVeiculos.Testes.csproj", "{F8CCDFA6-4FA6-4D7E-B015-149D5B2B2A27}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocadoraVeiculos.Testes", "LocadoraVeiculos.Testes\LocadoraVeiculos.Testes.csproj", "{F8CCDFA6-4FA6-4D7E-B015-149D5B2B2A27}"
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "LocadoraVeiculos.DataBase.Project", "LocadoraVeiculos.DataBase.Project\LocadoraVeiculos.DataBase.Project.sqlproj", "{0416C3D4-1D7D-4DEF-BEC6-9CAD0C36CE80}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocadoraVeiculos.Repositorio", "LocadoraVeiculos.Repositorio\LocadoraVeiculos.Repositorio.csproj", "{45450D29-EE7D-472B-BCC8-58350354B35F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocadoraVeiculos.RepositorioProject", "LocadoraVeiculos.Repositorio\LocadoraVeiculos.RepositorioProject.csproj", "{45450D29-EE7D-472B-BCC8-58350354B35F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocadoraVeiculos.WinApp", "LocadoraVeiculos.WinApp\LocadoraVeiculos.WinApp.csproj", "{27D8BB7E-319B-4957-9910-9912EC10D137}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocadoraVeiculos.WinApp", "LocadoraVeiculos.WinApp\LocadoraVeiculos.WinApp.csproj", "{27D8BB7E-319B-4957-9910-9912EC10D137}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
