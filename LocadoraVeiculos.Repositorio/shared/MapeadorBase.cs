@@ -1,10 +1,6 @@
 ﻿using LocadoraVeiculos.Dominio.shared;
-using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LocadoraVeiculos.RepositorioProject.shared
 {
@@ -19,5 +15,4 @@ namespace LocadoraVeiculos.RepositorioProject.shared
             return new Dictionary<string, object>() { { campo, valor } };
         }
     }
-
 }
