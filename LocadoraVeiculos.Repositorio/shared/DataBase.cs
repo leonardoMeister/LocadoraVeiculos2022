@@ -27,44 +27,36 @@ namespace LocadoraVeiculos.Repositorio.shared
 
         public static int Insert(string sql, Dictionary<string, object> parameters)
         {
-            using (IDbConnection connection = conection)
-            {
-                connection.ConnectionString = connectionString;
+            using IDbConnection connection = conection;
+            connection.ConnectionString = connectionString;
 
-                using (IDbCommand command = conection.CreateCommand())
-                {
-                    command.CommandText = sql.AppendSelectIdentity();
-                    command.Connection = connection;
-                    command.SetParameters(parameters);
+            using IDbCommand command = conection.CreateCommand();
+            command.CommandText = sql.AppendSelectIdentity();
+            command.Connection = connection;
+            command.SetParameters(parameters);
 
-                    connection.Open();
+            connection.Open();
 
-                    int id = Convert.ToInt32(command.ExecuteScalar());
+            int id = Convert.ToInt32(command.ExecuteScalar());
 
-                    return id;
-                }
-            }
+            return id;
         }
 
         public static void Update(string sql, Dictionary<string, object> parameters = null)
         {
-            using (IDbConnection connection = conection)
-            {
-                connection.ConnectionString = connectionString;
+            using IDbConnection connection = conection;
+            connection.ConnectionString = connectionString;
 
-                using (IDbCommand command = conection.CreateCommand())
-                {
-                    command.CommandText = sql;
+            using IDbCommand command = conection.CreateCommand();
+            command.CommandText = sql;
 
-                    command.Connection = connection;
+            command.Connection = connection;
 
-                    command.SetParameters(parameters);
+            command.SetParameters(parameters);
 
-                    connection.Open();
+            connection.Open();
 
-                    command.ExecuteNonQuery();
-                }
-            }
+            command.ExecuteNonQuery();
         }
 
         public static void Delete(string sql, Dictionary<string, object> parameters)
@@ -74,125 +66,98 @@ namespace LocadoraVeiculos.Repositorio.shared
 
         public static List<T> GetAll<T>(string sql, ConverterDelegate<T> convert, Dictionary<string, object> parameters = null)
         {
-            using (IDbConnection connection = conection)
+            using IDbConnection connection = conection;
+            connection.ConnectionString = connectionString;
+
+            using IDbCommand command = conection.CreateCommand();
+            command.CommandText = sql;
+
+            command.Connection = connection;
+
+            command.SetParameters(parameters);
+
+            connection.Open();
+
+            var list = new List<T>();
+
+            using IDataReader reader = command.ExecuteReader();
+            while (reader.Read())
             {
-                connection.ConnectionString = connectionString;
-
-                using (IDbCommand command = conection.CreateCommand())
-                {
-                    command.CommandText = sql;
-
-                    command.Connection = connection;
-
-                    command.SetParameters(parameters);
-
-                    connection.Open();
-
-                    var list = new List<T>();
-
-                    using (IDataReader reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            var obj = convert(reader);
-                            list.Add(obj);
-                        }
-
-                        return list;
-                    }
-                }
+                var obj = convert(reader);
+                list.Add(obj);
             }
-        }
 
+            return list;
+        }
 
         public static T Get<T>(string sql, ConverterDelegate<T> convert, Dictionary<string, object> parameters)
         {
-            using (IDbConnection connection = conection)
-            {
-                connection.ConnectionString = connectionString;
+            using IDbConnection connection = conection;
+            connection.ConnectionString = connectionString;
 
-                using (IDbCommand command = conection.CreateCommand())
-                {
-                    command.CommandText = sql;
+            using IDbCommand command = conection.CreateCommand();
+            command.CommandText = sql;
 
-                    command.Connection = connection;
+            command.Connection = connection;
 
-                    command.SetParameters(parameters);
+            command.SetParameters(parameters);
 
-                    connection.Open();
+            connection.Open();
 
-                    T t = default;
+            T t = default;
 
-                    using (IDataReader reader = command.ExecuteReader())
-                    {
+            using IDataReader reader = command.ExecuteReader();
 
-                        if (reader.Read())
-                            t = convert(reader);
+            if (reader.Read())
+                t = convert(reader);
 
-                        return t;
-                    }
-                }
-            }
+            return t;
         }
 
         public static void InsertNoReturn(string sql, Dictionary<string, object> parameters)
         {
-            using (IDbConnection connection = conection)
-            {
-                connection.ConnectionString = connectionString;
+            using IDbConnection connection = conection;
+            connection.ConnectionString = connectionString;
 
-                using (IDbCommand command = conection.CreateCommand())
-                {
-                    command.CommandText = sql;
-                    command.Connection = connection;
-                    command.SetParameters(parameters);
+            using IDbCommand command = conection.CreateCommand();
+            command.CommandText = sql;
+            command.Connection = connection;
+            command.SetParameters(parameters);
 
-                    connection.Open();
-                    command.ExecuteNonQuery();
-
-                }
-            }
+            connection.Open();
+            command.ExecuteNonQuery();
         }
 
         public static void ExecutarComando(string sql)
         {
-            using (IDbConnection connection = conection)
-            {
-                connection.ConnectionString = connectionString;
+            using IDbConnection connection = conection;
+            connection.ConnectionString = connectionString;
 
-                using (IDbCommand command = conection.CreateCommand())
-                {
-                    command.CommandText = sql;
-                    command.Connection = connection;
+            using IDbCommand command = conection.CreateCommand();
+            command.CommandText = sql;
+            command.Connection = connection;
 
-                    connection.Open();
-                    command.ExecuteNonQuery();
-
-                }
-            }
+            connection.Open();
+            command.ExecuteNonQuery();
         }
 
         public static bool Exists(string sql, Dictionary<string, object> parameters)
         {
-            using (IDbConnection connection = conection)
-            {
-                connection.ConnectionString = connectionString;
+            using IDbConnection connection = conection;
+            connection.ConnectionString = connectionString;
 
-                using (IDbCommand command = conection.CreateCommand())
-                {
-                    command.CommandText = sql;
+            using IDbCommand command = conection.CreateCommand();
+            command.CommandText = sql;
 
-                    command.Connection = connection;
+            command.Connection = connection;
 
-                    command.SetParameters(parameters);
+            command.SetParameters(parameters);
 
-                    connection.Open();
+            connection.Open();
 
-                    int numberRows = Convert.ToInt32(command.ExecuteScalar());
+            int numberRows = Convert.ToInt32(command.ExecuteScalar());
 
-                    return numberRows > 0;
-                }
-            }
+            return numberRows > 0;
         }
 
         private static void SetParameters(this IDbCommand command, Dictionary<string, object> parameters)
