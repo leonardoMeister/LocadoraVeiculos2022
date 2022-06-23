@@ -1,6 +1,6 @@
 ﻿using LocadoraVeiculos.WinApp.shared;
 
-namespace LocadoraVeiculos.WinApp.ModuloTarefa
+namespace LocadoraVeiculos.WinApp.ModuloTaxa
 {
     internal class ConfiguracaoToolBoxTaxa : ConfiguracaoToolboxBase
     {
