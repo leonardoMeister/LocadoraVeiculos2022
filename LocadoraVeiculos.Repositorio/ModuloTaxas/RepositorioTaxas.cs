@@ -9,6 +9,7 @@ namespace LocadoraVeiculos.RepositorioProject.ModuloTaxas
     {
         public RepositorioTaxas(MapeadorBase<Taxas> mapeador) : base(mapeador)
         {
+
         }
 
         protected override string SqlUpdate => throw new NotImplementedException();

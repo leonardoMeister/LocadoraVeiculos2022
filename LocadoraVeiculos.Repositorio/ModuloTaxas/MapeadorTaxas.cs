@@ -11,12 +11,27 @@ namespace LocadoraVeiculos.RepositorioProject.ModuloTaxas
     {
         public override Taxas ConverterEmRegistro(IDataReader dataReader)
         {
-            throw new NotImplementedException();
+            var id = Convert.ToInt32(dataReader["ID"]);
+            var descricao = Convert.ToString(dataReader["DESCRICAO"]);
+            var valor = Convert.ToDecimal(dataReader["VALOR"]);
+
+            return new Taxas
+            {
+                _id = id,
+                Descricao = descricao,
+                Valor = valor
+            };
         }
 
-        public override Dictionary<string, object> ObtemParametrosRegistro(Taxas registro)
+        public override Dictionary<string, object> ObtemParametrosRegistro(Taxas taxas)
         {
-            throw new NotImplementedException();
+            return new Dictionary<string, object>
+            {
+                {"ID", taxas._id },
+                {"DESCRICAO", taxas.Descricao },
+                {"VALOR", taxas.Valor }
+
+            };
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿
-using FluentValidation;
+﻿using FluentValidation;
 
 namespace LocadoraVeiculos.Dominio.ModuloTaxas
 {
