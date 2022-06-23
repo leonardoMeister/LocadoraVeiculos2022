@@ -2,7 +2,7 @@
 
 namespace LocadoraVeiculos.Dominio.ModuloGrupoVeiculos
 {
-    public class GrupoVeiculos : EntidadeBase<GrupoVeiculos>
+    public class GrupoVeiculos : EntidadeBase
     {
         public GrupoVeiculos(string nome, string listacarros)
         {
