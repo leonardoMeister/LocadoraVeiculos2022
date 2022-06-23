@@ -60,7 +60,7 @@ namespace LocadoraVeiculos.WinApp.shared
             };
         }
 
-       
+
 
         public static T SelecionarNumero<T>(this DataGridView grid)
         {

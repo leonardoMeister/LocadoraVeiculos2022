@@ -3,7 +3,7 @@ using System;
 
 namespace LocadoraVeiculos.Dominio.ModuloFuncionario
 {
-    public class Funcionario : EntidadeBase<Funcionario>
+    public class Funcionario : EntidadeBase
     {
         public Funcionario(string nome, string login, string senha, decimal salario, DateTime dataadmicao, string tipoperfil)
         {
