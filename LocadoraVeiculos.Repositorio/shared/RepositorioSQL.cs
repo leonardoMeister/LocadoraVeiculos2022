@@ -14,7 +14,7 @@ namespace LocadoraVeiculos.Repositorio.shared
         protected abstract string SqlSelectId { get; }
         protected abstract string SqlExiste { get; }
 
-        protected MapeadorBase<T> Mapeador;
+        public MapeadorBase<T> Mapeador;
 
         public RepositorioSQL(MapeadorBase<T> mapeador)
         {
