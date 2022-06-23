@@ -1,6 +1,6 @@
-﻿namespace LocadoraVeiculos.WinApp.ModuloTarefa
+﻿namespace LocadoraVeiculos.WinApp.ModuloTaxa
 {
-    partial class TabelaTarefaControl
+    partial class TabelaTaxaControl
     {
         /// <summary> 
         /// Required designer variable.

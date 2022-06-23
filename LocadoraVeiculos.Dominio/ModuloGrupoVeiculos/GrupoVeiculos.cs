@@ -4,13 +4,10 @@ namespace LocadoraVeiculos.Dominio.ModuloGrupoVeiculos
 {
     public class GrupoVeiculos : EntidadeBase
     {
-        public GrupoVeiculos(string nome, string listacarros)
+        public GrupoVeiculos()
         {
-            Nome = nome;
-            ListaCarros = listacarros;
         }
 
-        public string Nome { get; set; }
-        public string ListaCarros { get; set; }
+        public string NomeGrupo { get; set; }
     }
 }
