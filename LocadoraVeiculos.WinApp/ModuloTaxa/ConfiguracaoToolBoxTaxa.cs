@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LocadoraVeiculos.WinApp.ModuloTarefa
+namespace LocadoraVeiculos.WinApp.ModuloTaxa
 {
     internal class ConfiguracaoToolBoxTaxa : ConfiguracaoToolboxBase
     {

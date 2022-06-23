@@ -1,4 +1,5 @@
-﻿using LocadoraVeiculos.WinApp.shared;
+﻿using LocadoraVeiculos.RepositorioProject.ModuloTaxas;
+using LocadoraVeiculos.WinApp.shared;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,10 +7,19 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace LocadoraVeiculos.WinApp.ModuloTarefa
+namespace LocadoraVeiculos.WinApp.ModuloTaxa
 {
-    internal class ControladorTarefa : ControladorBase
+    internal class ControladorTaxa : ControladorBase
     {
+        RepositorioTaxas repositorioTaxas;
+
+        TabelaTaxaControl tabelaTaxaControl;
+
+        public ControladorTaxa()
+        {
+            repositorioTaxas = new RepositorioTaxas();
+        }
+
         public override void Editar()
         {
             throw new NotImplementedException();
@@ -32,7 +42,17 @@ namespace LocadoraVeiculos.WinApp.ModuloTarefa
 
         public override UserControl ObtemListagem()
         {
-            throw new NotImplementedException();
+            if (tabelaTaxaControl == null)
+                tabelaTaxaControl = new TabelaTaxaControl();
+
+            CarregarTarefas();
+
+            return tabelaTaxaControl;
+        }
+
+        private void CarregarTarefas()
+        {
+            repositorioTaxas.
         }
     }
 }

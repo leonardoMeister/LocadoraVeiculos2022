@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace LocadoraVeiculos.WinApp.ModuloTarefa
+namespace LocadoraVeiculos.WinApp.ModuloTaxa
 {
-    public partial class TelaAgrupamentoTarefaForm : Form
+    public partial class TelaAgrupamentoTaxaForm : Form
     {
-        public TelaAgrupamentoTarefaForm()
+        public TelaAgrupamentoTaxaForm()
         {
             InitializeComponent();
         }
