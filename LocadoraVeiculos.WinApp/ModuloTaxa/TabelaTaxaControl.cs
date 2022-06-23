@@ -3,11 +3,11 @@ using LocadoraVeiculos.WinApp.shared;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace LocadoraVeiculos.WinApp.ModuloTarefa
+namespace LocadoraVeiculos.WinApp.ModuloTaxa
 {
-    public partial class TabelaTarefaControl : UserControl
+    public partial class TabelaTaxaControl : UserControl
     {
-        public TabelaTarefaControl()
+        public TabelaTaxaControl()
         {
             InitializeComponent();
             grid.ConfigurarGridZebrado();
