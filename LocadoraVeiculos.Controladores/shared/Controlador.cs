@@ -1,8 +1,8 @@
 ﻿using FluentValidation;
-using System;
-using System.Collections.Generic;
 using FluentValidation.Results;
 using LocadoraVeiculos.Dominio.shared;
+using System;
+using System.Collections.Generic;
 
 namespace LocadoraVeiculos.Repositorio.shared
 {

@@ -1,5 +1,6 @@
-﻿using System.Collections.Generic;
-using LocadoraVeiculos.Dominio.shared;
+﻿using LocadoraVeiculos.Dominio.shared;
+using LocadoraVeiculos.RepositorioProject.shared;
+using System.Collections.Generic;
 
 namespace LocadoraVeiculos.Repositorio.shared
 {

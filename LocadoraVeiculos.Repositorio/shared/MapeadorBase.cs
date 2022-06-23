@@ -1,6 +1,7 @@
 ﻿using LocadoraVeiculos.Dominio.shared;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 
 namespace LocadoraVeiculos.RepositorioProject.shared
 {

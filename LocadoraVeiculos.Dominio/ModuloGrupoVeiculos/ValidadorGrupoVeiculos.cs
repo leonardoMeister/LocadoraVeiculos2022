@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using FluentValidation;
 
 namespace LocadoraVeiculos.Dominio.ModuloGrupoVeiculos
 {
-    internal class ValidadorGrupoVeiculos
+    public class ValidadorGrupoVeiculos : AbstractValidator<GrupoVeiculos>
     {
+        public ValidadorGrupoVeiculos()
+        {
+            RuleFor(x => x.NomeGrupo)
+                .NotEmpty();
+        }
     }
 }
