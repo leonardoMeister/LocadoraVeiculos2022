@@ -30,13 +30,13 @@ namespace LocadoraVeiculos.RepositorioProject.ModuloCliente
             var parametros = new Dictionary<string, object>();
 
             parametros.Add("ID", registro._id);
-            parametros.Add("NOME", registro);
-            parametros.Add("CPF", registro);
-            parametros.Add("ENDERECO", registro);
-            parametros.Add("EMAIL", registro);
-            parametros.Add("TELEFONE", registro);
-            parametros.Add("TIPOCLIENTE", registro);
-            parametros.Add("CNH", registro);
+            parametros.Add("NOME", registro.Nome);
+            parametros.Add("CPF", registro.Cpf);
+            parametros.Add("ENDERECO", registro.Endereco);
+            parametros.Add("EMAIL", registro.Email);
+            parametros.Add("TELEFONE", registro.Telefone);
+            parametros.Add("TIPOCLIENTE", registro.TipoCliente);
+            parametros.Add("CNH", registro.Cnh);
 
             return parametros;
         }

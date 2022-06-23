@@ -10,10 +10,7 @@ namespace LocadoraVeiculos.Dominio.ModuloGrupoVeiculos
             RuleFor(x => x.NomeGrupo)
                 .NotNull().WithMessage("Deve ser inserido um Nome")
                 .NotEmpty().WithMessage("Deve ser inserido um Nome");
-
-            RuleFor(x => x.ListaCarros)
-                .NotNull().WithMessage("Deve ser inserido uma Lista de Carros")
-                .NotEmpty().WithMessage("Deve ser inserido uma Lista de Carros");
+            
         }
     }
 }
