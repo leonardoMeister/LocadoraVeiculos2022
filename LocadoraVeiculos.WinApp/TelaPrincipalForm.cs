@@ -1,34 +1,19 @@
-﻿using FluentValidation;
-using LocadoraVeiculos.Dominio.ModuloTaxas;
+﻿using LocadoraVeiculos.Controladores.ModuloControladorGrupoVeiculos;
 using LocadoraVeiculos.Dominio.shared;
-using LocadoraVeiculos.RepositorioProject.ModuloCliente;
-using LocadoraVeiculos.RepositorioProject.ModuloFuncionario;
+using LocadoraVeiculos.Repositorio.shared;
 using LocadoraVeiculos.RepositorioProject.ModuloGrupoVeiculos;
-using LocadoraVeiculos.RepositorioProject.ModuloTaxas;
-using LocadoraVeiculos.RepositorioProject.shared;
-using LocadoraVeiculos.WinApp.ModuloTarefa;
 using LocadoraVeiculos.WinApp.shared;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LocadoraVeiculos.WinApp
 {
     public partial class TelaPrincipalForm : Form
     {
-        ControladorTarefa controladorTarefa;
+        ControladorBase controlador;
+        ControladorGrupoVeiculos controladorGrupoVeiculos;
 
-        private ControladorBase controlador;
-        private Dictionary<string, ControladorBase> controladores;
-
-
-        public TelaPrincipalForm()
+        public TelaPrincipalForm(IRepositoryGrupoVeiculos repositoryGrupoVeiculos)
         {
             InitializeComponent();
 
@@ -37,16 +22,7 @@ namespace LocadoraVeiculos.WinApp
             labelRodape.Text = string.Empty;
             labelTipoCadastro.Text = string.Empty;
 
-            InicializarRepositorios();
-        }
 
-        private void InicializarRepositorios()
-        {
-            controladorTarefa = new ControladorTarefa();
-
-            controladores = new Dictionary<string, ControladorBase>();
-
-            controladores.Add("Taxas", new ControladorTarefa());
         }
 
         public static TelaPrincipalForm Instancia
@@ -54,20 +30,10 @@ namespace LocadoraVeiculos.WinApp
             get;
             private set;
         }
+
         public void AtualizarRodape(string mensagem)
         {
             labelRodape.Text = mensagem;
-        }
-
-        private void ConfigurarTelaPrincipal(ToolStripMenuItem opcaoSelecionada)
-        {
-            var tipo = opcaoSelecionada.Text;
-
-            controlador = controladores[tipo];
-
-            ConfigurarToolbox();
-
-            ConfigurarListagem();
         }
 
         private void ConfigurarListagem()
@@ -122,25 +88,33 @@ namespace LocadoraVeiculos.WinApp
 
         private void taxasMenuItem_Click(object sender, EventArgs e)
         {
-            ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
+            ConfigurarTelaPrincipal(null);
 
         }
 
-        private void contatosMenuItem_Click(object sender, EventArgs e)
+        private void contatosMenuItem_Click(object sender, EventArgs e) //alterar o nome do botão
         {
-            ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
+            ConfigurarTelaPrincipal(controladorGrupoVeiculos);
 
+
+        }
+
+        private void ConfigurarTelaPrincipal<T>(Controlador<T> controladorGrupoVeiculos) where T : EntidadeBase
+        {
+            ConfigurarToolbox();
+
+            ConfigurarListagem();
         }
 
         private void compromissosMenuItem_Click(object sender, EventArgs e)
         {
-            ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
+            ConfigurarTelaPrincipal(null);
 
         }
 
         private void despesasMenuItem_Click(object sender, EventArgs e)
         {
-            ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
+            ConfigurarTelaPrincipal(null);
 
         }
     }

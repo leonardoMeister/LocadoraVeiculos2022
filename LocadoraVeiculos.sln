@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocadoraVeiculos.Repositori
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocadoraVeiculos.WinApp", "LocadoraVeiculos.WinApp\LocadoraVeiculos.WinApp.csproj", "{27D8BB7E-319B-4957-9910-9912EC10D137}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocadoraVeiculos.Controladores", "LocadoraVeiculos.Controladores\LocadoraVeiculos.Controladores.csproj", "{98FD6D35-D84A-4561-A3B0-C68E88AF82CE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,10 @@ Global
 		{27D8BB7E-319B-4957-9910-9912EC10D137}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{27D8BB7E-319B-4957-9910-9912EC10D137}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{27D8BB7E-319B-4957-9910-9912EC10D137}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98FD6D35-D84A-4561-A3B0-C68E88AF82CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98FD6D35-D84A-4561-A3B0-C68E88AF82CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98FD6D35-D84A-4561-A3B0-C68E88AF82CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98FD6D35-D84A-4561-A3B0-C68E88AF82CE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
