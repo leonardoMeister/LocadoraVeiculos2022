@@ -1,13 +1,6 @@
 ﻿using LocadoraVeiculos.Dominio.ModuloTaxas;
 using LocadoraVeiculos.WinApp.shared;
-using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LocadoraVeiculos.WinApp.ModuloTaxa
@@ -54,7 +47,7 @@ namespace LocadoraVeiculos.WinApp.ModuloTaxa
             foreach (Taxas tarefa in tarefas)
             {
                 //grid.Rows.Add(tarefa.Numero, tarefa.Titulo, tarefa.Prioridade,
-                  //  tarefa.DataCriacao, tarefa.DataConclusao, tarefa.PercentualConcluido);
+                //  tarefa.DataCriacao, tarefa.DataConclusao, tarefa.PercentualConcluido);
             }
         }
 

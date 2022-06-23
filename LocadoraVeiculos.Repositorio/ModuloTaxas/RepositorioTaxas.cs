@@ -2,15 +2,15 @@
 using LocadoraVeiculos.Repositorio.shared;
 using LocadoraVeiculos.RepositorioProject.shared;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LocadoraVeiculos.RepositorioProject.ModuloTaxas
 {
-    public class RepositorioTaxas : Repositorio<Taxas, ValidadorTaxas, MapeadorTaxas>
+    public class RepositorioTaxas : RepositorioSQL<Taxas>
     {
+        public RepositorioTaxas(MapeadorBase<Taxas> mapeador) : base(mapeador)
+        {
+        }
+
         protected override string SqlUpdate => throw new NotImplementedException();
 
         protected override string SqlDelete => throw new NotImplementedException();

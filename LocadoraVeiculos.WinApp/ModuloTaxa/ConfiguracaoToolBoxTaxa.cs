@@ -1,15 +1,10 @@
 ﻿using LocadoraVeiculos.WinApp.shared;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LocadoraVeiculos.WinApp.ModuloTaxa
 {
     internal class ConfiguracaoToolBoxTaxa : ConfiguracaoToolboxBase
     {
-        public override string TipoCadastro =>"Taxas";
+        public override string TipoCadastro => "Taxas";
 
         public override string TooltipInserir => "";
 

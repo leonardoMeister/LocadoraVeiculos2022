@@ -1,12 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using LocadoraVeiculos.Dominio.shared;
+using System;
 
 namespace LocadoraVeiculos.Dominio.ModuloFuncionario
 {
-    internal class Funcionario
+    public class Funcionario : EntidadeBase
     {
+        public Funcionario(string nome, string login, string senha, decimal salario, DateTime dataadmicao, string tipoperfil)
+        {
+            Nome = nome;
+            Login = login;
+            Senha = senha;
+            Salario = salario;
+            DataAdmicao = dataadmicao;
+            TipoPerfil = tipoperfil;
+        }
+
+        public string Nome { get; set; }
+        public string Login { get; set; }
+        public string Senha { get; set; }
+        public decimal Salario { get; set; }
+        public DateTime DataAdmicao { get; set; }
+        public string TipoPerfil { get; set; }
     }
 }

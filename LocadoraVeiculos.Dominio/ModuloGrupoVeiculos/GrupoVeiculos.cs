@@ -1,12 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using LocadoraVeiculos.Dominio.shared;
 
 namespace LocadoraVeiculos.Dominio.ModuloGrupoVeiculos
 {
-    internal class GrupoVeiculos
+    public class GrupoVeiculos : EntidadeBase
     {
+        public GrupoVeiculos(string nome, string listacarros)
+        {
+            Nome = nome;
+            ListaCarros = listacarros;
+        }
+
+        public string Nome { get; set; }
+        public string ListaCarros { get; set; }
     }
 }
