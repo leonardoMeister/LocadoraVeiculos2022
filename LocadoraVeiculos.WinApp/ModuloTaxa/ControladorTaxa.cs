@@ -5,38 +5,33 @@ using System.Windows.Forms;
 
 namespace LocadoraVeiculos.WinApp.ModuloTaxa
 {
-    internal class ControladorTaxa : ControladorBase
+    internal class ControladorTaxa : ICadastravel
     {
         RepositorioTaxas repositorioTaxas;
 
         TabelaTaxaControl tabelaTaxaControl;
 
-        public ControladorTaxa()
-        {
-            repositorioTaxas = new RepositorioTaxas(new MapeadorTaxas());
-        }
-
-        public override void Editar()
+        public void Editar()
         {
             throw new NotImplementedException();
         }
 
-        public override void Excluir()
+        public void Excluir()
         {
             throw new NotImplementedException();
         }
 
-        public override void Inserir()
+        public void Inserir()
         {
             throw new NotImplementedException();
         }
 
-        public override ConfiguracaoToolboxBase ObtemConfiguracaoToolbox()
+        public ConfiguracaoToolboxBase ObtemConfiguracaoToolbox()
         {
-            return new ConfiguracaoToolBoxTaxa();
+            throw new NotImplementedException();
         }
 
-        public override UserControl ObtemListagem()
+        public UserControl ObtemListagem()
         {
             if (tabelaTaxaControl == null)
                 tabelaTaxaControl = new TabelaTaxaControl();
@@ -48,7 +43,7 @@ namespace LocadoraVeiculos.WinApp.ModuloTaxa
 
         private void CarregarTarefas()
         {
-            
+            throw new NotImplementedException();
         }
     }
 }
