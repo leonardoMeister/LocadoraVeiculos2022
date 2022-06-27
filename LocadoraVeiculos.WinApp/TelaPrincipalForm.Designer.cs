@@ -44,7 +44,7 @@
             this.toolbox = new System.Windows.Forms.ToolStrip();
             this.despesasMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.compromissosMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.contatosMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.grupoVeiculosMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tarefasMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cadastrosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panelRegistros = new System.Windows.Forms.Panel();
@@ -201,13 +201,13 @@
             this.compromissosMenuItem.Text = "Compromissos";
             this.compromissosMenuItem.Click += new System.EventHandler(this.compromissosMenuItem_Click);
             // 
-            // contatosMenuItem
+            // grupoVeiculosMenuItem
             // 
-            this.contatosMenuItem.Name = "contatosMenuItem";
-            this.contatosMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F2;
-            this.contatosMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.contatosMenuItem.Text = "Contatos";
-            this.contatosMenuItem.Click += new System.EventHandler(this.contatosMenuItem_Click);
+            this.grupoVeiculosMenuItem.Name = "grupoVeiculosMenuItem";
+            this.grupoVeiculosMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F2;
+            this.grupoVeiculosMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.grupoVeiculosMenuItem.Text = "Grupo Veiculos";
+            this.grupoVeiculosMenuItem.Click += new System.EventHandler(this.grupoVeiculosMenuItem_Click);
             // 
             // tarefasMenuItem
             // 
@@ -221,7 +221,7 @@
             // 
             this.cadastrosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tarefasMenuItem,
-            this.contatosMenuItem,
+            this.grupoVeiculosMenuItem,
             this.compromissosMenuItem,
             this.despesasMenuItem});
             this.cadastrosToolStripMenuItem.Name = "cadastrosToolStripMenuItem";
@@ -304,7 +304,7 @@
         private System.Windows.Forms.ToolStrip toolbox;
         private System.Windows.Forms.ToolStripMenuItem despesasMenuItem;
         private System.Windows.Forms.ToolStripMenuItem compromissosMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem contatosMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem grupoVeiculosMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tarefasMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cadastrosToolStripMenuItem;
         private System.Windows.Forms.Panel panelRegistros;

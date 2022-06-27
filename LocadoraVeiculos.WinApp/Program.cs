@@ -6,7 +6,9 @@ using LocadoraVeiculos.Dominio.ModuloTaxas;
 using LocadoraVeiculos.Repositorio.shared;
 using LocadoraVeiculos.RepositorioProject.ModuloGrupoVeiculos;
 using LocadoraVeiculos.RepositorioProject.shared;
+using LocadoraVeiculos.WinApp.ModuloGrupoVeiculo;
 using LocadoraVeiculos.WinApp.ModuloTaxa;
+using LocadoraVeiculos.WinApp.shared;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Windows.Forms;
@@ -35,11 +37,14 @@ namespace LocadoraVeiculos.WinApp
         {
             var services = new ServiceCollection();
 
+            //configuracoes
+            services.AddTransient<ConfiguracaoBase<GrupoVeiculos>, ConfiguracaoGrupoVeiculo>();
+
             //validadores
             services.AddSingleton<AbstractValidator<GrupoVeiculos>, ValidadorGrupoVeiculos>();
 
             //controladores
-            services.AddSingleton<Controlador<GrupoVeiculos>, ControladorGrupoVeiculos>();
+            services.AddSingleton<ControladorGrupoVeiculos>();
             services.AddSingleton<Controlador<Taxas>, ControladorTaxas>();
 
             //mapeadores
