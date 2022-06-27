@@ -9,18 +9,45 @@ namespace LocadoraVeiculos.RepositorioProject.ModuloTaxas
     {
         public RepositorioTaxas(MapeadorBase<Taxas> mapeador) : base(mapeador)
         {
+
         }
 
-        protected override string SqlUpdate => throw new NotImplementedException();
+        protected override string SqlUpdate =>
+                @"UPDATE TB_TAXAS
+                   SET [descricao] = @DESCRICAO,
+                       [cpf] = @CPF
+                 WHERE id_taxas = @ID";
 
-        protected override string SqlDelete => throw new NotImplementedException();
+        protected override string SqlDelete =>
+                @"DELETE FROM TB_TAXAS
+                WHERE id_taxas = @ID";
 
-        protected override string SqlInsert => throw new NotImplementedException();
+        protected override string SqlInsert =>
+            @"INSERT INTO TB_TAXAS
+                   ([descricao],
+                    [cpf])
+                 VALUES
+                       (@DESCRICAO, @CPF) ;";
 
-        protected override string SqlSelectAll => throw new NotImplementedException();
+        protected override string SqlSelectAll => @"
+                SELECT [id_taxas],
+                       [descricao],
+                       [cpf]
+                  FROM TB_TAXAS;";
 
-        protected override string SqlSelectId => throw new NotImplementedException();
+        protected override string SqlSelectId => @"
+                SELECT [id_taxas],
+                       [descricao],
+                       [cpf]
+                  FROM TB_TAXAS
+                    where id_taxas = @ID ; ";
 
-        protected override string SqlExiste => throw new NotImplementedException();
+        protected override string SqlExiste =>
+            @"SELECT
+                        COUNT(*)
+                    FROM 
+                        TB_TAXAS
+                    WHERE id_taxas = @ID;";
+
     }
 }
