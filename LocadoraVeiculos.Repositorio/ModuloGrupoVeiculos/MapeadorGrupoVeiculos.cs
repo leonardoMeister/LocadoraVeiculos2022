@@ -11,23 +11,23 @@ namespace LocadoraVeiculos.RepositorioProject.ModuloGrupoVeiculos
     {
         public override GrupoVeiculos ConverterEmRegistro(IDataReader dataReader)
         {
-            var id = Convert.ToInt32(dataReader["ID"]);
-            var nomeGrupo = Convert.ToString(dataReader["NOME_GRUPO"]);
+            int id = Convert.ToInt32(dataReader[0]);
+            string nomeGrupo = Convert.ToString(dataReader[1]);
 
-            return new GrupoVeiculos
-            {
-                _id = id,
-                NomeGrupo = nomeGrupo
-            };
+            var gveiculos = new GrupoVeiculos(nomeGrupo);
+            gveiculos._id = id;
+
+            return gveiculos;
         }
 
         public override Dictionary<string, object> ObtemParametrosRegistro(GrupoVeiculos grupoVeiculos)
         {
-            return new Dictionary<string, object>
-            {
-                {"ID", grupoVeiculos._id },
-                {"NOME_GRUPO", grupoVeiculos.NomeGrupo }
-            };
+            var parametros = new Dictionary<string, object>();
+
+            parametros.Add("ID", grupoVeiculos._id);
+            parametros.Add("NOMEGRUPO", grupoVeiculos.NomeGrupo);
+
+            return parametros;
         }
     }
 }
