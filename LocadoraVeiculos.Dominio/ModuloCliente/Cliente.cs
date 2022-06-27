@@ -1,4 +1,5 @@
 ﻿using LocadoraVeiculos.Dominio.shared;
+using System;
 
 namespace LocadoraVeiculos.Dominio.ModuloCliente
 {
@@ -22,5 +23,23 @@ namespace LocadoraVeiculos.Dominio.ModuloCliente
         public string Telefone { get; set; }
         public string TipoCliente { get; set; }
         public string Cnh { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Cliente cliente &&
+                   _id == cliente._id &&
+                   Nome == cliente.Nome &&
+                   Cpf == cliente.Cpf &&
+                   Endereco == cliente.Endereco &&
+                   Email == cliente.Email &&
+                   Telefone == cliente.Telefone &&
+                   TipoCliente == cliente.TipoCliente &&
+                   Cnh == cliente.Cnh;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(_id, Nome, Cpf, Endereco, Email, Telefone, TipoCliente, Cnh);
+        }
     }
 }

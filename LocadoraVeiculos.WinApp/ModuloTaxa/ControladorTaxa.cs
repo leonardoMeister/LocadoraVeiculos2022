@@ -13,7 +13,7 @@ namespace LocadoraVeiculos.WinApp.ModuloTaxa
 
         public ControladorTaxa()
         {
-            repositorioTaxas = new RepositorioTaxas();
+            repositorioTaxas = new RepositorioTaxas(new MapeadorTaxas());
         }
 
         public override void Editar()
@@ -48,7 +48,7 @@ namespace LocadoraVeiculos.WinApp.ModuloTaxa
 
         private void CarregarTarefas()
         {
-            repositorioTaxas.
+            
         }
     }
 }
