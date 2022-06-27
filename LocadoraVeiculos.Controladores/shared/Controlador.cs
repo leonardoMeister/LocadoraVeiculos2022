@@ -1,9 +1,9 @@
 ﻿using FluentValidation;
 using FluentValidation.Results;
 using LocadoraVeiculos.Dominio.shared;
+using LocadoraVeiculos.WinApp.shared;
 using System;
 using System.Collections.Generic;
-
 namespace LocadoraVeiculos.Repositorio.shared
 {
     public abstract class Controlador<T> where T : EntidadeBase
@@ -43,7 +43,7 @@ namespace LocadoraVeiculos.Repositorio.shared
         public virtual bool Existe(int id)
         {
             return Repositorio.Existe(id);
-        }
+        }        
 
         public virtual ValidationResult Excluir(int id)
         {

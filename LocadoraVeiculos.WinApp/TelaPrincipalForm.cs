@@ -1,4 +1,5 @@
 ﻿using LocadoraVeiculos.Controladores.ModuloControladorGrupoVeiculos;
+using LocadoraVeiculos.Dominio.ModuloGrupoVeiculos;
 using LocadoraVeiculos.Dominio.shared;
 using LocadoraVeiculos.Repositorio.shared;
 using LocadoraVeiculos.RepositorioProject.ModuloGrupoVeiculos;
@@ -11,36 +12,29 @@ namespace LocadoraVeiculos.WinApp
 {
     public partial class TelaPrincipalForm : Form
     {
-        ControladorGrupoVeiculos controladorGrupoVeiculos;
+        public IRepositoryGrupoVeiculos RepositorioGrupoVeiculos { get; }
+        public ControladorGrupoVeiculos ControladorGrupoVeiculos { get; }
+        public ConfiguracaoBase<GrupoVeiculos> ConfiguracaoGrupoVeiculos { get; }
 
-        public TelaPrincipalForm(IRepositoryGrupoVeiculos repositoryGrupoVeiculos, TelaCadastroTaxaForm telaCadastroTaxa)
+        public TelaPrincipalForm(ConfiguracaoBase<GrupoVeiculos> configuracaoGrupoVeiculos)
         {
             InitializeComponent();
 
-            Instancia = this;
-
             labelRodape.Text = string.Empty;
             labelTipoCadastro.Text = string.Empty;
-            TelaCadastroTaxa = telaCadastroTaxa;
+            ConfiguracaoGrupoVeiculos = configuracaoGrupoVeiculos;
         }
-
-        public static TelaPrincipalForm Instancia
-        {
-            get;
-            private set;
-        }
-        public TelaCadastroTaxaForm TelaCadastroTaxa { get; }
 
         public void AtualizarRodape(string mensagem)
         {
-            labelRodape.Text = mensagem;
+            
         }
 
-        private void ConfigurarListagem()
+        private void ConfigurarListagem<T>(ConfiguracaoBase<T> configuracao) where T : EntidadeBase
         {
             AtualizarRodape("");
 
-            var listagemControl = controlador.ObtemListagem();
+            var listagemControl = configuracao.ObtemListagem();
 
             panelRegistros.Controls.Clear();
 
@@ -49,19 +43,19 @@ namespace LocadoraVeiculos.WinApp
             panelRegistros.Controls.Add(listagemControl);
         }
 
-        private void ConfigurarToolbox()
+        private void ConfigurarToolbox<T>(ConfiguracaoBase<T> configuracao) where T : EntidadeBase
         {
-            ConfiguracaoToolboxBase configuracao = controlador.ObtemConfiguracaoToolbox();
+            ConfiguracaoToolboxBase configuracaoToolBox = configuracao.ObterConfiguracao();
 
-            if (configuracao != null)
+            if (configuracaoToolBox != null)
             {
                 toolbox.Enabled = true;
 
-                labelTipoCadastro.Text = configuracao.TipoCadastro;
+                labelTipoCadastro.Text = configuracaoToolBox.TipoCadastro;
 
-                ConfigurarTooltips(configuracao);
+                ConfigurarTooltips(configuracaoToolBox);
 
-                ConfigurarBotoes(configuracao);
+                ConfigurarBotoes(configuracaoToolBox);
             }
         }
 
@@ -88,40 +82,34 @@ namespace LocadoraVeiculos.WinApp
 
         private void taxasMenuItem_Click(object sender, EventArgs e)
         {
-            ConfigurarToolbox();
-
-            ConfigurarListagem();
+            
         }
 
-        private void contatosMenuItem_Click(object sender, EventArgs e) //alterar o nome do botão
+        private void grupoVeiculosMenuItem_Click(object sender, EventArgs e) //alterar o nome do botão
         {
-            ConfigurarTelaPrincipal(controladorGrupoVeiculos);
-
-
+            ConfigurarTelaPrincipal(ConfiguracaoGrupoVeiculos);
         }
 
-        private void ConfigurarTelaPrincipal<T>(Controlador<T> controladorGrupoVeiculos) where T : EntidadeBase
+        private void ConfigurarTelaPrincipal<T>(ConfiguracaoBase<T> configuracao) where T : EntidadeBase
         {
-            ConfigurarToolbox();
+            ConfigurarToolbox(configuracao);
 
-            ConfigurarListagem();
+            ConfigurarListagem(configuracao);
         }
 
         private void compromissosMenuItem_Click(object sender, EventArgs e)
         {
-            //ConfigurarTelaPrincipal(null);
-
+            
         }
 
         private void despesasMenuItem_Click(object sender, EventArgs e)
         {
-            //ConfigurarTelaPrincipal(null);
-
+            
         }
 
         private void btnInserir_Click(object sender, EventArgs e)
         {
-            Program.ServiceProvider.GetService(Controlador)
+            
         }
     }
 }
