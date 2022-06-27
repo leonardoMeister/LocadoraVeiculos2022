@@ -21,5 +21,22 @@ namespace LocadoraVeiculos.Dominio.ModuloFuncionario
         public decimal Salario { get; set; }
         public DateTime DataAdmicao { get; set; }
         public string TipoPerfil { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Funcionario funcionario &&
+                   _id == funcionario._id &&
+                   Nome == funcionario.Nome &&
+                   Login == funcionario.Login &&
+                   Senha == funcionario.Senha &&
+                   Salario == funcionario.Salario &&
+                   DataAdmicao.Date == funcionario.DataAdmicao.Date &&
+                   TipoPerfil == funcionario.TipoPerfil;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(_id, Nome, Login, Senha, Salario, DataAdmicao, TipoPerfil);
+        }
     }
 }
