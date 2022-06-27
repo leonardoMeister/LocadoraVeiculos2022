@@ -1,15 +1,22 @@
-﻿using LocadoraVeiculos.RepositorioProject.ModuloTaxas;
+﻿using LocadoraVeiculos.RepositorioProject.ModuloCliente;
 using LocadoraVeiculos.WinApp.shared;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace LocadoraVeiculos.WinApp.ModuloTaxa
+namespace LocadoraVeiculos.WinApp.ModuloCliente
 {
-    internal class ControladorTaxa : ICadastravel
+    internal class ControladorCliente : ICadastravel
     {
-        RepositorioTaxas repositorioTaxas;
+        RepositorioCliente repositorioCliente;
 
-        TabelaTaxaControl tabelaTaxaControl;
+        public ControladorCliente()
+        {
+            repositorioCliente = new RepositorioCliente(new MapeadorCliente());
+        }
 
         public void Editar()
         {
@@ -32,16 +39,6 @@ namespace LocadoraVeiculos.WinApp.ModuloTaxa
         }
 
         public UserControl ObtemListagem()
-        {
-            if (tabelaTaxaControl == null)
-                tabelaTaxaControl = new TabelaTaxaControl();
-
-            CarregarTarefas();
-
-            return tabelaTaxaControl;
-        }
-
-        private void CarregarTarefas()
         {
             throw new NotImplementedException();
         }

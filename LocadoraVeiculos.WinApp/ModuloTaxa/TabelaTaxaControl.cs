@@ -19,6 +19,8 @@ namespace LocadoraVeiculos.WinApp.ModuloTaxa
         {
             var colunas = new DataGridViewColumn[]
             {
+                new DataGridViewTextBoxColumn { DataPropertyName = "Id", HeaderText = "Id"},
+
                 new DataGridViewTextBoxColumn { DataPropertyName = "Numero", HeaderText = "Número"},
 
                 new DataGridViewTextBoxColumn { DataPropertyName = "Titulo", HeaderText = "Título"},
@@ -29,7 +31,7 @@ namespace LocadoraVeiculos.WinApp.ModuloTaxa
 
                 new DataGridViewTextBoxColumn { DataPropertyName = "DataConclusao", HeaderText = "Concluída em"},
 
-                new DataGridViewTextBoxColumn { DataPropertyName = "PercentualConcluido", HeaderText = "% Concluído"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "PercentualConcluido", HeaderText = "% Concluído"}
             };
 
             return colunas;

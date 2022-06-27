@@ -27,7 +27,6 @@ namespace LocadoraVeiculos.RepositorioProject.ModuloGrupoVeiculos
             {
                 {"ID", grupoVeiculos._id },
                 {"NOME_GRUPO", grupoVeiculos.NomeGrupo }
-
             };
         }
     }
