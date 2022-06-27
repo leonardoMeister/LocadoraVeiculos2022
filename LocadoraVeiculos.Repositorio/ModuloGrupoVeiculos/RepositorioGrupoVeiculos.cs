@@ -12,7 +12,10 @@ namespace LocadoraVeiculos.RepositorioProject.ModuloGrupoVeiculos
 
         }
 
-        protected override string SqlUpdate => throw new NotImplementedException();
+        protected override string SqlUpdate =>
+            @"UPDATE TB_TAXAS
+                   SET [nomeGrupo] = @NOME_GRUPO
+                 WHERE id_taxas = @ID";
 
         protected override string SqlDelete => throw new NotImplementedException();
 

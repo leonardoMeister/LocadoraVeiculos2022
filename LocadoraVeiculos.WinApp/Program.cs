@@ -1,9 +1,12 @@
 using FluentValidation;
 using LocadoraVeiculos.Controladores.ModuloControladorGrupoVeiculos;
+using LocadoraVeiculos.Controladores.ModuloControladorTaxas;
 using LocadoraVeiculos.Dominio.ModuloGrupoVeiculos;
+using LocadoraVeiculos.Dominio.ModuloTaxas;
 using LocadoraVeiculos.Repositorio.shared;
 using LocadoraVeiculos.RepositorioProject.ModuloGrupoVeiculos;
 using LocadoraVeiculos.RepositorioProject.shared;
+using LocadoraVeiculos.WinApp.ModuloTaxa;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Windows.Forms;
@@ -36,7 +39,8 @@ namespace LocadoraVeiculos.WinApp
             services.AddSingleton<AbstractValidator<GrupoVeiculos>, ValidadorGrupoVeiculos>();
 
             //controladores
-            services.AddSingleton<ControladorGrupoVeiculos>();
+            services.AddSingleton<Controlador<GrupoVeiculos>, ControladorGrupoVeiculos>();
+            services.AddSingleton<Controlador<Taxas>, ControladorTaxas>();
 
             //mapeadores
             services.AddSingleton<MapeadorBase<GrupoVeiculos>, MapeadorGrupoVeiculos>();
@@ -46,6 +50,7 @@ namespace LocadoraVeiculos.WinApp
 
             //telas
             services.AddTransient<TelaPrincipalForm>();
+            services.AddTransient<TelaCadastroTaxaForm>();
 
             return services.BuildServiceProvider();
         }

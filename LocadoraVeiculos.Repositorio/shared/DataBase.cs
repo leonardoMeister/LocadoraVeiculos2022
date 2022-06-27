@@ -16,7 +16,7 @@ namespace LocadoraVeiculos.RepositorioProject.shared
         static DataBase()
         {
             connectionString = @"Data Source=(LOCALDB)\MSSQLLOCALDB;
-                                  Initial Catalog=locadoraVeiculos;
+                                  Initial Catalog=LocadoraVeiculos;
                                   Integrated Security = True;
                                   Pooling = false;";
 

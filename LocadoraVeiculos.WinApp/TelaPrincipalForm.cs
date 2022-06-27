@@ -2,6 +2,7 @@
 using LocadoraVeiculos.Dominio.shared;
 using LocadoraVeiculos.Repositorio.shared;
 using LocadoraVeiculos.RepositorioProject.ModuloGrupoVeiculos;
+using LocadoraVeiculos.WinApp.ModuloTaxa;
 using LocadoraVeiculos.WinApp.shared;
 using System;
 using System.Windows.Forms;
@@ -10,10 +11,9 @@ namespace LocadoraVeiculos.WinApp
 {
     public partial class TelaPrincipalForm : Form
     {
-        ControladorBase controlador;
         ControladorGrupoVeiculos controladorGrupoVeiculos;
 
-        public TelaPrincipalForm(IRepositoryGrupoVeiculos repositoryGrupoVeiculos)
+        public TelaPrincipalForm(IRepositoryGrupoVeiculos repositoryGrupoVeiculos, TelaCadastroTaxaForm telaCadastroTaxa)
         {
             InitializeComponent();
 
@@ -21,8 +21,7 @@ namespace LocadoraVeiculos.WinApp
 
             labelRodape.Text = string.Empty;
             labelTipoCadastro.Text = string.Empty;
-
-
+            TelaCadastroTaxa = telaCadastroTaxa;
         }
 
         public static TelaPrincipalForm Instancia
@@ -30,6 +29,7 @@ namespace LocadoraVeiculos.WinApp
             get;
             private set;
         }
+        public TelaCadastroTaxaForm TelaCadastroTaxa { get; }
 
         public void AtualizarRodape(string mensagem)
         {
@@ -88,8 +88,9 @@ namespace LocadoraVeiculos.WinApp
 
         private void taxasMenuItem_Click(object sender, EventArgs e)
         {
-           // ConfigurarTelaPrincipal(null);
+            ConfigurarToolbox();
 
+            ConfigurarListagem();
         }
 
         private void contatosMenuItem_Click(object sender, EventArgs e) //alterar o nome do botão
@@ -116,6 +117,11 @@ namespace LocadoraVeiculos.WinApp
         {
             //ConfigurarTelaPrincipal(null);
 
+        }
+
+        private void btnInserir_Click(object sender, EventArgs e)
+        {
+            Program.ServiceProvider.GetService(Controlador)
         }
     }
 }
