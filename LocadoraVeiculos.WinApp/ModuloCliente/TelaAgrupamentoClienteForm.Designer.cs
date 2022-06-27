@@ -1,6 +1,6 @@
-﻿namespace LocadoraVeiculos.WinApp.ModuloTaxa
+﻿namespace LocadoraVeiculos.WinApp.ModuloCliente
 {
-    partial class TelaCadastroTaxaForm
+    partial class TelaAgrupamentoClienteForm
     {
         /// <summary>
         /// Required designer variable.
@@ -30,17 +30,17 @@
         {
             this.SuspendLayout();
             // 
-            // TelaCadastroTaxaForm
+            // TelaAgrupamentoClienteForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "TelaCadastroTaxaForm";
+            this.Name = "TelaAgrupamentoClienteForm";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "TelaCadastroTarefaForm";
+            this.Text = "TelaAgrupamentoClienteForm";
             this.ResumeLayout(false);
 
         }
