@@ -2,7 +2,7 @@
 
 namespace LocadoraVeiculos.WinApp.shared
 {
-    public abstract class ControladorBase
+    public interface ICadastravel
     {
         public abstract void Inserir();
         public abstract void Editar();

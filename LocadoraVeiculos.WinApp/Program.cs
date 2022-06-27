@@ -1,6 +1,7 @@
 using FluentValidation;
 using LocadoraVeiculos.Controladores.ModuloControladorGrupoVeiculos;
 using LocadoraVeiculos.Dominio.ModuloGrupoVeiculos;
+using LocadoraVeiculos.Repositorio.shared;
 using LocadoraVeiculos.RepositorioProject.ModuloGrupoVeiculos;
 using LocadoraVeiculos.RepositorioProject.shared;
 using Microsoft.Extensions.DependencyInjection;
@@ -31,13 +32,33 @@ namespace LocadoraVeiculos.WinApp
         {
             var services = new ServiceCollection();
 
+            //validadores
             services.AddSingleton<AbstractValidator<GrupoVeiculos>, ValidadorGrupoVeiculos>();
+
+            //controladores
             services.AddSingleton<ControladorGrupoVeiculos>();
+
+            //mapeadores
             services.AddSingleton<MapeadorBase<GrupoVeiculos>, MapeadorGrupoVeiculos>();
+
+            //repositorios
             services.AddSingleton<IRepositoryGrupoVeiculos, RepositorioGrupoVeiculos>();
+
+            //telas
             services.AddTransient<TelaPrincipalForm>();
 
             return services.BuildServiceProvider();
+        }
+    }
+
+    //referencia
+    public class classe1
+    {
+        public ControladorGrupoVeiculos controlador;
+
+        public classe1(ControladorGrupoVeiculos controlador)
+        {
+            this.controlador = controlador;
         }
     }
 }

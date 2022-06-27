@@ -12,9 +12,9 @@ namespace LocadoraVeiculos.Repositorio.shared
         protected abstract string SqlInsert { get; }
         protected abstract string SqlSelectAll { get; }
         protected abstract string SqlSelectId { get; }
-        protected abstract string SqlExiste { get; }
+        protected abstract string SqlExiste { get; } 
 
-        protected MapeadorBase<T> Mapeador;
+        public MapeadorBase<T> Mapeador;
 
         public RepositorioSQL(MapeadorBase<T> mapeador)
         {

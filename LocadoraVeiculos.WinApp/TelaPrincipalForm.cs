@@ -88,7 +88,7 @@ namespace LocadoraVeiculos.WinApp
 
         private void taxasMenuItem_Click(object sender, EventArgs e)
         {
-            ConfigurarTelaPrincipal(null);
+           // ConfigurarTelaPrincipal(null);
 
         }
 
@@ -108,13 +108,13 @@ namespace LocadoraVeiculos.WinApp
 
         private void compromissosMenuItem_Click(object sender, EventArgs e)
         {
-            ConfigurarTelaPrincipal(null);
+            //ConfigurarTelaPrincipal(null);
 
         }
 
         private void despesasMenuItem_Click(object sender, EventArgs e)
         {
-            ConfigurarTelaPrincipal(null);
+            //ConfigurarTelaPrincipal(null);
 
         }
     }
