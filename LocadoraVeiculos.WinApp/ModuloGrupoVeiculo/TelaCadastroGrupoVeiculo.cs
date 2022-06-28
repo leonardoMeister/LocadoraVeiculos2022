@@ -1,4 +1,5 @@
-﻿using LocadoraVeiculos.Dominio.ModuloGrupoVeiculos;
+﻿using LocadoraVeiculos.Controladores.ModuloControladorGrupoVeiculos;
+using LocadoraVeiculos.Dominio.ModuloGrupoVeiculos;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,7 +15,8 @@ namespace LocadoraVeiculos.WinApp.ModuloGrupoVeiculo
     public partial class TelaCadastroGrupoVeiculo : Form
     {
         private GrupoVeiculos grupoVeiculos;
-
+         TelaPrincipalForm telaPrincipal;
+         ControladorGrupoVeiculos controlador;
         public GrupoVeiculos GrupoVeiculos
         {
             get { return grupoVeiculos; }
@@ -28,32 +30,54 @@ namespace LocadoraVeiculos.WinApp.ModuloGrupoVeiculo
         }
 
 
-        public TelaCadastroGrupoVeiculo()
+        public TelaCadastroGrupoVeiculo(TelaPrincipalForm telaPrincipal, ControladorGrupoVeiculos controlador)
         {
             InitializeComponent();
+            this.telaPrincipal = telaPrincipal;
+            this.controlador = controlador;
+        }        
+
+        private void btnSalvar_Click(object sender, EventArgs e)
+        {
+            bool tudoValido = true;
+
+            if (!PegarObjetoTela())
+                tudoValido = false;
+
+            if (ObjetoForInvalido())
+                tudoValido = false;
+
+            if (tudoValido)
+                this.DialogResult =  DialogResult.OK;
+        }
+
+        private bool ObjetoForInvalido()
+        {
+            throw new NotImplementedException();
+        }
+
+        private bool PegarObjetoTela()
+        {
+            int id = 0;
+
+            if (txtId.Text != "" )
+                id = Convert.ToInt32(txtId.Text);
+
+            if (txtNome.Text == "")
+                return false;                                    
+
+            string nome = txtNome.Text;
+            
+            grupoVeiculos = new GrupoVeiculos(nome);
+            grupoVeiculos._id = id;
+
+            return true;
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            btnCancelar.DialogResult = DialogResult.Cancel;
-        }
-
-        private void btnSalvar_Click(object sender, EventArgs e)
-        {
-            PegarObjetoTela();
-            btnSalvar.DialogResult = DialogResult.OK;
-        }
-
-        private void PegarObjetoTela()
-        {
-            int id = 0;
-            if (txtId.Text !="")
-                 id = Convert.ToInt32(txtId.Text);
-
-            string nome = txtNome.Text;
-
-            grupoVeiculos = new GrupoVeiculos(nome);
-            grupoVeiculos._id = id;
+            telaPrincipal.AtualizarRodape("Inserção Cancelada.");
+            this.DialogResult = DialogResult.OK;
         }
     }
 }

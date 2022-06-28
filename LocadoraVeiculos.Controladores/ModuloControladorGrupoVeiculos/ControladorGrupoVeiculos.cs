@@ -7,8 +7,14 @@ namespace LocadoraVeiculos.Controladores.ModuloControladorGrupoVeiculos
 {
     public class ControladorGrupoVeiculos : Controlador<GrupoVeiculos>
     {
-        public ControladorGrupoVeiculos(AbstractValidator<GrupoVeiculos> validator, IRepositoryGrupoVeiculos repositorio) : base(validator, repositorio)
+        protected override IRepository<GrupoVeiculos> PegarRepositorio()
         {
+            return new RepositorioGrupoVeiculos(new MapeadorGrupoVeiculos());
+        }
+
+        protected override AbstractValidator<GrupoVeiculos> PegarValidador()
+        {
+            return new ValidadorGrupoVeiculos();
         }
     }
 }

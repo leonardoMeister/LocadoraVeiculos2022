@@ -16,11 +16,12 @@ namespace LocadoraVeiculos.WinApp.ModuloFuncionario
 
         TabelaFuncionarioControl tabelaFuncionario;
         ControladorFuncionario controlador;
-
-        public ConfiguracaoFuncionario()
+        TelaPrincipalForm telaPrincipal;
+        public ConfiguracaoFuncionario(TelaPrincipalForm telaPrincipalForm)
         {
+            telaPrincipal = telaPrincipalForm;
             tabelaFuncionario = new TabelaFuncionarioControl();
-            controlador = new ControladorFuncionario(new ValidadorFuncionario(), new RepositorioFuncionario(new MapeadorFuncionario()));
+            controlador = new ControladorFuncionario( );
         }
 
         public void Editar()

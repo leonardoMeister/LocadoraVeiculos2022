@@ -29,15 +29,15 @@ namespace LocadoraVeiculos.WinApp
             labelRodape.Text = string.Empty;
             labelTipoCadastro.Text = string.Empty;
 
-            this.configuracaoGrupoVeiculos = new ConfiguracaoGrupoVeiculo();
-            this.configuracaoTaxa = new ConfiguracaoTaxa();
-            this.configuracaoCliente = new ConfiguracaoCliente();
-            this.configuracaoFuncionario = new ConfiguracaoFuncionario();
+            this.configuracaoGrupoVeiculos = new ConfiguracaoGrupoVeiculo(this);
+            this.configuracaoTaxa = new ConfiguracaoTaxa(this);
+            this.configuracaoCliente = new ConfiguracaoCliente(this);
+            this.configuracaoFuncionario = new ConfiguracaoFuncionario(this);
         }
 
         public void AtualizarRodape(string mensagem)
         {
-
+            labelRodape.Text = mensagem;
         }
 
         #region CONFIGURACOES DE TELA

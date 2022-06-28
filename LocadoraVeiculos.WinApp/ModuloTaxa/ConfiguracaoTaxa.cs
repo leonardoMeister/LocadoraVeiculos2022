@@ -15,10 +15,12 @@ namespace LocadoraVeiculos.WinApp.ModuloTaxa
     {
         TabelaTaxaControl tabelaTaxa; 
         ControladorTaxas controlador;
-        public ConfiguracaoTaxa()
+        TelaPrincipalForm telaPrincipal;
+        public ConfiguracaoTaxa(TelaPrincipalForm telaPrincipalForm)
         {
+            telaPrincipal = telaPrincipalForm;
             tabelaTaxa = new TabelaTaxaControl();
-            controlador = new ControladorTaxas(new ValidadorTaxas(), new RepositorioTaxas(new MapeadorTaxas()));
+            controlador = new ControladorTaxas( );
 
         }
 

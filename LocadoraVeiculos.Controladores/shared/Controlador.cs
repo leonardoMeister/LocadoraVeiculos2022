@@ -12,11 +12,15 @@ namespace LocadoraVeiculos.Repositorio.shared
 
         protected AbstractValidator<T> Validator;
 
-        public Controlador(AbstractValidator<T> validator, IRepository<T> repositorio)
+        public Controlador()
         {
-            Validator = validator;
-            Repositorio = repositorio;
+            Validator = PegarValidador();
+            Repositorio = PegarRepositorio();
         }
+
+        protected abstract IRepository<T> PegarRepositorio(); 
+
+        protected abstract AbstractValidator<T> PegarValidador();
 
         public virtual ValidationResult InserirNovo(T registro)
         {

@@ -1,13 +1,19 @@
 ﻿using FluentValidation;
 using LocadoraVeiculos.Dominio.ModuloFuncionario;
 using LocadoraVeiculos.Repositorio.shared;
+using LocadoraVeiculos.RepositorioProject.ModuloFuncionario;
 
 namespace LocadoraVeiculos.Controladores.ModuloFuncionario
 {
     public class ControladorFuncionario : Controlador<Funcionario>
     {
-        public ControladorFuncionario(AbstractValidator<Funcionario> validator, IRepository<Funcionario> repositorio) : base(validator, repositorio)
+        protected override IRepository<Funcionario> PegarRepositorio()
         {
+            return new RepositorioFuncionario(new MapeadorFuncionario());
+        }
+        protected override AbstractValidator<Funcionario> PegarValidador()
+        {
+            return new ValidadorFuncionario();
         }
     }
 }

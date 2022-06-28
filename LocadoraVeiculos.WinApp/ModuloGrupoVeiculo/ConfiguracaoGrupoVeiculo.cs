@@ -17,10 +17,11 @@ namespace LocadoraVeiculos.WinApp.ModuloGrupoVeiculo
         TabelaGrupoVeiculo tabelaGrupoVeiculos;
         ControladorGrupoVeiculos controlador;
         TelaCadastroGrupoVeiculo telaCadastroGrupoVeiculo;
-        public ConfiguracaoGrupoVeiculo()
+        TelaPrincipalForm telaPrincipal;
+        public ConfiguracaoGrupoVeiculo(TelaPrincipalForm tela)
         {            
             tabelaGrupoVeiculos = new TabelaGrupoVeiculo();
-            controlador = new ControladorGrupoVeiculos(new ValidadorGrupoVeiculos(), new RepositorioGrupoVeiculos(new MapeadorGrupoVeiculos()));
+            controlador = new ControladorGrupoVeiculos( );
         }
 
         public void Editar()
@@ -35,12 +36,11 @@ namespace LocadoraVeiculos.WinApp.ModuloGrupoVeiculo
 
         public void Inserir()
         {
-            telaCadastroGrupoVeiculo = new TelaCadastroGrupoVeiculo();
+            telaCadastroGrupoVeiculo = new TelaCadastroGrupoVeiculo(telaPrincipal, controlador);
 
             if (telaCadastroGrupoVeiculo.ShowDialog() == DialogResult.OK)
             {
-                var grupoVei = telaCadastroGrupoVeiculo.GrupoVeiculos;
-
+                telaPrincipal.AtualizarRodape("Cadastro Grupo Veiculos Realizado Com Sucesso");
             }
         }
 

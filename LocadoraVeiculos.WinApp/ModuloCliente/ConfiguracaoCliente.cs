@@ -15,11 +15,12 @@ namespace LocadoraVeiculos.WinApp.ModuloCliente
     {
         TabelaClienteControl tabelaCliente;
         ControladorCliente controlador;
-
-        public ConfiguracaoCliente()
+        TelaPrincipalForm telaPrincipal;
+        public ConfiguracaoCliente(TelaPrincipalForm telaPrincipalForm)
         {
+            telaPrincipal = telaPrincipalForm;
             tabelaCliente = new TabelaClienteControl();
-            controlador = new ControladorCliente(new ValidadorCliente(), new RepositorioCliente(new MapeadorCliente()));
+            controlador = new ControladorCliente();
         }
 
 
