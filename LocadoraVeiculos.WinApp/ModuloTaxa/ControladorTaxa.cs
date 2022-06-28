@@ -28,7 +28,7 @@ namespace LocadoraVeiculos.WinApp.ModuloTaxa
 
         public ConfiguracaoToolboxBase ObtemConfiguracaoToolbox()
         {
-            throw new NotImplementedException();
+            return new ConfiguracaoToolBoxTaxa();
         }
 
         public UserControl ObtemListagem()
