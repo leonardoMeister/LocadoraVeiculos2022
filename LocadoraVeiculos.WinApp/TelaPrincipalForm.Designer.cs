@@ -82,6 +82,7 @@
             this.btnAgrupar.Name = "btnAgrupar";
             this.btnAgrupar.Padding = new System.Windows.Forms.Padding(5);
             this.btnAgrupar.Size = new System.Drawing.Size(38, 38);
+            this.btnAgrupar.Click += new System.EventHandler(this.btnAgrupar_Click);
             // 
             // toolStripSeparator3
             // 
@@ -97,6 +98,7 @@
             this.btnFiltrar.Name = "btnFiltrar";
             this.btnFiltrar.Padding = new System.Windows.Forms.Padding(5);
             this.btnFiltrar.Size = new System.Drawing.Size(38, 38);
+            this.btnFiltrar.Click += new System.EventHandler(this.btnFiltrar_Click);
             // 
             // toolStripSeparator1
             // 
@@ -112,6 +114,7 @@
             this.btnAtualizarItens.Name = "btnAtualizarItens";
             this.btnAtualizarItens.Padding = new System.Windows.Forms.Padding(5);
             this.btnAtualizarItens.Size = new System.Drawing.Size(38, 38);
+            this.btnAtualizarItens.Click += new System.EventHandler(this.btnAtualizarItens_Click);
             // 
             // btnAdicionarItens
             // 
@@ -122,6 +125,7 @@
             this.btnAdicionarItens.Name = "btnAdicionarItens";
             this.btnAdicionarItens.Padding = new System.Windows.Forms.Padding(5);
             this.btnAdicionarItens.Size = new System.Drawing.Size(38, 38);
+            this.btnAdicionarItens.Click += new System.EventHandler(this.btnAdicionarItens_Click);
             // 
             // toolStripSeparator2
             // 
@@ -138,6 +142,7 @@
             this.btnExcluir.Padding = new System.Windows.Forms.Padding(5);
             this.btnExcluir.Size = new System.Drawing.Size(38, 38);
             this.btnExcluir.Text = "Excluir";
+            this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
             // 
             // btnEditar
             // 
@@ -149,6 +154,7 @@
             this.btnEditar.Padding = new System.Windows.Forms.Padding(5);
             this.btnEditar.Size = new System.Drawing.Size(38, 38);
             this.btnEditar.Text = "Editar";
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
             // btnInserir
             // 
@@ -189,23 +195,23 @@
             // 
             this.despesasMenuItem.Name = "despesasMenuItem";
             this.despesasMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F4;
-            this.despesasMenuItem.Size = new System.Drawing.Size(215, 26);
-            this.despesasMenuItem.Text = "Despesas";
-            this.despesasMenuItem.Click += new System.EventHandler(this.despesasMenuItem_Click);
+            this.despesasMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.despesasMenuItem.Text = "Funcionário";
+            this.despesasMenuItem.Click += new System.EventHandler(this.funcionarioMenuItem_Click);
             // 
             // compromissosMenuItem
             // 
             this.compromissosMenuItem.Name = "compromissosMenuItem";
             this.compromissosMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F3;
-            this.compromissosMenuItem.Size = new System.Drawing.Size(215, 26);
-            this.compromissosMenuItem.Text = "Compromissos";
-            this.compromissosMenuItem.Click += new System.EventHandler(this.compromissosMenuItem_Click);
+            this.compromissosMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.compromissosMenuItem.Text = "Cliente";
+            this.compromissosMenuItem.Click += new System.EventHandler(this.clienteMenuItem_Click);
             // 
             // grupoVeiculosMenuItem
             // 
             this.grupoVeiculosMenuItem.Name = "grupoVeiculosMenuItem";
             this.grupoVeiculosMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F2;
-            this.grupoVeiculosMenuItem.Size = new System.Drawing.Size(215, 26);
+            this.grupoVeiculosMenuItem.Size = new System.Drawing.Size(224, 26);
             this.grupoVeiculosMenuItem.Text = "Grupo Veiculos";
             this.grupoVeiculosMenuItem.Click += new System.EventHandler(this.grupoVeiculosMenuItem_Click);
             // 
@@ -213,7 +219,7 @@
             // 
             this.tarefasMenuItem.Name = "tarefasMenuItem";
             this.tarefasMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F1;
-            this.tarefasMenuItem.Size = new System.Drawing.Size(215, 26);
+            this.tarefasMenuItem.Size = new System.Drawing.Size(224, 26);
             this.tarefasMenuItem.Text = "Taxas";
             this.tarefasMenuItem.Click += new System.EventHandler(this.taxasMenuItem_Click);
             // 
