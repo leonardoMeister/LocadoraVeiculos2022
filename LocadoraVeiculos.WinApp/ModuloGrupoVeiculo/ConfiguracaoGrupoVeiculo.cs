@@ -13,19 +13,26 @@ namespace LocadoraVeiculos.WinApp.ModuloGrupoVeiculo
 {
     public class ConfiguracaoGrupoVeiculo : ConfiguracaoBase<GrupoVeiculos>
     {
+        TabelaGrupoVeiculo tabelaGrupoVeiculos;
+
         public ConfiguracaoGrupoVeiculo(ControladorGrupoVeiculos controlador) : base(controlador)
         {
-            
+            tabelaGrupoVeiculos = new TabelaGrupoVeiculo();
+
         }
 
         public override UserControl ObtemListagem()
         {
-            throw new NotImplementedException();
+            List<GrupoVeiculos> grupoVeiculos = Controlador.SelecionarTodos();
+
+            tabelaGrupoVeiculos.AtualizarRegistros(grupoVeiculos);
+
+            return tabelaGrupoVeiculos;
         }
 
         public override ConfiguracaoToolboxBase ObterConfiguracao()
         {
-            throw new NotImplementedException();
+            return new ConfiguracaoToolBoxGrupoVeiculo();
         }
     }
 }
