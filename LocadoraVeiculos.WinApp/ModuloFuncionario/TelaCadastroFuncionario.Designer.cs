@@ -1,6 +1,6 @@
-﻿namespace LocadoraVeiculos.WinApp.ModuloCliente
+﻿namespace LocadoraVeiculos.WinApp.ModuloFuncionario
 {
-    partial class TelaCadastroClienteForm
+    partial class TelaCadastroFuncionario
     {
         /// <summary>
         /// Required designer variable.
@@ -30,17 +30,17 @@
         {
             this.SuspendLayout();
             // 
-            // TelaCadastroClienteForm
+            // TelaCadastroFuncionario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "TelaCadastroClienteForm";
+            this.Name = "TelaCadastroFuncionario";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "TelaCadastroClienteForm";
+            this.Text = "TelaCadastroFuncionario";
             this.ResumeLayout(false);
 
         }
