@@ -16,27 +16,32 @@ namespace LocadoraVeiculos.WinApp.ModuloGrupoVeiculo
     {
         TabelaGrupoVeiculo tabelaGrupoVeiculos;
         ControladorGrupoVeiculos controlador;
-
+        TelaCadastroGrupoVeiculo telaCadastroGrupoVeiculo;
         public ConfiguracaoGrupoVeiculo()
-        {
+        {            
             tabelaGrupoVeiculos = new TabelaGrupoVeiculo();
             controlador = new ControladorGrupoVeiculos(new ValidadorGrupoVeiculos(), new RepositorioGrupoVeiculos(new MapeadorGrupoVeiculos()));
-
         }
 
         public void Editar()
         {
-            throw new NotImplementedException();
+            int id = tabelaGrupoVeiculos.ObtemNumeroTarefaSelecionado();
         }
 
         public void Excluir()
         {
-            throw new NotImplementedException();
+            int id = tabelaGrupoVeiculos.ObtemNumeroTarefaSelecionado();
         }
 
         public void Inserir()
         {
-            Console.WriteLine("Aqui");
+            telaCadastroGrupoVeiculo = new TelaCadastroGrupoVeiculo();
+
+            if (telaCadastroGrupoVeiculo.ShowDialog() == DialogResult.OK)
+            {
+                var grupoVei = telaCadastroGrupoVeiculo.GrupoVeiculos;
+
+            }
         }
 
         public ConfiguracaoToolboxBase ObtemConfiguracaoToolbox()
