@@ -58,14 +58,14 @@
             // labelRodape
             // 
             this.labelRodape.Name = "labelRodape";
-            this.labelRodape.Size = new System.Drawing.Size(52, 17);
+            this.labelRodape.Size = new System.Drawing.Size(67, 20);
             this.labelRodape.Text = "[rodapé]";
             // 
             // labelTipoCadastro
             // 
             this.labelTipoCadastro.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
             this.labelTipoCadastro.Name = "labelTipoCadastro";
-            this.labelTipoCadastro.Size = new System.Drawing.Size(90, 38);
+            this.labelTipoCadastro.Size = new System.Drawing.Size(121, 38);
             this.labelTipoCadastro.Text = "[tipoCadastro]";
             // 
             // toolStripSeparator4
@@ -179,9 +179,9 @@
             this.btnAgrupar,
             this.toolStripSeparator4,
             this.labelTipoCadastro});
-            this.toolbox.Location = new System.Drawing.Point(0, 24);
+            this.toolbox.Location = new System.Drawing.Point(0, 30);
             this.toolbox.Name = "toolbox";
-            this.toolbox.Size = new System.Drawing.Size(929, 41);
+            this.toolbox.Size = new System.Drawing.Size(1062, 41);
             this.toolbox.TabIndex = 5;
             this.toolbox.Text = "toolStrip1";
             // 
@@ -189,7 +189,7 @@
             // 
             this.despesasMenuItem.Name = "despesasMenuItem";
             this.despesasMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F4;
-            this.despesasMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.despesasMenuItem.Size = new System.Drawing.Size(215, 26);
             this.despesasMenuItem.Text = "Despesas";
             this.despesasMenuItem.Click += new System.EventHandler(this.despesasMenuItem_Click);
             // 
@@ -197,7 +197,7 @@
             // 
             this.compromissosMenuItem.Name = "compromissosMenuItem";
             this.compromissosMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F3;
-            this.compromissosMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.compromissosMenuItem.Size = new System.Drawing.Size(215, 26);
             this.compromissosMenuItem.Text = "Compromissos";
             this.compromissosMenuItem.Click += new System.EventHandler(this.compromissosMenuItem_Click);
             // 
@@ -205,7 +205,7 @@
             // 
             this.grupoVeiculosMenuItem.Name = "grupoVeiculosMenuItem";
             this.grupoVeiculosMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F2;
-            this.grupoVeiculosMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.grupoVeiculosMenuItem.Size = new System.Drawing.Size(215, 26);
             this.grupoVeiculosMenuItem.Text = "Grupo Veiculos";
             this.grupoVeiculosMenuItem.Click += new System.EventHandler(this.grupoVeiculosMenuItem_Click);
             // 
@@ -213,7 +213,7 @@
             // 
             this.tarefasMenuItem.Name = "tarefasMenuItem";
             this.tarefasMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F1;
-            this.tarefasMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.tarefasMenuItem.Size = new System.Drawing.Size(215, 26);
             this.tarefasMenuItem.Text = "Taxas";
             this.tarefasMenuItem.Click += new System.EventHandler(this.taxasMenuItem_Click);
             // 
@@ -225,15 +225,16 @@
             this.compromissosMenuItem,
             this.despesasMenuItem});
             this.cadastrosToolStripMenuItem.Name = "cadastrosToolStripMenuItem";
-            this.cadastrosToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
+            this.cadastrosToolStripMenuItem.Size = new System.Drawing.Size(88, 24);
             this.cadastrosToolStripMenuItem.Text = "Cadastros";
             // 
             // panelRegistros
             // 
-            this.panelRegistros.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelRegistros.Location = new System.Drawing.Point(0, 24);
+            this.panelRegistros.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panelRegistros.Location = new System.Drawing.Point(0, 75);
+            this.panelRegistros.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panelRegistros.Name = "panelRegistros";
-            this.panelRegistros.Size = new System.Drawing.Size(929, 563);
+            this.panelRegistros.Size = new System.Drawing.Size(1062, 711);
             this.panelRegistros.TabIndex = 7;
             // 
             // statusStrip1
@@ -241,9 +242,10 @@
             this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.labelRodape});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 587);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 786);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(929, 22);
+            this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 16, 0);
+            this.statusStrip1.Size = new System.Drawing.Size(1062, 26);
             this.statusStrip1.TabIndex = 6;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -254,21 +256,21 @@
             this.cadastrosToolStripMenuItem});
             this.menu.Location = new System.Drawing.Point(0, 0);
             this.menu.Name = "menu";
-            this.menu.Size = new System.Drawing.Size(929, 24);
+            this.menu.Padding = new System.Windows.Forms.Padding(7, 3, 0, 3);
+            this.menu.Size = new System.Drawing.Size(1062, 30);
             this.menu.TabIndex = 4;
             this.menu.Text = "menuStrip1";
             // 
             // TelaPrincipalForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(929, 609);
+            this.ClientSize = new System.Drawing.Size(1062, 812);
             this.Controls.Add(this.toolbox);
             this.Controls.Add(this.panelRegistros);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menu);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "TelaPrincipalForm";

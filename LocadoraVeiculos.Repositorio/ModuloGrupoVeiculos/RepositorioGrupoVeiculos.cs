@@ -23,7 +23,7 @@ namespace LocadoraVeiculos.RepositorioProject.ModuloGrupoVeiculos
 
         protected override string SqlInsert =>
             @"INSERT INTO TB_GRUPOVEICULOS
-                   ([nomeGrupo]
+                   (nomeGrupo)
                  VALUES
                        (@NOMEGRUPO) ;";
 

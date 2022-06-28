@@ -23,7 +23,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoGrupoVeicu
             GrupoVeiculos gveh = new GrupoVeiculos("Grupo 1");
 
             repo.InserirNovo(gveh);
-
+             
             var gveiculos = repo.SelecionarPorId(gveh._id);
 
             Assert.AreEqual(gveiculos._id, gveh._id);
