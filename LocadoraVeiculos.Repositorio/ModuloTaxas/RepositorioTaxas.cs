@@ -15,7 +15,7 @@ namespace LocadoraVeiculos.RepositorioProject.ModuloTaxas
         protected override string SqlUpdate =>
                 @"UPDATE TB_TAXAS
                    SET [descricao] = @DESCRICAO,
-                       [cpf] = @CPF
+                       [valor] = @VALOR
                  WHERE id_taxas = @ID";
 
         protected override string SqlDelete =>
@@ -25,20 +25,20 @@ namespace LocadoraVeiculos.RepositorioProject.ModuloTaxas
         protected override string SqlInsert =>
             @"INSERT INTO TB_TAXAS
                    ([descricao],
-                    [cpf])
+                    [valor])
                  VALUES
-                       (@DESCRICAO, @CPF) ;";
+                       (@DESCRICAO, @VALOR) ;";
 
         protected override string SqlSelectAll => @"
                 SELECT [id_taxas],
                        [descricao],
-                       [cpf]
+                       [valor]
                   FROM TB_TAXAS;";
 
         protected override string SqlSelectId => @"
                 SELECT [id_taxas],
                        [descricao],
-                       [cpf]
+                       [valor]
                   FROM TB_TAXAS
                     where id_taxas = @ID ; ";
 

@@ -13,18 +13,36 @@ namespace LocadoraVeiculos.RepositorioProject.ModuloGrupoVeiculos
         }
 
         protected override string SqlUpdate =>
-            @"UPDATE TB_TAXAS
-                   SET [nomeGrupo] = @NOME_GRUPO
-                 WHERE id_taxas = @ID";
+                @"UPDATE TB_GRUPOVEICULOS
+                   SET [nomeGrupo] = @NOMEGRUPO
+                 WHERE id_grupoveiculos = @ID";
 
-        protected override string SqlDelete => throw new NotImplementedException();
+        protected override string SqlDelete =>
+                        @"DELETE FROM TB_GRUPOVEICULOS
+                WHERE id_grupoveiculos = @ID";
 
-        protected override string SqlInsert => throw new NotImplementedException();
+        protected override string SqlInsert =>
+            @"INSERT INTO TB_GRUPOVEICULOS
+                   ([nomeGrupo]
+                 VALUES
+                       (@NOMEGRUPO) ;";
 
-        protected override string SqlSelectAll => throw new NotImplementedException();
+        protected override string SqlSelectAll => @"
+                SELECT [id_grupoveiculos],
+                       [nomeGrupo]
+                  FROM TB_GRUPOVEICULOS;";
 
-        protected override string SqlSelectId => throw new NotImplementedException();
+        protected override string SqlSelectId => @"
+                SELECT [id_grupoveiculos],
+                       [nomeGrupo]
+                  FROM TB_GRUPOVEICULOS
+                    where id_grupoveiculos = @ID ; ";
 
-        protected override string SqlExiste => throw new NotImplementedException();
+        protected override string SqlExiste =>
+            @"SELECT
+                        COUNT(*)
+                    FROM 
+                        TB_GRUPOVEICULOS
+                    WHERE id_grupoveiculos = @ID;";
     }
 }
