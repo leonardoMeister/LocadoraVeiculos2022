@@ -13,30 +13,63 @@ namespace LocadoraVeiculos.WinApp.ModuloTaxa
 {
     public class ConfiguracaoTaxa : ConfiguracaoBase, ICadastravel
     {
-        TabelaTaxaControl tabelaTaxa; 
+        TabelaTaxaControl tabelaTaxa;
         ControladorTaxas controlador;
         TelaPrincipalForm telaPrincipal;
+        TelaCadastroTaxaForm telaCadastroTaxaForm;
+
         public ConfiguracaoTaxa(TelaPrincipalForm telaPrincipalForm)
         {
             telaPrincipal = telaPrincipalForm;
             tabelaTaxa = new TabelaTaxaControl();
-            controlador = new ControladorTaxas( );
+            controlador = new ControladorTaxas();
+
 
         }
 
         public void Editar()
         {
-            throw new NotImplementedException();
+            telaCadastroTaxaForm = new TelaCadastroTaxaForm(telaPrincipal);
+
+            int id = tabelaTaxa.ObtemNumeroTarefaSelecionado();
+            var registro = controlador.SelecionarPorId(id);
+            telaCadastroTaxaForm.Taxa = registro;
+
+            if (telaCadastroTaxaForm.ShowDialog() == DialogResult.OK)
+            {
+                var grupo = telaCadastroTaxaForm.Taxa;
+                controlador.Editar(grupo._id, grupo);
+
+                telaPrincipal.AtualizarRodape("Edição Taxa Realizada Com Sucesso");
+            }
         }
 
         public void Excluir()
         {
-            throw new NotImplementedException();
+            int id = tabelaTaxa.ObtemNumeroTarefaSelecionado();
+            try
+            {
+                controlador.Excluir(id);
+                telaPrincipal.AtualizarRodape("Taxa Removida com sucesso.");
+            }
+            catch (Exception ex)
+            {
+                telaPrincipal.AtualizarRodape($"Não foi possivel Remover, Mensagem: {ex}");
+                return;
+            }
         }
 
         public void Inserir()
         {
-            throw new NotImplementedException();
+            telaCadastroTaxaForm = new TelaCadastroTaxaForm(telaPrincipal);
+
+            if (telaCadastroTaxaForm.ShowDialog() == DialogResult.OK)
+            {
+                var taxa = telaCadastroTaxaForm.Taxa;
+                controlador.InserirNovo(taxa); 
+
+                telaPrincipal.AtualizarRodape("Cadastro Taxa Realizada Com Sucesso");
+            }
         }
 
         public ConfiguracaoToolboxBase ObtemConfiguracaoToolbox()

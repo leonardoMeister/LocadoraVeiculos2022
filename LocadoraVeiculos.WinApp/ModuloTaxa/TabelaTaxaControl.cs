@@ -21,17 +21,9 @@ namespace LocadoraVeiculos.WinApp.ModuloTaxa
             {
                 new DataGridViewTextBoxColumn { DataPropertyName = "Id", HeaderText = "Id"},
 
-                new DataGridViewTextBoxColumn { DataPropertyName = "Numero", HeaderText = "Número"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "Descricao", HeaderText = "Descrição"},
 
-                new DataGridViewTextBoxColumn { DataPropertyName = "Titulo", HeaderText = "Título"},
-
-                new DataGridViewTextBoxColumn { DataPropertyName = "Prioridade", HeaderText = "Prioridade"},
-
-                new DataGridViewTextBoxColumn { DataPropertyName = "DataCriacao", HeaderText = "Criada em"},
-
-                new DataGridViewTextBoxColumn { DataPropertyName = "DataConclusao", HeaderText = "Concluída em"},
-
-                new DataGridViewTextBoxColumn { DataPropertyName = "PercentualConcluido", HeaderText = "% Concluído"}
+                new DataGridViewTextBoxColumn { DataPropertyName = "Valor", HeaderText = "Valor"}
             };
 
             return colunas;
@@ -42,14 +34,13 @@ namespace LocadoraVeiculos.WinApp.ModuloTaxa
             return grid.SelecionarNumero<int>();
         }
 
-        public void AtualizarRegistros(List<Taxas> tarefas)
+        public void AtualizarRegistros(List<Taxas> taxas)
         {
             grid.Rows.Clear();
 
-            foreach (Taxas tarefa in tarefas)
+            foreach (Taxas taxa in taxas)
             {
-                //grid.Rows.Add(tarefa.Numero, tarefa.Titulo, tarefa.Prioridade,
-                //  tarefa.DataCriacao, tarefa.DataConclusao, tarefa.PercentualConcluido);
+                grid.Rows.Add(taxa._id, taxa.Descricao, taxa.Valor);
             }
         }
 
