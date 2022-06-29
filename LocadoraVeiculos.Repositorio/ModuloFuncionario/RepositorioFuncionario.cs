@@ -10,7 +10,6 @@ namespace LocadoraVeiculos.RepositorioProject.ModuloFuncionario
         {
 
         }
-
         protected override string SqlUpdate =>
                 @"UPDATE TB_FUNCIONARIO
                    SET [nome] = @NOME

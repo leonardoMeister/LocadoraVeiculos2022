@@ -24,7 +24,6 @@ namespace LocadoraVeiculos.RepositorioProject.ModuloCliente
 
             return cliente;
         }
-
         public override Dictionary<string, object> ObtemParametrosRegistro(Cliente registro)
         {
             var parametros = new Dictionary<string, object>();

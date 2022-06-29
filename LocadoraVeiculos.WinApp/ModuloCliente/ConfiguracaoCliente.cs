@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace LocadoraVeiculos.WinApp.ModuloCliente
 {
-    public class ConfiguracaoCliente : ConfiguracaoBase<Cliente>, ICadastravel
+    public class ConfiguracaoCliente : ConfiguracaoBase, ICadastravel
     {
         TabelaClienteControl tabelaCliente;
         ControladorCliente controlador;

@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace LocadoraVeiculos.WinApp.shared
 {
-    public abstract class ConfiguracaoBase<T> where T : EntidadeBase 
+    public abstract class ConfiguracaoBase  
     {   
         public abstract UserControl ObtemListagem();
         

@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace LocadoraVeiculos.WinApp.ModuloTaxa
 {
-    public class ConfiguracaoTaxa : ConfiguracaoBase<Taxas>, ICadastravel
+    public class ConfiguracaoTaxa : ConfiguracaoBase, ICadastravel
     {
         TabelaTaxaControl tabelaTaxa; 
         ControladorTaxas controlador;

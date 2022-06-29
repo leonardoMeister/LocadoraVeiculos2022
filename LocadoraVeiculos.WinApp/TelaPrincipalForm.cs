@@ -10,11 +10,7 @@ using System.Windows.Forms;
 namespace LocadoraVeiculos.WinApp
 {
     public partial class TelaPrincipalForm : Form
-    {
-        //public IRepositoryGrupoVeiculos RepositorioGrupoVeiculos { get; }
-        //public ControladorGrupoVeiculos ControladorGrupoVeiculos { get; }
-        //public ConfiguracaoBase<GrupoVeiculos> ConfiguracaoGrupoVeiculos { get; }
-
+    {        
         public ConfiguracaoGrupoVeiculo configuracaoGrupoVeiculos;
         public ConfiguracaoTaxa configuracaoTaxa;
         public ConfiguracaoCliente configuracaoCliente;
@@ -41,7 +37,7 @@ namespace LocadoraVeiculos.WinApp
         }
 
         #region CONFIGURACOES DE TELA
-        private void ConfigurarListagem<T>(ConfiguracaoBase<T> configuracao) where T : EntidadeBase
+        private void ConfigurarListagem(ConfiguracaoBase configuracao)
         {
             AtualizarRodape("");
 
@@ -53,7 +49,7 @@ namespace LocadoraVeiculos.WinApp
 
             panelRegistros.Controls.Add(listagemControl);
         }
-        private void ConfigurarToolbox() 
+        private void ConfigurarToolbox()
         {
             ConfiguracaoToolboxBase configuracaoToolBox = telaSelecionada.ObtemConfiguracaoToolbox();
 
@@ -88,7 +84,7 @@ namespace LocadoraVeiculos.WinApp
             btnFiltrar.ToolTipText = configuracao.TooltipFiltrar;
             btnAgrupar.ToolTipText = configuracao.TooltipAgrupar;
         }
-        private void ConfigurarTelaPrincipal<T>(ConfiguracaoBase<T> configuracao) where T : EntidadeBase
+        private void ConfigurarTelaPrincipal(ConfiguracaoBase configuracao)
         {
             ConfigurarToolbox();
 
@@ -124,31 +120,66 @@ namespace LocadoraVeiculos.WinApp
         #region BOTÕES DE AÇÕES DO USUARIO
         private void btnInserir_Click(object sender, EventArgs e)
         {
-            if (telaSelecionada != null) telaSelecionada.Inserir();
+            if (telaSelecionada != null)
+            {
+                telaSelecionada.Inserir();
+
+                ConfigurarListagem((ConfiguracaoBase)telaSelecionada);
+            }
         }
         private void btnEditar_Click(object sender, EventArgs e)
         {
-            if (telaSelecionada != null) telaSelecionada.Editar();
+            if (telaSelecionada != null)
+            {
+                telaSelecionada.Editar();
+
+                ConfigurarListagem((ConfiguracaoBase)telaSelecionada);
+            }
         }
         private void btnExcluir_Click(object sender, EventArgs e)
         {
-            if (telaSelecionada != null) telaSelecionada.Excluir();
+            if (telaSelecionada != null)
+            {
+                telaSelecionada.Excluir();
+
+                ConfigurarListagem((ConfiguracaoBase)telaSelecionada);
+            }
         }
         private void btnAdicionarItens_Click(object sender, EventArgs e)
         {
-            if (telaSelecionada != null) telaSelecionada.AdicionarItens();
+            if (telaSelecionada != null)
+            {
+                telaSelecionada.AdicionarItens();
+
+                ConfigurarListagem((ConfiguracaoBase)telaSelecionada);
+            }
         }
         private void btnAtualizarItens_Click(object sender, EventArgs e)
         {
-            if (telaSelecionada != null) telaSelecionada.AtualizarItens();
+            if (telaSelecionada != null)
+            {
+                telaSelecionada.AtualizarItens();
+
+                ConfigurarListagem((ConfiguracaoBase)telaSelecionada);
+            }
         }
         private void btnFiltrar_Click(object sender, EventArgs e)
         {
-            if (telaSelecionada != null) telaSelecionada.Filtrar();
+            if (telaSelecionada != null)
+            {
+                telaSelecionada.Filtrar();
+
+                ConfigurarListagem((ConfiguracaoBase)telaSelecionada);
+            }
         }
         private void btnAgrupar_Click(object sender, EventArgs e)
         {
-            if (telaSelecionada != null) telaSelecionada.Agrupar();
+            if (telaSelecionada != null)
+            {
+                telaSelecionada.Agrupar();
+
+                ConfigurarListagem((ConfiguracaoBase)telaSelecionada);
+            }
         }
         #endregion
     }

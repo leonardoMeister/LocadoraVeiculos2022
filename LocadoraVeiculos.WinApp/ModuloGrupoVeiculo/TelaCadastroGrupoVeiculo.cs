@@ -16,7 +16,6 @@ namespace LocadoraVeiculos.WinApp.ModuloGrupoVeiculo
     {
         private GrupoVeiculos grupoVeiculos;
          TelaPrincipalForm telaPrincipal;
-         ControladorGrupoVeiculos controlador;
         public GrupoVeiculos GrupoVeiculos
         {
             get { return grupoVeiculos; }
@@ -30,11 +29,10 @@ namespace LocadoraVeiculos.WinApp.ModuloGrupoVeiculo
         }
 
 
-        public TelaCadastroGrupoVeiculo(TelaPrincipalForm telaPrincipal, ControladorGrupoVeiculos controlador)
+        public TelaCadastroGrupoVeiculo(TelaPrincipalForm telaPrincipal)
         {
             InitializeComponent();
             this.telaPrincipal = telaPrincipal;
-            this.controlador = controlador;
         }        
 
         private void btnSalvar_Click(object sender, EventArgs e)
@@ -53,7 +51,9 @@ namespace LocadoraVeiculos.WinApp.ModuloGrupoVeiculo
 
         private bool ObjetoForInvalido()
         {
-            throw new NotImplementedException();
+            return false;
+            //VALIDAR AQUI
+            //DEPOIS JOGAR A MENSAGEM NO RODAPE
         }
 
         private bool PegarObjetoTela()

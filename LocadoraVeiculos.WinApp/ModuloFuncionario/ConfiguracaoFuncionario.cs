@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace LocadoraVeiculos.WinApp.ModuloFuncionario
 {
-    public class ConfiguracaoFuncionario : ConfiguracaoBase<Funcionario>, ICadastravel
+    public class ConfiguracaoFuncionario : ConfiguracaoBase, ICadastravel
     {
 
         TabelaFuncionarioControl tabelaFuncionario;
