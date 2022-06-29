@@ -1,19 +1,14 @@
 ﻿using LocadoraVeiculos.Controladores.ModuloFuncionario;
 using LocadoraVeiculos.Dominio.ModuloFuncionario;
-using LocadoraVeiculos.RepositorioProject.ModuloFuncionario;
 using LocadoraVeiculos.WinApp.shared;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LocadoraVeiculos.WinApp.ModuloFuncionario
 {
     public class ConfiguracaoFuncionario : ConfiguracaoBase, ICadastravel
     {
-
         TabelaFuncionarioControl tabelaFuncionario;
         ControladorFuncionario controlador;
         TelaPrincipalForm telaPrincipal;
@@ -26,17 +21,49 @@ namespace LocadoraVeiculos.WinApp.ModuloFuncionario
 
         public void Editar()
         {
-            throw new NotImplementedException();
+            TelaCadastroFuncionario telaCadastroFuncionario = new TelaCadastroFuncionario(telaPrincipal);
+
+            int id = tabelaFuncionario.ObtemNumeroTarefaSelecionado();            
+            var registro = controlador.SelecionarPorId(id);
+            telaCadastroFuncionario.Funcionario = registro;
+
+            if (telaCadastroFuncionario.ShowDialog() == DialogResult.OK)
+            {
+                var grupo = telaCadastroFuncionario.Funcionario;
+                controlador.Editar(grupo._id, grupo);
+
+                telaPrincipal.AtualizarRodape("Edição Funcionário Realizado Com Sucesso");
+            }
         }
 
         public void Excluir()
         {
-            throw new NotImplementedException();
+            int id = tabelaFuncionario.ObtemNumeroTarefaSelecionado();
+            try
+            {
+                controlador.Excluir(id);
+                telaPrincipal.AtualizarRodape("Funcionário Removido com sucesso.");
+            }
+            catch (Exception ex)
+            {
+                telaPrincipal.AtualizarRodape($"Não foi possivel Remover, Mensagem: {ex}");
+                return;
+            }
         }
 
         public void Inserir()
         {
-            throw new NotImplementedException();
+            TelaCadastroFuncionario telaCadastroFuncionario = new TelaCadastroFuncionario(telaPrincipal);
+
+            telaCadastroFuncionario = new TelaCadastroFuncionario(telaPrincipal);
+
+            if (telaCadastroFuncionario.ShowDialog() == DialogResult.OK)
+            {
+                var funcionario = telaCadastroFuncionario.Funcionario;
+                controlador.InserirNovo(funcionario);
+
+                telaPrincipal.AtualizarRodape("Cadastro Funcionário Realizado Com Sucesso");
+            }
         }
 
         public ConfiguracaoToolboxBase ObtemConfiguracaoToolbox()

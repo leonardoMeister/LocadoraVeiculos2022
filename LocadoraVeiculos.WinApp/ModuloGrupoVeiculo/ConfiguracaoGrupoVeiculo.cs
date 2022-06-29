@@ -28,7 +28,7 @@ namespace LocadoraVeiculos.WinApp.ModuloGrupoVeiculo
         public void Editar()
         {
             telaCadastroGrupoVeiculo = new TelaCadastroGrupoVeiculo(telaPrincipal);
-            
+
             int id = tabelaGrupoVeiculos.ObtemNumeroTarefaSelecionado();
             var registro = controlador.SelecionarPorId(id);
             telaCadastroGrupoVeiculo.GrupoVeiculos = registro;
@@ -36,7 +36,7 @@ namespace LocadoraVeiculos.WinApp.ModuloGrupoVeiculo
             if (telaCadastroGrupoVeiculo.ShowDialog() == DialogResult.OK)
             {
                 var grupo = telaCadastroGrupoVeiculo.GrupoVeiculos;
-                controlador.Editar(grupo._id,grupo);
+                controlador.Editar(grupo._id, grupo);
 
                 telaPrincipal.AtualizarRodape("Edição Grupo Veiculos Realizado Com Sucesso");
             }
@@ -70,6 +70,7 @@ namespace LocadoraVeiculos.WinApp.ModuloGrupoVeiculo
 
                 telaPrincipal.AtualizarRodape("Cadastro Grupo Veiculos Realizado Com Sucesso");
             }
+
         }
 
         public ConfiguracaoToolboxBase ObtemConfiguracaoToolbox()

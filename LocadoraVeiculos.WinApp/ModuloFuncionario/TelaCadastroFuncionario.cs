@@ -13,9 +13,9 @@ namespace LocadoraVeiculos.WinApp.ModuloFuncionario
 {
     public partial class TelaCadastroFuncionario : Form
     {
-        private Funcionario funcionario; 
+        private Funcionario funcionario;
         TelaPrincipalForm telaPrincipal;
-
+        ValidadorFuncionario validadorFuncionario;
         public Funcionario Funcionario
         {
             get { return funcionario; }
@@ -36,17 +36,16 @@ namespace LocadoraVeiculos.WinApp.ModuloFuncionario
         {
             InitializeComponent();
             this.telaPrincipal = telaPrincipal;
-
+            validadorFuncionario = new ValidadorFuncionario();
         }
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
             bool tudoValido = true;
 
-            if (!PegarObjetoTela())
-                tudoValido = false;
+            if (!PegarObjetoTela()) return;
 
-            if (ObjetoForInvalido())
+            if (!ObjetoForInvalido())
                 tudoValido = false;
 
             if (tudoValido)
@@ -55,9 +54,12 @@ namespace LocadoraVeiculos.WinApp.ModuloFuncionario
 
         private bool ObjetoForInvalido()
         {
+            var resultado = validadorFuncionario.Validate(funcionario);
+
+            if (resultado.IsValid) return true;
+
+            telaPrincipal.AtualizarRodape(resultado.Errors[0].ToString());
             return false;
-            //VALIDAR AQUI
-            //DEPOIS JOGAR A MENSAGEM NO RODAPE
         }
 
         private bool PegarObjetoTela()
@@ -68,8 +70,12 @@ namespace LocadoraVeiculos.WinApp.ModuloFuncionario
                 id = Convert.ToInt32(txtId.Text);
 
             if (txtLogin.Text == "" || txtNome.Text == "" || txtSalario.Text == ""
-                || txtSenha.Text == "" || txtTipoPerfil.Text == "" )
+                || txtSenha.Text == "" || txtTipoPerfil.Text == "")
+            {
+                telaPrincipal.AtualizarRodape("Favor Preencher todos os campos.");
                 return false;
+            }
+
 
             string nome = txtNome.Text;
             string login = txtLogin.Text;
@@ -77,10 +83,9 @@ namespace LocadoraVeiculos.WinApp.ModuloFuncionario
             decimal salario = Convert.ToDecimal(txtSalario.Text);
             DateTime dataAdmicao = txtData.Value;
             string tipoPerfil = txtTipoPerfil.Text;
-            
-            funcionario = new Funcionario(nome,login,senha,salario,dataAdmicao,tipoPerfil);
-            funcionario._id = id;
 
+            funcionario = new Funcionario(nome, login, senha, salario, dataAdmicao, tipoPerfil);
+            funcionario._id = id;
             return true;
         }
 

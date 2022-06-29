@@ -39,7 +39,6 @@ namespace LocadoraVeiculos.WinApp
         #region CONFIGURACOES DE TELA
         private void ConfigurarListagem(ConfiguracaoBase configuracao)
         {
-            AtualizarRodape("");
 
             var listagemControl = configuracao.ObtemListagem();
 

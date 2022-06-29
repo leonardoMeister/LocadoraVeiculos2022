@@ -7,7 +7,8 @@ namespace LocadoraVeiculos.WinApp.ModuloGrupoVeiculo
     public partial class TelaCadastroGrupoVeiculo : Form
     {
         private GrupoVeiculos grupoVeiculos;
-         TelaPrincipalForm telaPrincipal;
+        TelaPrincipalForm telaPrincipal;
+        ValidadorGrupoVeiculos validadorGrupoVeiculos;
         public GrupoVeiculos GrupoVeiculos
         {
             get { return grupoVeiculos; }
@@ -23,6 +24,7 @@ namespace LocadoraVeiculos.WinApp.ModuloGrupoVeiculo
         {
             InitializeComponent();
             this.telaPrincipal = telaPrincipal;
+            validadorGrupoVeiculos = new ValidadorGrupoVeiculos();
         }        
 
         private void btnSalvar_Click(object sender, EventArgs e)
@@ -41,9 +43,13 @@ namespace LocadoraVeiculos.WinApp.ModuloGrupoVeiculo
 
         private bool ObjetoForInvalido()
         {
+            var resultado = validadorGrupoVeiculos.Validate(grupoVeiculos);
+
+            if (resultado.IsValid) return true;
+
+            telaPrincipal.AtualizarRodape(resultado.Errors[0].ToString());
             return false;
-            //VALIDAR AQUI
-            //DEPOIS JOGAR A MENSAGEM NO RODAPE
+
         }
 
         private bool PegarObjetoTela()
