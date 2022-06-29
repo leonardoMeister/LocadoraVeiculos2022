@@ -16,29 +16,31 @@ namespace LocadoraVeiculos.WinApp.ModuloGrupoVeiculo
     {
         TabelaGrupoVeiculo tabelaGrupoVeiculos;
         ControladorGrupoVeiculos controlador;
-        TelaCadastroGrupoVeiculo telaCadastroGrupoVeiculo;
-        TelaPrincipalForm telaPrincipal;
-        public ConfiguracaoGrupoVeiculo(TelaPrincipalForm tela)
+        Action<string> AtualizarRodape;
+        public ConfiguracaoGrupoVeiculo(Action<string> atualizar)
         {
             tabelaGrupoVeiculos = new TabelaGrupoVeiculo();
             controlador = new ControladorGrupoVeiculos();
-            telaPrincipal = tela;
+            AtualizarRodape = atualizar;
         }
 
         public void Editar()
         {
-            telaCadastroGrupoVeiculo = new TelaCadastroGrupoVeiculo(telaPrincipal);
+            TelaCadastroGrupoVeiculo telaCadastroGrupoVeiculo = new TelaCadastroGrupoVeiculo();
 
             int id = tabelaGrupoVeiculos.ObtemNumeroTarefaSelecionado();
             var registro = controlador.SelecionarPorId(id);
-            telaCadastroGrupoVeiculo.GrupoVeiculos = registro;
 
-            if (telaCadastroGrupoVeiculo.ShowDialog() == DialogResult.OK)
+            if (registro != null)
             {
-                var grupo = telaCadastroGrupoVeiculo.GrupoVeiculos;
-                controlador.Editar(grupo._id, grupo);
+                AtualizarRodape("Tela de Edição Grupo Veiculo");
+                telaCadastroGrupoVeiculo.GrupoVeiculos = registro;
 
-                telaPrincipal.AtualizarRodape("Edição Grupo Veiculos Realizado Com Sucesso");
+                telaCadastroGrupoVeiculo.GravarRegistro = controlador.Editar;
+                telaCadastroGrupoVeiculo.AtualizarRodape = AtualizarRodape;
+                telaCadastroGrupoVeiculo.ShowDialog();
+
+                if (telaCadastroGrupoVeiculo.DialogResult == DialogResult.OK) AtualizarRodape("Edição Grupo Veiculo Realizada Com Sucesso");
             }
 
         }
@@ -49,11 +51,11 @@ namespace LocadoraVeiculos.WinApp.ModuloGrupoVeiculo
             try
             {
                 controlador.Excluir(id);
-                telaPrincipal.AtualizarRodape("Grupo de Veiculos Removido com sucesso.");
+                AtualizarRodape("Grupo de Veiculos Removido com sucesso.");
             }
             catch (Exception ex)
             {
-                telaPrincipal.AtualizarRodape($"Não foi possivel Remover, Mensagem: {ex}");
+                AtualizarRodape($"Não foi possivel Remover, Mensagem: {ex}");
                 return;
             }
 
@@ -61,16 +63,15 @@ namespace LocadoraVeiculos.WinApp.ModuloGrupoVeiculo
 
         public void Inserir()
         {
-            telaCadastroGrupoVeiculo = new TelaCadastroGrupoVeiculo(telaPrincipal);
+            TelaCadastroGrupoVeiculo telaCadastroGrupoVeiculo = new TelaCadastroGrupoVeiculo();
 
-            if (telaCadastroGrupoVeiculo.ShowDialog() == DialogResult.OK)
-            {
-                var grupo = telaCadastroGrupoVeiculo.GrupoVeiculos;
-                controlador.InserirNovo(grupo);
+            AtualizarRodape("Tela de Adição Grupo Veiculo");
 
-                telaPrincipal.AtualizarRodape("Cadastro Grupo Veiculos Realizado Com Sucesso");
-            }
+            telaCadastroGrupoVeiculo.GravarRegistro = controlador.InserirNovo;
+            telaCadastroGrupoVeiculo.AtualizarRodape = AtualizarRodape;
+            telaCadastroGrupoVeiculo.ShowDialog();
 
+            if (telaCadastroGrupoVeiculo.DialogResult == DialogResult.OK) AtualizarRodape("Cadastro Grupo Veiculo Realizado Com Sucesso");
         }
 
         public ConfiguracaoToolboxBase ObtemConfiguracaoToolbox()

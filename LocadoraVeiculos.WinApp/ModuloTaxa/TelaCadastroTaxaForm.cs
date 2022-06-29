@@ -1,4 +1,5 @@
-﻿using LocadoraVeiculos.Dominio.ModuloTaxas;
+﻿using FluentValidation.Results;
+using LocadoraVeiculos.Dominio.ModuloTaxas;
 using System;
 using System.Windows.Forms;
 
@@ -7,7 +8,7 @@ namespace LocadoraVeiculos.WinApp.ModuloTaxa
     public partial class TelaCadastroTaxaForm : Form
     {
         private Taxas taxa;
-        TelaPrincipalForm telaPrincipal;
+        public Action<string> AtualizarRodape { get; set; }
 
         public Taxas Taxa
         {
@@ -22,31 +23,39 @@ namespace LocadoraVeiculos.WinApp.ModuloTaxa
             }
         }
 
-        public TelaCadastroTaxaForm(TelaPrincipalForm telaPrincipal)
+        public Func<Taxas, ValidationResult> GravarRegistro { get; internal set; }
+
+        public TelaCadastroTaxaForm()
         {
             InitializeComponent();
-            this.telaPrincipal = telaPrincipal;
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            telaPrincipal.AtualizarRodape("Inserção Cancelada.");
+            AtualizarRodape("Inserção Cancelada.");
             this.DialogResult = DialogResult.Cancel;
 
         }
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
-            bool tudoValido = true;
+            if (!PegarObjetoTela()) return;
 
-            if (!PegarObjetoTela())
-                tudoValido = false;
 
-            if (ObjetoForInvalido())
-                tudoValido = false;
+            var resultadoValidacao = GravarRegistro(taxa);
 
-            if (tudoValido)
-                this.DialogResult = DialogResult.OK;
+            if (resultadoValidacao.IsValid == false)
+            {
+                string erro = resultadoValidacao.Errors[0].ErrorMessage;
+
+                AtualizarRodape(erro);
+
+                DialogResult = DialogResult.None;
+            }
+            else
+            {
+                DialogResult = DialogResult.OK;
+            }
         }
 
         private bool PegarObjetoTela()
@@ -57,22 +66,22 @@ namespace LocadoraVeiculos.WinApp.ModuloTaxa
                 id = Convert.ToInt32(txtId.Text);
 
             if (txtDescricao.Text == "" || txtValor.Text == "")
+            {
+                AtualizarRodape("Favor Preencher todos os campos.");
                 return false;
+            }
+                
 
             string descricao = txtDescricao.Text;
             decimal valor = Convert.ToDecimal(txtValor.Text);
 
-            taxa = new Taxas(descricao,valor);
-            taxa._id = id;
+            taxa = new Taxas(descricao, valor)
+            {
+                _id = id
+            };
 
             return true;
         }
 
-        private bool ObjetoForInvalido()
-        {
-            return false;
-            //VALIDAR AQUI
-            //DEPOIS JOGAR A MENSAGEM NO RODAPE
-        }
     }
 }

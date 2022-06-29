@@ -1,12 +1,6 @@
-﻿using LocadoraVeiculos.Dominio.ModuloFuncionario;
+﻿using FluentValidation.Results;
+using LocadoraVeiculos.Dominio.ModuloFuncionario;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LocadoraVeiculos.WinApp.ModuloFuncionario
@@ -14,8 +8,9 @@ namespace LocadoraVeiculos.WinApp.ModuloFuncionario
     public partial class TelaCadastroFuncionario : Form
     {
         private Funcionario funcionario;
-        TelaPrincipalForm telaPrincipal;
-        ValidadorFuncionario validadorFuncionario;
+        public Func<Funcionario, ValidationResult> GravarRegistro { get; set; }
+        public Action<string> AtualizarRodape { get; set; }
+
         public Funcionario Funcionario
         {
             get { return funcionario; }
@@ -32,34 +27,31 @@ namespace LocadoraVeiculos.WinApp.ModuloFuncionario
                 txtSenha.Text = funcionario.Senha;
             }
         }
-        public TelaCadastroFuncionario(TelaPrincipalForm telaPrincipal)
+
+        public TelaCadastroFuncionario()
         {
             InitializeComponent();
-            this.telaPrincipal = telaPrincipal;
-            validadorFuncionario = new ValidadorFuncionario();
         }
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
-            bool tudoValido = true;
-
             if (!PegarObjetoTela()) return;
 
-            if (!ObjetoForInvalido())
-                tudoValido = false;
 
-            if (tudoValido)
-                this.DialogResult = DialogResult.OK;
-        }
+            var resultadoValidacao = GravarRegistro(funcionario);
 
-        private bool ObjetoForInvalido()
-        {
-            var resultado = validadorFuncionario.Validate(funcionario);
+            if (resultadoValidacao.IsValid == false)
+            {
+                string erro = resultadoValidacao.Errors[0].ErrorMessage;
 
-            if (resultado.IsValid) return true;
+                AtualizarRodape(erro);
 
-            telaPrincipal.AtualizarRodape(resultado.Errors[0].ToString());
-            return false;
+                DialogResult = DialogResult.None;
+            }
+            else
+            {
+                DialogResult = DialogResult.OK;
+            }
         }
 
         private bool PegarObjetoTela()
@@ -72,7 +64,7 @@ namespace LocadoraVeiculos.WinApp.ModuloFuncionario
             if (txtLogin.Text == "" || txtNome.Text == "" || txtSalario.Text == ""
                 || txtSenha.Text == "" || txtTipoPerfil.Text == "")
             {
-                telaPrincipal.AtualizarRodape("Favor Preencher todos os campos.");
+                AtualizarRodape("Favor Preencher todos os campos.");
                 return false;
             }
 
@@ -84,14 +76,16 @@ namespace LocadoraVeiculos.WinApp.ModuloFuncionario
             DateTime dataAdmicao = txtData.Value;
             string tipoPerfil = txtTipoPerfil.Text;
 
-            funcionario = new Funcionario(nome, login, senha, salario, dataAdmicao, tipoPerfil);
-            funcionario._id = id;
+            funcionario = new Funcionario(nome, login, senha, salario, dataAdmicao, tipoPerfil)
+            {
+                _id = id
+            };
             return true;
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            telaPrincipal.AtualizarRodape("Inserção Cancelada.");
+            AtualizarRodape("Inserção Cancelada.");
             this.DialogResult = DialogResult.Cancel;
         }
     }

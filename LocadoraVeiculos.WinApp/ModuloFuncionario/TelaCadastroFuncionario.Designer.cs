@@ -52,7 +52,7 @@
             this.txtSalario.Mask = "99999999";
             this.txtSalario.Name = "txtSalario";
             this.txtSalario.Size = new System.Drawing.Size(273, 27);
-            this.txtSalario.TabIndex = 21;
+            this.txtSalario.TabIndex = 2;
             this.txtSalario.ValidatingType = typeof(int);
             // 
             // laValor
@@ -69,7 +69,7 @@
             this.btnCancelar.Location = new System.Drawing.Point(163, 385);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(115, 44);
-            this.btnCancelar.TabIndex = 19;
+            this.btnCancelar.TabIndex = 8;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
@@ -79,7 +79,7 @@
             this.btnSalvar.Location = new System.Drawing.Point(289, 385);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(115, 44);
-            this.btnSalvar.TabIndex = 18;
+            this.btnSalvar.TabIndex = 7;
             this.btnSalvar.Text = "Salvar";
             this.btnSalvar.UseVisualStyleBackColor = true;
             this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
@@ -90,14 +90,15 @@
             this.txtId.Location = new System.Drawing.Point(131, 18);
             this.txtId.Name = "txtId";
             this.txtId.Size = new System.Drawing.Size(273, 27);
-            this.txtId.TabIndex = 17;
+            this.txtId.TabIndex = 0;
+            this.txtId.TabStop = false;
             // 
             // txtNome
             // 
             this.txtNome.Location = new System.Drawing.Point(131, 72);
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(273, 27);
-            this.txtNome.TabIndex = 16;
+            this.txtNome.TabIndex = 1;
             // 
             // laNome
             // 
@@ -122,7 +123,7 @@
             this.txtTipoPerfil.Location = new System.Drawing.Point(131, 180);
             this.txtTipoPerfil.Name = "txtTipoPerfil";
             this.txtTipoPerfil.Size = new System.Drawing.Size(273, 27);
-            this.txtTipoPerfil.TabIndex = 23;
+            this.txtTipoPerfil.TabIndex = 3;
             // 
             // label1
             // 
@@ -147,7 +148,7 @@
             this.txtLogin.Location = new System.Drawing.Point(131, 282);
             this.txtLogin.Name = "txtLogin";
             this.txtLogin.Size = new System.Drawing.Size(273, 27);
-            this.txtLogin.TabIndex = 27;
+            this.txtLogin.TabIndex = 5;
             // 
             // label3
             // 
@@ -163,7 +164,7 @@
             this.txtSenha.Location = new System.Drawing.Point(131, 335);
             this.txtSenha.Name = "txtSenha";
             this.txtSenha.Size = new System.Drawing.Size(273, 27);
-            this.txtSenha.TabIndex = 29;
+            this.txtSenha.TabIndex = 6;
             // 
             // label4
             // 
@@ -183,7 +184,7 @@
             this.txtData.MinDate = new System.DateTime(2022, 1, 1, 0, 0, 0, 0);
             this.txtData.Name = "txtData";
             this.txtData.Size = new System.Drawing.Size(273, 27);
-            this.txtData.TabIndex = 30;
+            this.txtData.TabIndex = 4;
             // 
             // TelaCadastroFuncionario
             // 

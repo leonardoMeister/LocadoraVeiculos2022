@@ -11,28 +11,32 @@ namespace LocadoraVeiculos.WinApp.ModuloFuncionario
     {
         TabelaFuncionarioControl tabelaFuncionario;
         ControladorFuncionario controlador;
-        TelaPrincipalForm telaPrincipal;
-        public ConfiguracaoFuncionario(TelaPrincipalForm telaPrincipalForm)
+        Action<string> AtualizarRodape;
+
+        public ConfiguracaoFuncionario(Action<string> atualizar)
         {
-            telaPrincipal = telaPrincipalForm;
+            AtualizarRodape = atualizar;
             tabelaFuncionario = new TabelaFuncionarioControl();
-            controlador = new ControladorFuncionario( );
+            controlador = new ControladorFuncionario();
         }
 
         public void Editar()
         {
-            TelaCadastroFuncionario telaCadastroFuncionario = new TelaCadastroFuncionario(telaPrincipal);
+            TelaCadastroFuncionario telaCadastroFuncionario = new TelaCadastroFuncionario();
 
-            int id = tabelaFuncionario.ObtemNumeroTarefaSelecionado();            
+            int id = tabelaFuncionario.ObtemNumeroTarefaSelecionado();
             var registro = controlador.SelecionarPorId(id);
-            telaCadastroFuncionario.Funcionario = registro;
 
-            if (telaCadastroFuncionario.ShowDialog() == DialogResult.OK)
+            if (registro != null)
             {
-                var grupo = telaCadastroFuncionario.Funcionario;
-                controlador.Editar(grupo._id, grupo);
+                AtualizarRodape("Tela de Edição Funcionário");
+                telaCadastroFuncionario.Funcionario = registro;
 
-                telaPrincipal.AtualizarRodape("Edição Funcionário Realizado Com Sucesso");
+                telaCadastroFuncionario.GravarRegistro = controlador.Editar;
+                telaCadastroFuncionario.AtualizarRodape = AtualizarRodape;
+                telaCadastroFuncionario.ShowDialog();
+
+                if (telaCadastroFuncionario.DialogResult == DialogResult.OK) AtualizarRodape("Edição Funcionário Realizado Com Sucesso");
             }
         }
 
@@ -42,28 +46,27 @@ namespace LocadoraVeiculos.WinApp.ModuloFuncionario
             try
             {
                 controlador.Excluir(id);
-                telaPrincipal.AtualizarRodape("Funcionário Removido com sucesso.");
+               AtualizarRodape("Funcionário Removido com sucesso.");
             }
             catch (Exception ex)
             {
-                telaPrincipal.AtualizarRodape($"Não foi possivel Remover, Mensagem: {ex}");
+                AtualizarRodape($"Não foi possivel Remover, Mensagem: {ex}");
                 return;
             }
         }
 
         public void Inserir()
         {
-            TelaCadastroFuncionario telaCadastroFuncionario = new TelaCadastroFuncionario(telaPrincipal);
+            TelaCadastroFuncionario telaCadastroFuncionario = new TelaCadastroFuncionario();
 
-            telaCadastroFuncionario = new TelaCadastroFuncionario(telaPrincipal);
+            AtualizarRodape("Tela de Add Funcionário");
 
-            if (telaCadastroFuncionario.ShowDialog() == DialogResult.OK)
-            {
-                var funcionario = telaCadastroFuncionario.Funcionario;
-                controlador.InserirNovo(funcionario);
+            telaCadastroFuncionario.GravarRegistro = controlador.InserirNovo;
+            telaCadastroFuncionario.AtualizarRodape = AtualizarRodape;
+            telaCadastroFuncionario.ShowDialog();
 
-                telaPrincipal.AtualizarRodape("Cadastro Funcionário Realizado Com Sucesso");
-            }
+            if (telaCadastroFuncionario.DialogResult == DialogResult.OK) AtualizarRodape("Cadastro Funcionário Realizado Com Sucesso");
+
         }
 
         public ConfiguracaoToolboxBase ObtemConfiguracaoToolbox()

@@ -25,10 +25,10 @@ namespace LocadoraVeiculos.WinApp
             labelRodape.Text = string.Empty;
             labelTipoCadastro.Text = string.Empty;
 
-            this.configuracaoGrupoVeiculos = new ConfiguracaoGrupoVeiculo(this);
-            this.configuracaoTaxa = new ConfiguracaoTaxa(this);
+            this.configuracaoGrupoVeiculos = new ConfiguracaoGrupoVeiculo(this.AtualizarRodape);
+            this.configuracaoTaxa = new ConfiguracaoTaxa(this.AtualizarRodape);
             this.configuracaoCliente = new ConfiguracaoCliente(this);
-            this.configuracaoFuncionario = new ConfiguracaoFuncionario(this);
+            this.configuracaoFuncionario = new ConfiguracaoFuncionario(this.AtualizarRodape);
         }
 
         public void AtualizarRodape(string mensagem)

@@ -61,7 +61,7 @@
             this.txtDescricao.Location = new System.Drawing.Point(138, 71);
             this.txtDescricao.Name = "txtDescricao";
             this.txtDescricao.Size = new System.Drawing.Size(273, 27);
-            this.txtDescricao.TabIndex = 8;
+            this.txtDescricao.TabIndex = 2;
             // 
             // txtId
             // 
@@ -69,14 +69,14 @@
             this.txtId.Location = new System.Drawing.Point(138, 17);
             this.txtId.Name = "txtId";
             this.txtId.Size = new System.Drawing.Size(273, 27);
-            this.txtId.TabIndex = 9;
+            this.txtId.TabIndex = 1;
             // 
             // btnSalvar
             // 
             this.btnSalvar.Location = new System.Drawing.Point(296, 177);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(115, 44);
-            this.btnSalvar.TabIndex = 10;
+            this.btnSalvar.TabIndex = 4;
             this.btnSalvar.Text = "Salvar";
             this.btnSalvar.UseVisualStyleBackColor = true;
             this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
@@ -86,7 +86,7 @@
             this.btnCancelar.Location = new System.Drawing.Point(170, 177);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(115, 44);
-            this.btnCancelar.TabIndex = 11;
+            this.btnCancelar.TabIndex = 5;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
@@ -106,7 +106,7 @@
             this.txtValor.Mask = "99999999";
             this.txtValor.Name = "txtValor";
             this.txtValor.Size = new System.Drawing.Size(273, 27);
-            this.txtValor.TabIndex = 13;
+            this.txtValor.TabIndex = 3;
             this.txtValor.ValidatingType = typeof(int);
             // 
             // TelaCadastroTaxaForm
