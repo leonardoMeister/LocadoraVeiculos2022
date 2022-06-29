@@ -8,6 +8,7 @@ namespace LocadoraVeiculos.WinApp.ModuloTaxa
     {
         private Taxas taxa;
         TelaPrincipalForm telaPrincipal;
+        ValidadorTaxas validadorTaxas;
 
         public Taxas Taxa
         {
@@ -26,6 +27,7 @@ namespace LocadoraVeiculos.WinApp.ModuloTaxa
         {
             InitializeComponent();
             this.telaPrincipal = telaPrincipal;
+            validadorTaxas = new ValidadorTaxas();
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -39,14 +41,23 @@ namespace LocadoraVeiculos.WinApp.ModuloTaxa
         {
             bool tudoValido = true;
 
-            if (!PegarObjetoTela())
-                tudoValido = false;
+            if (!PegarObjetoTela()) return;
 
-            if (ObjetoForInvalido())
+            if (!ObjetoForInvalido())
                 tudoValido = false;
 
             if (tudoValido)
                 this.DialogResult = DialogResult.OK;
+        }
+
+        private bool ObjetoForInvalido()
+        {
+            var resultado = validadorTaxas.Validate(taxa);
+
+            if (resultado.IsValid) return true;
+
+            telaPrincipal.AtualizarRodape(resultado.Errors[0].ToString());
+            return false;
         }
 
         private bool PegarObjetoTela()
@@ -62,17 +73,11 @@ namespace LocadoraVeiculos.WinApp.ModuloTaxa
             string descricao = txtDescricao.Text;
             decimal valor = Convert.ToDecimal(txtValor.Text);
 
-            taxa = new Taxas(descricao,valor);
+            taxa = new Taxas(descricao, valor);
             taxa._id = id;
 
             return true;
         }
 
-        private bool ObjetoForInvalido()
-        {
-            return false;
-            //VALIDAR AQUI
-            //DEPOIS JOGAR A MENSAGEM NO RODAPE
-        }
     }
 }
