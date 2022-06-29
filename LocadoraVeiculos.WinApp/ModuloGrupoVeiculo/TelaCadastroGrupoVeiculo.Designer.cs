@@ -39,41 +39,44 @@
             // laId
             // 
             this.laId.AutoSize = true;
-            this.laId.Location = new System.Drawing.Point(40, 15);
+            this.laId.Location = new System.Drawing.Point(35, 11);
             this.laId.Name = "laId";
-            this.laId.Size = new System.Drawing.Size(122, 20);
+            this.laId.Size = new System.Drawing.Size(97, 15);
             this.laId.TabIndex = 0;
             this.laId.Text = "Id Grupo Veiculo:";
             // 
             // laNome
             // 
             this.laNome.AutoSize = true;
-            this.laNome.Location = new System.Drawing.Point(12, 69);
+            this.laNome.Location = new System.Drawing.Point(10, 52);
             this.laNome.Name = "laNome";
-            this.laNome.Size = new System.Drawing.Size(150, 20);
+            this.laNome.Size = new System.Drawing.Size(120, 15);
             this.laNome.TabIndex = 1;
             this.laNome.Text = "Nome Grupo Veiculo:";
             // 
             // txtNome
             // 
-            this.txtNome.Location = new System.Drawing.Point(174, 66);
+            this.txtNome.Location = new System.Drawing.Point(152, 50);
+            this.txtNome.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtNome.Name = "txtNome";
-            this.txtNome.Size = new System.Drawing.Size(241, 27);
+            this.txtNome.Size = new System.Drawing.Size(211, 23);
             this.txtNome.TabIndex = 2;
             // 
             // txtId
             // 
             this.txtId.Enabled = false;
-            this.txtId.Location = new System.Drawing.Point(174, 12);
+            this.txtId.Location = new System.Drawing.Point(152, 9);
+            this.txtId.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtId.Name = "txtId";
-            this.txtId.Size = new System.Drawing.Size(241, 27);
-            this.txtId.TabIndex = 3;
+            this.txtId.Size = new System.Drawing.Size(211, 23);
+            this.txtId.TabIndex = 1;
             // 
             // btnSalvar
             // 
-            this.btnSalvar.Location = new System.Drawing.Point(300, 137);
+            this.btnSalvar.Location = new System.Drawing.Point(262, 103);
+            this.btnSalvar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSalvar.Name = "btnSalvar";
-            this.btnSalvar.Size = new System.Drawing.Size(115, 44);
+            this.btnSalvar.Size = new System.Drawing.Size(101, 33);
             this.btnSalvar.TabIndex = 4;
             this.btnSalvar.Text = "Salvar";
             this.btnSalvar.UseVisualStyleBackColor = true;
@@ -81,25 +84,27 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(174, 137);
+            this.btnCancelar.Location = new System.Drawing.Point(152, 103);
+            this.btnCancelar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(115, 44);
-            this.btnCancelar.TabIndex = 5;
+            this.btnCancelar.Size = new System.Drawing.Size(101, 33);
+            this.btnCancelar.TabIndex = 3;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // TelaCadastroGrupoVeiculo
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(427, 193);
+            this.ClientSize = new System.Drawing.Size(374, 145);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnSalvar);
             this.Controls.Add(this.txtId);
             this.Controls.Add(this.txtNome);
             this.Controls.Add(this.laNome);
             this.Controls.Add(this.laId);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "TelaCadastroGrupoVeiculo";

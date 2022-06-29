@@ -31,14 +31,13 @@ namespace LocadoraVeiculos.WinApp.ModuloGrupoVeiculo
         {
             bool tudoValido = true;
 
-            if (!PegarObjetoTela())
-                tudoValido = false;
+            if (!PegarObjetoTela()) return;
 
-            if (ObjetoForInvalido())
+            if (!ObjetoForInvalido())
                 tudoValido = false;
 
             if (tudoValido)
-                this.DialogResult =  DialogResult.OK;
+                this.DialogResult = DialogResult.OK;
         }
 
         private bool ObjetoForInvalido()
