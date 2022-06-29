@@ -3,9 +3,9 @@ using System;
 
 namespace LocadoraVeiculos.Dominio.ModuloPlanoCobranca
 {
-    public class PlanoCobranca
+    public class PlanoCobranca: EntidadeBase
     {
-        public Condutores()
+        public PlanoCobranca()
         {
 
         }

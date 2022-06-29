@@ -3,7 +3,7 @@ using System;
 
 namespace LocadoraVeiculos.Dominio.ModuloCondutores
 {
-    public class Condutores
+    public class Condutores:EntidadeBase
     {
         public Condutores()
         {
