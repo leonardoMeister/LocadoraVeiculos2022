@@ -12,7 +12,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoFuncionari
         public IntegratedTestsFuncionario()
         {
             string query = @"delete from TB_FUNCIONARIO;
-                            DBCC CHECKIDENT (TB_FUNCIONARIO, RESEED, 0)";
+                            DBCC CHECKIDENT (TB_FUNCIONARIO, RESEED, 1)";
 
             DataBase.ExecutarComando(query);
         }

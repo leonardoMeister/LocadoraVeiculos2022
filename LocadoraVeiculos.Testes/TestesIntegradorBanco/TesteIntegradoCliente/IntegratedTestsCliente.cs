@@ -11,7 +11,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoCliente
         public IntegratedTestsCliente()
         {
             string query = @"delete from TB_CLIENTE;
-                            DBCC CHECKIDENT (TB_CLIENTE, RESEED, 0)";
+                            DBCC CHECKIDENT (TB_CLIENTE, RESEED, 1)";
             DataBase.ExecutarComando(query);
         }
 
