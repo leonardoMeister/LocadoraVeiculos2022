@@ -15,32 +15,31 @@ namespace LocadoraVeiculos.WinApp.ModuloTaxa
     {
         TabelaTaxaControl tabelaTaxa;
         ControladorTaxas controlador;
-        TelaPrincipalForm telaPrincipal;
-        TelaCadastroTaxaForm telaCadastroTaxaForm;
-
-        public ConfiguracaoTaxa(TelaPrincipalForm telaPrincipalForm)
+        Action<string> AtualizarRodape;
+        public ConfiguracaoTaxa(Action<string> atualizar)
         {
-            telaPrincipal = telaPrincipalForm;
             tabelaTaxa = new TabelaTaxaControl();
             controlador = new ControladorTaxas();
-
-
+            AtualizarRodape = atualizar;
         }
 
         public void Editar()
         {
-            telaCadastroTaxaForm = new TelaCadastroTaxaForm(telaPrincipal);
+            TelaCadastroTaxaForm telaCadastroTaxa = new TelaCadastroTaxaForm();
 
             int id = tabelaTaxa.ObtemNumeroTarefaSelecionado();
             var registro = controlador.SelecionarPorId(id);
-            telaCadastroTaxaForm.Taxa = registro;
 
-            if (telaCadastroTaxaForm.ShowDialog() == DialogResult.OK)
+            if (registro != null)
             {
-                var grupo = telaCadastroTaxaForm.Taxa;
-                controlador.Editar(grupo._id, grupo);
+                AtualizarRodape("Tela de Edição Taxa");
+                telaCadastroTaxa.Taxa = registro;
 
-                telaPrincipal.AtualizarRodape("Edição Taxa Realizada Com Sucesso");
+                telaCadastroTaxa.GravarRegistro = controlador.Editar;
+                telaCadastroTaxa.AtualizarRodape = AtualizarRodape;
+                telaCadastroTaxa.ShowDialog();
+
+                if (telaCadastroTaxa.DialogResult == DialogResult.OK) AtualizarRodape("Edição Taxa Realizada Com Sucesso");
             }
         }
 
@@ -50,26 +49,26 @@ namespace LocadoraVeiculos.WinApp.ModuloTaxa
             try
             {
                 controlador.Excluir(id);
-                telaPrincipal.AtualizarRodape("Taxa Removida com sucesso.");
+                AtualizarRodape("Taxa Removida com sucesso.");
             }
             catch (Exception ex)
             {
-                telaPrincipal.AtualizarRodape($"Não foi possivel Remover, Mensagem: {ex}");
+                AtualizarRodape($"Não foi possivel Remover, Mensagem: {ex}");
                 return;
             }
         }
 
         public void Inserir()
         {
-            telaCadastroTaxaForm = new TelaCadastroTaxaForm(telaPrincipal);
+            TelaCadastroTaxaForm telaCadastroGrupoVeiculo = new TelaCadastroTaxaForm();
 
-            if (telaCadastroTaxaForm.ShowDialog() == DialogResult.OK)
-            {
-                var taxa = telaCadastroTaxaForm.Taxa;
-                controlador.InserirNovo(taxa); 
+            AtualizarRodape("Tela de Adição Taxa");
 
-                telaPrincipal.AtualizarRodape("Cadastro Taxa Realizada Com Sucesso");
-            }
+            telaCadastroGrupoVeiculo.GravarRegistro = controlador.InserirNovo;
+            telaCadastroGrupoVeiculo.AtualizarRodape = AtualizarRodape;
+            telaCadastroGrupoVeiculo.ShowDialog();
+
+            if (telaCadastroGrupoVeiculo.DialogResult == DialogResult.OK) AtualizarRodape("Cadastro Taxa Realizado Com Sucesso");
         }
 
         public ConfiguracaoToolboxBase ObtemConfiguracaoToolbox()

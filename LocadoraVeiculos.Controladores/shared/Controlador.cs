@@ -24,7 +24,7 @@ namespace LocadoraVeiculos.Repositorio.shared
 
         public virtual ValidationResult InserirNovo(T registro)
         {
-            var resultadoValidacao = Validator.Validate(registro);
+            var resultadoValidacao = Validator.Validate(registro); 
 
             if (resultadoValidacao.IsValid)
             {
@@ -33,13 +33,13 @@ namespace LocadoraVeiculos.Repositorio.shared
             return resultadoValidacao;
         }
 
-        public virtual ValidationResult Editar(int id, T registro)
+        public ValidationResult Editar( T registro)
         {
             var resultadoValidacao = Validator.Validate(registro);
 
             if (resultadoValidacao.IsValid)
             {
-                Repositorio.Editar(id, registro);
+                Repositorio.Editar(registro._id, registro);
             }
             return resultadoValidacao;
         }

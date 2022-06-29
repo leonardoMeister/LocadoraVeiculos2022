@@ -182,19 +182,17 @@ namespace LocadoraVeiculos.RepositorioProject.shared
 
         private static string AppendSelectIdentity(this string sql)
         {
-            switch (nomeProvider)
+            return nomeProvider switch
             {
-                case "System.Data.SqlClient": return sql + ";SELECT SCOPE_IDENTITY()";
-
-                case "System.Data.SQLite": return sql + ";SELECT LAST_INSERT_ROWID()";
-
-                default: return sql;
-            }
+                "System.Data.SqlClient" => sql + ";SELECT SCOPE_IDENTITY()",
+                "System.Data.SQLite" => sql + ";SELECT LAST_INSERT_ROWID()",
+                _ => sql,
+            };
         }
 
         public static bool IsNullOrEmpty(this object value)
         {
-            return (value is string && string.IsNullOrEmpty((string)value)) ||
+            return (value is string @string && string.IsNullOrEmpty(@string)) ||
                     value == null;
         }
     }

@@ -61,7 +61,7 @@
             this.txtDescricao.Location = new System.Drawing.Point(121, 53);
             this.txtDescricao.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtDescricao.Name = "txtDescricao";
-            this.txtDescricao.Size = new System.Drawing.Size(239, 23);
+            this.txtDescricao.Size = new System.Drawing.Size(273, 27);
             this.txtDescricao.TabIndex = 2;
             // 
             // txtId
@@ -70,7 +70,7 @@
             this.txtId.Location = new System.Drawing.Point(121, 13);
             this.txtId.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtId.Name = "txtId";
-            this.txtId.Size = new System.Drawing.Size(239, 23);
+            this.txtId.Size = new System.Drawing.Size(273, 27);
             this.txtId.TabIndex = 1;
             // 
             // btnSalvar
@@ -78,22 +78,22 @@
             this.btnSalvar.Location = new System.Drawing.Point(259, 133);
             this.btnSalvar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSalvar.Name = "btnSalvar";
-            this.btnSalvar.Size = new System.Drawing.Size(101, 33);
-            this.btnSalvar.TabIndex = 5;
+            this.btnSalvar.Size = new System.Drawing.Size(115, 44);
+            this.btnSalvar.TabIndex = 4;
             this.btnSalvar.Text = "Salvar";
             this.btnSalvar.UseVisualStyleBackColor = true;
-            this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
+            this.btnSalvar.Click += new System.EventHandler(this.BtnSalvar_Click);
             // 
             // btnCancelar
             // 
             this.btnCancelar.Location = new System.Drawing.Point(149, 133);
             this.btnCancelar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(101, 33);
-            this.btnCancelar.TabIndex = 4;
+            this.btnCancelar.Size = new System.Drawing.Size(115, 44);
+            this.btnCancelar.TabIndex = 5;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            this.btnCancelar.Click += new System.EventHandler(this.BtnCancelar_Click);
             // 
             // laValor
             // 
@@ -110,7 +110,7 @@
             this.txtValor.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtValor.Mask = "99999999";
             this.txtValor.Name = "txtValor";
-            this.txtValor.Size = new System.Drawing.Size(239, 23);
+            this.txtValor.Size = new System.Drawing.Size(273, 27);
             this.txtValor.TabIndex = 3;
             this.txtValor.ValidatingType = typeof(int);
             // 

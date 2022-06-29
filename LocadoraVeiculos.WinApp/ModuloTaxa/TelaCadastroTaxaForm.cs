@@ -1,4 +1,5 @@
-﻿using LocadoraVeiculos.Dominio.ModuloTaxas;
+﻿using FluentValidation.Results;
+using LocadoraVeiculos.Dominio.ModuloTaxas;
 using System;
 using System.Windows.Forms;
 
@@ -7,8 +8,7 @@ namespace LocadoraVeiculos.WinApp.ModuloTaxa
     public partial class TelaCadastroTaxaForm : Form
     {
         private Taxas taxa;
-        TelaPrincipalForm telaPrincipal;
-        ValidadorTaxas validadorTaxas;
+        public Action<string> AtualizarRodape { get; set; }
 
         public Taxas Taxa
         {
@@ -23,41 +23,39 @@ namespace LocadoraVeiculos.WinApp.ModuloTaxa
             }
         }
 
-        public TelaCadastroTaxaForm(TelaPrincipalForm telaPrincipal)
+        public Func<Taxas, ValidationResult> GravarRegistro { get; internal set; }
+
+        public TelaCadastroTaxaForm()
         {
             InitializeComponent();
-            this.telaPrincipal = telaPrincipal;
-            validadorTaxas = new ValidadorTaxas();
         }
 
-        private void btnCancelar_Click(object sender, EventArgs e)
+        private void BtnCancelar_Click(object sender, EventArgs e)
         {
-            telaPrincipal.AtualizarRodape("Inserção Cancelada.");
+            AtualizarRodape("Inserção Cancelada.");
             this.DialogResult = DialogResult.Cancel;
 
         }
 
-        private void btnSalvar_Click(object sender, EventArgs e)
+        private void BtnSalvar_Click(object sender, EventArgs e)
         {
-            bool tudoValido = true;
-
             if (!PegarObjetoTela()) return;
 
-            if (!ObjetoForInvalido())
-                tudoValido = false;
 
-            if (tudoValido)
-                this.DialogResult = DialogResult.OK;
-        }
+            var resultadoValidacao = GravarRegistro(taxa);
 
-        private bool ObjetoForInvalido()
-        {
-            var resultado = validadorTaxas.Validate(taxa);
+            if (resultadoValidacao.IsValid == false)
+            {
+                string erro = resultadoValidacao.Errors[0].ErrorMessage;
 
-            if (resultado.IsValid) return true;
+                AtualizarRodape(erro);
 
-            telaPrincipal.AtualizarRodape(resultado.Errors[0].ToString());
-            return false;
+                DialogResult = DialogResult.None;
+            }
+            else
+            {
+                DialogResult = DialogResult.OK;
+            }
         }
 
         private bool PegarObjetoTela()
@@ -68,13 +66,19 @@ namespace LocadoraVeiculos.WinApp.ModuloTaxa
                 id = Convert.ToInt32(txtId.Text);
 
             if (txtDescricao.Text == "" || txtValor.Text == "")
+            {
+                AtualizarRodape("Favor Preencher todos os campos.");
                 return false;
+            }
+                
 
             string descricao = txtDescricao.Text;
             decimal valor = Convert.ToDecimal(txtValor.Text);
 
-            taxa = new Taxas(descricao, valor);
-            taxa._id = id;
+            taxa = new Taxas(descricao, valor)
+            {
+                _id = id
+            };
 
             return true;
         }

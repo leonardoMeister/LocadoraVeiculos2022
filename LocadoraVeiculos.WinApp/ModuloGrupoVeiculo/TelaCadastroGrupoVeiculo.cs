@@ -1,4 +1,5 @@
-﻿using LocadoraVeiculos.Dominio.ModuloGrupoVeiculos;
+﻿using FluentValidation.Results;
+using LocadoraVeiculos.Dominio.ModuloGrupoVeiculos;
 using System;
 using System.Windows.Forms;
 
@@ -7,8 +8,9 @@ namespace LocadoraVeiculos.WinApp.ModuloGrupoVeiculo
     public partial class TelaCadastroGrupoVeiculo : Form
     {
         private GrupoVeiculos grupoVeiculos;
-        TelaPrincipalForm telaPrincipal;
-        ValidadorGrupoVeiculos validadorGrupoVeiculos;
+
+        public Action<string> AtualizarRodape { get; set; }
+
         public GrupoVeiculos GrupoVeiculos
         {
             get { return grupoVeiculos; }
@@ -20,35 +22,33 @@ namespace LocadoraVeiculos.WinApp.ModuloGrupoVeiculo
                 txtNome.Text = grupoVeiculos.NomeGrupo;
             }
         }
-        public TelaCadastroGrupoVeiculo(TelaPrincipalForm telaPrincipal)
+
+        public Func<GrupoVeiculos, ValidationResult> GravarRegistro { get; internal set; }
+
+        public TelaCadastroGrupoVeiculo()
         {
             InitializeComponent();
-            this.telaPrincipal = telaPrincipal;
-            validadorGrupoVeiculos = new ValidadorGrupoVeiculos();
         }        
 
-        private void btnSalvar_Click(object sender, EventArgs e)
+        private void BtnSalvar_Click(object sender, EventArgs e)
         {
-            bool tudoValido = true;
-
             if (!PegarObjetoTela()) return;
 
-            if (!ObjetoForInvalido())
-                tudoValido = false;
 
-            if (tudoValido)
-                this.DialogResult = DialogResult.OK;
-        }
+            var resultadoValidacao = GravarRegistro(GrupoVeiculos);
 
-        private bool ObjetoForInvalido()
-        {
-            var resultado = validadorGrupoVeiculos.Validate(grupoVeiculos);
+            if (resultadoValidacao.IsValid == false)
+            {
+                string erro = resultadoValidacao.Errors[0].ErrorMessage;
 
-            if (resultado.IsValid) return true;
+                AtualizarRodape(erro);
 
-            telaPrincipal.AtualizarRodape(resultado.Errors[0].ToString());
-            return false;
-
+                DialogResult = DialogResult.None;
+            }
+            else
+            {
+                DialogResult = DialogResult.OK;
+            }
         }
 
         private bool PegarObjetoTela()
@@ -59,19 +59,24 @@ namespace LocadoraVeiculos.WinApp.ModuloGrupoVeiculo
                 id = Convert.ToInt32(txtId.Text);
 
             if (txtNome.Text == "")
-                return false;                                    
-
+            {
+                AtualizarRodape("Favor Preencher todos os campos.");
+                return false;
+            }
+                
             string nome = txtNome.Text;
-            
-            grupoVeiculos = new GrupoVeiculos(nome);
-            grupoVeiculos._id = id;
+
+            grupoVeiculos = new GrupoVeiculos(nome)
+            {
+                _id = id
+            };
 
             return true;
         }
 
-        private void btnCancelar_Click(object sender, EventArgs e)
+        private void BtnCancelar_Click(object sender, EventArgs e)
         {
-            telaPrincipal.AtualizarRodape("Inserção Cancelada.");
+            AtualizarRodape("Inserção Cancelada.");
             this.DialogResult = DialogResult.Cancel;
         }
     }
