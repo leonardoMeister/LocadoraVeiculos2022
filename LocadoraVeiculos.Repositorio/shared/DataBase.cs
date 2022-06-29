@@ -192,7 +192,7 @@ namespace LocadoraVeiculos.RepositorioProject.shared
 
         public static bool IsNullOrEmpty(this object value)
         {
-            return (value is string && string.IsNullOrEmpty((string)value)) ||
+            return (value is string @string && string.IsNullOrEmpty(@string)) ||
                     value == null;
         }
     }

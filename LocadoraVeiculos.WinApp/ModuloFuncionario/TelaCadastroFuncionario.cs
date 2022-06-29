@@ -33,7 +33,7 @@ namespace LocadoraVeiculos.WinApp.ModuloFuncionario
             InitializeComponent();
         }
 
-        private void btnSalvar_Click(object sender, EventArgs e)
+        private void BtnSalvar_Click(object sender, EventArgs e)
         {
             if (!PegarObjetoTela()) return;
 
@@ -83,7 +83,7 @@ namespace LocadoraVeiculos.WinApp.ModuloFuncionario
             return true;
         }
 
-        private void btnCancelar_Click(object sender, EventArgs e)
+        private void BtnCancelar_Click(object sender, EventArgs e)
         {
             AtualizarRodape("Inserção Cancelada.");
             this.DialogResult = DialogResult.Cancel;

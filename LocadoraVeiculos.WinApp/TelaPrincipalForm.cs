@@ -93,22 +93,22 @@ namespace LocadoraVeiculos.WinApp
         #endregion
 
         #region OPCOES DO MENU
-        private void grupoVeiculosMenuItem_Click(object sender, EventArgs e) //alterar o nome do botão
+        private void GrupoVeiculosMenuItem_Click(object sender, EventArgs e) //alterar o nome do botão
         {
             telaSelecionada = configuracaoGrupoVeiculos;
             ConfigurarTelaPrincipal(configuracaoGrupoVeiculos);
         }
-        private void taxasMenuItem_Click(object sender, EventArgs e)
+        private void TaxasMenuItem_Click(object sender, EventArgs e)
         {
             telaSelecionada = configuracaoTaxa;
             ConfigurarTelaPrincipal(configuracaoTaxa);
         }
-        private void clienteMenuItem_Click(object sender, EventArgs e)
+        private void ClienteMenuItem_Click(object sender, EventArgs e)
         {
             telaSelecionada = configuracaoCliente;
             ConfigurarTelaPrincipal(configuracaoCliente);
         }
-        private void funcionarioMenuItem_Click(object sender, EventArgs e)
+        private void FuncionarioMenuItem_Click(object sender, EventArgs e)
         {
             telaSelecionada = configuracaoFuncionario;
             ConfigurarTelaPrincipal(configuracaoFuncionario);
@@ -117,7 +117,7 @@ namespace LocadoraVeiculos.WinApp
 
 
         #region BOTÕES DE AÇÕES DO USUARIO
-        private void btnInserir_Click(object sender, EventArgs e)
+        private void BtnInserir_Click(object sender, EventArgs e)
         {
             if (telaSelecionada != null)
             {
@@ -126,7 +126,7 @@ namespace LocadoraVeiculos.WinApp
                 ConfigurarListagem((ConfiguracaoBase)telaSelecionada);
             }
         }
-        private void btnEditar_Click(object sender, EventArgs e)
+        private void BtnEditar_Click(object sender, EventArgs e)
         {
             if (telaSelecionada != null)
             {
@@ -135,7 +135,7 @@ namespace LocadoraVeiculos.WinApp
                 ConfigurarListagem((ConfiguracaoBase)telaSelecionada);
             }
         }
-        private void btnExcluir_Click(object sender, EventArgs e)
+        private void BtnExcluir_Click(object sender, EventArgs e)
         {
             if (telaSelecionada != null)
             {
@@ -144,7 +144,7 @@ namespace LocadoraVeiculos.WinApp
                 ConfigurarListagem((ConfiguracaoBase)telaSelecionada);
             }
         }
-        private void btnAdicionarItens_Click(object sender, EventArgs e)
+        private void BtnAdicionarItens_Click(object sender, EventArgs e)
         {
             if (telaSelecionada != null)
             {
@@ -153,7 +153,7 @@ namespace LocadoraVeiculos.WinApp
                 ConfigurarListagem((ConfiguracaoBase)telaSelecionada);
             }
         }
-        private void btnAtualizarItens_Click(object sender, EventArgs e)
+        private void BtnAtualizarItens_Click(object sender, EventArgs e)
         {
             if (telaSelecionada != null)
             {
@@ -162,7 +162,7 @@ namespace LocadoraVeiculos.WinApp
                 ConfigurarListagem((ConfiguracaoBase)telaSelecionada);
             }
         }
-        private void btnFiltrar_Click(object sender, EventArgs e)
+        private void BtnFiltrar_Click(object sender, EventArgs e)
         {
             if (telaSelecionada != null)
             {
@@ -171,7 +171,7 @@ namespace LocadoraVeiculos.WinApp
                 ConfigurarListagem((ConfiguracaoBase)telaSelecionada);
             }
         }
-        private void btnAgrupar_Click(object sender, EventArgs e)
+        private void BtnAgrupar_Click(object sender, EventArgs e)
         {
             if (telaSelecionada != null)
             {
