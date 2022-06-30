@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using FluentValidation.Results;
 using LocadoraVeiculos.Dominio.ModuloCliente;
 using LocadoraVeiculos.Repositorio.shared;
 using LocadoraVeiculos.RepositorioProject.ModuloCliente;
@@ -21,6 +22,40 @@ namespace LocadoraVeiculos.Controladores.ModuloControladorCliente
         protected override AbstractValidator<Cliente> PegarValidador()
         {
             return new ValidadorCliente();
+        }
+
+        public override ValidationResult Editar(Cliente registro)
+        {
+            var validacaoBanco = FuncionarioForValidoParaEditar(registro);
+
+            if (validacaoBanco.IsValid) return base.Editar(registro);
+            else return validacaoBanco;
+        }
+
+        public override ValidationResult InserirNovo(Cliente registro)
+        {
+            var validacaoBanco = FuncionarioForValidoParaInserir(registro);
+            if (validacaoBanco.IsValid) return base.InserirNovo(registro);
+            else return validacaoBanco;
+        }
+        private ValidationResult FuncionarioForValidoParaEditar(Cliente registro)
+        {
+            ValidationResult valido = new ValidationResult();
+
+            var func1 = ((RepositorioCliente)Repositorio).SelecionarPorCpf(registro.Cpf);
+            if (func1 != null && func1._id != registro._id) valido.Errors.Add(new ValidationFailure("Nome", "Nao pode ter Cpf repetido"));
+
+            return valido;
+        }
+        private ValidationResult FuncionarioForValidoParaInserir(Cliente registro)
+        {
+            ValidationResult valido = new ValidationResult();
+
+            var func1 = ((RepositorioCliente)Repositorio).SelecionarPorCpf(registro.Cpf);
+            if (func1 != null) valido.Errors.Add(new ValidationFailure("Nome", "Nao pode ter Cpf repetido"));
+
+            return valido;
+
         }
     }
 }
