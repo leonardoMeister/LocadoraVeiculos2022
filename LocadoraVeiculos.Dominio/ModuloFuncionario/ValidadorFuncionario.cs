@@ -6,7 +6,7 @@ namespace LocadoraVeiculos.Dominio.ModuloFuncionario
 {
     public class ValidadorFuncionario : AbstractValidator<Funcionario>
     {
-        readonly Regex regEx = new Regex("^[a-zA-Z0-9]*$");
+        readonly Regex regEx = new Regex("^[a-zA-Z0-9- ]*$");
 
         public ValidadorFuncionario()
         {

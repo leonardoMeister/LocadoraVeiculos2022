@@ -5,7 +5,7 @@ namespace LocadoraVeiculos.Dominio.ModuloGrupoVeiculos
 {
     public class ValidadorGrupoVeiculos : AbstractValidator<GrupoVeiculos>
     {
-        readonly Regex regEx = new Regex("^[a-zA-Z0-9]*$");
+        readonly Regex regEx = new Regex("^[a-zA-Z0-9- ]*$");
         public ValidadorGrupoVeiculos()
         {
             RuleFor(x => x.NomeGrupo).Cascade(CascadeMode.StopOnFirstFailure)

@@ -5,7 +5,7 @@ namespace LocadoraVeiculos.Dominio.ModuloCliente
 {
     public class ValidadorCliente : AbstractValidator<Cliente>
     {
-        readonly Regex regEx = new Regex("^[a-zA-Z0-9]*$");
+        readonly Regex regEx = new Regex("^[a-zA-Z0-9- ]*$");
         public ValidadorCliente()
         {
             RuleFor(x => x.Nome).Cascade(CascadeMode.StopOnFirstFailure)
