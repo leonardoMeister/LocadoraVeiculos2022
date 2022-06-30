@@ -4,11 +4,16 @@ using LocadoraVeiculos.RepositorioProject.shared;
 
 namespace LocadoraVeiculos.RepositorioProject.ModuloFuncionario
 {
-    public class RepositorioFuncionario : RepositorioSQL<Funcionario>, IRepositoryFuncionario
+    public class RepositorioFuncionario : RepositorioSQL<Funcionario>
     {
         public RepositorioFuncionario(MapeadorBase<Funcionario> mapeador) : base(mapeador)
         {
 
+        }
+
+        public Funcionario SelecionarPorNome(string nome)
+        {
+            return null;
         }
         protected override string SqlUpdate =>
                 @"UPDATE TB_FUNCIONARIO

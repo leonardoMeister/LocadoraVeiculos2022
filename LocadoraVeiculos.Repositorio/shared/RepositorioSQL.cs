@@ -52,5 +52,10 @@ namespace LocadoraVeiculos.Repositorio.shared
         {
             return DataBase.Get(SqlSelectId, Mapeador.ConverterEmRegistro, Mapeador.AdicionarParametro("ID", id));
         }
+
+        public T SelecionarPorParametro(string query, Dictionary<string, object> parameters)
+        {
+            return DataBase.Get(query, Mapeador.ConverterEmRegistro, parameters);
+        }
     }
 }

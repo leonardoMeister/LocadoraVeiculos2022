@@ -4,10 +4,11 @@ using LocadoraVeiculos.RepositorioProject.shared;
 
 namespace LocadoraVeiculos.RepositorioProject.ModuloCliente
 {
-    public class RepositorioCliente : RepositorioSQL<Cliente>, IRepositoryCliente
+    public class RepositorioCliente : RepositorioSQL<Cliente>
     {
         public RepositorioCliente(MapeadorBase<Cliente> mapeador) : base(mapeador)
         {
+
         }
 
         protected override string SqlUpdate =>
