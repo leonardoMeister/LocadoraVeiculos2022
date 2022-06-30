@@ -10,11 +10,20 @@ namespace LocadoraVeiculos.RepositorioProject.ModuloFuncionario
         {
 
         }
+        protected string SqlUsuario = "SELECT * FROM TB_FUNCIONARIO WHERE [login] = @LOGIN";
+        public Funcionario SelecionarPorUsuario(string login)
+        {
+            return SelecionarPorParametro(SqlUsuario, Mapeador.AdicionarParametro("LOGIN", login));
 
+        }
         public Funcionario SelecionarPorNome(string nome)
         {
-            return null;
+            return SelecionarPorParametro(SqlNome, Mapeador.AdicionarParametro("NOME", nome));
         }
+
+        protected string SqlNome = "SELECT * FROM TB_FUNCIONARIO WHERE [nome] = @NOME";
+
+
         protected override string SqlUpdate =>
                 @"UPDATE TB_FUNCIONARIO
                    SET [nome] = @NOME
