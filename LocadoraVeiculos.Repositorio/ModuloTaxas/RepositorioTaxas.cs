@@ -12,6 +12,14 @@ namespace LocadoraVeiculos.RepositorioProject.ModuloTaxas
 
         }
 
+        public Taxas SelecionarPorDescricao(string descricao)
+        {
+            return SelecionarPorParametro(SqlDescricao, Mapeador.AdicionarParametro("DESCRICAO", descricao));
+
+        }
+
+        protected string SqlDescricao = "SELECT * FROM TB_TAXAS WHERE [descricao] = @DESCRICAO";
+
         protected override string SqlUpdate =>
                 @"UPDATE TB_TAXAS
                    SET [descricao] = @DESCRICAO,

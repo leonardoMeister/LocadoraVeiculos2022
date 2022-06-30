@@ -9,7 +9,7 @@ namespace LocadoraVeiculos.Dominio.ModuloTaxas
         public ValidadorTaxas()
         {
             RuleFor(x => x.Descricao).Cascade(CascadeMode.StopOnFirstFailure)
-                .Matches(regEx).WithMessage("Não pode contar caractere especial")
+                .Matches(regEx).WithMessage("Não pode conter caracteres especial")
                 .MinimumLength(8).WithMessage("A Descrição deve ter no minimo 8 caracteres")
                 .NotNull().WithMessage("Deve ser inserido uma Descrição")
                 .NotEmpty().WithMessage("Deve ser inserido uma Descrição");
