@@ -10,6 +10,7 @@ namespace LocadoraVeiculos.RepositorioProject.ModuloFuncionario
         {
 
         }
+
         protected string SqlUsuario = "SELECT * FROM TB_FUNCIONARIO WHERE [login] = @LOGIN";
         public Funcionario SelecionarPorUsuario(string login)
         {
