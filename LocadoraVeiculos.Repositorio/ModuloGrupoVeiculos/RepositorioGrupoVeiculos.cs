@@ -5,7 +5,7 @@ using System;
 
 namespace LocadoraVeiculos.RepositorioProject.ModuloGrupoVeiculos
 {
-    public class RepositorioGrupoVeiculos : RepositorioSQL<GrupoVeiculos>, IRepositoryGrupoVeiculos
+    public class RepositorioGrupoVeiculos : RepositorioSQL<GrupoVeiculos>
     {
         public RepositorioGrupoVeiculos(MapeadorBase<GrupoVeiculos> mapeador) : base(mapeador)
         {

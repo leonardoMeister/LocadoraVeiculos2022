@@ -50,8 +50,7 @@ namespace LocadoraVeiculos.WinApp
             //mapeadores
             services.AddSingleton<MapeadorBase<GrupoVeiculos>, MapeadorGrupoVeiculos>();
 
-            //repositorios
-            services.AddSingleton<IRepositoryGrupoVeiculos, RepositorioGrupoVeiculos>();
+            //repositorios            
 
             //telas
             services.AddTransient<TelaPrincipalForm>();

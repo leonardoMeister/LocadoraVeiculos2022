@@ -30,6 +30,11 @@ namespace LocadoraVeiculos.Dominio.ModuloPlanoCobranca
             throw new System.NotImplementedException();
         }
 
+        public PlanoCobranca SelecionarPorParametro(string query, Dictionary<string, object> parameters)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public List<PlanoCobranca> SelecionarTodos()
         {
             throw new System.NotImplementedException();

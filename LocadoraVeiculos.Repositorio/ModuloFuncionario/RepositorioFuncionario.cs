@@ -4,12 +4,26 @@ using LocadoraVeiculos.RepositorioProject.shared;
 
 namespace LocadoraVeiculos.RepositorioProject.ModuloFuncionario
 {
-    public class RepositorioFuncionario : RepositorioSQL<Funcionario>, IRepositoryFuncionario
+    public class RepositorioFuncionario : RepositorioSQL<Funcionario>
     {
         public RepositorioFuncionario(MapeadorBase<Funcionario> mapeador) : base(mapeador)
         {
 
         }
+        protected string SqlUsuario = "SELECT * FROM TB_FUNCIONARIO WHERE [login] = @LOGIN";
+        public Funcionario SelecionarPorUsuario(string login)
+        {
+            return SelecionarPorParametro(SqlUsuario, Mapeador.AdicionarParametro("LOGIN", login));
+
+        }
+        public Funcionario SelecionarPorNome(string nome)
+        {
+            return SelecionarPorParametro(SqlNome, Mapeador.AdicionarParametro("NOME", nome));
+        }
+
+        protected string SqlNome = "SELECT * FROM TB_FUNCIONARIO WHERE [nome] = @NOME";
+
+
         protected override string SqlUpdate =>
                 @"UPDATE TB_FUNCIONARIO
                    SET [nome] = @NOME

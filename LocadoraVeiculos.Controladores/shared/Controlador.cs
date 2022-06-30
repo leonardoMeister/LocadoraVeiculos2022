@@ -16,6 +16,7 @@ namespace LocadoraVeiculos.Repositorio.shared
         {
             Validator = PegarValidador();
             Repositorio = PegarRepositorio();
+            
         }
 
         protected abstract IRepository<T> PegarRepositorio(); 
@@ -33,7 +34,7 @@ namespace LocadoraVeiculos.Repositorio.shared
             return resultadoValidacao;
         }
 
-        public ValidationResult Editar( T registro)
+        public virtual ValidationResult Editar( T registro)
         {
             var resultadoValidacao = Validator.Validate(registro);
 
