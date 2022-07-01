@@ -94,7 +94,7 @@
             this.txtNome.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(305, 23);
-            this.txtNome.TabIndex = 2;
+            this.txtNome.TabIndex = 3;
             // 
             // laNome
             // 
@@ -129,7 +129,7 @@
             this.txtEmail.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(305, 23);
-            this.txtEmail.TabIndex = 3;
+            this.txtEmail.TabIndex = 4;
             // 
             // label3
             // 
@@ -146,7 +146,7 @@
             this.maskedTextBoxTelefone.Mask = "00-00000-0000";
             this.maskedTextBoxTelefone.Name = "maskedTextBoxTelefone";
             this.maskedTextBoxTelefone.Size = new System.Drawing.Size(114, 23);
-            this.maskedTextBoxTelefone.TabIndex = 7;
+            this.maskedTextBoxTelefone.TabIndex = 2;
             // 
             // label7
             // 
@@ -162,15 +162,15 @@
             this.txtCPF.Location = new System.Drawing.Point(74, 176);
             this.txtCPF.Mask = "000,000,000-00";
             this.txtCPF.Name = "txtCPF";
-            this.txtCPF.Size = new System.Drawing.Size(121, 23);
-            this.txtCPF.TabIndex = 4;
+            this.txtCPF.Size = new System.Drawing.Size(105, 23);
+            this.txtCPF.TabIndex = 6;
             // 
             // txtEndereco
             // 
             this.txtEndereco.Location = new System.Drawing.Point(74, 133);
             this.txtEndereco.Name = "txtEndereco";
             this.txtEndereco.Size = new System.Drawing.Size(305, 23);
-            this.txtEndereco.TabIndex = 6;
+            this.txtEndereco.TabIndex = 5;
             // 
             // label8
             // 
@@ -186,7 +186,7 @@
             this.txtCnh.Location = new System.Drawing.Point(74, 213);
             this.txtCnh.Name = "txtCnh";
             this.txtCnh.Size = new System.Drawing.Size(105, 23);
-            this.txtCnh.TabIndex = 41;
+            this.txtCnh.TabIndex = 7;
             // 
             // label1
             // 
@@ -202,7 +202,7 @@
             this.txtValidadeCnh.Location = new System.Drawing.Point(271, 213);
             this.txtValidadeCnh.Name = "txtValidadeCnh";
             this.txtValidadeCnh.Size = new System.Drawing.Size(108, 23);
-            this.txtValidadeCnh.TabIndex = 43;
+            this.txtValidadeCnh.TabIndex = 8;
             // 
             // TelaCadastroCondutoresForm
             // 

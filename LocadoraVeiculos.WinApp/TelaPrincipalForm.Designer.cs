@@ -241,7 +241,7 @@
             this.condutoresMenuItem.Name = "condutoresMenuItem";
             this.condutoresMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
             this.condutoresMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.condutoresMenuItem.Text = "Condutores";
+            this.condutoresMenuItem.Text = "Condutor";
             this.condutoresMenuItem.Click += new System.EventHandler(this.condutoresMenuItem_Click);
             // 
             // panelRegistros

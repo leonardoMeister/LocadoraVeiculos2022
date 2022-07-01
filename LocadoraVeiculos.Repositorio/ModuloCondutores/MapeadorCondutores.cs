@@ -35,7 +35,7 @@ namespace LocadoraVeiculos.RepositorioProject.ModuloCondutores
             parametros.Add("EMAIL", registro.Email);
             parametros.Add("TELEFONE", registro.Telefone);
             parametros.Add("CNH", registro.Cnh);
-            parametros.Add("VALIDADE_CNH", registro.ValidadeCnh);
+            parametros.Add("VALIDADECNH", registro.ValidadeCnh);
 
             return parametros;
         }
