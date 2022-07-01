@@ -1,4 +1,7 @@
 ﻿using FluentValidation;
+using FluentValidation.Results;
+using LocadoraVeiculos.Dominio.shared;
+using System;
 using System.Text.RegularExpressions;
 
 namespace LocadoraVeiculos.Dominio.ModuloCliente
@@ -14,27 +17,53 @@ namespace LocadoraVeiculos.Dominio.ModuloCliente
                 .NotNull().WithMessage("Deve ser inserido um nome")
                 .NotEmpty().WithMessage("Deve ser inserido um nome");
 
-            RuleFor(x => x.Cpf)
-                .MinimumLength(11).WithMessage("O CPF deve ter 11 dígitos")
-                .MaximumLength(11).WithMessage("O CPF deve ter 11 dígitos")
-                .NotNull().NotEmpty();
+            RuleFor(x => x.Email)
+               .Custom(ValidarEmail);
 
-            RuleFor(x => Regex.IsMatch(x.Cpf, "[^0-9]+", RegexOptions.IgnoreCase))
-                .NotEqual(true)
-                .WithMessage("O CPF só deve conter números");
-
+            RuleFor(x => x)
+                .Custom(ValidarTipoCliente);
+           
             RuleFor(x => x.Endereco).Cascade(CascadeMode.StopOnFirstFailure)
                 .Matches(regEx).WithMessage("Nome deve ser sem Caracteres Especiais")
                 .NotNull().WithMessage("Deve ser inserido um endereço")
                 .NotEmpty().WithMessage("Deve ser inserido um endereço");
-
+            
             RuleFor(x => x.Telefone)
                 .NotNull().WithMessage("Deve ser inserido um telefone")
-                .NotEmpty().WithMessage("Deve ser inserido um telefone");
-
-            RuleFor(x => Regex.IsMatch(x.Telefone, "[^0-9]+", RegexOptions.IgnoreCase))
+                .NotEmpty().WithMessage("Deve ser inserido um telefone")
+                .MinimumLength(13).WithMessage("Telefone deve ser Valido");
+            
+            RuleFor(x => Regex.IsMatch(x.Telefone, "[^0-9- ]+", RegexOptions.IgnoreCase))
                 .NotEqual(true)
                 .WithMessage("O telefone só deve conter números");
+        }
+
+        private void ValidarEmail(string email, ValidationContext<Cliente> validacao)
+        {
+            if (!email.EmailValido()) validacao.AddFailure(new ValidationFailure("Email", "Email deve ser valido"));
+        }
+
+        private void ValidarTipoCliente(Cliente cliente, ValidationContext<Cliente> validation)
+        {
+            if (cliente.TipoCliente == EnumCliente.PessoaFisica.ToString())
+            {
+                ValidarCPF(cliente, validation);
+            }
+            else
+            {
+                ValidarCNPJ(cliente, validation);
+            }
+        }
+        private void ValidarCPF(Cliente cliente, ValidationContext<Cliente> validation)
+        {
+            if (cliente.Cpf.Length != 14)
+                validation.AddFailure(new ValidationFailure("CPF", "O campo CPF deve ser Válido"));
+        }
+
+        private void ValidarCNPJ(Cliente cliente, ValidationContext<Cliente> validation)
+        {
+            if (cliente.Cnpj.Length != 18)
+                validation.AddFailure(new ValidationFailure("CNPJ", "O Campo CNPJ deve ser Válido"));
         }
     }
 }

@@ -22,7 +22,7 @@ namespace LocadoraVeiculos.Testes.TestesUnitarios.TesteUnitarioGrupoVeiculos
         public void DevePermitirCriarGrupoVeiculos()
         {
             ValidadorGrupoVeiculos validador = new ValidadorGrupoVeiculos();
-            GrupoVeiculos gveiculos = new GrupoVeiculos("Grupo 2");
+            GrupoVeiculos gveiculos = new GrupoVeiculos("Grupo de veiculos 2");
             var result = validador.Validate(gveiculos);
             Assert.AreEqual(result.IsValid, true);
 

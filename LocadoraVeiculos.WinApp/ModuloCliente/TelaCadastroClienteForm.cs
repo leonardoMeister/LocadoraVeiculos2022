@@ -1,13 +1,6 @@
 ﻿using FluentValidation.Results;
 using LocadoraVeiculos.Dominio.ModuloCliente;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LocadoraVeiculos.WinApp.ModuloCliente
@@ -30,37 +23,34 @@ namespace LocadoraVeiculos.WinApp.ModuloCliente
                     PreencherDadosNaTela();
                 else
                 {
-                    HabilitarPessoaFisica();
                     radioButtonPessoaFisica.Checked = true;
-                    DesabilitarPessoaJuridica();
                 }
 
             }
         }
 
-        private void DesabilitarPessoaJuridica()
-        {
-            throw new NotImplementedException();
-        }
-
-        private void HabilitarPessoaFisica()
-        {
-            throw new NotImplementedException();
-        }
-
         private void PreencherDadosNaTela()
         {
-            throw new NotImplementedException();
+            txtId.Text = Convert.ToString( cliente._id);
+            txtNome.Text = cliente.Nome;
+            cliente.Telefone = cliente.Telefone.Replace(" ", "-");
+            maskedTextBoxTelefone.Text = cliente.Telefone;
+            maskedTextBoxCNPJ.Text = cliente.Cnpj;
+            txtCPF.Text = cliente.Cpf;
+            txtEmail.Text = cliente.Email;
+            txtEndereco.Text = cliente.Endereco;
+            if(cliente.TipoCliente == "PessoaFisica")
+            {
+                radioButtonPessoaFisica.Checked = true;
+            }
+            else radioButtonPessoaJuridica.Checked = true;
+
         }
 
         public TelaCadastroClienteForm()
         {
             InitializeComponent();
-            CarregarTiposCLiente();
-        }
-
-        private void CarregarTiposCLiente()
-        {
+            radioButtonPessoaFisica.Checked = true;
 
         }
 
@@ -92,27 +82,30 @@ namespace LocadoraVeiculos.WinApp.ModuloCliente
             if (txtId.Text != "")
                 id = Convert.ToInt32(txtId.Text);
 
-            if (txtNome.Text == "" ||  txtEmail.Text == "" || maskedTextBoxTelefone.Text == "")
-            {
-                AtualizarRodape("Favor Preencher todos os campos.");
-                return false;
-            }
-
             string nome = txtNome.Text;
-            
+            string endereco = txtEndereco.Text;
             string email = txtEmail.Text;
-            string telefone = maskedTextBoxTelefone.Text;
-            string tipo = radioButtonPessoaFisica.Checked ? "Pessoa física" : "Pessoa jurídica";
-            string cnh = "";
+            string telefone = PegarTelefone();
+            string tipo = radioButtonPessoaFisica.Checked ? "PessoaFisica" : "PessoaJuridica";            
             string cpf = txtCPF.Text;
             string cnpj = maskedTextBoxCNPJ.Text;
 
-            Cliente = new(nome, cpf, "", email, telefone, tipo, cnh)
+            cliente = new Cliente(nome, cpf, endereco, email, telefone, tipo, cnpj)
             {
                 _id = id
             };
 
             return true;
+        }
+
+        private string PegarTelefone()
+        {
+            var telefone = maskedTextBoxTelefone.Text;
+            telefone = telefone.Replace(" ", "");            
+            telefone = telefone.Replace("-", " ");
+                
+            return telefone;
+
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -139,6 +132,5 @@ namespace LocadoraVeiculos.WinApp.ModuloCliente
                 txtCPF.Enabled = true;
         }
 
-  
     }
 }

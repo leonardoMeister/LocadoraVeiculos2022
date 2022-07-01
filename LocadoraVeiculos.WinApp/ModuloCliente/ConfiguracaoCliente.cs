@@ -15,14 +15,13 @@ namespace LocadoraVeiculos.WinApp.ModuloCliente
     public class ConfiguracaoCliente : ConfiguracaoBase, ICadastravel
     {
         Action<string> AtualizarRodape;
-        TabelaClienteControl tabelaCliente;
         ControladorCliente controlador;
         TabelaClienteControl tabelaClienteControl;
 
         public ConfiguracaoCliente(Action<string> atualizar)
         {
             AtualizarRodape = atualizar;
-            tabelaCliente = new TabelaClienteControl();
+            tabelaClienteControl = new TabelaClienteControl();
             controlador = new ControladorCliente();
         }
 
@@ -84,9 +83,9 @@ namespace LocadoraVeiculos.WinApp.ModuloCliente
         {
             List<Cliente> clientes = controlador.SelecionarTodos();
 
-            tabelaCliente.AtualizarRegistros(clientes);
+            tabelaClienteControl.AtualizarRegistros(clientes);
 
-            return tabelaCliente;
+            return tabelaClienteControl;
         }
     }
 }
