@@ -43,7 +43,9 @@ namespace LocadoraVeiculos.Controladores.ModuloControladorCliente
             ValidationResult valido = new ValidationResult();
 
             var func1 = ((RepositorioCliente)Repositorio).SelecionarPorCpf(registro.Cpf);
-            if (func1 != null && func1._id != registro._id) valido.Errors.Add(new ValidationFailure("Nome", "Nao pode ter Cpf repetido"));
+            if (func1 != null && func1._id != registro._id) valido.Errors.Add(new ValidationFailure("Cpf", "Nao pode ter Cpf repetido"));
+            var func2 = ((RepositorioCliente)Repositorio).SelecionarPorCnpj(registro.Cnpj);
+            if (func2 != null && func1._id != registro._id) valido.Errors.Add(new ValidationFailure("Cnpj", "Nao pode ter Cnpj repetido"));
 
             return valido;
         }
@@ -52,7 +54,23 @@ namespace LocadoraVeiculos.Controladores.ModuloControladorCliente
             ValidationResult valido = new ValidationResult();
 
             var func1 = ((RepositorioCliente)Repositorio).SelecionarPorCpf(registro.Cpf);
-            if (func1 != null) valido.Errors.Add(new ValidationFailure("Nome", "Nao pode ter Cpf repetido"));
+            if (func1 != null)
+            {
+                if (func1.Cpf != "   .   .   -")
+                {
+                    valido.Errors.Add(new ValidationFailure("Cpf", "Nao pode ter Cpf repetido"));
+                }
+
+            }
+            var func2 = ((RepositorioCliente)Repositorio).SelecionarPorCnpj(registro.Cnpj);
+            if (func2 != null)
+            {
+                if (func2.Cnpj != ".   .   / -")
+                {
+                    valido.Errors.Add(new ValidationFailure("Cnpj", "Nao pode ter Cnpj repetido"));
+                }
+
+            }
 
             return valido;
 

@@ -11,12 +11,19 @@ namespace LocadoraVeiculos.RepositorioProject.ModuloCliente
 
         }
 
-        public Cliente SelecionarPorCpf(string nomeGrupo)
+        public Cliente SelecionarPorCpf(string Cpf)
         {
-            return SelecionarPorParametro(SqlCpf, Mapeador.AdicionarParametro("CPF", nomeGrupo));
+            return SelecionarPorParametro(SqlCpf, Mapeador.AdicionarParametro("CPF", Cpf));
         }
 
         protected string SqlCpf = "SELECT * FROM TB_CLIENTE WHERE [cpf] = @CPF";
+
+        public Cliente SelecionarPorCnpj(string Cnpj)
+        {
+            return SelecionarPorParametro(SqlCnpj, Mapeador.AdicionarParametro("CNPJ", Cnpj));
+        }
+
+        protected string SqlCnpj = "SELECT * FROM TB_CLIENTE WHERE [cnpj] = @CNPJ";
 
         protected override string SqlUpdate =>
                 @"UPDATE TB_CLIENTE
