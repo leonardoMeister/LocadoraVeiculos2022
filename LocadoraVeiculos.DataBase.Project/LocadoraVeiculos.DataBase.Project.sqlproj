@@ -66,5 +66,6 @@
     <Build Include="dbo\Tables\TB_TAXAS.sql" />
     <Build Include="dbo\Tables\TB_FUNCIONARIO.sql" />
     <Build Include="dbo\Tables\TB_GRUPOVEICULOS.sql" />
+    <Build Include="dbo\Tables\TB_CONDUTORES.sql" />
   </ItemGroup>
 </Project>
