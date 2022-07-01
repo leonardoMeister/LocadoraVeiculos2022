@@ -127,6 +127,7 @@
             this.Controls.Add(this.txtDescricao);
             this.Controls.Add(this.laNome);
             this.Controls.Add(this.laId);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
