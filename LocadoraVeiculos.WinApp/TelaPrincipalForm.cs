@@ -27,7 +27,7 @@ namespace LocadoraVeiculos.WinApp
 
             this.configuracaoGrupoVeiculos = new ConfiguracaoGrupoVeiculo(this.AtualizarRodape);
             this.configuracaoTaxa = new ConfiguracaoTaxa(this.AtualizarRodape);
-            this.configuracaoCliente = new ConfiguracaoCliente(this);
+            this.configuracaoCliente = new ConfiguracaoCliente(this.AtualizarRodape);
             this.configuracaoFuncionario = new ConfiguracaoFuncionario(this.AtualizarRodape);
         }
 
@@ -135,6 +135,7 @@ namespace LocadoraVeiculos.WinApp
                 ConfigurarListagem((ConfiguracaoBase)telaSelecionada);
             }
         }
+
         private void BtnExcluir_Click(object sender, EventArgs e)
         {
             if (telaSelecionada != null)
