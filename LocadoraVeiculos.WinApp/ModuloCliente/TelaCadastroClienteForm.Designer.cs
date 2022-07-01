@@ -65,7 +65,7 @@
             this.btnCancelar.Location = new System.Drawing.Point(191, 327);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(115, 51);
-            this.btnCancelar.TabIndex = 17;
+            this.btnCancelar.TabIndex = 9;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
@@ -75,7 +75,7 @@
             this.btnSalvar.Location = new System.Drawing.Point(317, 327);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(115, 51);
-            this.btnSalvar.TabIndex = 16;
+            this.btnSalvar.TabIndex = 8;
             this.btnSalvar.Text = "Salvar";
             this.btnSalvar.UseVisualStyleBackColor = true;
             this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
@@ -86,14 +86,14 @@
             this.txtId.Location = new System.Drawing.Point(85, 12);
             this.txtId.Name = "txtId";
             this.txtId.Size = new System.Drawing.Size(119, 27);
-            this.txtId.TabIndex = 13;
+            this.txtId.TabIndex = 1;
             // 
             // txtNome
             // 
             this.txtNome.Location = new System.Drawing.Point(84, 66);
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(348, 27);
-            this.txtNome.TabIndex = 14;
+            this.txtNome.TabIndex = 2;
             // 
             // laNome
             // 
@@ -127,7 +127,7 @@
             this.txtEmail.Location = new System.Drawing.Point(84, 122);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(348, 27);
-            this.txtEmail.TabIndex = 23;
+            this.txtEmail.TabIndex = 3;
             // 
             // label3
             // 
@@ -154,7 +154,7 @@
             this.maskedTextBoxTelefone.Mask = "00-00000-0000";
             this.maskedTextBoxTelefone.Name = "maskedTextBoxTelefone";
             this.maskedTextBoxTelefone.Size = new System.Drawing.Size(130, 27);
-            this.maskedTextBoxTelefone.TabIndex = 34;
+            this.maskedTextBoxTelefone.TabIndex = 7;
             // 
             // radioButtonPessoaJuridica
             // 
@@ -208,7 +208,7 @@
             this.maskedTextBoxCNPJ.Mask = "00,000,000/0000-00";
             this.maskedTextBoxCNPJ.Name = "maskedTextBoxCNPJ";
             this.maskedTextBoxCNPJ.Size = new System.Drawing.Size(150, 27);
-            this.maskedTextBoxCNPJ.TabIndex = 50;
+            this.maskedTextBoxCNPJ.TabIndex = 5;
             // 
             // txtCPF
             // 
@@ -217,7 +217,7 @@
             this.txtCPF.Mask = "000,000,000-00";
             this.txtCPF.Name = "txtCPF";
             this.txtCPF.Size = new System.Drawing.Size(138, 27);
-            this.txtCPF.TabIndex = 51;
+            this.txtCPF.TabIndex = 4;
             // 
             // txtEndereco
             // 
@@ -225,7 +225,7 @@
             this.txtEndereco.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtEndereco.Name = "txtEndereco";
             this.txtEndereco.Size = new System.Drawing.Size(348, 27);
-            this.txtEndereco.TabIndex = 42;
+            this.txtEndereco.TabIndex = 6;
             // 
             // label8
             // 
