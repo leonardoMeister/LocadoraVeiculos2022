@@ -33,4 +33,8 @@
     <ProjectReference Include="..\LocadoraVeiculos.Repositorio\LocadoraVeiculos.RepositorioProject.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ModuloCondutores\" />
+  </ItemGroup>
+
 </Project>
