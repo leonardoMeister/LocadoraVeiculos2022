@@ -26,17 +26,33 @@ namespace LocadoraVeiculos.WinApp.ModuloCliente
             {
                 cliente = value;
 
-                txtId.Text = Convert.ToString(cliente._id);
-                txtNome.Text = cliente.Nome;
-                txtCPF.Text = Convert.ToString(cliente.Cpf);
-                txtEndereco.Text = cliente.Endereco;
-                txtEmail.Text = cliente.Email;
-                //txtTelefone.Text = cliente.Telefone;
-                //comboTipoCliente.SelectedItem = cliente.TipoCliente;
-                //txtCnh.Text = cliente.Cnh;
+                if (cliente._id != 0)
+                    PreencherDadosNaTela();
+                else
+                {
+                    HabilitarPessoaFisica();
+                    radioButtonPessoaFisica.Checked = true;
+                    DesabilitarPessoaJuridica();
+                }
 
             }
         }
+
+        private void DesabilitarPessoaJuridica()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void HabilitarPessoaFisica()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void PreencherDadosNaTela()
+        {
+            throw new NotImplementedException();
+        }
+
         public TelaCadastroClienteForm()
         {
             InitializeComponent();
@@ -76,22 +92,22 @@ namespace LocadoraVeiculos.WinApp.ModuloCliente
             if (txtId.Text != "")
                 id = Convert.ToInt32(txtId.Text);
 
-            if (txtNome.Text == "" || txtEndereco.Text == "" || txtEmail.Text == "" || maskedTextBoxTelefone.Text == "")
+            if (txtNome.Text == "" ||  txtEmail.Text == "" || maskedTextBoxTelefone.Text == "")
             {
                 AtualizarRodape("Favor Preencher todos os campos.");
                 return false;
             }
 
             string nome = txtNome.Text;
-            string endereco = txtEndereco.Text;
+            
             string email = txtEmail.Text;
             string telefone = maskedTextBoxTelefone.Text;
             string tipo = radioButtonPessoaFisica.Checked ? "Pessoa física" : "Pessoa jurídica";
-            string cnh = maskedTextBoxCNH.Text;
+            string cnh = "";
             string cpf = txtCPF.Text;
             string cnpj = maskedTextBoxCNPJ.Text;
 
-            Cliente = new(nome, cpf, endereco, email, telefone, tipo, cnh)
+            Cliente = new(nome, cpf, "", email, telefone, tipo, cnh)
             {
                 _id = id
             };
@@ -122,5 +138,7 @@ namespace LocadoraVeiculos.WinApp.ModuloCliente
             if (!radioButtonPessoaJuridica.Checked)
                 txtCPF.Enabled = true;
         }
+
+  
     }
 }

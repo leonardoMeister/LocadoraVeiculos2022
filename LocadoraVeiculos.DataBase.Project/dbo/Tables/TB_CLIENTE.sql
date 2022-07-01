@@ -6,9 +6,11 @@
     [email]       VARCHAR (50) NULL,
     [telefone]    VARCHAR (50) NULL,
     [tipoCliente] VARCHAR (50) NULL,
-    [cnh]         VARCHAR (50) NULL,
+    [cnpj]        VARCHAR (50) NULL,
     CONSTRAINT [PK_TB_CLIENTE] PRIMARY KEY CLUSTERED ([id_cliente] ASC)
 );
+
+
 
 
 

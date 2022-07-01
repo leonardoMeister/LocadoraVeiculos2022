@@ -38,7 +38,7 @@ namespace LocadoraVeiculos.WinApp.ModuloCliente
 
                 new DataGridViewTextBoxColumn { DataPropertyName = "TipoCliente", HeaderText = "Tipo Cliente"},
 
-                new DataGridViewTextBoxColumn { DataPropertyName = "CNH", HeaderText = "CNH"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "CNPJ", HeaderText = "CNPJ"},
 
                 new DataGridViewTextBoxColumn { DataPropertyName = "Endereco", HeaderText = "Endereço"}
 
@@ -58,7 +58,7 @@ namespace LocadoraVeiculos.WinApp.ModuloCliente
             foreach (Cliente cliente in clientes)
             {
                 grid.Rows.Add(cliente._id, cliente.Nome, cliente.Cpf,
-                  cliente.Email, cliente.Telefone, cliente.TipoCliente, cliente.Cnh,cliente.Endereco);
+                  cliente.Email, cliente.Telefone, cliente.TipoCliente, cliente.Cnpj,cliente.Endereco);
             }
         }
     }

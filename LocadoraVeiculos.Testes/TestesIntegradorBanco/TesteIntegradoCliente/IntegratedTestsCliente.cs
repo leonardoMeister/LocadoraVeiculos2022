@@ -29,7 +29,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoCliente
             Assert.AreEqual(cliente._id, cli._id);
             Assert.AreEqual(cliente.Telefone, cli.Telefone);
             Assert.AreEqual(cliente.TipoCliente, cli.TipoCliente);
-            Assert.AreEqual(cliente.Cnh, cli.Cnh);
+            Assert.AreEqual(cliente.Cnpj, cli.Cnpj);
         }
 
         [TestMethod]

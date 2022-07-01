@@ -19,12 +19,12 @@ namespace LocadoraVeiculos.RepositorioProject.ModuloCliente
                       ,[email] = @EMAIL
                       ,[telefone] = @TELEFONE
                       ,[tipoCliente] =	@TIPOCLIENTE
-                      ,[cnh] = @CNH
+                      ,[cnpj] = @CNPJ
                  WHERE id_cliente = @ID";
         protected override string SqlDelete =>
                 @"DELETE FROM TB_CLIENTE
                 WHERE id_cliente = @ID";
-        protected override string SqlInsert => 
+        protected override string SqlInsert =>
             @"INSERT INTO TB_CLIENTE
                    ([nome]
                    ,[cpf]
@@ -32,9 +32,9 @@ namespace LocadoraVeiculos.RepositorioProject.ModuloCliente
                    ,[email]
                    ,[telefone]
                    ,[tipoCliente]
-                   ,[cnh])
+                   ,[cnpj])
                  VALUES
-                       (@NOME, @CPF, @ENDERECO, @EMAIL, @TELEFONE, @TIPOCLIENTE, @CNH) ;";
+                       (@NOME, @CPF, @ENDERECO, @EMAIL, @TELEFONE, @TIPOCLIENTE, @CNPJ) ;";
         protected override string SqlSelectAll => @"
                 SELECT [id_cliente]
                       ,[nome]
@@ -43,7 +43,7 @@ namespace LocadoraVeiculos.RepositorioProject.ModuloCliente
                       ,[email]
                       ,[telefone]
                       ,[tipoCliente]
-                      ,[cnh]
+                      ,[cnpj]
                   FROM TB_CLIENTE;";
         protected override string SqlSelectId => @"
                 SELECT [id_cliente]
@@ -53,7 +53,7 @@ namespace LocadoraVeiculos.RepositorioProject.ModuloCliente
                       ,[email]
                       ,[telefone]
                       ,[tipoCliente]
-                      ,[cnh]
+                      ,[cnpj]
                   FROM TB_CLIENTE
                     where id_cliente = @ID ; ";
         protected override string SqlExiste =>

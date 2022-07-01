@@ -17,9 +17,9 @@ namespace LocadoraVeiculos.RepositorioProject.ModuloCliente
             string email = Convert.ToString(dataReader[4]);
             string telefone = Convert.ToString(dataReader[5]);
             string tipoCliente = Convert.ToString(dataReader[6]);
-            string cnh = Convert.ToString(dataReader[7]);
+            string cnpj = Convert.ToString(dataReader[7]);
 
-            var cliente = new Cliente(nome,cpf,endereco,email,telefone,tipoCliente,cnh);
+            var cliente = new Cliente(nome,cpf,endereco,email,telefone,tipoCliente,cnpj);
             cliente._id = id;
 
             return cliente;
@@ -35,7 +35,7 @@ namespace LocadoraVeiculos.RepositorioProject.ModuloCliente
             parametros.Add("EMAIL", registro.Email);
             parametros.Add("TELEFONE", registro.Telefone);
             parametros.Add("TIPOCLIENTE", registro.TipoCliente);
-            parametros.Add("CNH", registro.Cnh);
+            parametros.Add("CNPJ", registro.Cnpj);
 
             return parametros;
         }

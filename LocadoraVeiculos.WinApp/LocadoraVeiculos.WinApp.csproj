@@ -29,7 +29,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\LocadoraVeiculos.Dominio\LocadoraVeiculos.Dominio.csproj" />
-    <ProjectReference Include="..\LocadoraVeiculos.Controladores\LocadoraVeiculos.Controladores.csproj" />
+    <ProjectReference Include="..\LocadoraVeiculos.Controladores\LocadoraVeiculos.Aplicacao.csproj" />
     <ProjectReference Include="..\LocadoraVeiculos.Repositorio\LocadoraVeiculos.RepositorioProject.csproj" />
   </ItemGroup>
 
