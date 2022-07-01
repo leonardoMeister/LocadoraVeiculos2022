@@ -280,7 +280,7 @@
             this.Name = "TelaPrincipalForm";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "TelaPrincipalForm";
+            this.Text = "Locadora Veiculos";
             this.toolbox.ResumeLayout(false);
             this.toolbox.PerformLayout();
             this.statusStrip1.ResumeLayout(false);

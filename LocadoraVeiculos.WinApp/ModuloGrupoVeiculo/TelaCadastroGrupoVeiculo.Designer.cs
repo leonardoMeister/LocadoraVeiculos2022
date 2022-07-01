@@ -110,7 +110,7 @@
             this.Name = "TelaCadastroGrupoVeiculo";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "TelaCadastroGrupoVeiculo";
+            this.Text = "Cadastro Grupo Veiculo";
             this.ResumeLayout(false);
             this.PerformLayout();
 
