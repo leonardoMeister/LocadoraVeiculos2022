@@ -14,8 +14,8 @@ namespace LocadoraVeiculos.RepositorioProject.ModuloTaxas
             int id = Convert.ToInt32(dataReader[0]);
             string descricao = Convert.ToString(dataReader[1]);
             decimal valor = Convert.ToDecimal(dataReader[2]);
-
-            var taxa = new Taxas(descricao, valor);
+            string tipo = Convert.ToString(dataReader[3]);
+            var taxa = new Taxas(descricao, valor,tipo);
             taxa._id = id;
 
             return taxa;
@@ -28,6 +28,7 @@ namespace LocadoraVeiculos.RepositorioProject.ModuloTaxas
             parametros.Add("ID", taxas._id);
             parametros.Add("DESCRICAO", taxas.Descricao);
             parametros.Add("VALOR", taxas.Valor);
+            parametros.Add("TIPO", taxas.Tipo);
 
             return parametros;
         }

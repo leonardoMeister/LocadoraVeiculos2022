@@ -5,12 +5,14 @@ namespace LocadoraVeiculos.Dominio.ModuloTaxas
 {
     public class Taxas : EntidadeBase
     {
-        public Taxas(string descricao, decimal valor)
+        public Taxas(string descricao, decimal valor, string tipo)
         {
             Descricao = descricao;
             Valor = valor;
+            Tipo = tipo;    
         }
 
+        public string Tipo { get; set; }
         public string Descricao { get; set; }
         public decimal Valor { get; set; }
 
@@ -18,13 +20,14 @@ namespace LocadoraVeiculos.Dominio.ModuloTaxas
         {
             return obj is Taxas taxas &&
                    _id == taxas._id &&
+                   Tipo == taxas.Tipo &&
                    Descricao == taxas.Descricao &&
                    Valor == taxas.Valor;
         }
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(_id, Descricao, Valor);
+            return HashCode.Combine(_id, Tipo, Descricao, Valor);
         }
     }
 }

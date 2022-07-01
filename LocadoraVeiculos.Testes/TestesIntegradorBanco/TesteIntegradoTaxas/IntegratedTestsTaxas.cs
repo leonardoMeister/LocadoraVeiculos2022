@@ -20,7 +20,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoTaxas
         {
             RepositorioTaxas repo = new RepositorioTaxas(new MapeadorTaxas());
 
-            Taxas tax = new Taxas("Aluguel Onix", 1500);
+            Taxas tax = new Taxas("Aluguel Onix", 1500, EnumTaxa.Diaria.ToString());
 
             repo.InserirNovo(tax);
 
@@ -36,8 +36,8 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoTaxas
         {
             RepositorioTaxas repo = new RepositorioTaxas(new MapeadorTaxas());
 
-            Taxas tax = new Taxas("Aluguel Onix", 1500);
-            Taxas tax2 = new Taxas("Aluguel HB20", 1000);
+            Taxas tax = new Taxas("Aluguel Onix", 1500 , EnumTaxa.Diaria.ToString());
+            Taxas tax2 = new Taxas("Aluguel HB20", 1000, EnumTaxa.Diaria.ToString());
 
             repo.InserirNovo(tax);
             repo.InserirNovo(tax2);
@@ -53,7 +53,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoTaxas
         {
             RepositorioTaxas repo = new RepositorioTaxas(new MapeadorTaxas());
 
-            Taxas tax = new Taxas("Aluguel Onix", 1500);
+            Taxas tax = new Taxas("Aluguel Onix", 1500, EnumTaxa.Diaria.ToString());
 
             repo.InserirNovo(tax);
 
@@ -67,11 +67,11 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoTaxas
         {
             RepositorioTaxas repo = new RepositorioTaxas(new MapeadorTaxas());
 
-            Taxas tax = new Taxas("Aluguel Onix", 1500);
+            Taxas tax = new Taxas("Aluguel Onix", 1500, EnumTaxa.Diaria.ToString());
 
             repo.InserirNovo(tax);
 
-            Taxas tax2 = new Taxas("Aluguel HB20", 1000);
+            Taxas tax2 = new Taxas("Aluguel HB20", 1000, EnumTaxa.Diaria.ToString());
 
             repo.Editar(tax._id, tax2);
 
@@ -85,7 +85,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoTaxas
         {
             RepositorioTaxas repo = new RepositorioTaxas(new MapeadorTaxas());
 
-            Taxas tax = new Taxas("Aluguel HB20", 1000);
+            Taxas tax = new Taxas("Aluguel HB20", 1000, EnumTaxa.Diaria.ToString());
 
             repo.InserirNovo(tax);
 

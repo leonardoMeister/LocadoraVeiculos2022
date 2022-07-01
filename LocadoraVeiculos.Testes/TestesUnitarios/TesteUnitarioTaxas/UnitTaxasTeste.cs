@@ -13,7 +13,7 @@ namespace LocadoraVeiculos.Testes.TestesUnitarios.TesteUnitarioTaxas
         {
             ValidadorTaxas validador = new ValidadorTaxas();
 
-            Taxas taxas = new Taxas("Aluguel Onix", 0);
+            Taxas taxas = new Taxas("Aluguel Onix", 0, EnumTaxa.Diaria.ToString());
             var result = validador.Validate(taxas);
             Assert.AreEqual(result.IsValid, false);
         }
@@ -23,7 +23,7 @@ namespace LocadoraVeiculos.Testes.TestesUnitarios.TesteUnitarioTaxas
         {
             ValidadorTaxas validador = new ValidadorTaxas();
 
-            Taxas taxas = new Taxas("A", 1800);
+            Taxas taxas = new Taxas("A", 1800, EnumTaxa.Diaria.ToString());
             var result = validador.Validate(taxas);
             Assert.AreEqual(result.IsValid, false);
         }
@@ -32,7 +32,7 @@ namespace LocadoraVeiculos.Testes.TestesUnitarios.TesteUnitarioTaxas
         public void DevePermitirCriarTaxas()
         {
             ValidadorTaxas validador = new ValidadorTaxas();
-            Taxas taxas = new Taxas("Aluguel Onix", 1500);
+            Taxas taxas = new Taxas("Aluguel Onix", 1500, EnumTaxa.Diaria.ToString());
             var result = validador.Validate(taxas);
             Assert.AreEqual(result.IsValid, true);
 

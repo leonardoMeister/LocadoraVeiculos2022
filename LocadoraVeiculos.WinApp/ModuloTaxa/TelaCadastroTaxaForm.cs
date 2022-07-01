@@ -20,6 +20,8 @@ namespace LocadoraVeiculos.WinApp.ModuloTaxa
                 txtId.Text = Convert.ToString(taxa._id);
                 txtDescricao.Text = taxa.Descricao;
                 txtValor.Text = Convert.ToString(taxa.Valor);
+                if (taxa.Tipo == EnumTaxa.Fixa.ToString()) radioFixa.Checked = true;
+                if (taxa.Tipo == EnumTaxa.Diaria.ToString()) radioDiaria.Checked = true;
             }
         }
 
@@ -74,8 +76,8 @@ namespace LocadoraVeiculos.WinApp.ModuloTaxa
 
             string descricao = txtDescricao.Text;
             decimal valor = Convert.ToDecimal(txtValor.Text);
-
-            taxa = new Taxas(descricao, valor)
+            string tipo = (radioDiaria.Checked) ? EnumTaxa.Diaria.ToString() : EnumTaxa.Fixa.ToString();
+            taxa = new Taxas(descricao, valor, tipo)
             {
                 _id = id
             };
