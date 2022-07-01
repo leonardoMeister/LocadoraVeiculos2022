@@ -31,6 +31,12 @@ namespace LocadoraVeiculos.WinApp.ModuloCliente
 
         private void PreencherDadosNaTela()
         {
+            if (cliente.TipoCliente == "PessoaFisica")
+            {
+                radioButtonPessoaFisica.Checked = true;
+            }
+            else radioButtonPessoaJuridica.Checked = true;
+
             txtId.Text = Convert.ToString( cliente._id);
             txtNome.Text = cliente.Nome;
             cliente.Telefone = cliente.Telefone.Replace(" ", "-");
@@ -39,11 +45,7 @@ namespace LocadoraVeiculos.WinApp.ModuloCliente
             txtCPF.Text = cliente.Cpf;
             txtEmail.Text = cliente.Email;
             txtEndereco.Text = cliente.Endereco;
-            if(cliente.TipoCliente == "PessoaFisica")
-            {
-                radioButtonPessoaFisica.Checked = true;
-            }
-            else radioButtonPessoaJuridica.Checked = true;
+            
 
         }
 
