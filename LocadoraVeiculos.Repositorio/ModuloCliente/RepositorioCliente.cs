@@ -11,6 +11,13 @@ namespace LocadoraVeiculos.RepositorioProject.ModuloCliente
 
         }
 
+        public Cliente SelecionarPorCpf(string nomeGrupo)
+        {
+            return SelecionarPorParametro(SqlCpf, Mapeador.AdicionarParametro("CPF", nomeGrupo));
+        }
+
+        protected string SqlCpf = "SELECT * FROM TB_CLIENTE WHERE [cpf] = @CPF";
+
         protected override string SqlUpdate =>
                 @"UPDATE TB_CLIENTE
                    SET [nome] = @NOME

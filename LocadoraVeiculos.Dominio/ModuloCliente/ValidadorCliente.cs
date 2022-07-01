@@ -5,9 +5,12 @@ namespace LocadoraVeiculos.Dominio.ModuloCliente
 {
     public class ValidadorCliente : AbstractValidator<Cliente>
     {
+        readonly Regex regEx = new Regex("^[a-zA-Z0-9- ]*$");
         public ValidadorCliente()
         {
-            RuleFor(x => x.Nome)
+            RuleFor(x => x.Nome).Cascade(CascadeMode.StopOnFirstFailure)
+                .Matches(regEx).WithMessage("Nome deve ser sem Caracteres Especiais")
+                .MinimumLength(8).WithMessage("O Nome deve ter no minimo 8 letras")
                 .NotNull().WithMessage("Deve ser inserido um nome")
                 .NotEmpty().WithMessage("Deve ser inserido um nome");
 
@@ -16,7 +19,12 @@ namespace LocadoraVeiculos.Dominio.ModuloCliente
                 .MaximumLength(11).WithMessage("O CPF deve ter 11 dígitos")
                 .NotNull().NotEmpty();
 
-            RuleFor(x => x.Endereco)
+            RuleFor(x => Regex.IsMatch(x.Cpf, "[^0-9]+", RegexOptions.IgnoreCase))
+                .NotEqual(true)
+                .WithMessage("O CPF só deve conter números");
+
+            RuleFor(x => x.Endereco).Cascade(CascadeMode.StopOnFirstFailure)
+                .Matches(regEx).WithMessage("Nome deve ser sem Caracteres Especiais")
                 .NotNull().WithMessage("Deve ser inserido um endereço")
                 .NotEmpty().WithMessage("Deve ser inserido um endereço");
 
@@ -27,10 +35,6 @@ namespace LocadoraVeiculos.Dominio.ModuloCliente
             RuleFor(x => Regex.IsMatch(x.Telefone, "[^0-9]+", RegexOptions.IgnoreCase))
                 .NotEqual(true)
                 .WithMessage("O telefone só deve conter números");
-
-            RuleFor(x => Regex.IsMatch(x.Cpf, "[^0-9]+", RegexOptions.IgnoreCase))
-                .NotEqual(true)
-                .WithMessage("O CPF só pode conter números");
         }
     }
 }

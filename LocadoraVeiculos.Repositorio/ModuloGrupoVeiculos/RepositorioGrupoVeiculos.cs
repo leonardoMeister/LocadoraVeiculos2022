@@ -12,6 +12,13 @@ namespace LocadoraVeiculos.RepositorioProject.ModuloGrupoVeiculos
 
         }
 
+        public GrupoVeiculos SelecionarPorNome(string nomeGrupo)
+        {
+            return SelecionarPorParametro(SqlNome, Mapeador.AdicionarParametro("NOMEGRUPO", nomeGrupo));
+        }
+
+        protected string SqlNome = "SELECT * FROM TB_GRUPOVEICULOS WHERE [nomeGrupo] = @NOMEGRUPO";
+
         protected override string SqlUpdate =>
                 @"UPDATE TB_GRUPOVEICULOS
                    SET [nomeGrupo] = @NOMEGRUPO
