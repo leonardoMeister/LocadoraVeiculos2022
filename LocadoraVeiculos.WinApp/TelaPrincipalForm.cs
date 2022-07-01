@@ -1,5 +1,6 @@
 ﻿using LocadoraVeiculos.Dominio.shared;
 using LocadoraVeiculos.WinApp.ModuloCliente;
+using LocadoraVeiculos.WinApp.ModuloCondutores;
 using LocadoraVeiculos.WinApp.ModuloFuncionario;
 using LocadoraVeiculos.WinApp.ModuloGrupoVeiculo;
 using LocadoraVeiculos.WinApp.ModuloTaxa;
@@ -15,6 +16,7 @@ namespace LocadoraVeiculos.WinApp
         public ConfiguracaoTaxa configuracaoTaxa;
         public ConfiguracaoCliente configuracaoCliente;
         public ConfiguracaoFuncionario configuracaoFuncionario;
+        public ConfiguracaoCondutores configuracaoCondutores;
 
         public ICadastravel telaSelecionada;
 
@@ -29,6 +31,7 @@ namespace LocadoraVeiculos.WinApp
             this.configuracaoTaxa = new ConfiguracaoTaxa(this.AtualizarRodape);
             this.configuracaoCliente = new ConfiguracaoCliente(this.AtualizarRodape);
             this.configuracaoFuncionario = new ConfiguracaoFuncionario(this.AtualizarRodape);
+            this.configuracaoCondutores = new ConfiguracaoCondutores(this.AtualizarRodape);
         }
 
         public void AtualizarRodape(string mensagem)
@@ -112,6 +115,11 @@ namespace LocadoraVeiculos.WinApp
         {
             telaSelecionada = configuracaoFuncionario;
             ConfigurarTelaPrincipal(configuracaoFuncionario);
+        }
+        private void condutoresMenuItem_Click(object sender, EventArgs e)
+        {
+            telaSelecionada = configuracaoCondutores;
+            ConfigurarTelaPrincipal(configuracaoCondutores);
         }
         #endregion
 

@@ -47,6 +47,7 @@
             this.grupoVeiculosMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tarefasMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cadastrosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.condutoresMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panelRegistros = new System.Windows.Forms.Panel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.menu = new System.Windows.Forms.MenuStrip();
@@ -195,7 +196,7 @@
             // 
             this.despesasMenuItem.Name = "despesasMenuItem";
             this.despesasMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F4;
-            this.despesasMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.despesasMenuItem.Size = new System.Drawing.Size(180, 22);
             this.despesasMenuItem.Text = "Funcionário";
             this.despesasMenuItem.Click += new System.EventHandler(this.FuncionarioMenuItem_Click);
             // 
@@ -203,7 +204,7 @@
             // 
             this.compromissosMenuItem.Name = "compromissosMenuItem";
             this.compromissosMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F3;
-            this.compromissosMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.compromissosMenuItem.Size = new System.Drawing.Size(180, 22);
             this.compromissosMenuItem.Text = "Cliente";
             this.compromissosMenuItem.Click += new System.EventHandler(this.ClienteMenuItem_Click);
             // 
@@ -211,7 +212,7 @@
             // 
             this.grupoVeiculosMenuItem.Name = "grupoVeiculosMenuItem";
             this.grupoVeiculosMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F2;
-            this.grupoVeiculosMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.grupoVeiculosMenuItem.Size = new System.Drawing.Size(180, 22);
             this.grupoVeiculosMenuItem.Text = "Grupo Veiculos";
             this.grupoVeiculosMenuItem.Click += new System.EventHandler(this.GrupoVeiculosMenuItem_Click);
             // 
@@ -219,7 +220,7 @@
             // 
             this.tarefasMenuItem.Name = "tarefasMenuItem";
             this.tarefasMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F1;
-            this.tarefasMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.tarefasMenuItem.Size = new System.Drawing.Size(180, 22);
             this.tarefasMenuItem.Text = "Taxas";
             this.tarefasMenuItem.Click += new System.EventHandler(this.TaxasMenuItem_Click);
             // 
@@ -229,10 +230,19 @@
             this.tarefasMenuItem,
             this.grupoVeiculosMenuItem,
             this.compromissosMenuItem,
-            this.despesasMenuItem});
+            this.despesasMenuItem,
+            this.condutoresMenuItem});
             this.cadastrosToolStripMenuItem.Name = "cadastrosToolStripMenuItem";
             this.cadastrosToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
             this.cadastrosToolStripMenuItem.Text = "Cadastros";
+            // 
+            // condutoresMenuItem
+            // 
+            this.condutoresMenuItem.Name = "condutoresMenuItem";
+            this.condutoresMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
+            this.condutoresMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.condutoresMenuItem.Text = "Condutores";
+            this.condutoresMenuItem.Click += new System.EventHandler(this.condutoresMenuItem_Click);
             // 
             // panelRegistros
             // 
@@ -316,5 +326,6 @@
         private System.Windows.Forms.Panel panelRegistros;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.MenuStrip menu;
+        private System.Windows.Forms.ToolStripMenuItem condutoresMenuItem;
     }
 }
