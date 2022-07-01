@@ -11,16 +11,63 @@ namespace LocadoraVeiculos.RepositorioProject.ModuloCondutores
 
         }
 
-        protected override string SqlUpdate => throw new System.NotImplementedException();
+        public Condutores SelecionarPorCpf(string Cpf)
+        {
+            return SelecionarPorParametro(SqlCpf, Mapeador.AdicionarParametro("CPF", Cpf));
+        }
 
-        protected override string SqlDelete => throw new System.NotImplementedException();
+        protected string SqlCpf = "SELECT * FROM TB_CONDUTORES WHERE [cpf] = @CPF";
 
-        protected override string SqlInsert => throw new System.NotImplementedException();
-
-        protected override string SqlSelectAll => throw new System.NotImplementedException();
-
-        protected override string SqlSelectId => throw new System.NotImplementedException();
-
-        protected override string SqlExiste => throw new System.NotImplementedException();
+        protected override string SqlUpdate =>
+                @"UPDATE TB_CONDUTORES
+                   SET [nome] = @NOME
+                      ,[cpf] = @CPF
+                      ,[endereco] = @ENDERECO
+                      ,[email] = @EMAIL
+                      ,[telefone] = @TELEFONE
+                      ,[cnh] =	@CNH
+                      ,[validadeCnh] = @VALIDADECNH
+                 WHERE id_condutores = @ID";
+        protected override string SqlDelete =>
+                @"DELETE FROM TB_CONDUTORES
+                WHERE id_condutores = @ID";
+        protected override string SqlInsert =>
+            @"INSERT INTO TB_CONDUTORES
+                   ([nome]
+                   ,[cpf]
+                   ,[endereco]
+                   ,[email]
+                   ,[telefone]
+                   ,[cnh]
+                   ,[validadeCnh])
+                 VALUES
+                       (@NOME, @CPF, @ENDERECO, @EMAIL, @TELEFONE, @CNH, @VALIDADECNH) ;";
+        protected override string SqlSelectAll => @"
+                SELECT [id_condutores]
+                      ,[nome]
+                      ,[cpf]
+                      ,[endereco]
+                      ,[email]
+                      ,[telefone]
+                      ,[cnh]
+                      ,[validadeCnh]
+                  FROM TB_CONDUTORES;";
+        protected override string SqlSelectId => @"
+                SELECT [id_condutores]
+                      ,[nome]
+                      ,[cpf]
+                      ,[endereco]
+                      ,[email]
+                      ,[telefone]
+                      ,[cnh]
+                      ,[validadeCnh]
+                  FROM TB_CONDUTORES
+                    where id_condutores = @ID ; ";
+        protected override string SqlExiste =>
+            @"SELECT
+                        COUNT(*)
+                    FROM 
+                        TB_CONDUTORES
+                    WHERE id_condutores = @ID;";
     }
 }
