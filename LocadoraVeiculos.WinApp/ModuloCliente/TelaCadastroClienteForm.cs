@@ -121,6 +121,8 @@ namespace LocadoraVeiculos.WinApp.ModuloCliente
 
             if (!radioButtonPessoaFisica.Checked)
                 maskedTextBoxCNPJ.Enabled = true;
+
+            txtCPF.Text = "";
         }
 
         private void radioButtonPessoaJuridica_CheckedChanged(object sender, EventArgs e)
@@ -130,6 +132,8 @@ namespace LocadoraVeiculos.WinApp.ModuloCliente
 
             if (!radioButtonPessoaJuridica.Checked)
                 txtCPF.Enabled = true;
+
+            maskedTextBoxCNPJ.Text = "";
         }
 
     }
