@@ -16,9 +16,11 @@ namespace LocadoraVeiculos.Dominio.ModuloFuncionario
                 .NotNull().NotEmpty();
 
             RuleFor(x => x.Login)
-             .Matches(regEx).WithMessage("Login deve ser sem Caracteres Especiais")
+             .Matches(regEx).WithMessage("Login deve ser sem Caracteres Especiais")             
+             .MinimumLength(8).WithMessage("O Login deve ter no minimo 8 caracteres")
              .NotNull().WithMessage("Deve ser inserido um login")
              .NotEmpty().WithMessage("Deve ser inserido um login");
+
             RuleFor(x => x.Senha)
                 .Matches(regEx).WithMessage("Senha deve ser sem Caracteres Especiais")
                 .NotNull().WithMessage("Deve ser inserido uma senha")
