@@ -11,12 +11,21 @@ namespace LocadoraVeiculos.Controladores.ModuloPlanoCobranca
     {
         protected override IRepository<PlanoCobranca> PegarRepositorio()
         {
-            throw new NotImplementedException();
+            return new RepositorioPlanoCobranca(new MapeadorPlanoCobranca());
         }
 
         protected override AbstractValidator<PlanoCobranca> PegarValidador()
         {
-            throw new NotImplementedException();
+            return new ValidadorPlanoCobranca();
+        }
+        public override ValidationResult InserirNovo(PlanoCobranca registro)
+        {
+            return base.InserirNovo(registro);
+        }
+
+        public override ValidationResult Editar(PlanoCobranca registro)
+        {
+            return base.Editar(registro);
         }
     }
 }
