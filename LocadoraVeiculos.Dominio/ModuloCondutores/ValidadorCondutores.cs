@@ -11,17 +11,17 @@ namespace LocadoraVeiculos.Dominio.ModuloCondutores
         readonly Regex regEx = new Regex("^[a-zA-Z0-9- ]*$");
         public ValidadorCondutores()
         {
-            RuleFor(x => x.Nome).Cascade(CascadeMode.StopOnFirstFailure)
+            RuleFor(x => x.Nome)
                 .Matches(regEx).WithMessage("Nome deve ser sem Caracteres Especiais")
-                .MinimumLength(8).WithMessage("O Nome deve ter no minimo 8 letras")
+                .MinimumLength(3).WithMessage("O Nome deve ter no minimo 3 letras")
                 .NotNull().WithMessage("Deve ser inserido um nome")
                 .NotEmpty().WithMessage("Deve ser inserido um nome");
 
             RuleFor(x => x.Email)
                .Custom(ValidarEmail);
 
-            RuleFor(x => x.Endereco).Cascade(CascadeMode.StopOnFirstFailure)
-                .Matches(regEx).WithMessage("Nome deve ser sem Caracteres Especiais")
+            RuleFor(x => x.Endereco)
+                .Matches(regEx).WithMessage("Endereço deve ser sem Caracteres Especiais")
                 .NotNull().WithMessage("Deve ser inserido um endereço")
                 .NotEmpty().WithMessage("Deve ser inserido um endereço");
 
@@ -34,14 +34,13 @@ namespace LocadoraVeiculos.Dominio.ModuloCondutores
                 .NotEqual(true)
                 .WithMessage("O telefone só deve conter números");
 
-            RuleFor(x => x.Cnh).Cascade(CascadeMode.StopOnFirstFailure)
+            RuleFor(x => x.Cnh)
                 .Matches(regEx).WithMessage("A CNH não deve possuir Caracteres Especiais")
                 .MinimumLength(8).WithMessage("A CNH deve ter no minimo 8 letras")
                 .NotNull().WithMessage("Deve ser inserido uma CNH")
                 .NotEmpty().WithMessage("Deve ser inserido uma CNH");
 
-            RuleFor(x => x.ValidadeCnh).Cascade(CascadeMode.StopOnFirstFailure)
-                .Matches(regEx).WithMessage("Nome deve ser sem Caracteres Especiais")
+            RuleFor(x => x.ValidadeCnh)
                 .NotNull().WithMessage("Deve ser inserido uma Validade para a CNH")
                 .NotEmpty().WithMessage("Deve ser inserido uma Validade para a CNH");
         }
@@ -49,12 +48,6 @@ namespace LocadoraVeiculos.Dominio.ModuloCondutores
         private void ValidarEmail(string email, ValidationContext<Condutores> validacao)
         {
             if (!email.EmailValido()) validacao.AddFailure(new ValidationFailure("Email", "Email deve ser valido"));
-        }
-
-        private void ValidarCPF(Condutores condutor, ValidationContext<Condutores> validation)
-        {
-            if (condutor.Cpf.Length != 14)
-                validation.AddFailure(new ValidationFailure("CPF", "O campo CPF deve ser Válido"));
         }
     }
 }
