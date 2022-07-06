@@ -59,7 +59,7 @@
             this.txtValorDia.Mask = "99999999";
             this.txtValorDia.Name = "txtValorDia";
             this.txtValorDia.Size = new System.Drawing.Size(256, 27);
-            this.txtValorDia.TabIndex = 25;
+            this.txtValorDia.TabIndex = 3;
             this.txtValorDia.ValidatingType = typeof(int);
             // 
             // txtId
@@ -68,7 +68,7 @@
             this.txtId.Location = new System.Drawing.Point(123, 16);
             this.txtId.Name = "txtId";
             this.txtId.Size = new System.Drawing.Size(256, 27);
-            this.txtId.TabIndex = 30;
+            this.txtId.TabIndex = 1;
             // 
             // laId
             // 
@@ -94,7 +94,7 @@
             this.txtLimiteKM.Mask = "99999999";
             this.txtLimiteKM.Name = "txtLimiteKM";
             this.txtLimiteKM.Size = new System.Drawing.Size(256, 27);
-            this.txtLimiteKM.TabIndex = 31;
+            this.txtLimiteKM.TabIndex = 4;
             this.txtLimiteKM.ValidatingType = typeof(int);
             // 
             // label3
@@ -112,7 +112,7 @@
             this.txtValorKM.Mask = "99999999";
             this.txtValorKM.Name = "txtValorKM";
             this.txtValorKM.Size = new System.Drawing.Size(256, 27);
-            this.txtValorKM.TabIndex = 33;
+            this.txtValorKM.TabIndex = 5;
             this.txtValorKM.ValidatingType = typeof(int);
             // 
             // cmbGrupoVeiculo
@@ -122,14 +122,14 @@
             this.cmbGrupoVeiculo.Location = new System.Drawing.Point(123, 230);
             this.cmbGrupoVeiculo.Name = "cmbGrupoVeiculo";
             this.cmbGrupoVeiculo.Size = new System.Drawing.Size(256, 28);
-            this.cmbGrupoVeiculo.TabIndex = 35;
+            this.cmbGrupoVeiculo.TabIndex = 6;
             // 
             // txtTipo
             // 
             this.txtTipo.Location = new System.Drawing.Point(123, 58);
             this.txtTipo.Name = "txtTipo";
             this.txtTipo.Size = new System.Drawing.Size(256, 27);
-            this.txtTipo.TabIndex = 37;
+            this.txtTipo.TabIndex = 2;
             // 
             // laNome
             // 
@@ -154,7 +154,7 @@
             this.btnCancelar.Location = new System.Drawing.Point(139, 284);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(115, 44);
-            this.btnCancelar.TabIndex = 39;
+            this.btnCancelar.TabIndex = 8;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
@@ -164,7 +164,7 @@
             this.btnSalvar.Location = new System.Drawing.Point(264, 284);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(115, 44);
-            this.btnSalvar.TabIndex = 40;
+            this.btnSalvar.TabIndex = 7;
             this.btnSalvar.Text = "Salvar";
             this.btnSalvar.UseVisualStyleBackColor = true;
             this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
