@@ -3,6 +3,7 @@ using LocadoraVeiculos.Controladores.ModuloControladorGrupoVeiculos;
 using LocadoraVeiculos.Controladores.ModuloControladorTaxas;
 using LocadoraVeiculos.Dominio.ModuloGrupoVeiculos;
 using LocadoraVeiculos.Dominio.ModuloTaxas;
+using LocadoraVeiculos.Infra.Logging;
 using LocadoraVeiculos.Repositorio.shared;
 using LocadoraVeiculos.RepositorioProject.ModuloGrupoVeiculos;
 using LocadoraVeiculos.RepositorioProject.shared;
@@ -10,6 +11,7 @@ using LocadoraVeiculos.WinApp.ModuloGrupoVeiculo;
 using LocadoraVeiculos.WinApp.ModuloTaxa;
 using LocadoraVeiculos.WinApp.shared;
 using Microsoft.Extensions.DependencyInjection;
+using Serilog;
 using System;
 using System.Windows.Forms;
 
@@ -23,6 +25,8 @@ namespace LocadoraVeiculos.WinApp
         [STAThread]
         static void Main()
         {
+            ConfiguracaoLogsLocadora.ConfigurarEscritaLogs();
+
             ServiceProvider = RegistrarServicos();
 
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
