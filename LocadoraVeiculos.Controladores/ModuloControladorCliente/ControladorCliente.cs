@@ -44,15 +44,6 @@ namespace LocadoraVeiculos.Controladores.ModuloControladorCliente
             return validacaoBanco;
         }
 
-        //public override ValidationResult InserirNovo(Cliente registro) // BKP ANTES TESTE
-        //{
-        //    var validacaoBanco = FuncionarioForValidoParaInserir(registro);
-        //    if (validacaoBanco.IsValid) 
-        //        return base.InserirNovo(registro);
-        //    else 
-        //        return validacaoBanco;
-        //}
-
         public override ValidationResult InserirNovo(Cliente registro)
         {
             Log.Logger.Debug("Tentando inserir um Cliente... {@f}", registro);

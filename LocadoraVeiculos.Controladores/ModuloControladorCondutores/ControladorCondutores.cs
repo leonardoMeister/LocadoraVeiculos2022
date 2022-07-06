@@ -3,6 +3,7 @@ using FluentValidation.Results;
 using LocadoraVeiculos.Dominio.ModuloCondutores;
 using LocadoraVeiculos.Repositorio.shared;
 using LocadoraVeiculos.RepositorioProject.ModuloCondutores;
+using Serilog;
 using System;
 
 namespace LocadoraVeiculos.Controladores.ModuloCondutores
@@ -21,19 +22,48 @@ namespace LocadoraVeiculos.Controladores.ModuloCondutores
 
         public override ValidationResult Editar(Condutores registro)
         {
-            var validacaoBanco = FuncionarioForValidoParaEditar(registro);
+            var validacaoBanco = CondutorForValidoParaEditar(registro);
+            if (validacaoBanco.IsValid)
+            {
+                Log.Logger.Debug("Condutor {CondutorNome} editado com sucesso", registro.Nome);
 
-            if (validacaoBanco.IsValid) return base.Editar(registro);
-            else return validacaoBanco;
+                return base.Editar(registro);
+            }
+            else
+            {
+                foreach (var erros in validacaoBanco.Errors)
+                {
+                    Log.Logger.Warning("Falha ao tentar editar um Condutor {CondutorNome} - {Motivo}",
+                        registro.Nome, erros.ErrorMessage);
+                    return validacaoBanco;
+                }
+            }
+
+            return validacaoBanco;
         }
 
         public override ValidationResult InserirNovo(Condutores registro)
         {
-            var validacaoBanco = FuncionarioForValidoParaInserir(registro);
-            if (validacaoBanco.IsValid) return base.InserirNovo(registro);
-            else return validacaoBanco;
+            var validacaoBanco = CondutorForValidoParaInserir(registro);
+            if (validacaoBanco.IsValid)
+            {
+                Log.Logger.Debug("Condutor {CondutorNome} inserido com sucesso", registro.Nome);
+
+                return base.InserirNovo(registro);
+            }
+            else
+            {
+                foreach (var erros in validacaoBanco.Errors)
+                {
+                    Log.Logger.Warning("Falha ao tentar inserir um Condutor {CondutorNome} - {Motivo}",
+                        registro.Nome, erros.ErrorMessage);
+                    return validacaoBanco;
+                }
+            }
+
+            return validacaoBanco;
         }
-        private ValidationResult FuncionarioForValidoParaEditar(Condutores registro)
+        private ValidationResult CondutorForValidoParaEditar(Condutores registro)
         {
             ValidationResult valido = new ValidationResult();
 
@@ -49,7 +79,7 @@ namespace LocadoraVeiculos.Controladores.ModuloCondutores
 
             return valido;
         }
-        private ValidationResult FuncionarioForValidoParaInserir(Condutores registro)
+        private ValidationResult CondutorForValidoParaInserir(Condutores registro)
         {
             ValidationResult valido = new ValidationResult();
 
