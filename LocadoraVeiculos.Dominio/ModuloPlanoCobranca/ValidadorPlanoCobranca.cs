@@ -11,16 +11,15 @@ namespace LocadoraVeiculos.Dominio.ModuloPlanoCobranca
         public ValidadorPlanoCobranca()
         {
             RuleFor(x => x.TipoPlano)
-                .Cascade(CascadeMode.StopOnFirstFailure)
                 .NotEmpty().WithMessage("Tipo não pode ser vazio.")
                 .NotNull().WithMessage("Tipo não pode ser vazio.")
                 .MinimumLength(8).WithMessage("Tipo do plano deve ter no minimo 8 letras")
-                .Matches(regEx).WithMessage("Tipo não pode conter caracteres espaciais");
+                .Matches(regEx).WithMessage("Tipo não pode conter caracteres espaciais");            
+
+            RuleFor(x => x).Custom(ValidarRegra);
 
             RuleFor(x => x.GrupoVeiculos)
                 .NotNull().WithMessage("Grupo de veiculos deve ser selecionado");
-
-            RuleFor(x => x).Custom(ValidarRegra);
         }
 
         private void ValidarRegra(PlanoCobranca plano, ValidationContext<PlanoCobranca> validador)

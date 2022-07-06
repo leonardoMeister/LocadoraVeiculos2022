@@ -1,13 +1,8 @@
 ﻿using FluentValidation.Results;
+using LocadoraVeiculos.Controladores.ModuloControladorGrupoVeiculos;
+using LocadoraVeiculos.Dominio.ModuloGrupoVeiculos;
 using LocadoraVeiculos.Dominio.ModuloPlanoCobranca;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LocadoraVeiculos.WinApp.ModuloPlanoCobranca
@@ -24,14 +19,83 @@ namespace LocadoraVeiculos.WinApp.ModuloPlanoCobranca
             {
                 planoCobranca = value;
 
-                //txtId.Text = Convert.ToString(grupoVeiculos._id);
-                //txtNome.Text = grupoVeiculos.NomeGrupo;
+                txtId.Text = Convert.ToString(planoCobranca._id);
+                txtLimiteKM.Text = Convert.ToString(planoCobranca.LimiteKM);
+                txtTipo.Text = Convert.ToString(planoCobranca.TipoPlano);
+                txtValorDia.Text = Convert.ToString(planoCobranca.ValorDia);
+                txtValorKM.Text = Convert.ToString(planoCobranca.ValorKM);
+                cmbGrupoVeiculo.SelectedItem = planoCobranca.GrupoVeiculos;
             }
         }
 
         public TelaCadastroPlanoCobranca()
         {
             InitializeComponent();
+            AtualizarPlanosCobranca();
+        }
+
+        private void AtualizarPlanosCobranca()
+        {
+            ControladorGrupoVeiculos control = new ControladorGrupoVeiculos();
+            var dados = control.SelecionarTodos();
+            foreach (var dado in dados)
+            {
+                cmbGrupoVeiculo.Items.Add(dado);
+            }
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            AtualizarRodape("Inserção Cancelada.");
+            this.DialogResult = DialogResult.Cancel;
+        }
+
+        private void btnSalvar_Click(object sender, EventArgs e)
+        {
+            if (!PegarObjetoTela()) return;
+
+
+            var resultadoValidacao = GravarRegistro(PlanoCobranca);
+
+            if (resultadoValidacao.IsValid == false)
+            {
+                string erro = resultadoValidacao.Errors[0].ErrorMessage;
+
+                AtualizarRodape(erro);
+
+                DialogResult = DialogResult.None;
+            }
+            else
+            {
+                DialogResult = DialogResult.OK;
+            }
+        }
+
+        private bool PegarObjetoTela()
+        {
+            int id = 0;
+
+            if (txtId.Text != "")
+                id = Convert.ToInt32(txtId.Text);
+
+            string tipo = txtTipo.Text;
+            decimal valorDia = 0;
+            decimal limite = 0;
+            decimal valorKm = 0;
+            if (txtValorDia.Text != "") valorDia = Convert.ToDecimal(txtValorDia.Text);
+            if (txtLimiteKM.Text != "") limite = Convert.ToDecimal(txtLimiteKM.Text);
+            if (txtValorKM.Text != "") valorKm = Convert.ToDecimal(txtValorKM.Text);
+
+            GrupoVeiculos grupo = null;
+
+            if (cmbGrupoVeiculo.SelectedIndex != -1) grupo = (GrupoVeiculos)cmbGrupoVeiculo.SelectedItem;
+
+            planoCobranca = new PlanoCobranca(tipo, valorDia, limite, valorKm, grupo)
+            {
+                _id = id
+            };
+
+            return true;
         }
     }
 }

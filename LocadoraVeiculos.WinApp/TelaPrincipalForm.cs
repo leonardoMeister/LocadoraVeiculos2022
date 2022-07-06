@@ -3,6 +3,7 @@ using LocadoraVeiculos.WinApp.ModuloCliente;
 using LocadoraVeiculos.WinApp.ModuloCondutores;
 using LocadoraVeiculos.WinApp.ModuloFuncionario;
 using LocadoraVeiculos.WinApp.ModuloGrupoVeiculo;
+using LocadoraVeiculos.WinApp.ModuloPlanoCobranca;
 using LocadoraVeiculos.WinApp.ModuloTaxa;
 using LocadoraVeiculos.WinApp.shared;
 using System;
@@ -17,6 +18,7 @@ namespace LocadoraVeiculos.WinApp
         public ConfiguracaoCliente configuracaoCliente;
         public ConfiguracaoFuncionario configuracaoFuncionario;
         public ConfiguracaoCondutores configuracaoCondutores;
+        public ConfiguracaoPlanoCobranca configuracaoPlanoCobranca;
 
         public ICadastravel telaSelecionada;
 
@@ -32,6 +34,7 @@ namespace LocadoraVeiculos.WinApp
             this.configuracaoCliente = new ConfiguracaoCliente(this.AtualizarRodape);
             this.configuracaoFuncionario = new ConfiguracaoFuncionario(this.AtualizarRodape);
             this.configuracaoCondutores = new ConfiguracaoCondutores(this.AtualizarRodape);
+            this.configuracaoPlanoCobranca = new ConfiguracaoPlanoCobranca(this.AtualizarRodape);
         }
 
         public void AtualizarRodape(string mensagem)
@@ -121,6 +124,12 @@ namespace LocadoraVeiculos.WinApp
             telaSelecionada = configuracaoCondutores;
             ConfigurarTelaPrincipal(configuracaoCondutores);
         }
+        private void planoDeCobrancaMenuItem_Click(object sender, EventArgs e)
+        {
+            telaSelecionada = configuracaoPlanoCobranca;
+            ConfigurarTelaPrincipal(configuracaoPlanoCobranca);
+
+        }
         #endregion
 
 
@@ -190,5 +199,7 @@ namespace LocadoraVeiculos.WinApp
             }
         }
         #endregion
+
+
     }
 }
