@@ -10,14 +10,14 @@ namespace LocadoraVeiculos.Dominio.ModuloFuncionario
 
         public ValidadorFuncionario()
         {
-            RuleFor(x => x.Nome).Cascade(CascadeMode.StopOnFirstFailure)
+            RuleFor(x => x.Nome)
                 .Matches(regEx).WithMessage("Nome deve ser sem Caracteres Especiais")
-                .MinimumLength(8).WithMessage("O Nome deve ter no minimo 8 caracteres")
+                .MinimumLength(3).WithMessage("O Nome deve ter no minimo 3 caracteres")
                 .NotNull().NotEmpty();
 
             RuleFor(x => x.Login)
              .Matches(regEx).WithMessage("Login deve ser sem Caracteres Especiais")             
-             .MinimumLength(8).WithMessage("O Login deve ter no minimo 8 caracteres")
+             .MinimumLength(3).WithMessage("O Login deve ter no minimo 3 caracteres")
              .NotNull().WithMessage("Deve ser inserido um login")
              .NotEmpty().WithMessage("Deve ser inserido um login");
 
