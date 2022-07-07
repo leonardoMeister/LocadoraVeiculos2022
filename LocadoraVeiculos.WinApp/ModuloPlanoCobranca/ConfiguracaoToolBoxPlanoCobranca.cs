@@ -11,18 +11,18 @@ namespace LocadoraVeiculos.WinApp.ModuloPlanoCobranca
     {
         public override string TipoCadastro => "Plano de Cobrança";
 
-        public override string TooltipInserir => "";
+        public override string TooltipInserir => "Inserir Plano de Cobrança";
 
-        public override string TooltipEditar => "";
+        public override string TooltipEditar => "Editar Plano de Cobrança";
 
-        public override string TooltipExcluir => "";
+        public override string TooltipExcluir => "Excluir Plano de Cobrança";
 
         public override string TooltipAdicionarItens => "";
 
         public override string TooltipAtualizarItens => "";
 
-        public override string TooltipFiltrar => "";
+        public override string TooltipFiltrar => "Filtrar Plano de Cobrança";
 
-        public override string TooltipAgrupar => "";
+        public override string TooltipAgrupar => "Agrupar Plano de Cobrança";
     }
 }

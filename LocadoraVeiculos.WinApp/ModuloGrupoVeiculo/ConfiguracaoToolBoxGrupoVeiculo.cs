@@ -11,18 +11,18 @@ namespace LocadoraVeiculos.WinApp.ModuloGrupoVeiculo
     {
         public override string TipoCadastro => "Grupo Veiculos";
 
-        public override string TooltipInserir => "";
+        public override string TooltipInserir => "Inserir Grupo Veiculos";
 
-        public override string TooltipEditar => "";
+        public override string TooltipEditar => "Editar Grupo Veiculos";
 
-        public override string TooltipExcluir => "";
+        public override string TooltipExcluir => "Excluir Grupo Veiculos";
 
         public override string TooltipAdicionarItens => "";
 
         public override string TooltipAtualizarItens => "";
 
-        public override string TooltipFiltrar => "";
+        public override string TooltipFiltrar => "Filtrar Grupo Veiculos";
 
-        public override string TooltipAgrupar => "";
+        public override string TooltipAgrupar => "Agrupar Grupo Veiculos";
     }
 }
