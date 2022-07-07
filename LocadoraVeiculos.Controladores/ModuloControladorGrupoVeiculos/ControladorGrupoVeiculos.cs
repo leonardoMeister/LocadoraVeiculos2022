@@ -3,6 +3,7 @@ using FluentValidation.Results;
 using LocadoraVeiculos.Dominio.ModuloGrupoVeiculos;
 using LocadoraVeiculos.Repositorio.shared;
 using LocadoraVeiculos.RepositorioProject.ModuloGrupoVeiculos;
+using Serilog;
 
 namespace LocadoraVeiculos.Controladores.ModuloControladorGrupoVeiculos
 {
@@ -20,19 +21,51 @@ namespace LocadoraVeiculos.Controladores.ModuloControladorGrupoVeiculos
 
         public override ValidationResult Editar(GrupoVeiculos registro)
         {
-            var validacaoBanco = FuncionarioForValidoParaEditar(registro);
+            Log.Logger.Debug("Tentando editar um GrupoVeiculos... {@f}", registro);
 
-            if (validacaoBanco.IsValid) return base.Editar(registro);
-            else return validacaoBanco;
+            var validacaoBanco = GrupoVeiculosForValidoParaEditar(registro);
+            if (validacaoBanco.IsValid)
+            {
+                Log.Logger.Debug("GrupoVeiculos {GrupoVeiculosNome} editado com sucesso", registro.NomeGrupo);
+
+                return base.Editar(registro);
+            }
+            else
+            {
+                foreach (var erros in validacaoBanco.Errors)
+                {
+                    Log.Logger.Warning("Falha ao tentar editar um GrupoVeiculos {GrupoVeiculosNome} - {Motivo}",
+                        registro.NomeGrupo, erros.ErrorMessage);
+                    return validacaoBanco;
+                }
+            }
+
+            return validacaoBanco;
         }
 
         public override ValidationResult InserirNovo(GrupoVeiculos registro)
         {
-            var validacaoBanco = FuncionarioForValidoParaInserir(registro);
-            if (validacaoBanco.IsValid) return base.InserirNovo(registro);
-            else return validacaoBanco;
+            var validacaoBanco = GrupoVeiculosForValidoParaInserir(registro);
+            if (validacaoBanco.IsValid)
+            {
+                Log.Logger.Debug("GrupoVeiculos {GrupoVeiculosNome} inserido com sucesso", registro.NomeGrupo);
+
+                return base.InserirNovo(registro);
+            }
+            else
+            {
+                foreach (var erros in validacaoBanco.Errors)
+                {
+                    Log.Logger.Warning("Falha ao tentar inserir um GrupoVeiculos {GrupoVeiculosNome} - {Motivo}",
+                        registro.NomeGrupo, erros.ErrorMessage);
+                    return validacaoBanco;
+                }
+            }
+
+            return validacaoBanco;
         }
-        private ValidationResult FuncionarioForValidoParaEditar(GrupoVeiculos registro)
+
+        private ValidationResult GrupoVeiculosForValidoParaEditar(GrupoVeiculos registro)
         {
             ValidationResult valido = new ValidationResult();
 
@@ -41,7 +74,7 @@ namespace LocadoraVeiculos.Controladores.ModuloControladorGrupoVeiculos
 
             return valido;
         }
-        private ValidationResult FuncionarioForValidoParaInserir(GrupoVeiculos registro)
+        private ValidationResult GrupoVeiculosForValidoParaInserir(GrupoVeiculos registro)
         {
             ValidationResult valido = new ValidationResult();
 
