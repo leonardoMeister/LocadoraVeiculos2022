@@ -34,7 +34,6 @@ namespace LocadoraVeiculos.WinApp.ModuloGrupoVeiculo
         {
             if (!PegarObjetoTela()) return;
 
-
             var resultadoValidacao = GravarRegistro(GrupoVeiculos);
 
             if (resultadoValidacao.IsValid == false)

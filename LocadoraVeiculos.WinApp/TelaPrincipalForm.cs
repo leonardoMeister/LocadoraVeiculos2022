@@ -4,6 +4,7 @@ using LocadoraVeiculos.WinApp.ModuloCondutores;
 using LocadoraVeiculos.WinApp.ModuloFuncionario;
 using LocadoraVeiculos.WinApp.ModuloGrupoVeiculo;
 using LocadoraVeiculos.WinApp.ModuloTaxa;
+using LocadoraVeiculos.WinApp.ModuloVeiculo;
 using LocadoraVeiculos.WinApp.shared;
 using System;
 using System.Windows.Forms;
@@ -17,6 +18,7 @@ namespace LocadoraVeiculos.WinApp
         public ConfiguracaoCliente configuracaoCliente;
         public ConfiguracaoFuncionario configuracaoFuncionario;
         public ConfiguracaoCondutores configuracaoCondutores;
+        public ConfiguracaoVeiculo configuracaoVeiculo;
 
         public ICadastravel telaSelecionada;
 
@@ -32,6 +34,7 @@ namespace LocadoraVeiculos.WinApp
             this.configuracaoCliente = new ConfiguracaoCliente(this.AtualizarRodape);
             this.configuracaoFuncionario = new ConfiguracaoFuncionario(this.AtualizarRodape);
             this.configuracaoCondutores = new ConfiguracaoCondutores(this.AtualizarRodape);
+            this.configuracaoVeiculo = new(this.AtualizarRodape);
         }
 
         public void AtualizarRodape(string mensagem)
