@@ -1,6 +1,4 @@
 ﻿using LocadoraVeiculos.Dominio.ModuloGrupoVeiculos;
-using LocadoraVeiculos.RepositorioProject.ModuloGrupoVeiculos;
-using LocadoraVeiculos.RepositorioProject.shared;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace LocadoraVeiculos.Testes.TestesUnitarios.TesteUnitarioGrupoVeiculos

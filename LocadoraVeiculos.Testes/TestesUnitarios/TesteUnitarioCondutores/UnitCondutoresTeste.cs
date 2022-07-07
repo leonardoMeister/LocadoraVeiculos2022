@@ -1,6 +1,4 @@
 ﻿using LocadoraVeiculos.Dominio.ModuloCondutores;
-using LocadoraVeiculos.RepositorioProject.ModuloCondutores;
-using LocadoraVeiculos.RepositorioProject.shared;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace LocadoraVeiculos.Testes.TestesUnitarios.TesteUnitarioCondutores
