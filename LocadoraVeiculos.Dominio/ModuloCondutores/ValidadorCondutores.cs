@@ -1,7 +1,6 @@
 ﻿using FluentValidation;
 using FluentValidation.Results;
 using LocadoraVeiculos.Dominio.shared;
-using System;
 using System.Text.RegularExpressions;
 
 namespace LocadoraVeiculos.Dominio.ModuloCondutores

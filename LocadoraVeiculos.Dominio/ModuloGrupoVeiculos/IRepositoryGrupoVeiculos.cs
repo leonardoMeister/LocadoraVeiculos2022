@@ -5,5 +5,6 @@ namespace LocadoraVeiculos.RepositorioProject.ModuloGrupoVeiculos
 {
     public interface IRepositoryGrupoVeiculos : IRepository<GrupoVeiculos>
     {
+
     }
 }

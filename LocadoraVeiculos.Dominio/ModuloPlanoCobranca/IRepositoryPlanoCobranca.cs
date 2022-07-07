@@ -1,5 +1,4 @@
 ﻿using LocadoraVeiculos.Repositorio.shared;
-using System.Collections.Generic;
 
 namespace LocadoraVeiculos.Dominio.ModuloPlanoCobranca
 {

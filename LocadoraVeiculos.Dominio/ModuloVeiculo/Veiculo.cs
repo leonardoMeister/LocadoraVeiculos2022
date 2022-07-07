@@ -1,5 +1,4 @@
 ﻿using LocadoraVeiculos.Dominio.shared;
-using System;
 
 namespace LocadoraVeiculos.Dominio.ModuloVeiculo
 {

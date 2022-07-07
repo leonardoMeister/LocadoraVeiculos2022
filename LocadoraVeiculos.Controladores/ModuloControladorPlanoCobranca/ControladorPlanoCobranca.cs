@@ -4,7 +4,6 @@ using LocadoraVeiculos.Dominio.ModuloPlanoCobranca;
 using LocadoraVeiculos.Repositorio.shared;
 using LocadoraVeiculos.RepositorioProject.ModuloPlanoCobranca;
 using Serilog;
-using System;
 
 namespace LocadoraVeiculos.Controladores.ModuloPlanoCobranca
 {

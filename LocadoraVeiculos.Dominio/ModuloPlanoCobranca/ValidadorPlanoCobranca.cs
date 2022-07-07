@@ -1,6 +1,5 @@
 ﻿using FluentValidation;
 using FluentValidation.Results;
-using System;
 using System.Text.RegularExpressions;
 
 namespace LocadoraVeiculos.Dominio.ModuloPlanoCobranca
