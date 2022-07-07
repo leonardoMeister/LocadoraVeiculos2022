@@ -1,5 +1,4 @@
-﻿using LocadoraVeiculos.Dominio.shared;
-using LocadoraVeiculos.WinApp.ModuloCliente;
+﻿using LocadoraVeiculos.WinApp.ModuloCliente;
 using LocadoraVeiculos.WinApp.ModuloCondutores;
 using LocadoraVeiculos.WinApp.ModuloFuncionario;
 using LocadoraVeiculos.WinApp.ModuloGrupoVeiculo;
