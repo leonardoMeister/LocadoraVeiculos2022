@@ -3,6 +3,7 @@ using FluentValidation.Results;
 using LocadoraVeiculos.Dominio.ModuloFuncionario;
 using LocadoraVeiculos.Repositorio.shared;
 using LocadoraVeiculos.RepositorioProject.ModuloFuncionario;
+using Serilog;
 using System;
 
 namespace LocadoraVeiculos.Controladores.ModuloFuncionario
@@ -20,18 +21,50 @@ namespace LocadoraVeiculos.Controladores.ModuloFuncionario
 
         public override ValidationResult Editar(Funcionario registro)
         {
-            var validacaoBanco = FuncionarioForValidoParaEditar(registro);
+            Log.Logger.Debug("Tentando editar um Funcionario... {@f}", registro);
 
-            if (validacaoBanco.IsValid) return base.Editar(registro);
-            else return validacaoBanco;
+            var validacaoBanco = FuncionarioForValidoParaEditar(registro);
+            if (validacaoBanco.IsValid)
+            {
+                Log.Logger.Debug("Funcionario {FuncionarioNome} editado com sucesso", registro.Nome);
+
+                return base.Editar(registro);
+            }
+            else
+            {
+                foreach (var erros in validacaoBanco.Errors)
+                {
+                    Log.Logger.Warning("Falha ao tentar editar um Funcionario {FuncionarioNome} - {Motivo}",
+                        registro.Nome, erros.ErrorMessage);
+                    return validacaoBanco;
+                }
+            }
+
+            return validacaoBanco;
         }
 
         public override ValidationResult InserirNovo(Funcionario registro)
         {
             var validacaoBanco = FuncionarioForValidoParaInserir(registro);
-            if (validacaoBanco.IsValid) return base.InserirNovo(registro);
-            else return validacaoBanco;
+            if (validacaoBanco.IsValid)
+            {
+                Log.Logger.Debug("Funcionario {FuncionarioNome} inserido com sucesso", registro.Nome);
+
+                return base.InserirNovo(registro);
+            }
+            else
+            {
+                foreach (var erros in validacaoBanco.Errors)
+                {
+                    Log.Logger.Warning("Falha ao tentar inserir um Funcionario {FuncionarioNome} - {Motivo}",
+                        registro.Nome, erros.ErrorMessage);
+                    return validacaoBanco;
+                }
+            }
+
+            return validacaoBanco;
         }
+
         private ValidationResult FuncionarioForValidoParaEditar(Funcionario registro)
         {
             ValidationResult valido = new ValidationResult();
