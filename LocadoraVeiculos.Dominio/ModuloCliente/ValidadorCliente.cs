@@ -26,7 +26,8 @@ namespace LocadoraVeiculos.Dominio.ModuloCliente
             RuleFor(x => x.Endereco)
                 .Matches(regEx).WithMessage("Nome deve ser sem Caracteres Especiais")
                 .NotNull().WithMessage("Deve ser inserido um endereço")
-                .NotEmpty().WithMessage("Deve ser inserido um endereço");
+                .NotEmpty().WithMessage("Deve ser inserido um endereço")
+                .MinimumLength(8).WithMessage("Deve ter mais que 7 caracteres");
             
             RuleFor(x => x.Telefone)
                 .NotNull().WithMessage("Deve ser inserido um telefone")
