@@ -3,6 +3,7 @@ using FluentValidation.Results;
 using LocadoraVeiculos.Dominio.ModuloVeiculo;
 using LocadoraVeiculos.Repositorio.shared;
 using LocadoraVeiculos.RepositorioProject.ModuloFuncionario;
+using Serilog;
 using System;
 
 namespace LocadoraVeiculos.Controladores.ModuloVeiculo
@@ -17,6 +18,20 @@ namespace LocadoraVeiculos.Controladores.ModuloVeiculo
         protected override AbstractValidator<Veiculo> PegarValidador()
         {
             throw new NotImplementedException();
+        }
+
+        public override ValidationResult InserirNovo(Veiculo registro)
+        {
+            Log.Logger.Debug("Veiculo {VeiculoNome} editado com sucesso", registro._id);
+
+            return base.InserirNovo(registro);
+        }
+
+        public override ValidationResult Editar(Veiculo registro)
+        {
+            Log.Logger.Debug("Veiculo {VeiculoNome} editado com sucesso", registro._id);
+
+            return base.Editar(registro);
         }
     }
 }
