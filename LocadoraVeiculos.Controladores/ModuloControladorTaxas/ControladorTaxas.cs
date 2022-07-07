@@ -3,6 +3,7 @@ using FluentValidation.Results;
 using LocadoraVeiculos.Dominio.ModuloTaxas;
 using LocadoraVeiculos.Repositorio.shared;
 using LocadoraVeiculos.RepositorioProject.ModuloTaxas;
+using Serilog;
 
 namespace LocadoraVeiculos.Controladores.ModuloControladorTaxas
 {
@@ -20,16 +21,47 @@ namespace LocadoraVeiculos.Controladores.ModuloControladorTaxas
         public override ValidationResult InserirNovo(Taxas registro)
         {
             var validacaoBanco = TaxasForValidaParaInserir(registro);
-            if (validacaoBanco.IsValid) return base.InserirNovo(registro);
-            else return validacaoBanco;
+            if (validacaoBanco.IsValid)
+            {
+                Log.Logger.Debug("Taxas {TaxasNome} inserido com sucesso", registro.Tipo);
+
+                return base.InserirNovo(registro);
+            }
+            else
+            {
+                foreach (var erros in validacaoBanco.Errors)
+                {
+                    Log.Logger.Warning("Falha ao tentar inserir um Taxas {TaxasNome} - {Motivo}",
+                        registro.Tipo, erros.ErrorMessage);
+                    return validacaoBanco;
+                }
+            }
+
+            return validacaoBanco;
         }
 
         public override ValidationResult Editar(Taxas registro)
         {
-            var validacaoBanco = TaxaForValidaParaEditar(registro);
+            Log.Logger.Debug("Tentando editar uma Taxa... {@f}", registro);
 
-            if (validacaoBanco.IsValid) return base.Editar(registro);
-            else return validacaoBanco;
+            var validacaoBanco = TaxaForValidaParaEditar(registro);
+            if (validacaoBanco.IsValid)
+            {
+                Log.Logger.Debug("Taxa {TaxasNome} editada com sucesso", registro.Tipo);
+
+                return base.Editar(registro);
+            }
+            else
+            {
+                foreach (var erros in validacaoBanco.Errors)
+                {
+                    Log.Logger.Warning("Falha ao tentar editar uma Taxa {TaxasNome} - {Motivo}",
+                        registro.Tipo, erros.ErrorMessage);
+                    return validacaoBanco;
+                }
+            }
+
+            return validacaoBanco;
         }
 
         private ValidationResult TaxaForValidaParaEditar(Taxas registro)
