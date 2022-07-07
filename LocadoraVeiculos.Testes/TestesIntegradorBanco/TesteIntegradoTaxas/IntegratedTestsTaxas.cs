@@ -1,4 +1,5 @@
-﻿using LocadoraVeiculos.Dominio.ModuloTaxas;
+﻿using LocadoraVeiculos.Controladores.ModuloControladorTaxas;
+using LocadoraVeiculos.Dominio.ModuloTaxas;
 using LocadoraVeiculos.RepositorioProject.ModuloTaxas;
 using LocadoraVeiculos.RepositorioProject.shared;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -18,7 +19,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoTaxas
         [TestMethod]
         public void DeveInserirTaxas()
         {
-            RepositorioTaxas repo = new RepositorioTaxas(new MapeadorTaxas());
+            ControladorTaxas repo = new ControladorTaxas();
 
             Taxas tax = new Taxas("Aluguel Onix", 1500, EnumTaxa.Diaria.ToString());
 
@@ -34,9 +35,9 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoTaxas
         [TestMethod]
         public void DeveBuscarVariosTaxas()
         {
-            RepositorioTaxas repo = new RepositorioTaxas(new MapeadorTaxas());
+            ControladorTaxas repo = new ControladorTaxas();
 
-            Taxas tax = new Taxas("Aluguel Onix", 1500 , EnumTaxa.Diaria.ToString());
+            Taxas tax = new Taxas("Aluguel Onix", 1500, EnumTaxa.Diaria.ToString());
             Taxas tax2 = new Taxas("Aluguel HB20", 1000, EnumTaxa.Diaria.ToString());
 
             repo.InserirNovo(tax);
@@ -51,7 +52,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoTaxas
         [TestMethod]
         public void DeveVerificarExistenciaTaxas()
         {
-            RepositorioTaxas repo = new RepositorioTaxas(new MapeadorTaxas());
+            ControladorTaxas repo = new ControladorTaxas();
 
             Taxas tax = new Taxas("Aluguel Onix", 1500, EnumTaxa.Diaria.ToString());
 
@@ -65,15 +66,16 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoTaxas
         [TestMethod]
         public void DeveEditarTaxas()
         {
-            RepositorioTaxas repo = new RepositorioTaxas(new MapeadorTaxas());
+            ControladorTaxas repo = new ControladorTaxas();
 
             Taxas tax = new Taxas("Aluguel Onix", 1500, EnumTaxa.Diaria.ToString());
 
             repo.InserirNovo(tax);
 
             Taxas tax2 = new Taxas("Aluguel HB20", 1000, EnumTaxa.Diaria.ToString());
+            tax2._id = tax._id;
 
-            repo.Editar(tax._id, tax2);
+            repo.Editar(tax2);
 
             var taxasBanco = repo.SelecionarPorId(tax2._id);
 
@@ -83,7 +85,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoTaxas
         [TestMethod]
         public void DeveDeletarTaxas()
         {
-            RepositorioTaxas repo = new RepositorioTaxas(new MapeadorTaxas());
+            ControladorTaxas repo = new ControladorTaxas();
 
             Taxas tax = new Taxas("Aluguel HB20", 1000, EnumTaxa.Diaria.ToString());
 

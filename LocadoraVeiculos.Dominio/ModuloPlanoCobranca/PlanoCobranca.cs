@@ -36,7 +36,10 @@ namespace LocadoraVeiculos.Dominio.ModuloPlanoCobranca
                    ValorKM == cobranca.ValorKM &&
                    EqualityComparer<GrupoVeiculos>.Default.Equals(GrupoVeiculos, cobranca.GrupoVeiculos);
         }
-
+        public override string ToString()
+        {
+            return $"Id: {_id}, Tipo: {TipoPlano}";
+        }
         public override int GetHashCode()
         {
             return HashCode.Combine(_id, TipoPlano, ValorDia, LimiteKM, ValorKM, GrupoVeiculos);
