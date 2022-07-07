@@ -10,7 +10,7 @@ namespace LocadoraVeiculos.Dominio.ModuloGrupoVeiculos
         {
             RuleFor(x => x.NomeGrupo)
                .Matches(regEx).WithMessage("Não pode contar caractere especial")
-               .MinimumLength(8).WithMessage("A Descrição deve ter no minimo 8 letras")
+               .MinimumLength(5).WithMessage("A Descrição deve ter no minimo 8 letras")
                .NotNull().WithMessage("Deve ser inserido um Nome")
                .NotEmpty().WithMessage("Deve ser inserido um Nome");
 

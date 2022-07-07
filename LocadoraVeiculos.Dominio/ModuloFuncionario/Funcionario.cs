@@ -33,7 +33,10 @@ namespace LocadoraVeiculos.Dominio.ModuloFuncionario
                    DataAdmicao.Date == funcionario.DataAdmicao.Date &&
                    TipoPerfil == funcionario.TipoPerfil;
         }
-
+        public override string ToString()
+        {
+            return Nome;
+        }
         public override int GetHashCode()
         {
             return HashCode.Combine(_id, Nome, Login, Senha, Salario, DataAdmicao, TipoPerfil);
