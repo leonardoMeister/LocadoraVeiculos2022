@@ -4,7 +4,6 @@ using LocadoraVeiculos.Dominio.ModuloCondutores;
 using LocadoraVeiculos.Repositorio.shared;
 using LocadoraVeiculos.RepositorioProject.ModuloCondutores;
 using Serilog;
-using System;
 
 namespace LocadoraVeiculos.Controladores.ModuloCondutores
 {

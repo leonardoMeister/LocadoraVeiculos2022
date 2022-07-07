@@ -2,7 +2,6 @@
 using FluentValidation.Results;
 using LocadoraVeiculos.Dominio.ModuloVeiculo;
 using LocadoraVeiculos.Repositorio.shared;
-using LocadoraVeiculos.RepositorioProject.ModuloFuncionario;
 using Serilog;
 using System;
 
