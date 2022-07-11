@@ -6,10 +6,10 @@ namespace LocadoraVeiculos.Dominio.shared
     {
         public Guid _id;
 
-        //public EntidadeBase()
-        //{
-        //    _id = new Guid();
-        //}
+        public EntidadeBase()
+        {
+            _id = Guid.NewGuid();
+        }
 
     }
 }

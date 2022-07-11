@@ -25,7 +25,7 @@ namespace LocadoraVeiculos.RepositorioProject.shared
             conection = new SqlConnection(connectionString);
         }
 
-        public static int Insert(string sql, Dictionary<string, object> parameters)
+        public static void Insert(string sql, Dictionary<string, object> parameters)
         {
             using IDbConnection connection = conection;
             connection.ConnectionString = connectionString;
@@ -37,9 +37,7 @@ namespace LocadoraVeiculos.RepositorioProject.shared
 
             connection.Open();
 
-            int id = Convert.ToInt32(command.ExecuteScalar());
-
-            return id;
+            var id = command.ExecuteNonQuery();
         }
 
         public static void Update(string sql, Dictionary<string, object> parameters = null)

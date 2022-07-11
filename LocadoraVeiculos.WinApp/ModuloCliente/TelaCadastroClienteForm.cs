@@ -75,10 +75,10 @@ namespace LocadoraVeiculos.WinApp.ModuloCliente
 
         private bool PegarObjetoTela()
         {
-            int id = 0;
+            Guid id;
 
             if (txtId.Text != "")
-                id = Convert.ToInt32(txtId.Text);
+                id = new Guid(txtId.Text);
 
             string nome = txtNome.Text;
             string endereco = txtEndereco.Text;
@@ -88,10 +88,7 @@ namespace LocadoraVeiculos.WinApp.ModuloCliente
             string cpf = txtCPF.Text;
             string cnpj = maskedTextBoxCNPJ.Text;
 
-            cliente = new Cliente(nome, cpf, endereco, email, telefone, tipo, cnpj)
-            {
-                _id = id
-            };
+            cliente = new Cliente(nome, cpf, endereco, email, telefone, tipo, cnpj);
 
             return true;
         }

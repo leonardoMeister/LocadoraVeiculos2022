@@ -73,10 +73,10 @@ namespace LocadoraVeiculos.WinApp.ModuloPlanoCobranca
 
         private bool PegarObjetoTela()
         {
-            int id = 0;
+            Guid id;
 
             if (txtId.Text != "")
-                id = Convert.ToInt32(txtId.Text);
+                id = new Guid(txtId.Text);
 
             string tipo = txtTipo.Text;
             decimal valorDia = 0;
@@ -90,10 +90,7 @@ namespace LocadoraVeiculos.WinApp.ModuloPlanoCobranca
 
             if (cmbGrupoVeiculo.SelectedIndex != -1) grupo = (GrupoVeiculos)cmbGrupoVeiculo.SelectedItem;
 
-            planoCobranca = new PlanoCobranca(tipo, valorDia, limite, valorKm, grupo)
-            {
-                _id = id
-            };
+            planoCobranca = new PlanoCobranca(tipo, valorDia, limite, valorKm, grupo);
 
             return true;
         }

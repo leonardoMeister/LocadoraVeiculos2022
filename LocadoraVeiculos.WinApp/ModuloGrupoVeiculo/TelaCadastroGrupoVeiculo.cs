@@ -53,10 +53,10 @@ namespace LocadoraVeiculos.WinApp.ModuloGrupoVeiculo
 
         private bool PegarObjetoTela()
         {
-            int id = 0;
+            Guid id;
 
-            if (txtId.Text != "" )
-                id = Convert.ToInt32(txtId.Text);
+            if (txtId.Text != "")
+                id = new Guid(txtId.Text);
 
             if (txtNome.Text == "")
             {
@@ -66,10 +66,7 @@ namespace LocadoraVeiculos.WinApp.ModuloGrupoVeiculo
                 
             string nome = txtNome.Text;
 
-            grupoVeiculos = new GrupoVeiculos(nome)
-            {
-                _id = id
-            };
+            grupoVeiculos = new GrupoVeiculos(nome);
 
             return true;
         }
