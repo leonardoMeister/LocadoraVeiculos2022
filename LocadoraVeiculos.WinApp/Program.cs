@@ -10,9 +10,11 @@ using LocadoraVeiculos.RepositorioProject.shared;
 using LocadoraVeiculos.WinApp.ModuloGrupoVeiculo;
 using LocadoraVeiculos.WinApp.ModuloTaxa;
 using LocadoraVeiculos.WinApp.shared;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Serilog;
 using System;
+using System.IO;
 using System.Windows.Forms;
 
 namespace LocadoraVeiculos.WinApp
