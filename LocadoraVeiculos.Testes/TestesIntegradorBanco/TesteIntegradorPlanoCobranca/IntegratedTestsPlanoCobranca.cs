@@ -12,13 +12,18 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradorPlanoCobr
     {
         public IntegratedTestsPlanoCobranca()
         {
-            string query = @"delete from TB_PLANOCOBRANCA;
-                            DBCC CHECKIDENT (TB_PLANOCOBRANCA, RESEED, 1)";
+            string query = @"delete from TB_VEICULO;
+                            DBCC CHECKIDENT (TB_VEICULO, RESEED, 1)";
             DataBase.ExecutarComando(query);
 
-            string query2 = @"delete from TB_GRUPOVEICULOS;
-                            DBCC CHECKIDENT (TB_GRUPOVEICULOS, RESEED, 1)";
+            string query2 = @"delete from TB_PLANOCOBRANCA;
+                            DBCC CHECKIDENT (TB_PLANOCOBRANCA, RESEED, 1)";
+
             DataBase.ExecutarComando(query2);
+
+            string query3 = @"delete from TB_GRUPOVEICULOS;
+                            DBCC CHECKIDENT (TB_GRUPOVEICULOS, RESEED, 1)";
+            DataBase.ExecutarComando(query3);
         }
 
         [TestMethod]

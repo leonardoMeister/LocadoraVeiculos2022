@@ -23,7 +23,7 @@ namespace LocadoraVeiculos.Dominio.ModuloVeiculo
 
             RuleFor(x => x.Marca)
                 .NotEmpty().WithMessage("Marca Deve ser informado.")
-                .MinimumLength(4).WithMessage("Marca deve ter no minimo 4 letras.");
+                .MinimumLength(3).WithMessage("Marca deve ter no minimo 3 letras.");
 
             RuleFor(x => x.Cor)
                 .NotEmpty().WithMessage("Cor Deve ser informado.")
@@ -37,7 +37,10 @@ namespace LocadoraVeiculos.Dominio.ModuloVeiculo
                 .NotEqual(0).WithMessage("Capacidade do tanque deve ser informada");
 
             RuleFor(x => x.Quilometragem)
-                .NotEqual(0).WithMessage("Quilometragem deve ser informada");            
+                .NotEqual(0).WithMessage("Quilometragem deve ser informada");
+
+            RuleFor(x => x.GrupoVeiculos)
+                .NotNull().WithMessage("Grupo de Veiculos deve ser selecionado.");
         }
     }
 }
