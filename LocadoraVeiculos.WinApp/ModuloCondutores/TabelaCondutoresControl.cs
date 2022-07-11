@@ -46,9 +46,9 @@ namespace LocadoraVeiculos.WinApp.ModuloCondutores
 
             return colunas;
         } 
-        public int ObtemNumeroCondutoresSelecionado()
+        public Guid ObtemNumeroCondutoresSelecionado()
         {
-            return grid.SelecionarNumero<int>();
+            return grid.SelecionarNumero<Guid>();
         }
 
         public void AtualizarRegistros(List<Condutores> condutores)

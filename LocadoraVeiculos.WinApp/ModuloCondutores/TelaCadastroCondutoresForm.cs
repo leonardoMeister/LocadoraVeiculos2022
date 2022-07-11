@@ -24,8 +24,7 @@ namespace LocadoraVeiculos.WinApp.ModuloCondutores
             {
                 condutor = value;
 
-                if (condutor._id != 0)
-                    PreencherDadosNaTela();
+                PreencherDadosNaTela();
 
             }
         }

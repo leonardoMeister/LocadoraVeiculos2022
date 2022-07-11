@@ -19,12 +19,8 @@ namespace LocadoraVeiculos.WinApp.ModuloCliente
             {
                 cliente = value;
 
-                if (cliente._id != 0)
-                    PreencherDadosNaTela();
-                else
-                {
-                    radioButtonPessoaFisica.Checked = true;
-                }
+                PreencherDadosNaTela();
+                radioButtonPessoaFisica.Checked = true;
 
             }
         }

@@ -25,7 +25,7 @@ namespace LocadoraVeiculos.WinApp.ModuloCliente
         {
             TelaCadastroClienteForm telaCadastroCliente = new();
 
-            int id = tabelaClienteControl.ObtemNumeroClienteSelecionado();
+            Guid id = tabelaClienteControl.ObtemNumeroClienteSelecionado();
             var registro = controlador.SelecionarPorId(id);
 
             if (registro != null)
@@ -43,7 +43,7 @@ namespace LocadoraVeiculos.WinApp.ModuloCliente
 
         public void Excluir()
         {
-            int id = tabelaClienteControl.ObtemNumeroClienteSelecionado();
+            Guid id = tabelaClienteControl.ObtemNumeroClienteSelecionado();
             try
             {
                 controlador.Excluir(id);
