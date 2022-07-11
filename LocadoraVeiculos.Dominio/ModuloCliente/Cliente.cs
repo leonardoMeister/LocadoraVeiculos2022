@@ -51,5 +51,10 @@ namespace LocadoraVeiculos.Dominio.ModuloCliente
             hash.Add(TipoCliente);
             return hash.ToHashCode();
         }
+
+        public override string ToString()
+        {
+            return Nome;
+        }
     }
 }

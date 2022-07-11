@@ -1,7 +1,6 @@
 ﻿using LocadoraVeiculos.Dominio.ModuloTaxas;
 using LocadoraVeiculos.Repositorio.shared;
 using LocadoraVeiculos.RepositorioProject.shared;
-using System;
 
 namespace LocadoraVeiculos.RepositorioProject.ModuloTaxas
 {

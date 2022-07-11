@@ -1,6 +1,4 @@
-﻿using LocadoraVeiculos.Dominio.ModuloGrupoVeiculos;
-using LocadoraVeiculos.Dominio.shared;
-using System;
+﻿using LocadoraVeiculos.Dominio.shared;
 
 namespace LocadoraVeiculos.Dominio.ModuloVeiculo
 {

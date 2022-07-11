@@ -1,6 +1,4 @@
 ﻿using LocadoraVeiculos.Dominio.ModuloTaxas;
-using LocadoraVeiculos.RepositorioProject.ModuloTaxas;
-using LocadoraVeiculos.RepositorioProject.shared;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace LocadoraVeiculos.Testes.TestesUnitarios.TesteUnitarioTaxas

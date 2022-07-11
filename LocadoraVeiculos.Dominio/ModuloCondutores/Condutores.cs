@@ -1,5 +1,4 @@
 ﻿using LocadoraVeiculos.Dominio.shared;
-using System;
 
 namespace LocadoraVeiculos.Dominio.ModuloCondutores
 {
@@ -23,5 +22,26 @@ namespace LocadoraVeiculos.Dominio.ModuloCondutores
         public string Telefone { get; set; }
         public string Cnh { get; set; }
         public string ValidadeCnh { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Condutores condutores &&
+                   _id == condutores._id &&
+                   Nome == condutores.Nome &&
+                   Cpf == condutores.Cpf &&
+                   Endereco == condutores.Endereco &&
+                   Email == condutores.Email &&
+                   Telefone == condutores.Telefone &&
+                   Cnh == condutores.Cnh &&
+                   ValidadeCnh == condutores.ValidadeCnh;
+        }
+        public override string ToString()
+        {
+            return Nome;
+        }
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(_id, Nome, Cpf, Endereco, Email, Telefone, Cnh, ValidadeCnh);
+        }
     }
 }

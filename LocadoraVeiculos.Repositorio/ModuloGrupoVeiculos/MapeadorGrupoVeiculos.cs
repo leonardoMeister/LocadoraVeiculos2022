@@ -3,7 +3,6 @@ using LocadoraVeiculos.RepositorioProject.shared;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
 
 namespace LocadoraVeiculos.RepositorioProject.ModuloGrupoVeiculos
 {
@@ -11,8 +10,8 @@ namespace LocadoraVeiculos.RepositorioProject.ModuloGrupoVeiculos
     {
         public override GrupoVeiculos ConverterEmRegistro(IDataReader dataReader)
         {
-            int id = Convert.ToInt32(dataReader[0]);
-            string nomeGrupo = Convert.ToString(dataReader[1]);
+            int id = Convert.ToInt32(dataReader["IDGRUPO"]);
+            string nomeGrupo = Convert.ToString(dataReader["NOMEGRUPO"]);
 
             var gveiculos = new GrupoVeiculos(nomeGrupo);
             gveiculos._id = id;

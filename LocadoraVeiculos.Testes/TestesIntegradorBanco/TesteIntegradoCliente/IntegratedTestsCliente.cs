@@ -1,4 +1,5 @@
-﻿using LocadoraVeiculos.Dominio.ModuloCliente;
+﻿using LocadoraVeiculos.Controladores.ModuloControladorCliente;
+using LocadoraVeiculos.Dominio.ModuloCliente;
 using LocadoraVeiculos.RepositorioProject.ModuloCliente;
 using LocadoraVeiculos.RepositorioProject.shared;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -18,9 +19,10 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoCliente
         [TestMethod]
         public void DeveInserirCliente()
         {
-            RepositorioCliente repo = new RepositorioCliente(new MapeadorCliente());
+            ControladorCliente repo = new ControladorCliente();
 
-            Cliente cli = new Cliente("Lonardo", "19343294399", "estrada noeva", "leonrado@gmail.com", "47 99232-3433", "Tipo 2", "minha cnh");
+            Cliente cli = new Cliente("Lonardo", "193.432.943.99", "estrada noeva", "leonrado@gmail.com", "47 99232-3433",
+                EnumCliente.PessoaFisica.ToString(), "");
 
             repo.InserirNovo(cli);
 
@@ -35,10 +37,12 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoCliente
         [TestMethod]
         public void DeveBuscarVariosClientes()
         {
-            RepositorioCliente repo = new RepositorioCliente(new MapeadorCliente());
+            ControladorCliente repo = new ControladorCliente();
 
-            Cliente cli = new Cliente("Lonardo", "19343294399", "estrada noeva", "leonrado@gmail.com", "47 99232-3433", "Tipo 2", "minha cnh");
-            Cliente cli2 = new Cliente("Lonardo2", "19343294399", "estrada noeva2", "leonrado2@gmail.com", "47 99232-3433", "Tipo 22", "minha cnh2");
+            Cliente cli = new Cliente("Lonardo", "193.432.943.99", "estrada noeva", "leonrado@gmail.com", "47 99232-3433",
+                EnumCliente.PessoaFisica.ToString(), "");
+            Cliente cli2 = new Cliente("LonardoMeister", "193.432.943.93", "estrada noevaEdiutada", "leonrado@gmail.com", "47 99232-3433",
+                EnumCliente.PessoaFisica.ToString(), "");
 
             repo.InserirNovo(cli);
             repo.InserirNovo(cli2);
@@ -52,9 +56,10 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoCliente
         [TestMethod]
         public void DeveVerificarExistenciaCliente()
         {
-            RepositorioCliente repo = new RepositorioCliente(new MapeadorCliente());
+            ControladorCliente repo = new ControladorCliente();
 
-            Cliente cli = new Cliente("Lonardo", "19343294399", "estrada noeva", "leonrado@gmail.com", "47 99232-3433", "Tipo 2", "minha cnh");
+            Cliente cli = new Cliente("Lonardo", "193.432.943.99", "estrada noeva", "leonrado@gmail.com", "47 99232-3433",
+                           EnumCliente.PessoaFisica.ToString(), "");
 
             repo.InserirNovo(cli);
 
@@ -66,15 +71,17 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoCliente
         [TestMethod]
         public void DeveEditarCliente()
         {
-            RepositorioCliente repo = new RepositorioCliente(new MapeadorCliente());
+            ControladorCliente repo = new ControladorCliente();
 
-            Cliente cli = new Cliente("Lonardo", "19343294399", "estrada noeva", "leonrado@gmail.com", "47 99232-3433", "Tipo 2", "minha cnh");
-
+            Cliente cli = new Cliente("Lonardo", "193.432.943.99", "estrada noeva", "leonrado@gmail.com", "47 99232-3433",
+                           EnumCliente.PessoaFisica.ToString(), "");
             repo.InserirNovo(cli);
 
-            Cliente cli2 = new Cliente("Lonardo2", "19343294399", "estrada noeva2", "leonrado2@gmail.com", "47 99232-3433", "Tipo 22", "minha cnh2");
+            Cliente cli2 = new Cliente("LonardoEDITADO", "193.432.943.97", "estrada noevaEDITADO", "leonradoEDITADO@gmail.com", "48 99232-3433",
+                           EnumCliente.PessoaFisica.ToString(), "");
 
-            repo.Editar(cli._id, cli2);
+            cli2._id = cli._id;
+            repo.Editar(cli2);
 
             var clienteBanco = repo.SelecionarPorId(cli2._id);
 
@@ -84,10 +91,10 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoCliente
         [TestMethod]
         public void DeveDeletarCliente()
         {
-            RepositorioCliente repo = new RepositorioCliente(new MapeadorCliente());
+            ControladorCliente repo = new ControladorCliente();
 
-            Cliente cli = new Cliente("Lonardo", "19343294399", "estrada noeva", "leonrado@gmail.com", "47 99232-3433", "Tipo 2", "minha cnh");
-
+            Cliente cli = new Cliente("Lonardo", "193.432.943.99", "estrada noeva", "leonrado@gmail.com", "47 99232-3433",
+                                       EnumCliente.PessoaFisica.ToString(), "");
             repo.InserirNovo(cli);
 
             repo.Excluir(cli._id);

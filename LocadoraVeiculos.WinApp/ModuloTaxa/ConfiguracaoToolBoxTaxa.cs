@@ -6,18 +6,18 @@ namespace LocadoraVeiculos.WinApp.ModuloTaxa
     {
         public override string TipoCadastro => "Taxas";
 
-        public override string TooltipInserir => "";
+        public override string TooltipInserir => "Inserir Taxa";
 
-        public override string TooltipEditar => "";
+        public override string TooltipEditar => "Editar Taxa";
 
-        public override string TooltipExcluir => "";
+        public override string TooltipExcluir => "Excluir Taxa";
 
         public override string TooltipAdicionarItens => "";
 
         public override string TooltipAtualizarItens => "";
 
-        public override string TooltipFiltrar => "";
+        public override string TooltipFiltrar => "Filtrar Taxa";
 
-        public override string TooltipAgrupar => "";
+        public override string TooltipAgrupar => "Agrupar Taxa";
     }
 }

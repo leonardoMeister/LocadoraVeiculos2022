@@ -1,4 +1,5 @@
-﻿using LocadoraVeiculos.Dominio.ModuloGrupoVeiculos;
+﻿using LocadoraVeiculos.Controladores.ModuloControladorGrupoVeiculos;
+using LocadoraVeiculos.Dominio.ModuloGrupoVeiculos;
 using LocadoraVeiculos.RepositorioProject.ModuloGrupoVeiculos;
 using LocadoraVeiculos.RepositorioProject.shared;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -10,20 +11,24 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoGrupoVeicu
     {
         public IntegratedTestsGrupoVeiculos()
         {
-            string query = @"delete from TB_GRUPOVEICULOS;
-                            DBCC CHECKIDENT (TB_GRUPOVEICULOS, RESEED, 1)";
+            string query = @"delete from TB_PLANOCOBRANCA;
+                            DBCC CHECKIDENT (TB_PLANOCOBRANCA, RESEED, 1)";
             DataBase.ExecutarComando(query);
+
+            string query2 = @"delete from TB_GRUPOVEICULOS;
+                            DBCC CHECKIDENT (TB_GRUPOVEICULOS, RESEED, 1)";
+            DataBase.ExecutarComando(query2);
         }
 
         [TestMethod]
         public void DeveInserirGrupoVeiculos()
         {
-            RepositorioGrupoVeiculos repo = new RepositorioGrupoVeiculos(new MapeadorGrupoVeiculos());
+            ControladorGrupoVeiculos repo = new ControladorGrupoVeiculos();
 
             GrupoVeiculos gveh = new GrupoVeiculos("Grupo 1");
 
             repo.InserirNovo(gveh);
-             
+
             var gveiculos = repo.SelecionarPorId(gveh._id);
 
             Assert.AreEqual(gveiculos._id, gveh._id);
@@ -33,7 +38,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoGrupoVeicu
         [TestMethod]
         public void DeveBuscarVariosGrupoVeiculos()
         {
-            RepositorioGrupoVeiculos repo = new RepositorioGrupoVeiculos(new MapeadorGrupoVeiculos());
+            ControladorGrupoVeiculos repo = new ControladorGrupoVeiculos();
 
             GrupoVeiculos gveh = new GrupoVeiculos("Grupo 1");
             GrupoVeiculos gveh2 = new GrupoVeiculos("Grupo 2");
@@ -50,7 +55,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoGrupoVeicu
         [TestMethod]
         public void DeveVerificarExistenciaGrupoVeiculos()
         {
-            RepositorioGrupoVeiculos repo = new RepositorioGrupoVeiculos(new MapeadorGrupoVeiculos());
+            ControladorGrupoVeiculos repo = new ControladorGrupoVeiculos();
 
             GrupoVeiculos gveh = new GrupoVeiculos("Grupo 1");
 
@@ -64,15 +69,15 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoGrupoVeicu
         [TestMethod]
         public void DeveEditarGrupoVeiculos()
         {
-            RepositorioGrupoVeiculos repo = new RepositorioGrupoVeiculos(new MapeadorGrupoVeiculos());
+            ControladorGrupoVeiculos repo = new ControladorGrupoVeiculos();
 
             GrupoVeiculos gveh = new GrupoVeiculos("Grupo 2");
 
             repo.InserirNovo(gveh);
 
             GrupoVeiculos gveh2 = new GrupoVeiculos("Grupo 3");
-
-            repo.Editar(gveh._id, gveh2);
+            gveh2._id = gveh._id;
+            repo.Editar(gveh2);
 
             var gveiculosBanco = repo.SelecionarPorId(gveh2._id);
 
@@ -82,7 +87,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoGrupoVeicu
         [TestMethod]
         public void DeveDeletarGrupoVeiculos()
         {
-            RepositorioGrupoVeiculos repo = new RepositorioGrupoVeiculos(new MapeadorGrupoVeiculos());
+            ControladorGrupoVeiculos repo = new ControladorGrupoVeiculos();
 
             GrupoVeiculos gveh = new GrupoVeiculos("Grupo 2");
 

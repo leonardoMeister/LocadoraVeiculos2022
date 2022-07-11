@@ -1,13 +1,8 @@
 ﻿using LocadoraVeiculos.Controladores.ModuloCondutores;
 using LocadoraVeiculos.Dominio.ModuloCondutores;
-using LocadoraVeiculos.RepositorioProject.ModuloCondutores;
-using LocadoraVeiculos.WinApp.ModuloGrupoVeiculo;
 using LocadoraVeiculos.WinApp.shared;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LocadoraVeiculos.WinApp.ModuloCondutores
