@@ -20,30 +20,6 @@ namespace LocadoraVeiculos.Controladores.ModuloControladorCliente
             return new ValidadorCliente();
         }
 
-        public override ValidationResult Editar(Cliente registro)
-        {
-            Log.Logger.Debug("Tentando editar um Cliente... {@f}", registro);
-
-            var validacaoBanco = FuncionarioForValidoParaEditar(registro);
-            if (validacaoBanco.IsValid)
-            {
-                Log.Logger.Debug("Cliente {ClienteNome} editado com sucesso", registro.Nome);
-
-                return base.Editar(registro);
-            }
-            else
-            {
-                foreach (var erros in validacaoBanco.Errors)
-                {
-                    Log.Logger.Warning("Falha ao tentar editar um Cliente {ClienteNome} - {Motivo}",
-                        registro.Nome, erros.ErrorMessage);
-                    return validacaoBanco;
-                }
-            }
-
-            return validacaoBanco;
-        }
-
         public override ValidationResult InserirNovo(Cliente registro)
         {
             Log.Logger.Debug("Tentando inserir um Cliente... {@f}", registro);
@@ -51,7 +27,7 @@ namespace LocadoraVeiculos.Controladores.ModuloControladorCliente
             var validacaoBanco = FuncionarioForValidoParaInserir(registro);
             if (validacaoBanco.IsValid)
             {
-                Log.Logger.Debug("Cliente {ClienteNome} inserido com sucesso", registro.Nome);
+                Log.Logger.Debug("Cliente {ClienteID} inserido com sucesso", registro._id);
 
                 return base.InserirNovo(registro);
             }
@@ -59,8 +35,8 @@ namespace LocadoraVeiculos.Controladores.ModuloControladorCliente
             {
                 foreach (var erros in validacaoBanco.Errors)
                 {
-                    Log.Logger.Warning("Falha ao tentar inserir um Cliente {ClienteNome} - {Motivo}",
-                        registro.Nome, erros.ErrorMessage);
+                    Log.Logger.Warning("Falha ao tentar inserir um Cliente {ClienteID} - {Motivo}",
+                        registro._id, erros.ErrorMessage);
                     return validacaoBanco;
                 }
             }
@@ -68,6 +44,29 @@ namespace LocadoraVeiculos.Controladores.ModuloControladorCliente
             return validacaoBanco;
         }
 
+        public override ValidationResult Editar(Cliente registro)
+        {
+            Log.Logger.Debug("Tentando editar um Cliente... {@f}", registro);
+
+            var validacaoBanco = FuncionarioForValidoParaEditar(registro);
+            if (validacaoBanco.IsValid)
+            {
+                Log.Logger.Debug("Cliente {ClienteID} editado com sucesso", registro._id);
+
+                return base.Editar(registro);
+            }
+            else
+            {
+                foreach (var erros in validacaoBanco.Errors)
+                {
+                    Log.Logger.Warning("Falha ao tentar editar um Cliente {ClienteID} - {Motivo}",
+                        registro._id, erros.ErrorMessage);
+                    return validacaoBanco;
+                }
+            }
+
+            return validacaoBanco;
+        }
 
         private ValidationResult FuncionarioForValidoParaEditar(Cliente registro)
         {
