@@ -3,9 +3,6 @@ using LocadoraVeiculos.Dominio.ModuloVeiculo;
 using LocadoraVeiculos.WinApp.shared;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LocadoraVeiculos.WinApp.ModuloVeiculo
@@ -15,7 +12,6 @@ namespace LocadoraVeiculos.WinApp.ModuloVeiculo
         TabelaVeiculoControl tabelaVeiculo;
         ControladorVeiculo ControladorVeiculo;
         Action<string> AtualizarRodape;
-
         public ConfiguracaoVeiculo(Action<string> atualizar)
         {
             AtualizarRodape = atualizar;
@@ -27,25 +23,25 @@ namespace LocadoraVeiculos.WinApp.ModuloVeiculo
         {
             TelaCadastroVeiculo telaCadastroVeiculo = new();
 
-            int id = tabelaVeiculo.ObtemNumeroTarefaSelecionado();
+            int id = tabelaVeiculo.ObtemNumeroVeiculoSelecionado();
             var registro = ControladorVeiculo.SelecionarPorId(id);
 
             if (registro != null)
             {
-                AtualizarRodape("Tela de Edição Grupo Veiculo");
+                AtualizarRodape("Tela de Edição Veiculo");
                 telaCadastroVeiculo.Veiculo = registro;
 
                 telaCadastroVeiculo.GravarRegistro = ControladorVeiculo.Editar;
                 telaCadastroVeiculo.AtualizarRodape = AtualizarRodape;
                 telaCadastroVeiculo.ShowDialog();
 
-                if (telaCadastroVeiculo.DialogResult == DialogResult.OK) AtualizarRodape("Edição Grupo Veiculo Realizada Com Sucesso");
+                if (telaCadastroVeiculo.DialogResult == DialogResult.OK) AtualizarRodape("Edição Veiculo Realizada Com Sucesso");
             }
         }
 
         public void Excluir()
         {
-            int id = tabelaVeiculo.ObtemNumeroTarefaSelecionado();
+            int id = tabelaVeiculo.ObtemNumeroVeiculoSelecionado();
             try
             {
                 ControladorVeiculo.Excluir(id);
@@ -68,7 +64,7 @@ namespace LocadoraVeiculos.WinApp.ModuloVeiculo
             telaCadastroVeiculo.AtualizarRodape = AtualizarRodape;
             telaCadastroVeiculo.ShowDialog();
 
-            if (telaCadastroVeiculo.DialogResult == DialogResult.OK) AtualizarRodape("Cadastro Grupo Veiculo Realizado Com Sucesso");
+            if (telaCadastroVeiculo.DialogResult == DialogResult.OK) AtualizarRodape("Cadastro Veiculo Realizado Com Sucesso");
         }
 
         public ConfiguracaoToolboxBase ObtemConfiguracaoToolbox()

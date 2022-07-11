@@ -37,11 +37,7 @@ namespace LocadoraVeiculos.Dominio.ModuloVeiculo
                 .NotEqual(0).WithMessage("Capacidade do tanque deve ser informada");
 
             RuleFor(x => x.Quilometragem)
-                .NotEqual(0).WithMessage("Quilometragem deve ser informada");
-
-            RuleFor(x => x.Foto)
-                .NotEmpty().WithMessage("A foto deve ser selecionada.")
-                .NotNull().WithMessage("A foto deve ser selecionada.");
+                .NotEqual(0).WithMessage("Quilometragem deve ser informada");            
         }
     }
 }

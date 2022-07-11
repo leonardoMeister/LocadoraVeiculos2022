@@ -45,7 +45,7 @@ namespace LocadoraVeiculos.WinApp.ModuloVeiculo
 
             return colunas;
         }
-        public int ObtemNumeroTarefaSelecionado()
+        public int ObtemNumeroVeiculoSelecionado()
         {
             return grid.SelecionarNumero<int>();
         }

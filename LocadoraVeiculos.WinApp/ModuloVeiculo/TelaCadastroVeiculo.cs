@@ -39,30 +39,16 @@ namespace LocadoraVeiculos.WinApp.ModuloVeiculo
         }
 
         private bool PegarObjetoTela()
-        {
-            if (
-                textBoxModelo.Text == "" ||
-                textBoxPlacas.Text == "" ||
-                textBoxMarca.Text == "" ||
-                textBoxCor.Text == "" ||
-                comboBoxTipoCombustivel.Text == null ||
-                textBoxCapacidadeTanque.Text == "" ||
-                textBoxAno.Text == "" ||
-                textBoxQuilometragem.Text == ""
-                )
-            {
-                AtualizarRodape("Favor Preencher todos os campos.");
-                return false;
-            }
+        {           
 
             Veiculo.Modelo = textBoxModelo.Text;
             Veiculo.Placa = textBoxPlacas.Text;
             Veiculo.Marca = textBoxMarca.Text;
             Veiculo.Cor = textBoxCor.Text;
             Veiculo.TipoCombustivel = comboBoxTipoCombustivel.Text;
-            Veiculo.CapacidadeTanque = textBoxCapacidadeTanque.Text;
-            Veiculo.Ano = textBoxAno.Text;
-            Veiculo.Quilometragem = textBoxQuilometragem.Text;
+            Veiculo.CapacidadeTanque = Convert.ToDecimal(textBoxCapacidadeTanque.Text);
+            Veiculo.Ano = Convert.ToDateTime(textBoxAno.Text);
+            Veiculo.Quilometragem = Convert.ToDecimal(textBoxQuilometragem.Text);
 
             return true;
         }

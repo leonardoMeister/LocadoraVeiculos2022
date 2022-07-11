@@ -57,73 +57,77 @@
             // labelModelo
             // 
             this.labelModelo.AutoSize = true;
-            this.labelModelo.Location = new System.Drawing.Point(12, 12);
+            this.labelModelo.Location = new System.Drawing.Point(14, 16);
             this.labelModelo.Name = "labelModelo";
-            this.labelModelo.Size = new System.Drawing.Size(51, 15);
+            this.labelModelo.Size = new System.Drawing.Size(64, 20);
             this.labelModelo.TabIndex = 0;
             this.labelModelo.Text = "Modelo:";
             // 
             // textBoxModelo
             // 
-            this.textBoxModelo.Location = new System.Drawing.Point(112, 9);
+            this.textBoxModelo.Location = new System.Drawing.Point(128, 12);
+            this.textBoxModelo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBoxModelo.Name = "textBoxModelo";
-            this.textBoxModelo.Size = new System.Drawing.Size(375, 23);
+            this.textBoxModelo.Size = new System.Drawing.Size(428, 27);
             this.textBoxModelo.TabIndex = 1;
             // 
             // labelPlacas
             // 
             this.labelPlacas.AutoSize = true;
-            this.labelPlacas.Location = new System.Drawing.Point(12, 41);
+            this.labelPlacas.Location = new System.Drawing.Point(14, 55);
             this.labelPlacas.Name = "labelPlacas";
-            this.labelPlacas.Size = new System.Drawing.Size(43, 15);
+            this.labelPlacas.Size = new System.Drawing.Size(53, 20);
             this.labelPlacas.TabIndex = 0;
             this.labelPlacas.Text = "Placas:";
             // 
             // textBoxPlacas
             // 
-            this.textBoxPlacas.Location = new System.Drawing.Point(112, 38);
+            this.textBoxPlacas.Location = new System.Drawing.Point(128, 51);
+            this.textBoxPlacas.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBoxPlacas.Name = "textBoxPlacas";
-            this.textBoxPlacas.Size = new System.Drawing.Size(375, 23);
+            this.textBoxPlacas.Size = new System.Drawing.Size(428, 27);
             this.textBoxPlacas.TabIndex = 1;
             // 
             // textBoxMarca
             // 
-            this.textBoxMarca.Location = new System.Drawing.Point(112, 67);
+            this.textBoxMarca.Location = new System.Drawing.Point(128, 89);
+            this.textBoxMarca.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBoxMarca.Name = "textBoxMarca";
-            this.textBoxMarca.Size = new System.Drawing.Size(375, 23);
+            this.textBoxMarca.Size = new System.Drawing.Size(428, 27);
             this.textBoxMarca.TabIndex = 1;
             // 
             // labelMarca
             // 
             this.labelMarca.AutoSize = true;
-            this.labelMarca.Location = new System.Drawing.Point(12, 70);
+            this.labelMarca.Location = new System.Drawing.Point(14, 93);
             this.labelMarca.Name = "labelMarca";
-            this.labelMarca.Size = new System.Drawing.Size(43, 15);
+            this.labelMarca.Size = new System.Drawing.Size(53, 20);
             this.labelMarca.TabIndex = 0;
             this.labelMarca.Text = "Marca:";
             // 
             // textBoxCor
             // 
-            this.textBoxCor.Location = new System.Drawing.Point(112, 96);
+            this.textBoxCor.Location = new System.Drawing.Point(128, 128);
+            this.textBoxCor.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBoxCor.Name = "textBoxCor";
-            this.textBoxCor.Size = new System.Drawing.Size(375, 23);
+            this.textBoxCor.Size = new System.Drawing.Size(428, 27);
             this.textBoxCor.TabIndex = 1;
             // 
             // labelCor
             // 
             this.labelCor.AutoSize = true;
-            this.labelCor.Location = new System.Drawing.Point(12, 99);
+            this.labelCor.Location = new System.Drawing.Point(14, 132);
             this.labelCor.Name = "labelCor";
-            this.labelCor.Size = new System.Drawing.Size(29, 15);
+            this.labelCor.Size = new System.Drawing.Size(35, 20);
             this.labelCor.TabIndex = 0;
             this.labelCor.Text = "Cor:";
             // 
             // labelTipoCombustivel
             // 
             this.labelTipoCombustivel.AutoSize = true;
-            this.labelTipoCombustivel.Location = new System.Drawing.Point(12, 128);
+            this.labelTipoCombustivel.Location = new System.Drawing.Point(14, 171);
             this.labelTipoCombustivel.Name = "labelTipoCombustivel";
-            this.labelTipoCombustivel.Size = new System.Drawing.Size(119, 15);
+            this.labelTipoCombustivel.Size = new System.Drawing.Size(149, 20);
             this.labelTipoCombustivel.TabIndex = 0;
             this.labelTipoCombustivel.Text = "Tipo de Combustível:";
             // 
@@ -136,82 +140,87 @@
             "Diesel",
             "Etanol",
             "GNV"});
-            this.comboBoxTipoCombustivel.Location = new System.Drawing.Point(137, 125);
+            this.comboBoxTipoCombustivel.Location = new System.Drawing.Point(171, 168);
+            this.comboBoxTipoCombustivel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.comboBoxTipoCombustivel.Name = "comboBoxTipoCombustivel";
-            this.comboBoxTipoCombustivel.Size = new System.Drawing.Size(348, 23);
+            this.comboBoxTipoCombustivel.Size = new System.Drawing.Size(397, 28);
             this.comboBoxTipoCombustivel.TabIndex = 2;
             // 
             // textBoxCapacidadeTanque
             // 
-            this.textBoxCapacidadeTanque.Location = new System.Drawing.Point(150, 154);
+            this.textBoxCapacidadeTanque.Location = new System.Drawing.Point(171, 205);
+            this.textBoxCapacidadeTanque.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBoxCapacidadeTanque.Name = "textBoxCapacidadeTanque";
-            this.textBoxCapacidadeTanque.Size = new System.Drawing.Size(84, 23);
+            this.textBoxCapacidadeTanque.Size = new System.Drawing.Size(95, 27);
             this.textBoxCapacidadeTanque.TabIndex = 1;
             // 
             // labelCapacidadeTanque
             // 
             this.labelCapacidadeTanque.AutoSize = true;
-            this.labelCapacidadeTanque.Location = new System.Drawing.Point(12, 157);
+            this.labelCapacidadeTanque.Location = new System.Drawing.Point(14, 209);
             this.labelCapacidadeTanque.Name = "labelCapacidadeTanque";
-            this.labelCapacidadeTanque.Size = new System.Drawing.Size(130, 15);
+            this.labelCapacidadeTanque.Size = new System.Drawing.Size(164, 20);
             this.labelCapacidadeTanque.TabIndex = 0;
             this.labelCapacidadeTanque.Text = "Capacidade do Tanque:";
             // 
             // labelLitros
             // 
             this.labelLitros.AutoSize = true;
-            this.labelLitros.Location = new System.Drawing.Point(240, 157);
+            this.labelLitros.Location = new System.Drawing.Point(274, 209);
             this.labelLitros.Name = "labelLitros";
-            this.labelLitros.Size = new System.Drawing.Size(36, 15);
+            this.labelLitros.Size = new System.Drawing.Size(45, 20);
             this.labelLitros.TabIndex = 0;
             this.labelLitros.Text = "Litros";
             // 
             // textBoxAno
             // 
-            this.textBoxAno.Location = new System.Drawing.Point(112, 183);
+            this.textBoxAno.Location = new System.Drawing.Point(128, 244);
+            this.textBoxAno.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBoxAno.Name = "textBoxAno";
-            this.textBoxAno.Size = new System.Drawing.Size(375, 23);
+            this.textBoxAno.Size = new System.Drawing.Size(428, 27);
             this.textBoxAno.TabIndex = 1;
             // 
             // labelAno
             // 
             this.labelAno.AutoSize = true;
-            this.labelAno.Location = new System.Drawing.Point(12, 186);
+            this.labelAno.Location = new System.Drawing.Point(14, 248);
             this.labelAno.Name = "labelAno";
-            this.labelAno.Size = new System.Drawing.Size(32, 15);
+            this.labelAno.Size = new System.Drawing.Size(39, 20);
             this.labelAno.TabIndex = 0;
             this.labelAno.Text = "Ano:";
             // 
             // textBoxQuilometragem
             // 
-            this.textBoxQuilometragem.Location = new System.Drawing.Point(112, 212);
+            this.textBoxQuilometragem.Location = new System.Drawing.Point(128, 283);
+            this.textBoxQuilometragem.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBoxQuilometragem.Name = "textBoxQuilometragem";
-            this.textBoxQuilometragem.Size = new System.Drawing.Size(375, 23);
+            this.textBoxQuilometragem.Size = new System.Drawing.Size(428, 27);
             this.textBoxQuilometragem.TabIndex = 1;
             // 
             // labelQuilometragem
             // 
             this.labelQuilometragem.AutoSize = true;
-            this.labelQuilometragem.Location = new System.Drawing.Point(12, 215);
+            this.labelQuilometragem.Location = new System.Drawing.Point(14, 287);
             this.labelQuilometragem.Name = "labelQuilometragem";
-            this.labelQuilometragem.Size = new System.Drawing.Size(94, 15);
+            this.labelQuilometragem.Size = new System.Drawing.Size(117, 20);
             this.labelQuilometragem.TabIndex = 0;
             this.labelQuilometragem.Text = "Quilometragem:";
             // 
             // labelFoto
             // 
             this.labelFoto.AutoSize = true;
-            this.labelFoto.Location = new System.Drawing.Point(12, 244);
+            this.labelFoto.Location = new System.Drawing.Point(14, 325);
             this.labelFoto.Name = "labelFoto";
-            this.labelFoto.Size = new System.Drawing.Size(34, 15);
+            this.labelFoto.Size = new System.Drawing.Size(42, 20);
             this.labelFoto.TabIndex = 0;
             this.labelFoto.Text = "Foto:";
             // 
             // pictureBoxFoto
             // 
-            this.pictureBoxFoto.Location = new System.Drawing.Point(112, 244);
+            this.pictureBoxFoto.Location = new System.Drawing.Point(128, 325);
+            this.pictureBoxFoto.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pictureBoxFoto.Name = "pictureBoxFoto";
-            this.pictureBoxFoto.Size = new System.Drawing.Size(283, 134);
+            this.pictureBoxFoto.Size = new System.Drawing.Size(323, 179);
             this.pictureBoxFoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBoxFoto.TabIndex = 3;
             this.pictureBoxFoto.TabStop = false;
@@ -222,36 +231,39 @@
             // 
             // buttonCarregarFoto
             // 
-            this.buttonCarregarFoto.Location = new System.Drawing.Point(412, 355);
+            this.buttonCarregarFoto.Location = new System.Drawing.Point(471, 473);
+            this.buttonCarregarFoto.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.buttonCarregarFoto.Name = "buttonCarregarFoto";
-            this.buttonCarregarFoto.Size = new System.Drawing.Size(75, 23);
+            this.buttonCarregarFoto.Size = new System.Drawing.Size(86, 31);
             this.buttonCarregarFoto.TabIndex = 4;
             this.buttonCarregarFoto.Text = "Carregar";
             this.buttonCarregarFoto.UseVisualStyleBackColor = true;
             // 
             // buttonCancelar
             // 
-            this.buttonCancelar.Location = new System.Drawing.Point(410, 415);
+            this.buttonCancelar.Location = new System.Drawing.Point(469, 553);
+            this.buttonCancelar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.buttonCancelar.Name = "buttonCancelar";
-            this.buttonCancelar.Size = new System.Drawing.Size(75, 23);
+            this.buttonCancelar.Size = new System.Drawing.Size(86, 31);
             this.buttonCancelar.TabIndex = 4;
             this.buttonCancelar.Text = "Cancelar";
             this.buttonCancelar.UseVisualStyleBackColor = true;
             // 
             // buttonSalvar
             // 
-            this.buttonSalvar.Location = new System.Drawing.Point(329, 415);
+            this.buttonSalvar.Location = new System.Drawing.Point(376, 553);
+            this.buttonSalvar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.buttonSalvar.Name = "buttonSalvar";
-            this.buttonSalvar.Size = new System.Drawing.Size(75, 23);
+            this.buttonSalvar.Size = new System.Drawing.Size(86, 31);
             this.buttonSalvar.TabIndex = 4;
             this.buttonSalvar.Text = "Salvar";
             this.buttonSalvar.UseVisualStyleBackColor = true;
             // 
             // TelaCadastroVeiculo
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(497, 450);
+            this.ClientSize = new System.Drawing.Size(672, 600);
             this.Controls.Add(this.buttonSalvar);
             this.Controls.Add(this.buttonCancelar);
             this.Controls.Add(this.buttonCarregarFoto);
@@ -275,6 +287,7 @@
             this.Controls.Add(this.labelPlacas);
             this.Controls.Add(this.labelModelo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "TelaCadastroVeiculo";
