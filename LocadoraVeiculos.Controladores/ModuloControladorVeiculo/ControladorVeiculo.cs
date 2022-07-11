@@ -2,6 +2,7 @@
 using FluentValidation.Results;
 using LocadoraVeiculos.Dominio.ModuloVeiculo;
 using LocadoraVeiculos.Repositorio.shared;
+using LocadoraVeiculos.RepositorioProject.ModuloVeiculo;
 using Serilog;
 using System;
 
@@ -9,14 +10,14 @@ namespace LocadoraVeiculos.Controladores.ModuloVeiculo
 {
     public class ControladorVeiculo : Controlador<Veiculo>
     {
-        protected override IRepository<Veiculo> PegarRepositorio()
+        protected override IRepository<Veiculo> PegarRepositorio() 
         {
-            throw new NotImplementedException();
+            return new RepositorioVeiculo(new MapeadorVeiculo());
         }
 
         protected override AbstractValidator<Veiculo> PegarValidador()
         {
-            throw new NotImplementedException();
+            return new ValidadorVeiculo();
         }
 
         public override ValidationResult InserirNovo(Veiculo registro)
