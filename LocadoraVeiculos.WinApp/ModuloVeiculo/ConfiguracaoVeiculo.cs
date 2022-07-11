@@ -12,7 +12,7 @@ namespace LocadoraVeiculos.WinApp.ModuloVeiculo
 {
     public class ConfiguracaoVeiculo : ConfiguracaoBase, ICadastravel
     {
-        TabelaVeiculo tabelaVeiculo;
+        TabelaVeiculoControl tabelaVeiculo;
         ControladorVeiculo ControladorVeiculo;
         Action<string> AtualizarRodape;
 

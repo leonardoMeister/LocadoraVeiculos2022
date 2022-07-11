@@ -1,6 +1,6 @@
 ﻿namespace LocadoraVeiculos.WinApp.ModuloVeiculo
 {
-    partial class TabelaVeiculo
+    partial class TabelaVeiculoControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,27 +28,30 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.grid = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.grid)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // grid
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.Size = new System.Drawing.Size(481, 453);
-            this.dataGridView1.TabIndex = 0;
+            this.grid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grid.Location = new System.Drawing.Point(0, 0);
+            this.grid.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.grid.Name = "grid";
+            this.grid.RowHeadersWidth = 51;
+            this.grid.RowTemplate.Height = 25;
+            this.grid.Size = new System.Drawing.Size(544, 548);
+            this.grid.TabIndex = 3;
             // 
-            // TabelaVeiculo
+            // TabelaVeiculoControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.dataGridView1);
-            this.Name = "TabelaVeiculo";
-            this.Size = new System.Drawing.Size(481, 453);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.Controls.Add(this.grid);
+            this.Name = "TabelaVeiculoControl";
+            this.Size = new System.Drawing.Size(544, 548);
+            ((System.ComponentModel.ISupportInitialize)(this.grid)).EndInit();
             this.ResumeLayout(false);
 
         }

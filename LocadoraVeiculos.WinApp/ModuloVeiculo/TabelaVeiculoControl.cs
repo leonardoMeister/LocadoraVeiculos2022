@@ -12,9 +12,9 @@ using System.Windows.Forms;
 
 namespace LocadoraVeiculos.WinApp.ModuloVeiculo
 {
-    public partial class TabelaVeiculo : UserControl
+    public partial class TabelaVeiculoControl : UserControl
     {
-        public TabelaVeiculo()
+        public TabelaVeiculoControl()
         {
             InitializeComponent();
             grid.ConfigurarGridZebrado();
@@ -25,7 +25,7 @@ namespace LocadoraVeiculos.WinApp.ModuloVeiculo
         private DataGridViewColumn[] ObterColunas()
         {
             var colunas = new DataGridViewColumn[]
-            {
+                        {
                 new DataGridViewTextBoxColumn { DataPropertyName = "Modelo", HeaderText = "Modelo"},
 
                 new DataGridViewTextBoxColumn { DataPropertyName = "Placas", HeaderText = "Placas"},
@@ -41,11 +41,10 @@ namespace LocadoraVeiculos.WinApp.ModuloVeiculo
                 new DataGridViewTextBoxColumn { DataPropertyName = "Ano", HeaderText = "Ano"},
 
                 new DataGridViewTextBoxColumn { DataPropertyName = "Quilometragem", HeaderText = "Quilometragem"}
-            };
+                        };
 
             return colunas;
         }
-
         public int ObtemNumeroTarefaSelecionado()
         {
             return grid.SelecionarNumero<int>();
