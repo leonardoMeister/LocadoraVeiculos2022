@@ -1,14 +1,12 @@
 ﻿using LocadoraVeiculos.Dominio.ModuloVeiculo;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using FluentValidation.Results;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Drawing;
+using System.IO;
+using System.Drawing.Imaging;
+using LocadoraVeiculos.Controladores.ModuloControladorGrupoVeiculos;
+using LocadoraVeiculos.Dominio.ModuloGrupoVeiculos;
 
 namespace LocadoraVeiculos.WinApp.ModuloVeiculo
 {
@@ -17,19 +15,114 @@ namespace LocadoraVeiculos.WinApp.ModuloVeiculo
         public TelaCadastroVeiculo()
         {
             InitializeComponent();
+            AtualizarPlanosCobranca();
         }
 
+        private void AtualizarPlanosCobranca()
+        {
+            ControladorGrupoVeiculos control = new ControladorGrupoVeiculos();
+            var dados = control.SelecionarTodos();
+            foreach (var dado in dados)
+            {
+                cmbGrupoVeiculo.Items.Add(dado);
+            }
+        }
+
+        private Bitmap bmp;
         public Action<string> AtualizarRodape { get; set; }
 
-        public Veiculo Veiculo;
+        Veiculo veiculo;
+        public Veiculo Veiculo
+        {
+            get { return veiculo; }
+            set
+            {
+                veiculo = value;
+                CarregarFoto();
+                txtId.Text = veiculo._id.ToString();
+                textBoxModelo.Text = veiculo.Modelo;
+                textBoxPlacas.Text = veiculo.Placa;
+                textBoxMarca.Text = veiculo.Marca;
+                data.Value = veiculo.Ano;
+                textCor.Text = veiculo.Cor;
+                textBoxCapacidadeTanque.Text =  veiculo.CapacidadeTanque.ToString();
+                textBoxQuilometragem.Text = veiculo.Quilometragem.ToString();
+                cmbGrupoVeiculo.SelectedItem = veiculo.GrupoVeiculos;
+                comboBoxTipoCombustivel.SelectedItem = veiculo.TipoCombustivel;
+            }
+        }
+
+        private void CarregarFoto()
+        {
+            MemoryStream memory = new MemoryStream(veiculo.Foto);
+
+            pictureBoxFoto.Image = Image.FromStream(memory);
+
+            bmp = new Bitmap(pictureBoxFoto.Image);
+        }
 
         public Func<Veiculo, ValidationResult> GravarRegistro { get; internal set; }
 
-        private void BtnSalvar_Click(object sender, EventArgs e)
+        private void PegarObjetoTela()
         {
-            if (!PegarObjetoTela()) return;
+            int id = 0;
 
-            var resultadoValidacao = GravarRegistro(Veiculo);
+            if (txtId.Text != "")
+                id = Convert.ToInt32(txtId.Text);
+
+            MemoryStream memory = new MemoryStream();
+            byte[] foto = null;
+            if (bmp != null)
+            {
+                bmp.Save(memory, ImageFormat.Bmp);
+                foto = memory.ToArray();
+            }
+
+            string modelo = textBoxModelo.Text;
+            string placa = textBoxPlacas.Text;
+            string marca = textBoxMarca.Text;
+            string cor = textCor.Text;
+            string tipoCombustivel = comboBoxTipoCombustivel.Text;            
+            DateTime ano = data.Value;
+            
+            decimal capacidadeTanque =  (textBoxCapacidadeTanque.Text == "")? 0:  Convert.ToDecimal(textBoxCapacidadeTanque.Text);
+            decimal quilometragem =  (textBoxQuilometragem.Text == "")? 0: Convert.ToDecimal(textBoxQuilometragem.Text);
+
+
+            GrupoVeiculos grupo = null;
+            if (cmbGrupoVeiculo.SelectedIndex != -1) grupo = (GrupoVeiculos)cmbGrupoVeiculo.SelectedItem;
+
+            veiculo = new Veiculo(modelo, placa, marca, cor, tipoCombustivel, capacidadeTanque, ano, quilometragem, foto, grupo)
+            {
+                _id = id
+            };
+
+        }
+        private void buttonCarregarFoto_Click(object sender, EventArgs e)
+        {
+            if (openFileDialogFoto.ShowDialog() == DialogResult.OK)
+            {
+                string nome = openFileDialogFoto.FileName;
+
+                bmp = new Bitmap(nome);
+
+                pictureBoxFoto.Image = bmp;
+            }
+        }
+        private void btnSalvar_Click_1(object sender, EventArgs e)
+        {
+            PegarObjetoTela();
+
+
+            if(veiculo.Foto is null)
+            {
+                AtualizarRodape("Foto deve ser selecionada");
+
+                DialogResult = DialogResult.None;
+                return;
+            }
+
+            var resultadoValidacao = GravarRegistro(veiculo);
 
             if (resultadoValidacao.IsValid == false)
             {
@@ -44,37 +137,7 @@ namespace LocadoraVeiculos.WinApp.ModuloVeiculo
                 DialogResult = DialogResult.OK;
             }
         }
-
-        private bool PegarObjetoTela()
-        {
-            if (
-                textBoxModelo.Text == "" ||
-                textBoxPlacas.Text == "" ||
-                textBoxMarca.Text == "" ||
-                textBoxCor.Text == "" ||
-                comboBoxTipoCombustivel.Text == null ||
-                textBoxCapacidadeTanque.Text == "" ||
-                textBoxAno.Text == "" ||
-                textBoxQuilometragem.Text == ""
-                )
-            {
-                AtualizarRodape("Favor Preencher todos os campos.");
-                return false;
-            }
-
-            Veiculo.Modelo = textBoxModelo.Text;
-            Veiculo.Placa = textBoxPlacas.Text;
-            Veiculo.Marca = textBoxMarca.Text;
-            Veiculo.Cor = textBoxCor.Text;
-            Veiculo.TipoCombustivel = comboBoxTipoCombustivel.Text;
-            Veiculo.CapacidadeTanque = textBoxCapacidadeTanque.Text;
-            Veiculo.Ano = textBoxAno.Text;
-            Veiculo.Quilometragem = textBoxQuilometragem.Text;
-
-            return true;
-        }
-
-        private void BtnCancelar_Click(object sender, EventArgs e)
+        private void btnCancelar_Click_1(object sender, EventArgs e)
         {
             AtualizarRodape("Inserção Cancelada.");
             this.DialogResult = DialogResult.Cancel;

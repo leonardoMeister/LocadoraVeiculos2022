@@ -20,6 +20,7 @@ namespace LocadoraVeiculos.WinApp
         public ConfiguracaoCondutores configuracaoCondutores;
         public ConfiguracaoPlanoCobranca configuracaoPlanoCobranca;
         public ConfiguracaoVeiculo configuracaoVeiculo;
+        public ConfiguracaoPlanoCobranca configuracaoPlanoCobranca;
 
         public ICadastravel telaSelecionada;
 
@@ -37,6 +38,7 @@ namespace LocadoraVeiculos.WinApp
             this.configuracaoCondutores = new ConfiguracaoCondutores(this.AtualizarRodape);
             this.configuracaoPlanoCobranca = new ConfiguracaoPlanoCobranca(this.AtualizarRodape);
             this.configuracaoVeiculo = new(this.AtualizarRodape);
+            this.configuracaoPlanoCobranca = new ConfiguracaoPlanoCobranca(this.AtualizarRodape);
         }
 
         public void AtualizarRodape(string mensagem)
@@ -121,19 +123,24 @@ namespace LocadoraVeiculos.WinApp
             telaSelecionada = configuracaoFuncionario;
             ConfigurarTelaPrincipal(configuracaoFuncionario);
         }
-        private void condutoresMenuItem_Click(object sender, EventArgs e)
+        private void CondutoresMenuItem_Click(object sender, EventArgs e)
         {
             telaSelecionada = configuracaoCondutores;
             ConfigurarTelaPrincipal(configuracaoCondutores);
         }
-        private void planoDeCobrancaMenuItem_Click(object sender, EventArgs e)
+        private void PlanoDeCobrancaMenuItem_Click(object sender, EventArgs e)
         {
             telaSelecionada = configuracaoPlanoCobranca;
             ConfigurarTelaPrincipal(configuracaoPlanoCobranca);
 
         }
-        #endregion
+        private void VeiculoMenuItem_Click(object sender, EventArgs e)
+        {
+            telaSelecionada = configuracaoVeiculo;
+            ConfigurarTelaPrincipal(configuracaoVeiculo);
 
+        }
+        #endregion
 
         #region BOTÕES DE AÇÕES DO USUARIO
         private void BtnInserir_Click(object sender, EventArgs e)
@@ -200,8 +207,8 @@ namespace LocadoraVeiculos.WinApp
                 ConfigurarListagem((ConfiguracaoBase)telaSelecionada);
             }
         }
+
         #endregion
-
-
+        
     }
 }

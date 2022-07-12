@@ -12,9 +12,9 @@ using System.Windows.Forms;
 
 namespace LocadoraVeiculos.WinApp.ModuloVeiculo
 {
-    public partial class TabelaVeiculo : UserControl
+    public partial class TabelaVeiculoControl : UserControl
     {
-        public TabelaVeiculo()
+        public TabelaVeiculoControl()
         {
             InitializeComponent();
             grid.ConfigurarGridZebrado();
@@ -25,10 +25,12 @@ namespace LocadoraVeiculos.WinApp.ModuloVeiculo
         private DataGridViewColumn[] ObterColunas()
         {
             var colunas = new DataGridViewColumn[]
-            {
+                        {
+                new DataGridViewTextBoxColumn { DataPropertyName = "Id", HeaderText = "Id"},
+
                 new DataGridViewTextBoxColumn { DataPropertyName = "Modelo", HeaderText = "Modelo"},
 
-                new DataGridViewTextBoxColumn { DataPropertyName = "Placas", HeaderText = "Placas"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "Placa", HeaderText = "Placa"},
 
                 new DataGridViewTextBoxColumn { DataPropertyName = "Marca", HeaderText = "Marca"},
 
@@ -36,17 +38,14 @@ namespace LocadoraVeiculos.WinApp.ModuloVeiculo
 
                 new DataGridViewTextBoxColumn { DataPropertyName = "Tipo de Combustivel", HeaderText = "Tipo de Combustivel"},
 
-                new DataGridViewTextBoxColumn { DataPropertyName = "Capacidade do Tanque", HeaderText = "Capacidade do Tanque"},
 
                 new DataGridViewTextBoxColumn { DataPropertyName = "Ano", HeaderText = "Ano"},
 
-                new DataGridViewTextBoxColumn { DataPropertyName = "Quilometragem", HeaderText = "Quilometragem"}
-            };
+                        };
 
             return colunas;
         }
-
-        public int ObtemNumeroTarefaSelecionado()
+        public int ObtemNumeroVeiculoSelecionado()
         {
             return grid.SelecionarNumero<int>();
         }
@@ -57,8 +56,8 @@ namespace LocadoraVeiculos.WinApp.ModuloVeiculo
 
             foreach (Veiculo veiculo in grupo)
             {
-                grid.Rows.Add(veiculo.Modelo, veiculo.Placa, veiculo.Marca, veiculo.Cor, veiculo.TipoCombustivel, veiculo.CapacidadeTanque,
-                    veiculo.Ano, veiculo.Quilometragem);
+                grid.Rows.Add(veiculo._id, veiculo.Modelo, veiculo.Placa, veiculo.Marca, veiculo.Cor, veiculo.TipoCombustivel,
+                    veiculo.Ano.Date);
             }
         }
     }
