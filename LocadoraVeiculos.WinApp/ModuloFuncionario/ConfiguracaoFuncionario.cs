@@ -24,7 +24,7 @@ namespace LocadoraVeiculos.WinApp.ModuloFuncionario
         {
             TelaCadastroFuncionario telaCadastroFuncionario = new TelaCadastroFuncionario();
 
-            int id = tabelaFuncionario.ObtemNumeroTarefaSelecionado();
+            Guid id = tabelaFuncionario.ObtemNumeroTarefaSelecionado();
             var registro = controlador.SelecionarPorId(id);
 
             if (registro != null)
@@ -42,7 +42,7 @@ namespace LocadoraVeiculos.WinApp.ModuloFuncionario
 
         public void Excluir()
         {
-            int id = tabelaFuncionario.ObtemNumeroTarefaSelecionado();
+            Guid id = tabelaFuncionario.ObtemNumeroTarefaSelecionado();
             try
             {
                 controlador.Excluir(id);

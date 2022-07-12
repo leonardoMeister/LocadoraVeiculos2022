@@ -3,7 +3,7 @@ using FluentValidation.Results;
 using LocadoraVeiculos.Dominio.ModuloPlanoCobranca;
 using LocadoraVeiculos.Repositorio.shared;
 using LocadoraVeiculos.RepositorioProject.ModuloPlanoCobranca;
-using System;
+using Serilog;
 
 namespace LocadoraVeiculos.Controladores.ModuloPlanoCobranca
 {
@@ -11,12 +11,25 @@ namespace LocadoraVeiculos.Controladores.ModuloPlanoCobranca
     {
         protected override IRepository<PlanoCobranca> PegarRepositorio()
         {
-            throw new NotImplementedException();
+            return new RepositorioPlanoCobranca(new MapeadorPlanoCobranca());
         }
 
         protected override AbstractValidator<PlanoCobranca> PegarValidador()
         {
-            throw new NotImplementedException();
+            return new ValidadorPlanoCobranca();
+        }
+        public override ValidationResult InserirNovo(PlanoCobranca registro)
+        {
+            Log.Logger.Debug("PlanoCobranca {PlanoCobrancaNome} editado com sucesso", registro._id);
+
+            return base.InserirNovo(registro);
+        }
+
+        public override ValidationResult Editar(PlanoCobranca registro)
+        {
+            Log.Logger.Debug("PlanoCobranca {PlanoCobrancaNome} editado com sucesso", registro._id);
+
+            return base.Editar(registro);
         }
     }
 }

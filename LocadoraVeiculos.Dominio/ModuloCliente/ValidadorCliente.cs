@@ -1,7 +1,6 @@
 ﻿using FluentValidation;
 using FluentValidation.Results;
 using LocadoraVeiculos.Dominio.shared;
-using System;
 using System.Text.RegularExpressions;
 
 namespace LocadoraVeiculos.Dominio.ModuloCliente
@@ -11,9 +10,9 @@ namespace LocadoraVeiculos.Dominio.ModuloCliente
         readonly Regex regEx = new Regex("^[a-zA-Z0-9- ]*$");
         public ValidadorCliente()
         {
-            RuleFor(x => x.Nome).Cascade(CascadeMode.StopOnFirstFailure)
+            RuleFor(x => x.Nome)
                 .Matches(regEx).WithMessage("Nome deve ser sem Caracteres Especiais")
-                .MinimumLength(8).WithMessage("O Nome deve ter no minimo 8 letras")
+                .MinimumLength(3).WithMessage("O Nome deve ter no minimo 3 letras")
                 .NotNull().WithMessage("Deve ser inserido um nome")
                 .NotEmpty().WithMessage("Deve ser inserido um nome");
 
@@ -23,10 +22,11 @@ namespace LocadoraVeiculos.Dominio.ModuloCliente
             RuleFor(x => x)
                 .Custom(ValidarTipoCliente);
            
-            RuleFor(x => x.Endereco).Cascade(CascadeMode.StopOnFirstFailure)
+            RuleFor(x => x.Endereco)
                 .Matches(regEx).WithMessage("Nome deve ser sem Caracteres Especiais")
                 .NotNull().WithMessage("Deve ser inserido um endereço")
-                .NotEmpty().WithMessage("Deve ser inserido um endereço");
+                .NotEmpty().WithMessage("Deve ser inserido um endereço")
+                .MinimumLength(8).WithMessage("Deve ter mais que 7 caracteres");
             
             RuleFor(x => x.Telefone)
                 .NotNull().WithMessage("Deve ser inserido um telefone")

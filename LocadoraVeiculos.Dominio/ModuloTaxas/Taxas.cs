@@ -25,6 +25,10 @@ namespace LocadoraVeiculos.Dominio.ModuloTaxas
                    Valor == taxas.Valor;
         }
 
+        public override string ToString()
+        {
+            return $"Id: {_id}, Tipo: {Tipo}";
+        }
         public override int GetHashCode()
         {
             return HashCode.Combine(_id, Tipo, Descricao, Valor);

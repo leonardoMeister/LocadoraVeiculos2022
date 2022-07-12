@@ -18,7 +18,10 @@ namespace LocadoraVeiculos.Dominio.ModuloGrupoVeiculos
                    _id == veiculos._id &&
                    NomeGrupo == veiculos.NomeGrupo;
         }
-
+        public override string ToString()
+        {
+            return $"Id:{_id}, Nome:{NomeGrupo}.";
+        }
         public override int GetHashCode()
         {
             return HashCode.Combine(_id, NomeGrupo);

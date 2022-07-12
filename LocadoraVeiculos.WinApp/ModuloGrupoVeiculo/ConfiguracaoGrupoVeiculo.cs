@@ -1,13 +1,8 @@
 ﻿using LocadoraVeiculos.Controladores.ModuloControladorGrupoVeiculos;
 using LocadoraVeiculos.Dominio.ModuloGrupoVeiculos;
-using LocadoraVeiculos.Repositorio.shared;
-using LocadoraVeiculos.RepositorioProject.ModuloGrupoVeiculos;
 using LocadoraVeiculos.WinApp.shared;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LocadoraVeiculos.WinApp.ModuloGrupoVeiculo
@@ -28,7 +23,7 @@ namespace LocadoraVeiculos.WinApp.ModuloGrupoVeiculo
         {
             TelaCadastroGrupoVeiculo telaCadastroGrupoVeiculo = new TelaCadastroGrupoVeiculo();
 
-            int id = tabelaGrupoVeiculos.ObtemNumeroTarefaSelecionado();
+            Guid id = tabelaGrupoVeiculos.ObtemNumeroTarefaSelecionado();
             var registro = controlador.SelecionarPorId(id);
 
             if (registro != null)
@@ -46,7 +41,7 @@ namespace LocadoraVeiculos.WinApp.ModuloGrupoVeiculo
 
         public void Excluir()
         {
-            int id = tabelaGrupoVeiculos.ObtemNumeroTarefaSelecionado();
+            Guid id = tabelaGrupoVeiculos.ObtemNumeroTarefaSelecionado();
             try
             {
                 controlador.Excluir(id);

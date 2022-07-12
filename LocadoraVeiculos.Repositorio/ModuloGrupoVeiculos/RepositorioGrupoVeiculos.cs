@@ -1,7 +1,6 @@
 ﻿using LocadoraVeiculos.Dominio.ModuloGrupoVeiculos;
 using LocadoraVeiculos.Repositorio.shared;
 using LocadoraVeiculos.RepositorioProject.shared;
-using System;
 
 namespace LocadoraVeiculos.RepositorioProject.ModuloGrupoVeiculos
 {
@@ -35,13 +34,13 @@ namespace LocadoraVeiculos.RepositorioProject.ModuloGrupoVeiculos
                        (@NOMEGRUPO) ;";
 
         protected override string SqlSelectAll => @"
-                SELECT [id_grupoveiculos],
-                       [nomeGrupo]
+                SELECT [id_grupoveiculos] as IDGRUPO,
+                       [nomeGrupo] as NOMEGRUPO
                   FROM TB_GRUPOVEICULOS;";
 
         protected override string SqlSelectId => @"
-                SELECT [id_grupoveiculos],
-                       [nomeGrupo]
+                SELECT [id_grupoveiculos] as IDGRUPO,
+                       [nomeGrupo] as NOMEGRUPO
                   FROM TB_GRUPOVEICULOS
                     where id_grupoveiculos = @ID ; ";
 

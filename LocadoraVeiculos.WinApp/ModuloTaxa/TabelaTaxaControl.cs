@@ -1,5 +1,6 @@
 ﻿using LocadoraVeiculos.Dominio.ModuloTaxas;
 using LocadoraVeiculos.WinApp.shared;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -29,9 +30,9 @@ namespace LocadoraVeiculos.WinApp.ModuloTaxa
             return colunas;
         }
 
-        public int ObtemNumeroTarefaSelecionado()
+        public Guid ObtemNumeroTarefaSelecionado()
         {
-            return grid.SelecionarNumero<int>();
+            return grid.SelecionarNumero<Guid>();
         }
 
         public void AtualizarRegistros(List<Taxas> taxas)

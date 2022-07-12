@@ -3,7 +3,6 @@ using LocadoraVeiculos.RepositorioProject.shared;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
 
 namespace LocadoraVeiculos.RepositorioProject.ModuloTaxas
 {
@@ -11,7 +10,7 @@ namespace LocadoraVeiculos.RepositorioProject.ModuloTaxas
     {
         public override Taxas ConverterEmRegistro(IDataReader dataReader)
         {
-            int id = Convert.ToInt32(dataReader[0]);
+            var id = Guid.Parse(dataReader["ID_TAXAS"].ToString());
             string descricao = Convert.ToString(dataReader[1]);
             decimal valor = Convert.ToDecimal(dataReader[2]);
             string tipo = Convert.ToString(dataReader[3]);

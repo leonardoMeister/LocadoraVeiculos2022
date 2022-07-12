@@ -23,7 +23,7 @@ namespace LocadoraVeiculos.WinApp.ModuloTaxa
         {
             TelaCadastroTaxaForm telaCadastroTaxa = new TelaCadastroTaxaForm();
 
-            int id = tabelaTaxa.ObtemNumeroTarefaSelecionado();
+            Guid id = tabelaTaxa.ObtemNumeroTarefaSelecionado();
             var registro = controlador.SelecionarPorId(id);
 
             if (registro != null)
@@ -41,7 +41,7 @@ namespace LocadoraVeiculos.WinApp.ModuloTaxa
 
         public void Excluir()
         {
-            int id = tabelaTaxa.ObtemNumeroTarefaSelecionado();
+            Guid id = tabelaTaxa.ObtemNumeroTarefaSelecionado();
             try
             {
                 controlador.Excluir(id);

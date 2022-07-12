@@ -1,13 +1,8 @@
 ﻿using LocadoraVeiculos.Controladores.ModuloControladorCliente;
 using LocadoraVeiculos.Dominio.ModuloCliente;
-using LocadoraVeiculos.RepositorioProject.ModuloCliente;
-using LocadoraVeiculos.WinApp.ModuloGrupoVeiculo;
 using LocadoraVeiculos.WinApp.shared;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LocadoraVeiculos.WinApp.ModuloCliente
@@ -30,7 +25,7 @@ namespace LocadoraVeiculos.WinApp.ModuloCliente
         {
             TelaCadastroClienteForm telaCadastroCliente = new();
 
-            int id = tabelaClienteControl.ObtemNumeroClienteSelecionado();
+            Guid id = tabelaClienteControl.ObtemNumeroClienteSelecionado();
             var registro = controlador.SelecionarPorId(id);
 
             if (registro != null)
@@ -48,7 +43,7 @@ namespace LocadoraVeiculos.WinApp.ModuloCliente
 
         public void Excluir()
         {
-            int id = tabelaClienteControl.ObtemNumeroClienteSelecionado();
+            Guid id = tabelaClienteControl.ObtemNumeroClienteSelecionado();
             try
             {
                 controlador.Excluir(id);

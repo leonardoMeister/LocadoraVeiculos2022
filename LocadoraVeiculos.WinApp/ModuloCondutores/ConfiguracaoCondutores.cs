@@ -1,13 +1,8 @@
 ﻿using LocadoraVeiculos.Controladores.ModuloCondutores;
 using LocadoraVeiculos.Dominio.ModuloCondutores;
-using LocadoraVeiculos.RepositorioProject.ModuloCondutores;
-using LocadoraVeiculos.WinApp.ModuloGrupoVeiculo;
 using LocadoraVeiculos.WinApp.shared;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LocadoraVeiculos.WinApp.ModuloCondutores
@@ -30,7 +25,7 @@ namespace LocadoraVeiculos.WinApp.ModuloCondutores
         {
             TelaCadastroCondutoresForm telaCadastroCondutores = new();
 
-            int id = tabelaCondutoresControl.ObtemNumeroCondutoresSelecionado();
+            Guid id = tabelaCondutoresControl.ObtemNumeroCondutoresSelecionado();
             var registro = controlador.SelecionarPorId(id);
 
             if (registro != null)
@@ -48,7 +43,7 @@ namespace LocadoraVeiculos.WinApp.ModuloCondutores
 
         public void Excluir()
         {
-            int id = tabelaCondutoresControl.ObtemNumeroCondutoresSelecionado();
+            Guid id = tabelaCondutoresControl.ObtemNumeroCondutoresSelecionado();
             try
             {
                 controlador.Excluir(id);

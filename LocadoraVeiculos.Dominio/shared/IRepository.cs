@@ -1,4 +1,5 @@
 ﻿using LocadoraVeiculos.Dominio.shared;
+using System;
 using System.Collections.Generic;
 
 namespace LocadoraVeiculos.Repositorio.shared
@@ -7,16 +8,16 @@ namespace LocadoraVeiculos.Repositorio.shared
     {
         public void InserirNovo(T registro);
 
-        public void Editar(int id, T registro);
+        public void Editar(Guid id, T registro);
 
-        public bool Existe(int id);
+        public bool Existe(Guid id);
 
-        public void Excluir(int id);
+        public void Excluir(Guid id);
 
         public T SelecionarPorParametro(string query, Dictionary<string, object> parameters);
 
         public List<T> SelecionarTodos();
 
-        public T SelecionarPorId(int id);
+        public T SelecionarPorId(Guid id);
     }
 }

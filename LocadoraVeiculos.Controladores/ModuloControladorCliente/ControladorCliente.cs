@@ -3,11 +3,7 @@ using FluentValidation.Results;
 using LocadoraVeiculos.Dominio.ModuloCliente;
 using LocadoraVeiculos.Repositorio.shared;
 using LocadoraVeiculos.RepositorioProject.ModuloCliente;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Serilog;
 
 namespace LocadoraVeiculos.Controladores.ModuloControladorCliente
 {
@@ -24,20 +20,54 @@ namespace LocadoraVeiculos.Controladores.ModuloControladorCliente
             return new ValidadorCliente();
         }
 
-        public override ValidationResult Editar(Cliente registro)
-        {
-            var validacaoBanco = FuncionarioForValidoParaEditar(registro);
-
-            if (validacaoBanco.IsValid) return base.Editar(registro);
-            else return validacaoBanco;
-        }
-
         public override ValidationResult InserirNovo(Cliente registro)
         {
+            Log.Logger.Debug("Tentando inserir um Cliente... {@f}", registro);
+
             var validacaoBanco = FuncionarioForValidoParaInserir(registro);
-            if (validacaoBanco.IsValid) return base.InserirNovo(registro);
-            else return validacaoBanco;
+            if (validacaoBanco.IsValid)
+            {
+                Log.Logger.Debug("Cliente {ClienteID} inserido com sucesso", registro._id);
+
+                return base.InserirNovo(registro);
+            }
+            else
+            {
+                foreach (var erros in validacaoBanco.Errors)
+                {
+                    Log.Logger.Warning("Falha ao tentar inserir um Cliente {ClienteID} - {Motivo}",
+                        registro._id, erros.ErrorMessage);
+                    return validacaoBanco;
+                }
+            }
+
+            return validacaoBanco;
         }
+
+        public override ValidationResult Editar(Cliente registro)
+        {
+            Log.Logger.Debug("Tentando editar um Cliente... {@f}", registro);
+
+            var validacaoBanco = FuncionarioForValidoParaEditar(registro);
+            if (validacaoBanco.IsValid)
+            {
+                Log.Logger.Debug("Cliente {ClienteID} editado com sucesso", registro._id);
+
+                return base.Editar(registro);
+            }
+            else
+            {
+                foreach (var erros in validacaoBanco.Errors)
+                {
+                    Log.Logger.Warning("Falha ao tentar editar um Cliente {ClienteID} - {Motivo}",
+                        registro._id, erros.ErrorMessage);
+                    return validacaoBanco;
+                }
+            }
+
+            return validacaoBanco;
+        }
+
         private ValidationResult FuncionarioForValidoParaEditar(Cliente registro)
         {
             ValidationResult valido = new ValidationResult();

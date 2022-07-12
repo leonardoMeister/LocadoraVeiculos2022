@@ -1,5 +1,8 @@
 ﻿using FluentValidation.Results;
+using LocadoraVeiculos.Controladores.ModuloControladorCliente;
+using LocadoraVeiculos.Dominio.ModuloCliente;
 using LocadoraVeiculos.Dominio.ModuloCondutores;
+using LocadoraVeiculos.RepositorioProject.ModuloCliente;
 using System;
 using System.Windows.Forms;
 
@@ -11,6 +14,8 @@ namespace LocadoraVeiculos.WinApp.ModuloCondutores
         public Action<string> AtualizarRodape { get; set; }
         public Func<Condutores, ValidationResult> GravarRegistro { get; internal set; }
 
+        public ControladorCliente controladorCliente;
+
 
         public Condutores Condutores
         {
@@ -19,8 +24,7 @@ namespace LocadoraVeiculos.WinApp.ModuloCondutores
             {
                 condutor = value;
 
-                if (condutor._id != 0)
-                    PreencherDadosNaTela();
+                PreencherDadosNaTela();
 
             }
         }
@@ -35,7 +39,7 @@ namespace LocadoraVeiculos.WinApp.ModuloCondutores
             txtEmail.Text = condutor.Email;
             txtEndereco.Text = condutor.Endereco;
             txtCnh.Text = condutor.Cnh;
-            txtValidadeCnh.Text = condutor.ValidadeCnh;
+            dateTimeCnh.Text = condutor.ValidadeCnh;
 
 
         }
@@ -43,7 +47,18 @@ namespace LocadoraVeiculos.WinApp.ModuloCondutores
         public TelaCadastroCondutoresForm()
         {
             InitializeComponent();
+            controladorCliente = new ControladorCliente();
+            CarregarClientes();
+        }
 
+        private void CarregarClientes()
+        {
+            var cliente = controladorCliente.SelecionarTodos();
+
+            foreach (var item in cliente)
+            {
+                cmbCliente.Items.Add(item);
+            }
         }
 
         private void btnSalvar_Click(object sender, EventArgs e)
@@ -69,10 +84,10 @@ namespace LocadoraVeiculos.WinApp.ModuloCondutores
 
         private bool PegarObjetoTela()
         {
-            int id = 0;
+            Guid id;
 
             if (txtId.Text != "")
-                id = Convert.ToInt32(txtId.Text);
+                id = new Guid(txtId.Text);
 
             string nome = txtNome.Text;
             string endereco = txtEndereco.Text;
@@ -80,13 +95,10 @@ namespace LocadoraVeiculos.WinApp.ModuloCondutores
             string telefone = PegarTelefone();           
             string cpf = txtCPF.Text;
             string cnh = txtCnh.Text;
-            string validadecnh = txtValidadeCnh.Text;
+            string validadecnh = dateTimeCnh.Text;
 
-            condutor = new Condutores(nome, cpf, endereco, email, telefone, cnh, validadecnh)
-            {
-                _id = id
-            };
-
+            condutor = new Condutores(nome, cpf, endereco, email, telefone, cnh, validadecnh);
+     
             return true;
         }
 
@@ -105,6 +117,22 @@ namespace LocadoraVeiculos.WinApp.ModuloCondutores
             AtualizarRodape("Inserção Cancelada.");
             this.DialogResult = DialogResult.Cancel;
         }
+
+        private void CarregarDadosCliente(object sender, EventArgs e)
+        {
+            Cliente cliente = (Cliente)cmbCliente.SelectedItem;
+
+            if (cliente != null)
+            {
+                txtNome.Text = cliente.Nome;
+                cliente.Telefone = cliente.Telefone.Replace(" ", "-");
+                maskedTextBoxTelefone.Text = cliente.Telefone;
+                txtCPF.Text = cliente.Cpf;
+                txtEmail.Text = cliente.Email;
+                txtEndereco.Text = cliente.Endereco;
+            }
+        }
+
 
     }
 }
