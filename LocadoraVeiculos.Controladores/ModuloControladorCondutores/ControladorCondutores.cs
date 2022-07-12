@@ -24,7 +24,7 @@ namespace LocadoraVeiculos.Controladores.ModuloCondutores
             var validacaoBanco = CondutorForValidoParaEditar(registro);
             if (validacaoBanco.IsValid)
             {
-                Log.Logger.Debug("Condutor {CondutorNome} editado com sucesso", registro.Nome);
+                Log.Logger.Debug("Condutor {CondutorID} editado com sucesso", registro._id);
 
                 return base.Editar(registro);
             }
@@ -32,8 +32,8 @@ namespace LocadoraVeiculos.Controladores.ModuloCondutores
             {
                 foreach (var erros in validacaoBanco.Errors)
                 {
-                    Log.Logger.Warning("Falha ao tentar editar um Condutor {CondutorNome} - {Motivo}",
-                        registro.Nome, erros.ErrorMessage);
+                    Log.Logger.Warning("Falha ao tentar editar um Condutor {CondutorID} - {Motivo}",
+                        registro._id, erros.ErrorMessage);
                     return validacaoBanco;
                 }
             }
@@ -46,7 +46,7 @@ namespace LocadoraVeiculos.Controladores.ModuloCondutores
             var validacaoBanco = CondutorForValidoParaInserir(registro);
             if (validacaoBanco.IsValid)
             {
-                Log.Logger.Debug("Condutor {CondutorNome} inserido com sucesso", registro.Nome);
+                Log.Logger.Debug("Condutor {CondutorID} inserido com sucesso", registro._id);
 
                 return base.InserirNovo(registro);
             }
@@ -54,8 +54,8 @@ namespace LocadoraVeiculos.Controladores.ModuloCondutores
             {
                 foreach (var erros in validacaoBanco.Errors)
                 {
-                    Log.Logger.Warning("Falha ao tentar inserir um Condutor {CondutorNome} - {Motivo}",
-                        registro.Nome, erros.ErrorMessage);
+                    Log.Logger.Warning("Falha ao tentar inserir um Condutor {CondutorID} - {Motivo}",
+                        registro._id, erros.ErrorMessage);
                     return validacaoBanco;
                 }
             }
