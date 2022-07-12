@@ -69,10 +69,10 @@ namespace LocadoraVeiculos.Controladores.ModuloFuncionario
         {
             ValidationResult valido = new ValidationResult();
 
-            var func1 = ((RepositorioFuncionario)Repositorio).SelecionarPorNome(registro.Nome);
-            if (func1 != null && func1._id != registro._id) valido.Errors.Add(new ValidationFailure("Nome", "Nao pode ter nomes repetidos"));
-            var func2 = ((RepositorioFuncionario)Repositorio).SelecionarPorUsuario(registro.Login);
-            if (func2 != null && func1._id != registro._id) valido.Errors.Add(new ValidationFailure("login", "Nao pode ter login repetidos"));
+            //var func1 = ((RepositorioFuncionario)Repositorio).SelecionarPorNome(registro.Nome);
+            //if (func1 != null && func1._id != registro._id) valido.Errors.Add(new ValidationFailure("Nome", "Nao pode ter nomes repetidos"));
+            //var func2 = ((RepositorioFuncionario)Repositorio).SelecionarPorUsuario(registro.Login);
+            //if (func2 != null && func1._id != registro._id) valido.Errors.Add(new ValidationFailure("login", "Nao pode ter login repetidos"));
 
             return valido;
         }
@@ -80,10 +80,10 @@ namespace LocadoraVeiculos.Controladores.ModuloFuncionario
         {
             ValidationResult valido = new ValidationResult();
 
-            var func1 = ((RepositorioFuncionario)Repositorio).SelecionarPorNome(registro.Nome);
-            if (func1 != null) valido.Errors.Add(new ValidationFailure("Nome", "Nao pode ter nomes repetidos"));
-            var func2 = ((RepositorioFuncionario)Repositorio).SelecionarPorUsuario(registro.Login);
-            if (func2 != null) valido.Errors.Add(new ValidationFailure("login", "Nao pode ter login repetidos"));
+            //var func1 = ((RepositorioFuncionario)Repositorio).SelecionarPorNome(registro.Nome);
+            //if (func1 != null) valido.Errors.Add(new ValidationFailure("Nome", "Nao pode ter nomes repetidos"));
+            //var func2 = ((RepositorioFuncionario)Repositorio).SelecionarPorUsuario(registro.Login);
+            //if (func2 != null) valido.Errors.Add(new ValidationFailure("login", "Nao pode ter login repetidos"));
 
             return valido;
 
