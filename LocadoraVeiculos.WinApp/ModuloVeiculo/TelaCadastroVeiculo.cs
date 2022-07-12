@@ -38,17 +38,30 @@ namespace LocadoraVeiculos.WinApp.ModuloVeiculo
             set
             {
                 veiculo = value;
-
-                //txtId.Text = Convert.ToString(planoCobranca._id);
-                //txtLimiteKM.Text = Convert.ToString(planoCobranca.LimiteKM);
-                //txtTipo.Text = Convert.ToString(planoCobranca.TipoPlano);
-                //txtValorDia.Text = Convert.ToString(planoCobranca.ValorDia);
-                //txtValorKM.Text = Convert.ToString(planoCobranca.ValorKM);
-                //cmbGrupoVeiculo.SelectedItem = planoCobranca.GrupoVeiculos;
+                CarregarFoto();
+                txtId.Text = veiculo._id.ToString();
+                textBoxModelo.Text = veiculo.Modelo;
+                textBoxPlacas.Text = veiculo.Placa;
+                textBoxMarca.Text = veiculo.Marca;
+                data.Value = veiculo.Ano;
+                textCor.Text = veiculo.Cor;
+                textBoxCapacidadeTanque.Text =  veiculo.CapacidadeTanque.ToString();
+                textBoxQuilometragem.Text = veiculo.Quilometragem.ToString();
+                cmbGrupoVeiculo.SelectedItem = veiculo.GrupoVeiculos;
+                comboBoxTipoCombustivel.SelectedItem = veiculo.TipoCombustivel;
             }
         }
-        public Func<Veiculo, ValidationResult> GravarRegistro { get; internal set; }
 
+        private void CarregarFoto()
+        {
+            MemoryStream memory = new MemoryStream(veiculo.Foto);
+
+            pictureBoxFoto.Image = Image.FromStream(memory);
+
+            bmp = new Bitmap(pictureBoxFoto.Image);
+        }
+
+        public Func<Veiculo, ValidationResult> GravarRegistro { get; internal set; }
 
         private void PegarObjetoTela()
         {
@@ -68,7 +81,7 @@ namespace LocadoraVeiculos.WinApp.ModuloVeiculo
             string modelo = textBoxModelo.Text;
             string placa = textBoxPlacas.Text;
             string marca = textBoxMarca.Text;
-            string cor = textBoxCor.Text;
+            string cor = textCor.Text;
             string tipoCombustivel = comboBoxTipoCombustivel.Text;            
             DateTime ano = data.Value;
             
@@ -85,7 +98,6 @@ namespace LocadoraVeiculos.WinApp.ModuloVeiculo
             };
 
         }
-
         private void buttonCarregarFoto_Click(object sender, EventArgs e)
         {
             if (openFileDialogFoto.ShowDialog() == DialogResult.OK)
@@ -97,7 +109,6 @@ namespace LocadoraVeiculos.WinApp.ModuloVeiculo
                 pictureBoxFoto.Image = bmp;
             }
         }
-
         private void btnSalvar_Click_1(object sender, EventArgs e)
         {
             PegarObjetoTela();
@@ -126,7 +137,6 @@ namespace LocadoraVeiculos.WinApp.ModuloVeiculo
                 DialogResult = DialogResult.OK;
             }
         }
-
         private void btnCancelar_Click_1(object sender, EventArgs e)
         {
             AtualizarRodape("Inserção Cancelada.");

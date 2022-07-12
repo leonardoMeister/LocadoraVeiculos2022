@@ -33,7 +33,7 @@
             this.labelPlacas = new System.Windows.Forms.Label();
             this.textBoxMarca = new System.Windows.Forms.TextBox();
             this.labelMarca = new System.Windows.Forms.Label();
-            this.textBoxCor = new System.Windows.Forms.TextBox();
+            this.textCor = new System.Windows.Forms.TextBox();
             this.labelCor = new System.Windows.Forms.Label();
             this.labelTipoCombustivel = new System.Windows.Forms.Label();
             this.comboBoxTipoCombustivel = new System.Windows.Forms.ComboBox();
@@ -100,13 +100,13 @@
             this.labelMarca.TabIndex = 0;
             this.labelMarca.Text = "Marca:";
             // 
-            // textBoxCor
+            // textCor
             // 
-            this.textBoxCor.Location = new System.Drawing.Point(346, 81);
-            this.textBoxCor.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBoxCor.Name = "textBoxCor";
-            this.textBoxCor.Size = new System.Drawing.Size(145, 27);
-            this.textBoxCor.TabIndex = 6;
+            this.textCor.Location = new System.Drawing.Point(346, 81);
+            this.textCor.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textCor.Name = "textCor";
+            this.textCor.Size = new System.Drawing.Size(145, 27);
+            this.textCor.TabIndex = 6;
             // 
             // labelCor
             // 
@@ -312,7 +312,7 @@
             this.Controls.Add(this.buttonCarregarFoto);
             this.Controls.Add(this.pictureBoxFoto);
             this.Controls.Add(this.comboBoxTipoCombustivel);
-            this.Controls.Add(this.textBoxCor);
+            this.Controls.Add(this.textCor);
             this.Controls.Add(this.textBoxMarca);
             this.Controls.Add(this.textBoxModelo);
             this.Controls.Add(this.labelFoto);
@@ -345,7 +345,7 @@
         private System.Windows.Forms.Label labelPlacas;
         private System.Windows.Forms.TextBox textBoxMarca;
         private System.Windows.Forms.Label labelMarca;
-        private System.Windows.Forms.TextBox textBoxCor;
+        private System.Windows.Forms.TextBox textCor;
         private System.Windows.Forms.Label labelCor;
         private System.Windows.Forms.Label labelTipoCombustivel;
         private System.Windows.Forms.ComboBox comboBoxTipoCombustivel;
