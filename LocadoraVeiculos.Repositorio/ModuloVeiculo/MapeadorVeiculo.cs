@@ -49,7 +49,7 @@ namespace LocadoraVeiculos.RepositorioProject.ModuloVeiculo
             parametros.Add("@COR", registro.Cor);
             parametros.Add("@TIPOCOMBUSTIVEL", registro.TipoCombustivel);
             parametros.Add("@CAPACIDADETANQUE", registro.CapacidadeTanque);
-            parametros.Add("@ANOCARRO", registro.Ano);
+            parametros.Add("@ANO", registro.Ano);
             parametros.Add("@QUILOMETRAGEM", registro.Quilometragem);
             parametros.Add("@FOTOCARRO", registro.Foto);
             parametros.Add("@GRUPOID", registro.GrupoVeiculos._id);

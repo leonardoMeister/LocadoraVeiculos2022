@@ -1,4 +1,5 @@
-﻿using LocadoraVeiculos.Controladores.ModuloVeiculo;
+﻿using LocadoraVeiculos.Controladores.ModuloControladorGrupoVeiculos;
+using LocadoraVeiculos.Controladores.ModuloVeiculo;
 using LocadoraVeiculos.Dominio.ModuloGrupoVeiculos;
 using LocadoraVeiculos.Dominio.ModuloVeiculo;
 using LocadoraVeiculos.RepositorioProject.shared;
@@ -32,9 +33,14 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoVeiculo
         public void DeveInserirVeiculo()
         {
             ControladorVeiculo controlador = new ControladorVeiculo();
+            ControladorGrupoVeiculos controladorGrupoVeiculos = new ControladorGrupoVeiculos();
 
             GrupoVeiculos grupo = new GrupoVeiculos("Nome do grupo de teste");
-            Veiculo vei = new Veiculo("Modelo do Veiculo", "ASD-3021", "Gol", "Rosa", "Gasolina", 10, DateTime.Now, 10, null, grupo);
+            controladorGrupoVeiculos.InserirNovo(grupo);
+
+            byte[] foto = new byte[] { };
+
+            Veiculo vei = new Veiculo("Modelo do Veiculo", "ASD-3021", "Gol", "Rosa", "Gasolina", 10, DateTime.Now, 10, foto, grupo);
 
             var resultado = controlador.InserirNovo(vei);
 
@@ -46,8 +52,12 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoVeiculo
         {
             ControladorVeiculo controlador = new ControladorVeiculo();
 
+            ControladorGrupoVeiculos controladorGrupoVeiculos = new ControladorGrupoVeiculos();
+
             GrupoVeiculos grupo = new GrupoVeiculos("Nome do grupo de teste");
-            Veiculo vei = new Veiculo("Modelo do Veiculo", "ASD-3021", "Gol", "Rosa", "Gasolina", 10, DateTime.Now, 10, null, grupo);
+            controladorGrupoVeiculos.InserirNovo(grupo);
+            byte[] foto = new byte[] { };
+            Veiculo vei = new Veiculo("Modelo do Veiculo", "ASD-3021", "Gol", "Rosa", "Gasolina", 10, DateTime.Now, 10, foto, grupo);
 
             controlador.InserirNovo(vei);
 
@@ -62,8 +72,12 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoVeiculo
         {
             ControladorVeiculo controlador = new ControladorVeiculo();
 
+            ControladorGrupoVeiculos controladorGrupoVeiculos = new ControladorGrupoVeiculos();
+
             GrupoVeiculos grupo = new GrupoVeiculos("Nome do grupo de teste");
-            Veiculo vei = new Veiculo("Modelo do Veiculo", "ASD-3021", "Gol", "Rosa", "Gasolina", 10, DateTime.Now, 10, null, grupo);
+            controladorGrupoVeiculos.InserirNovo(grupo);
+            byte[] foto = new byte[] { };
+            Veiculo vei = new Veiculo("Modelo do Veiculo", "ASD-3021", "Gol", "Rosa", "Gasolina", 10, DateTime.Now, 10, foto, grupo);
 
             controlador.InserirNovo(vei);
 
@@ -77,8 +91,12 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoVeiculo
         {
             ControladorVeiculo controlador = new ControladorVeiculo();
 
+            ControladorGrupoVeiculos controladorGrupoVeiculos = new ControladorGrupoVeiculos();
+
             GrupoVeiculos grupo = new GrupoVeiculos("Nome do grupo de teste");
-            Veiculo vei = new Veiculo("Modelo do Veiculo", "ASD-3021", "Gol", "Rosa", "Gasolina", 10, DateTime.Now, 10, null, grupo);
+            controladorGrupoVeiculos.InserirNovo(grupo);
+            byte[] foto = new byte[] { };
+            Veiculo vei = new Veiculo("Modelo do Veiculo", "ASD-3021", "Gol", "Rosa", "Gasolina", 10, DateTime.Now, 10, foto, grupo);
 
             controlador.InserirNovo(vei);
             controlador.Excluir(vei._id);
@@ -93,9 +111,13 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoVeiculo
         {
             ControladorVeiculo controlador = new ControladorVeiculo();
 
+            ControladorGrupoVeiculos controladorGrupoVeiculos = new ControladorGrupoVeiculos();
+
             GrupoVeiculos grupo = new GrupoVeiculos("Nome do grupo de teste");
-            Veiculo vei = new Veiculo("Modelo do Veiculo", "ASD-3021", "Gol", "Rosa", "Gasolina", 10, DateTime.Now, 10, null, grupo);
-            Veiculo vei2 = new Veiculo("Modelo do Veiculo2", "ASD-3022", "UNO", "Branco", "Gasolina", 10, DateTime.Now, 10, null, grupo);            
+            controladorGrupoVeiculos.InserirNovo(grupo);
+            byte[] foto = new byte[] { };
+            Veiculo vei = new Veiculo("Modelo do Veiculo", "ASD-3021", "Gol", "Rosa", "Gasolina", 10, DateTime.Now, 10, foto, grupo);
+            Veiculo vei2 = new Veiculo("Modelo do Veiculo2", "ASD-3022", "UNO", "Branco", "Gasolina", 10, DateTime.Now, 10, foto, grupo);            
             controlador.InserirNovo(vei);
             vei2._id = vei._id;
             controlador.Editar(vei2);

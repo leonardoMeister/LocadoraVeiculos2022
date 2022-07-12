@@ -21,7 +21,7 @@ namespace LocadoraVeiculos.RepositorioProject.ModuloVeiculo
                               ,[capacidade_tanque] = @CAPACIDADETANQUE
                               ,[ano_carro] = @ANO
                               ,[quilometragem] = @QUILOMETRAGEM
-                              ,[foto_carro] =  @FOTO
+                              ,[foto_carro] =  @FOTOCARRO
                               ,[grupo_veiculo_id] = @GRUPOID
                          WHERE id_veiculo = @ID";
 
@@ -42,7 +42,7 @@ namespace LocadoraVeiculos.RepositorioProject.ModuloVeiculo
                                ,[foto_carro]
                                ,[grupo_veiculo_id])
                          VALUES
-                               (@MODELO ,@PLACA ,@MARCA ,@COR ,@TIPOCOMBUSTIVEL ,@CAPACIDADETANQUE ,@ANOCARRO ,@QUILOMETRAGEM ,@FOTOCARRO ,@GRUPOID )";
+                               (@MODELO ,@PLACA ,@MARCA ,@COR ,@TIPOCOMBUSTIVEL ,@CAPACIDADETANQUE ,@ANO ,@QUILOMETRAGEM ,@FOTOCARRO ,@GRUPOID )";
 
         protected override string SqlSelectAll =>
                          @"SELECT [id_veiculo] as IDPLANO

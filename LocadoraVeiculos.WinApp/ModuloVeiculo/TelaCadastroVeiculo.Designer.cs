@@ -31,33 +31,36 @@
             this.labelModelo = new System.Windows.Forms.Label();
             this.textBoxModelo = new System.Windows.Forms.TextBox();
             this.labelPlacas = new System.Windows.Forms.Label();
-            this.textBoxPlacas = new System.Windows.Forms.TextBox();
             this.textBoxMarca = new System.Windows.Forms.TextBox();
             this.labelMarca = new System.Windows.Forms.Label();
             this.textBoxCor = new System.Windows.Forms.TextBox();
             this.labelCor = new System.Windows.Forms.Label();
             this.labelTipoCombustivel = new System.Windows.Forms.Label();
             this.comboBoxTipoCombustivel = new System.Windows.Forms.ComboBox();
-            this.textBoxCapacidadeTanque = new System.Windows.Forms.TextBox();
             this.labelCapacidadeTanque = new System.Windows.Forms.Label();
-            this.labelLitros = new System.Windows.Forms.Label();
-            this.textBoxAno = new System.Windows.Forms.TextBox();
             this.labelAno = new System.Windows.Forms.Label();
-            this.textBoxQuilometragem = new System.Windows.Forms.TextBox();
             this.labelQuilometragem = new System.Windows.Forms.Label();
             this.labelFoto = new System.Windows.Forms.Label();
             this.pictureBoxFoto = new System.Windows.Forms.PictureBox();
             this.openFileDialogFoto = new System.Windows.Forms.OpenFileDialog();
             this.buttonCarregarFoto = new System.Windows.Forms.Button();
-            this.buttonCancelar = new System.Windows.Forms.Button();
-            this.buttonSalvar = new System.Windows.Forms.Button();
+            this.cmbGrupoVeiculo = new System.Windows.Forms.ComboBox();
+            this.btnCancelar = new System.Windows.Forms.Button();
+            this.btnSalvar = new System.Windows.Forms.Button();
+            this.textBoxCapacidadeTanque = new System.Windows.Forms.MaskedTextBox();
+            this.textBoxQuilometragem = new System.Windows.Forms.MaskedTextBox();
+            this.data = new System.Windows.Forms.DateTimePicker();
+            this.txtId = new System.Windows.Forms.TextBox();
+            this.laId = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textBoxPlacas = new System.Windows.Forms.MaskedTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFoto)).BeginInit();
             this.SuspendLayout();
             // 
             // labelModelo
             // 
             this.labelModelo.AutoSize = true;
-            this.labelModelo.Location = new System.Drawing.Point(14, 16);
+            this.labelModelo.Location = new System.Drawing.Point(50, 46);
             this.labelModelo.Name = "labelModelo";
             this.labelModelo.Size = new System.Drawing.Size(64, 20);
             this.labelModelo.TabIndex = 0;
@@ -65,41 +68,33 @@
             // 
             // textBoxModelo
             // 
-            this.textBoxModelo.Location = new System.Drawing.Point(128, 12);
+            this.textBoxModelo.Location = new System.Drawing.Point(132, 46);
             this.textBoxModelo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBoxModelo.Name = "textBoxModelo";
-            this.textBoxModelo.Size = new System.Drawing.Size(428, 27);
+            this.textBoxModelo.Size = new System.Drawing.Size(144, 27);
             this.textBoxModelo.TabIndex = 1;
             // 
             // labelPlacas
             // 
             this.labelPlacas.AutoSize = true;
-            this.labelPlacas.Location = new System.Drawing.Point(14, 55);
+            this.labelPlacas.Location = new System.Drawing.Point(61, 79);
             this.labelPlacas.Name = "labelPlacas";
             this.labelPlacas.Size = new System.Drawing.Size(53, 20);
             this.labelPlacas.TabIndex = 0;
             this.labelPlacas.Text = "Placas:";
             // 
-            // textBoxPlacas
-            // 
-            this.textBoxPlacas.Location = new System.Drawing.Point(128, 51);
-            this.textBoxPlacas.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBoxPlacas.Name = "textBoxPlacas";
-            this.textBoxPlacas.Size = new System.Drawing.Size(428, 27);
-            this.textBoxPlacas.TabIndex = 1;
-            // 
             // textBoxMarca
             // 
-            this.textBoxMarca.Location = new System.Drawing.Point(128, 89);
+            this.textBoxMarca.Location = new System.Drawing.Point(131, 116);
             this.textBoxMarca.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBoxMarca.Name = "textBoxMarca";
-            this.textBoxMarca.Size = new System.Drawing.Size(428, 27);
-            this.textBoxMarca.TabIndex = 1;
+            this.textBoxMarca.Size = new System.Drawing.Size(145, 27);
+            this.textBoxMarca.TabIndex = 3;
             // 
             // labelMarca
             // 
             this.labelMarca.AutoSize = true;
-            this.labelMarca.Location = new System.Drawing.Point(14, 93);
+            this.labelMarca.Location = new System.Drawing.Point(61, 116);
             this.labelMarca.Name = "labelMarca";
             this.labelMarca.Size = new System.Drawing.Size(53, 20);
             this.labelMarca.TabIndex = 0;
@@ -107,16 +102,16 @@
             // 
             // textBoxCor
             // 
-            this.textBoxCor.Location = new System.Drawing.Point(128, 128);
+            this.textBoxCor.Location = new System.Drawing.Point(346, 81);
             this.textBoxCor.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBoxCor.Name = "textBoxCor";
-            this.textBoxCor.Size = new System.Drawing.Size(428, 27);
-            this.textBoxCor.TabIndex = 1;
+            this.textBoxCor.Size = new System.Drawing.Size(145, 27);
+            this.textBoxCor.TabIndex = 6;
             // 
             // labelCor
             // 
             this.labelCor.AutoSize = true;
-            this.labelCor.Location = new System.Drawing.Point(14, 132);
+            this.labelCor.Location = new System.Drawing.Point(294, 85);
             this.labelCor.Name = "labelCor";
             this.labelCor.Size = new System.Drawing.Size(35, 20);
             this.labelCor.TabIndex = 0;
@@ -125,82 +120,50 @@
             // labelTipoCombustivel
             // 
             this.labelTipoCombustivel.AutoSize = true;
-            this.labelTipoCombustivel.Location = new System.Drawing.Point(14, 171);
+            this.labelTipoCombustivel.Location = new System.Drawing.Point(20, 156);
             this.labelTipoCombustivel.Name = "labelTipoCombustivel";
-            this.labelTipoCombustivel.Size = new System.Drawing.Size(149, 20);
+            this.labelTipoCombustivel.Size = new System.Drawing.Size(94, 20);
             this.labelTipoCombustivel.TabIndex = 0;
-            this.labelTipoCombustivel.Text = "Tipo de Combustível:";
+            this.labelTipoCombustivel.Text = "Combustível:";
             // 
             // comboBoxTipoCombustivel
             // 
             this.comboBoxTipoCombustivel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxTipoCombustivel.FormattingEnabled = true;
+            this.comboBoxTipoCombustivel.ItemHeight = 20;
             this.comboBoxTipoCombustivel.Items.AddRange(new object[] {
             "Gasolina",
             "Diesel",
             "Etanol",
             "GNV"});
-            this.comboBoxTipoCombustivel.Location = new System.Drawing.Point(171, 168);
+            this.comboBoxTipoCombustivel.Location = new System.Drawing.Point(132, 158);
             this.comboBoxTipoCombustivel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.comboBoxTipoCombustivel.Name = "comboBoxTipoCombustivel";
-            this.comboBoxTipoCombustivel.Size = new System.Drawing.Size(397, 28);
-            this.comboBoxTipoCombustivel.TabIndex = 2;
-            // 
-            // textBoxCapacidadeTanque
-            // 
-            this.textBoxCapacidadeTanque.Location = new System.Drawing.Point(171, 205);
-            this.textBoxCapacidadeTanque.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBoxCapacidadeTanque.Name = "textBoxCapacidadeTanque";
-            this.textBoxCapacidadeTanque.Size = new System.Drawing.Size(95, 27);
-            this.textBoxCapacidadeTanque.TabIndex = 1;
+            this.comboBoxTipoCombustivel.Size = new System.Drawing.Size(144, 28);
+            this.comboBoxTipoCombustivel.TabIndex = 4;
             // 
             // labelCapacidadeTanque
             // 
             this.labelCapacidadeTanque.AutoSize = true;
-            this.labelCapacidadeTanque.Location = new System.Drawing.Point(14, 209);
+            this.labelCapacidadeTanque.Location = new System.Drawing.Point(285, 118);
             this.labelCapacidadeTanque.Name = "labelCapacidadeTanque";
-            this.labelCapacidadeTanque.Size = new System.Drawing.Size(164, 20);
+            this.labelCapacidadeTanque.Size = new System.Drawing.Size(99, 20);
             this.labelCapacidadeTanque.TabIndex = 0;
-            this.labelCapacidadeTanque.Text = "Capacidade do Tanque:";
-            // 
-            // labelLitros
-            // 
-            this.labelLitros.AutoSize = true;
-            this.labelLitros.Location = new System.Drawing.Point(274, 209);
-            this.labelLitros.Name = "labelLitros";
-            this.labelLitros.Size = new System.Drawing.Size(45, 20);
-            this.labelLitros.TabIndex = 0;
-            this.labelLitros.Text = "Litros";
-            // 
-            // textBoxAno
-            // 
-            this.textBoxAno.Location = new System.Drawing.Point(128, 244);
-            this.textBoxAno.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBoxAno.Name = "textBoxAno";
-            this.textBoxAno.Size = new System.Drawing.Size(428, 27);
-            this.textBoxAno.TabIndex = 1;
+            this.labelCapacidadeTanque.Text = "Capa/Tanque:";
             // 
             // labelAno
             // 
             this.labelAno.AutoSize = true;
-            this.labelAno.Location = new System.Drawing.Point(14, 248);
+            this.labelAno.Location = new System.Drawing.Point(292, 49);
             this.labelAno.Name = "labelAno";
             this.labelAno.Size = new System.Drawing.Size(39, 20);
             this.labelAno.TabIndex = 0;
             this.labelAno.Text = "Ano:";
             // 
-            // textBoxQuilometragem
-            // 
-            this.textBoxQuilometragem.Location = new System.Drawing.Point(128, 283);
-            this.textBoxQuilometragem.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBoxQuilometragem.Name = "textBoxQuilometragem";
-            this.textBoxQuilometragem.Size = new System.Drawing.Size(428, 27);
-            this.textBoxQuilometragem.TabIndex = 1;
-            // 
             // labelQuilometragem
             // 
             this.labelQuilometragem.AutoSize = true;
-            this.labelQuilometragem.Location = new System.Drawing.Point(14, 287);
+            this.labelQuilometragem.Location = new System.Drawing.Point(285, 161);
             this.labelQuilometragem.Name = "labelQuilometragem";
             this.labelQuilometragem.Size = new System.Drawing.Size(117, 20);
             this.labelQuilometragem.TabIndex = 0;
@@ -209,7 +172,7 @@
             // labelFoto
             // 
             this.labelFoto.AutoSize = true;
-            this.labelFoto.Location = new System.Drawing.Point(14, 325);
+            this.labelFoto.Location = new System.Drawing.Point(71, 242);
             this.labelFoto.Name = "labelFoto";
             this.labelFoto.Size = new System.Drawing.Size(42, 20);
             this.labelFoto.TabIndex = 0;
@@ -217,11 +180,12 @@
             // 
             // pictureBoxFoto
             // 
-            this.pictureBoxFoto.Location = new System.Drawing.Point(128, 325);
+            this.pictureBoxFoto.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBoxFoto.Location = new System.Drawing.Point(131, 242);
             this.pictureBoxFoto.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pictureBoxFoto.Name = "pictureBoxFoto";
-            this.pictureBoxFoto.Size = new System.Drawing.Size(323, 179);
-            this.pictureBoxFoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBoxFoto.Size = new System.Drawing.Size(360, 203);
+            this.pictureBoxFoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxFoto.TabIndex = 3;
             this.pictureBoxFoto.TabStop = false;
             // 
@@ -231,53 +195,126 @@
             // 
             // buttonCarregarFoto
             // 
-            this.buttonCarregarFoto.Location = new System.Drawing.Point(471, 473);
+            this.buttonCarregarFoto.Location = new System.Drawing.Point(131, 453);
             this.buttonCarregarFoto.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.buttonCarregarFoto.Name = "buttonCarregarFoto";
-            this.buttonCarregarFoto.Size = new System.Drawing.Size(86, 31);
-            this.buttonCarregarFoto.TabIndex = 4;
-            this.buttonCarregarFoto.Text = "Carregar";
+            this.buttonCarregarFoto.Size = new System.Drawing.Size(148, 46);
+            this.buttonCarregarFoto.TabIndex = 10;
+            this.buttonCarregarFoto.Text = "Carregar Fotografia";
             this.buttonCarregarFoto.UseVisualStyleBackColor = true;
             this.buttonCarregarFoto.Click += new System.EventHandler(this.buttonCarregarFoto_Click);
             // 
-            // buttonCancelar
+            // cmbGrupoVeiculo
             // 
-            this.buttonCancelar.Location = new System.Drawing.Point(469, 553);
-            this.buttonCancelar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.buttonCancelar.Name = "buttonCancelar";
-            this.buttonCancelar.Size = new System.Drawing.Size(86, 31);
-            this.buttonCancelar.TabIndex = 4;
-            this.buttonCancelar.Text = "Cancelar";
-            this.buttonCancelar.UseVisualStyleBackColor = true;
+            this.cmbGrupoVeiculo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbGrupoVeiculo.FormattingEnabled = true;
+            this.cmbGrupoVeiculo.Location = new System.Drawing.Point(132, 199);
+            this.cmbGrupoVeiculo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cmbGrupoVeiculo.Name = "cmbGrupoVeiculo";
+            this.cmbGrupoVeiculo.Size = new System.Drawing.Size(359, 28);
+            this.cmbGrupoVeiculo.TabIndex = 9;
             // 
-            // buttonSalvar
+            // btnCancelar
             // 
-            this.buttonSalvar.Location = new System.Drawing.Point(376, 553);
-            this.buttonSalvar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.buttonSalvar.Name = "buttonSalvar";
-            this.buttonSalvar.Size = new System.Drawing.Size(86, 31);
-            this.buttonSalvar.TabIndex = 4;
-            this.buttonSalvar.Text = "Salvar";
-            this.buttonSalvar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Location = new System.Drawing.Point(266, 524);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(115, 44);
+            this.btnCancelar.TabIndex = 12;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click_1);
+            // 
+            // btnSalvar
+            // 
+            this.btnSalvar.Location = new System.Drawing.Point(391, 524);
+            this.btnSalvar.Name = "btnSalvar";
+            this.btnSalvar.Size = new System.Drawing.Size(115, 44);
+            this.btnSalvar.TabIndex = 11;
+            this.btnSalvar.Text = "Salvar";
+            this.btnSalvar.UseVisualStyleBackColor = true;
+            this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click_1);
+            // 
+            // textBoxCapacidadeTanque
+            // 
+            this.textBoxCapacidadeTanque.Location = new System.Drawing.Point(390, 118);
+            this.textBoxCapacidadeTanque.Mask = "00000";
+            this.textBoxCapacidadeTanque.Name = "textBoxCapacidadeTanque";
+            this.textBoxCapacidadeTanque.Size = new System.Drawing.Size(101, 27);
+            this.textBoxCapacidadeTanque.TabIndex = 7;
+            this.textBoxCapacidadeTanque.ValidatingType = typeof(int);
+            // 
+            // textBoxQuilometragem
+            // 
+            this.textBoxQuilometragem.Location = new System.Drawing.Point(408, 161);
+            this.textBoxQuilometragem.Mask = "0000000000";
+            this.textBoxQuilometragem.Name = "textBoxQuilometragem";
+            this.textBoxQuilometragem.Size = new System.Drawing.Size(83, 27);
+            this.textBoxQuilometragem.TabIndex = 8;
+            this.textBoxQuilometragem.ValidatingType = typeof(int);
+            // 
+            // data
+            // 
+            this.data.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.data.Location = new System.Drawing.Point(346, 47);
+            this.data.Name = "data";
+            this.data.Size = new System.Drawing.Size(145, 27);
+            this.data.TabIndex = 5;
+            // 
+            // txtId
+            // 
+            this.txtId.Enabled = false;
+            this.txtId.Location = new System.Drawing.Point(131, 8);
+            this.txtId.Name = "txtId";
+            this.txtId.Size = new System.Drawing.Size(360, 27);
+            this.txtId.TabIndex = 30;
+            // 
+            // laId
+            // 
+            this.laId.AutoSize = true;
+            this.laId.Location = new System.Drawing.Point(36, 11);
+            this.laId.Name = "laId";
+            this.laId.Size = new System.Drawing.Size(77, 20);
+            this.laId.TabIndex = 31;
+            this.laId.Text = "Id Veiculo:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 202);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(102, 20);
+            this.label1.TabIndex = 32;
+            this.label1.Text = "Grupo Veiculo";
+            // 
+            // textBoxPlacas
+            // 
+            this.textBoxPlacas.Location = new System.Drawing.Point(132, 82);
+            this.textBoxPlacas.Name = "textBoxPlacas";
+            this.textBoxPlacas.Size = new System.Drawing.Size(144, 27);
+            this.textBoxPlacas.TabIndex = 2;
+            this.textBoxPlacas.ValidatingType = typeof(int);
             // 
             // TelaCadastroVeiculo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(672, 600);
-            this.Controls.Add(this.buttonSalvar);
-            this.Controls.Add(this.buttonCancelar);
+            this.ClientSize = new System.Drawing.Size(518, 581);
+            this.Controls.Add(this.textBoxPlacas);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.txtId);
+            this.Controls.Add(this.laId);
+            this.Controls.Add(this.data);
+            this.Controls.Add(this.textBoxQuilometragem);
+            this.Controls.Add(this.textBoxCapacidadeTanque);
+            this.Controls.Add(this.btnCancelar);
+            this.Controls.Add(this.btnSalvar);
+            this.Controls.Add(this.cmbGrupoVeiculo);
             this.Controls.Add(this.buttonCarregarFoto);
             this.Controls.Add(this.pictureBoxFoto);
             this.Controls.Add(this.comboBoxTipoCombustivel);
-            this.Controls.Add(this.textBoxQuilometragem);
-            this.Controls.Add(this.textBoxAno);
-            this.Controls.Add(this.textBoxCapacidadeTanque);
             this.Controls.Add(this.textBoxCor);
             this.Controls.Add(this.textBoxMarca);
-            this.Controls.Add(this.textBoxPlacas);
             this.Controls.Add(this.textBoxModelo);
-            this.Controls.Add(this.labelLitros);
             this.Controls.Add(this.labelFoto);
             this.Controls.Add(this.labelQuilometragem);
             this.Controls.Add(this.labelAno);
@@ -292,6 +329,8 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "TelaCadastroVeiculo";
+            this.ShowIcon = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cadastro de Veículo";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFoto)).EndInit();
             this.ResumeLayout(false);
@@ -304,25 +343,28 @@
         private System.Windows.Forms.Label labelModelo;
         private System.Windows.Forms.TextBox textBoxModelo;
         private System.Windows.Forms.Label labelPlacas;
-        private System.Windows.Forms.TextBox textBoxPlacas;
         private System.Windows.Forms.TextBox textBoxMarca;
         private System.Windows.Forms.Label labelMarca;
         private System.Windows.Forms.TextBox textBoxCor;
         private System.Windows.Forms.Label labelCor;
         private System.Windows.Forms.Label labelTipoCombustivel;
         private System.Windows.Forms.ComboBox comboBoxTipoCombustivel;
-        private System.Windows.Forms.TextBox textBoxCapacidadeTanque;
         private System.Windows.Forms.Label labelCapacidadeTanque;
-        private System.Windows.Forms.Label labelLitros;
-        private System.Windows.Forms.TextBox textBoxAno;
         private System.Windows.Forms.Label labelAno;
-        private System.Windows.Forms.TextBox textBoxQuilometragem;
         private System.Windows.Forms.Label labelQuilometragem;
         private System.Windows.Forms.Label labelFoto;
         private System.Windows.Forms.PictureBox pictureBoxFoto;
         private System.Windows.Forms.OpenFileDialog openFileDialogFoto;
         private System.Windows.Forms.Button buttonCarregarFoto;
-        private System.Windows.Forms.Button buttonCancelar;
-        private System.Windows.Forms.Button buttonSalvar;
+        private System.Windows.Forms.ComboBox cmbGrupoVeiculo;
+        private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.Button btnSalvar;
+        private System.Windows.Forms.MaskedTextBox textBoxCapacidadeTanque;
+        private System.Windows.Forms.MaskedTextBox textBoxQuilometragem;
+        private System.Windows.Forms.DateTimePicker data;
+        private System.Windows.Forms.TextBox txtId;
+        private System.Windows.Forms.Label laId;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.MaskedTextBox textBoxPlacas;
     }
 }

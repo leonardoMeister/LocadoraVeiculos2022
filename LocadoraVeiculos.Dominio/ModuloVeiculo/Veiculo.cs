@@ -44,10 +44,8 @@ namespace LocadoraVeiculos.Dominio.ModuloVeiculo
                    Cor == veiculo.Cor &&
                    TipoCombustivel == veiculo.TipoCombustivel &&
                    CapacidadeTanque == veiculo.CapacidadeTanque &&
-                   Ano == veiculo.Ano &&
-                   Quilometragem == veiculo.Quilometragem &&
-                   EqualityComparer<byte[]>.Default.Equals(Foto, veiculo.Foto) &&
-                   EqualityComparer<GrupoVeiculos>.Default.Equals(GrupoVeiculos, veiculo.GrupoVeiculos);
+                   Quilometragem == veiculo.Quilometragem;
+                   
         }
 
         public override int GetHashCode()
@@ -59,11 +57,8 @@ namespace LocadoraVeiculos.Dominio.ModuloVeiculo
             hash.Add(Marca);
             hash.Add(Cor);
             hash.Add(TipoCombustivel);
-            hash.Add(CapacidadeTanque);
-            hash.Add(Ano);
-            hash.Add(Quilometragem);
-            hash.Add(Foto);
-            hash.Add(GrupoVeiculos);
+            hash.Add(CapacidadeTanque);            
+            hash.Add(Quilometragem);                        
             return hash.ToHashCode();
         }
     }
