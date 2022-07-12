@@ -24,8 +24,7 @@ namespace LocadoraVeiculos.WinApp.ModuloCondutores
             {
                 condutor = value;
 
-                if (condutor._id != 0)
-                    PreencherDadosNaTela();
+                PreencherDadosNaTela();
 
             }
         }
@@ -85,10 +84,10 @@ namespace LocadoraVeiculos.WinApp.ModuloCondutores
 
         private bool PegarObjetoTela()
         {
-            int id = 0;
+            Guid id;
 
             if (txtId.Text != "")
-                id = Convert.ToInt32(txtId.Text);
+                id = new Guid(txtId.Text);
 
             string nome = txtNome.Text;
             string endereco = txtEndereco.Text;
@@ -98,11 +97,8 @@ namespace LocadoraVeiculos.WinApp.ModuloCondutores
             string cnh = txtCnh.Text;
             string validadecnh = dateTimeCnh.Text;
 
-            condutor = new Condutores(nome, cpf, endereco, email, telefone, cnh, validadecnh)
-            {
-                _id = id
-            };
-
+            condutor = new Condutores(nome, cpf, endereco, email, telefone, cnh, validadecnh);
+     
             return true;
         }
 

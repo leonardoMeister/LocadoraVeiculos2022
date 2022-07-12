@@ -25,7 +25,7 @@ namespace LocadoraVeiculos.WinApp.ModuloCondutores
         {
             TelaCadastroCondutoresForm telaCadastroCondutores = new();
 
-            int id = tabelaCondutoresControl.ObtemNumeroCondutoresSelecionado();
+            Guid id = tabelaCondutoresControl.ObtemNumeroCondutoresSelecionado();
             var registro = controlador.SelecionarPorId(id);
 
             if (registro != null)
@@ -43,7 +43,7 @@ namespace LocadoraVeiculos.WinApp.ModuloCondutores
 
         public void Excluir()
         {
-            int id = tabelaCondutoresControl.ObtemNumeroCondutoresSelecionado();
+            Guid id = tabelaCondutoresControl.ObtemNumeroCondutoresSelecionado();
             try
             {
                 controlador.Excluir(id);

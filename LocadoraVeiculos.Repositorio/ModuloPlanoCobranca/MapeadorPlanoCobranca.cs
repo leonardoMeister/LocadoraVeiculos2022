@@ -18,7 +18,7 @@ namespace LocadoraVeiculos.RepositorioProject.ModuloPlanoCobranca
 
         public override PlanoCobranca ConverterEmRegistro(IDataReader dataReader)
         {
-            int id = Convert.ToInt32(dataReader["IDPLANO"]);
+            var id = Guid.Parse(dataReader["IDPLANO"].ToString());
             string tipo = Convert.ToString(dataReader["TIPOPLANO"]);
             decimal valorDia = Convert.ToDecimal(dataReader["VALORPLANO"]);
             decimal limite = Convert.ToDecimal(dataReader["LIMITEDEKILOMETRAGEM"]);

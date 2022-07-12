@@ -10,7 +10,7 @@ namespace LocadoraVeiculos.RepositorioProject.ModuloFuncionario
     {
         public override Funcionario ConverterEmRegistro(IDataReader dataReader)
         {
-            int id = Convert.ToInt32(dataReader[0]);
+            var id = Guid.Parse(dataReader["FUNCIONARIO_ID"].ToString());
             string nome = Convert.ToString(dataReader[1]);
             string login = Convert.ToString(dataReader[2]);
             string senha = Convert.ToString(dataReader[3]);

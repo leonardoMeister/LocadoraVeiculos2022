@@ -18,6 +18,7 @@ namespace LocadoraVeiculos.WinApp
         public ConfiguracaoCliente configuracaoCliente;
         public ConfiguracaoFuncionario configuracaoFuncionario;
         public ConfiguracaoCondutores configuracaoCondutores;
+        public ConfiguracaoPlanoCobranca configuracaoPlanoCobranca;
         public ConfiguracaoVeiculo configuracaoVeiculo;
         public ConfiguracaoPlanoCobranca configuracaoPlanoCobranca;
 
@@ -35,6 +36,7 @@ namespace LocadoraVeiculos.WinApp
             this.configuracaoCliente = new ConfiguracaoCliente(this.AtualizarRodape);
             this.configuracaoFuncionario = new ConfiguracaoFuncionario(this.AtualizarRodape);
             this.configuracaoCondutores = new ConfiguracaoCondutores(this.AtualizarRodape);
+            this.configuracaoPlanoCobranca = new ConfiguracaoPlanoCobranca(this.AtualizarRodape);
             this.configuracaoVeiculo = new(this.AtualizarRodape);
             this.configuracaoPlanoCobranca = new ConfiguracaoPlanoCobranca(this.AtualizarRodape);
         }

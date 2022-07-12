@@ -23,7 +23,7 @@ namespace LocadoraVeiculos.WinApp.ModuloGrupoVeiculo
         {
             TelaCadastroGrupoVeiculo telaCadastroGrupoVeiculo = new TelaCadastroGrupoVeiculo();
 
-            int id = tabelaGrupoVeiculos.ObtemNumeroTarefaSelecionado();
+            Guid id = tabelaGrupoVeiculos.ObtemNumeroTarefaSelecionado();
             var registro = controlador.SelecionarPorId(id);
 
             if (registro != null)
@@ -41,7 +41,7 @@ namespace LocadoraVeiculos.WinApp.ModuloGrupoVeiculo
 
         public void Excluir()
         {
-            int id = tabelaGrupoVeiculos.ObtemNumeroTarefaSelecionado();
+            Guid id = tabelaGrupoVeiculos.ObtemNumeroTarefaSelecionado();
             try
             {
                 controlador.Excluir(id);

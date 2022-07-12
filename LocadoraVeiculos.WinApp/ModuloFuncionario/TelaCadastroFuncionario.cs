@@ -56,10 +56,10 @@ namespace LocadoraVeiculos.WinApp.ModuloFuncionario
 
         private bool PegarObjetoTela()
         {
-            int id = 0;
+            Guid id;
 
             if (txtId.Text != "")
-                id = Convert.ToInt32(txtId.Text);
+                id = new Guid(txtId.Text);
 
             if (txtLogin.Text == "" || txtNome.Text == "" || txtSalario.Text == ""
                 || txtSenha.Text == "" || txtTipoPerfil.Text == "")
@@ -76,10 +76,8 @@ namespace LocadoraVeiculos.WinApp.ModuloFuncionario
             DateTime dataAdmicao = txtData.Value;
             string tipoPerfil = txtTipoPerfil.Text;
 
-            funcionario = new Funcionario(nome, login, senha, salario, dataAdmicao, tipoPerfil)
-            {
-                _id = id
-            };
+            funcionario = new Funcionario(nome, login, senha, salario, dataAdmicao, tipoPerfil);
+ 
             return true;
         }
 

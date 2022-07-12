@@ -10,7 +10,7 @@ namespace LocadoraVeiculos.RepositorioProject.ModuloCondutores
     {
         public override Condutores ConverterEmRegistro(IDataReader dataReader)
         {
-            int id = Convert.ToInt32(dataReader[0]);
+            var id = Guid.Parse(dataReader["CONDUTOR_ID"].ToString());
             string nome = Convert.ToString(dataReader[1]);
             string cpf = Convert.ToString(dataReader[2]);
             string endereco = Convert.ToString(dataReader[3]);

@@ -24,7 +24,7 @@ namespace LocadoraVeiculos.WinApp.ModuloPlanoCobranca
         {
             TelaCadastroPlanoCobranca telaCadastroPlanoCobranca = new TelaCadastroPlanoCobranca();
 
-            int id = tabelaPlanoCobranca.ObtemNumeroPlanoSelecionado();
+            Guid id = tabelaPlanoCobranca.ObtemNumeroPlanoSelecionado();
             var registro = controlador.SelecionarPorId(id);
 
             if (registro != null)
@@ -42,7 +42,7 @@ namespace LocadoraVeiculos.WinApp.ModuloPlanoCobranca
 
         public void Excluir()
         {
-            int id = tabelaPlanoCobranca.ObtemNumeroPlanoSelecionado();
+            Guid id = tabelaPlanoCobranca.ObtemNumeroPlanoSelecionado();
             try
             {
                 controlador.Excluir(id);

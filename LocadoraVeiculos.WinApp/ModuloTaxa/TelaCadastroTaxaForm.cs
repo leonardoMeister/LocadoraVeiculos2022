@@ -62,25 +62,21 @@ namespace LocadoraVeiculos.WinApp.ModuloTaxa
 
         private bool PegarObjetoTela()
         {
-            int id = 0;
+            Guid id;
 
             if (txtId.Text != "")
-                id = Convert.ToInt32(txtId.Text);
+                id = new Guid(txtId.Text);
 
             if (txtDescricao.Text == "" || txtValor.Text == "")
             {
                 AtualizarRodape("Favor Preencher todos os campos.");
                 return false;
-            }
-                
+            }                
 
             string descricao = txtDescricao.Text;
             decimal valor = Convert.ToDecimal(txtValor.Text);
             string tipo = (radioDiaria.Checked) ? EnumTaxa.Diaria.ToString() : EnumTaxa.Fixa.ToString();
-            taxa = new Taxas(descricao, valor, tipo)
-            {
-                _id = id
-            };
+            taxa = new Taxas(descricao, valor, tipo);
 
             return true;
         }

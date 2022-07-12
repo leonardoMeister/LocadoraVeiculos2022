@@ -45,12 +45,12 @@ namespace LocadoraVeiculos.Repositorio.shared
             return resultadoValidacao;
         }
 
-        public virtual bool Existe(int id)
+        public virtual bool Existe(Guid id)
         {
             return Repositorio.Existe(id);
         }        
 
-        public virtual ValidationResult Excluir(int id)
+        public virtual ValidationResult Excluir(Guid id)
         {
             var resultadoValidacao = new ValidationResult();
             try
@@ -70,7 +70,7 @@ namespace LocadoraVeiculos.Repositorio.shared
             return Repositorio.SelecionarTodos();
         }
 
-        public virtual T SelecionarPorId(int id)
+        public virtual T SelecionarPorId(Guid id)
         {
             return Repositorio.SelecionarPorId(id);
         }
