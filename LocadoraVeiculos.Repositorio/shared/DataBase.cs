@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Microsoft.Extensions.Configuration;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 
 namespace LocadoraVeiculos.RepositorioProject.shared
 {
@@ -13,12 +15,18 @@ namespace LocadoraVeiculos.RepositorioProject.shared
         private static readonly string nomeProvider;
         private static readonly SqlConnection conection;
 
+
         static DataBase()
         {
-            connectionString = @"Data Source=(LOCALDB)\MSSQLLOCALDB;
-                                  Initial Catalog=LocadoraVeiculos;
-                                  Integrated Security = True;
-                                  Pooling = false;";
+            var configuracao = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("ConfiguracaoAplicacao.json")
+                .Build();
+
+            connectionString = configuracao
+                .GetSection("ConnectionStrings")
+                .GetSection("SqlServer")
+                .Value;
 
             nomeProvider = "System.Data.SqlClient";
 
