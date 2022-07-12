@@ -36,7 +36,7 @@ namespace LocadoraVeiculos.Repositorio.shared
             {
                 foreach (var erros in resultadoValidacao.Errors)
                 {
-                    Log.Logger.Warning("Falha ao tentar inserir {ID} - {Motivo}", registro._id, erros.ErrorMessage);
+                    Log.Logger.Warning("Falha ao tentar inserir {RegistroType} - {ID} - {Motivo}", registro.GetType(), registro._id, erros.ErrorMessage);
                     return resultadoValidacao;
                 }
             }
@@ -56,8 +56,8 @@ namespace LocadoraVeiculos.Repositorio.shared
             {
                 foreach (var erros in resultadoValidacao.Errors)
                 {
-                    Log.Logger.Warning("Falha ao tentar editar {ID} - {Motivo}",
-                        registro._id, erros.ErrorMessage);
+                    Log.Logger.Warning("Falha ao tentar editar {RegistroType} - {ID} - {Motivo}",
+                        registro.GetType(), registro._id, erros.ErrorMessage);
                     return resultadoValidacao;
                 }
             }
@@ -79,6 +79,8 @@ namespace LocadoraVeiculos.Repositorio.shared
             }
             catch (Exception e)
             {
+                Log.Logger.Warning("Falha ao tentar excluir {ID} - {Motivo}", id, e.Message);
+
                 resultadoValidacao.Errors.Add(new ValidationFailure("", $"{e.Message}"));
             }
 

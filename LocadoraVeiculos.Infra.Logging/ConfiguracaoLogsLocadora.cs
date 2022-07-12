@@ -15,7 +15,7 @@ namespace LocadoraVeiculos.Infra.Logging
 
             var diretorioSaida = configuracao
                 .GetSection("ConfiguracaoLogs")
-                .GetSection("DretorioSaida")
+                .GetSection("DiretorioSaida")
                 .Value;
 
             Log.Logger = new LoggerConfiguration()
