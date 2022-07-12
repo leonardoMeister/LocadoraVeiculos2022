@@ -23,19 +23,26 @@ namespace LocadoraVeiculos.RepositorioProject.ModuloTaxas
                    SET [descricao] = @DESCRICAO,
                        [valor] = @VALOR,
                        [tipo] = @TIPO
-                 WHERE id_taxas = @ID";
+                 WHERE id_taxas = @ID_TAXAS";
 
         protected override string SqlDelete =>
                 @"DELETE FROM TB_TAXAS
-                WHERE id_taxas = @ID";
+                WHERE id_taxas = @ID_TAXAS";
 
         protected override string SqlInsert =>
             @"INSERT INTO TB_TAXAS
-                   ([descricao],
+                   (
+                    [id_taxas],
+                    [descricao],
                     [valor],
                     [tipo])
                  VALUES
-                       (@DESCRICAO, @VALOR, @TIPO) ;";
+                       (
+                    @ID_TAXAS,
+                    @DESCRICAO,
+                    @VALOR,
+                    @TIPO
+                );";
 
         protected override string SqlSelectAll => @"
                 SELECT [id_taxas],
@@ -50,14 +57,14 @@ namespace LocadoraVeiculos.RepositorioProject.ModuloTaxas
                        [valor],
                        [tipo]
                   FROM TB_TAXAS
-                    where id_taxas = @ID ; ";
+                    where id_taxas = @ID_TAXAS; ";
 
         protected override string SqlExiste =>
             @"SELECT
                         COUNT(*)
                     FROM 
                         TB_TAXAS
-                    WHERE id_taxas = @ID;";
+                    WHERE id_taxas = @ID_TAXAS;";
 
     }
 }

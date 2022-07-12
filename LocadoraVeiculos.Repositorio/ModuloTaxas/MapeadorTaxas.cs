@@ -24,7 +24,7 @@ namespace LocadoraVeiculos.RepositorioProject.ModuloTaxas
         {
             var parametros = new Dictionary<string, object>();
 
-            parametros.Add("ID", taxas._id);
+            parametros.Add("ID_TAXAS", taxas._id);
             parametros.Add("DESCRICAO", taxas.Descricao);
             parametros.Add("VALOR", taxas.Valor);
             parametros.Add("TIPO", taxas.Tipo);
