@@ -30,10 +30,7 @@ namespace LocadoraVeiculos.RepositorioProject.ModuloVeiculo
             byte[] foto = (byte[])dataReader["FOTO"];     
             var grupo = mapeadorGrupoVeiculos.ConverterEmRegistro(dataReader);
 
-            var planoCobranca = new Veiculo(modelo,placa,marca,cor,tipoCombustivel,capacidadeTanque,ano,quilometragem,foto,grupo)
-            {
-                _id = id
-            };
+            var planoCobranca = new Veiculo(modelo, placa, marca, cor, tipoCombustivel, capacidadeTanque, ano, quilometragem, foto, grupo);
 
             return planoCobranca;
         }

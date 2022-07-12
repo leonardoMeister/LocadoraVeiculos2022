@@ -92,10 +92,7 @@ namespace LocadoraVeiculos.WinApp.ModuloVeiculo
             GrupoVeiculos grupo = null;
             if (cmbGrupoVeiculo.SelectedIndex != -1) grupo = (GrupoVeiculos)cmbGrupoVeiculo.SelectedItem;
 
-            veiculo = new Veiculo(modelo, placa, marca, cor, tipoCombustivel, capacidadeTanque, ano, quilometragem, foto, grupo)
-            {
-                _id = id
-            };
+            veiculo = new Veiculo(modelo, placa, marca, cor, tipoCombustivel, capacidadeTanque, ano, quilometragem, foto, grupo);
 
         }
         private void buttonCarregarFoto_Click(object sender, EventArgs e)
