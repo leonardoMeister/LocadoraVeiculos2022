@@ -84,7 +84,7 @@ namespace LocadoraVeiculos.WinApp.ModuloCondutores
 
         private bool PegarObjetoTela()
         {
-            Guid id;
+            Guid id = new Guid();
 
             if (txtId.Text != "")
                 id = new Guid(txtId.Text);
@@ -98,7 +98,10 @@ namespace LocadoraVeiculos.WinApp.ModuloCondutores
             string validadecnh = dateTimeCnh.Text;
 
             condutor = new Condutores(nome, cpf, endereco, email, telefone, cnh, validadecnh);
-     
+
+            if (id != Guid.Empty)
+                condutor._id = id;
+
             return true;
         }
 
