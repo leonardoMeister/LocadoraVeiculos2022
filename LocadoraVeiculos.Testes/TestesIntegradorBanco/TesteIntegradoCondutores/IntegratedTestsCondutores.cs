@@ -10,12 +10,11 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoCondutores
     {
         public IntegratedTestsCondutores()
         {
-            string query = @"delete from TB_CONDUTORES;
-                            DBCC CHECKIDENT (TB_CONDUTORES, RESEED, 1)";
+            string query = @"delete from TB_CONDUTORES;";
             DataBase.ExecutarComando(query);
         }
 
-        [TestMethod]
+        [TestMethod] 
         public void DeveInserirCondutores()
         {
             ControladorCondutores repo = new ControladorCondutores();
