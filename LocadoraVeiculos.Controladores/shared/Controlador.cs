@@ -1,6 +1,7 @@
 ﻿using FluentValidation;
 using FluentValidation.Results;
 using LocadoraVeiculos.Dominio.shared;
+using Serilog;
 using System;
 using System.Collections.Generic;
 
@@ -31,6 +32,15 @@ namespace LocadoraVeiculos.Repositorio.shared
             {
                 Repositorio.InserirNovo(registro);
             }
+            else
+            {
+                foreach (var erros in resultadoValidacao.Errors)
+                {
+                    Log.Logger.Warning("Falha ao tentar inserir {ID} - {Motivo}", registro._id, erros.ErrorMessage);
+                    return resultadoValidacao;
+                }
+            }
+
             return resultadoValidacao;
         }
 
@@ -42,6 +52,16 @@ namespace LocadoraVeiculos.Repositorio.shared
             {
                 Repositorio.Editar(registro._id, registro);
             }
+            else
+            {
+                foreach (var erros in resultadoValidacao.Errors)
+                {
+                    Log.Logger.Warning("Falha ao tentar editar {ID} - {Motivo}",
+                        registro._id, erros.ErrorMessage);
+                    return resultadoValidacao;
+                }
+            }
+
             return resultadoValidacao;
         }
 
