@@ -23,7 +23,7 @@ namespace LocadoraVeiculos.Controladores.ModuloControladorTaxas
             var validacaoBanco = TaxasForValidaParaInserir(registro);
             if (validacaoBanco.IsValid)
             {
-                Log.Logger.Debug("Taxas {TaxasNome} inserido com sucesso", registro.Tipo);
+                Log.Logger.Debug("Taxas {TaxasID} inserido com sucesso", registro._id);
 
                 return base.InserirNovo(registro);
             }
@@ -31,8 +31,8 @@ namespace LocadoraVeiculos.Controladores.ModuloControladorTaxas
             {
                 foreach (var erros in validacaoBanco.Errors)
                 {
-                    Log.Logger.Warning("Falha ao tentar inserir um Taxas {TaxasNome} - {Motivo}",
-                        registro.Tipo, erros.ErrorMessage);
+                    Log.Logger.Warning("Falha ao tentar inserir um Taxas {TaxasID} - {Motivo}",
+                        registro._id, erros.ErrorMessage);
                     return validacaoBanco;
                 }
             }
@@ -47,7 +47,7 @@ namespace LocadoraVeiculos.Controladores.ModuloControladorTaxas
             var validacaoBanco = TaxaForValidaParaEditar(registro);
             if (validacaoBanco.IsValid)
             {
-                Log.Logger.Debug("Taxa {TaxasNome} editada com sucesso", registro.Tipo);
+                Log.Logger.Debug("Taxa {TaxasID} editada com sucesso", registro._id);
 
                 return base.Editar(registro);
             }
@@ -55,8 +55,8 @@ namespace LocadoraVeiculos.Controladores.ModuloControladorTaxas
             {
                 foreach (var erros in validacaoBanco.Errors)
                 {
-                    Log.Logger.Warning("Falha ao tentar editar uma Taxa {TaxasNome} - {Motivo}",
-                        registro.Tipo, erros.ErrorMessage);
+                    Log.Logger.Warning("Falha ao tentar editar uma Taxa {TaxasID} - {Motivo}",
+                        registro._id, erros.ErrorMessage);
                     return validacaoBanco;
                 }
             }

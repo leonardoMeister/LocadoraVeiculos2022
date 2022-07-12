@@ -20,14 +20,14 @@ namespace LocadoraVeiculos.Controladores.ModuloPlanoCobranca
         }
         public override ValidationResult InserirNovo(PlanoCobranca registro)
         {
-            Log.Logger.Debug("PlanoCobranca {PlanoCobrancaNome} editado com sucesso", registro._id);
+            Log.Logger.Debug("PlanoCobranca {PlanoCobrancaID} editado com sucesso", registro._id);
 
             return base.InserirNovo(registro);
         }
 
         public override ValidationResult Editar(PlanoCobranca registro)
         {
-            Log.Logger.Debug("PlanoCobranca {PlanoCobrancaNome} editado com sucesso", registro._id);
+            Log.Logger.Debug("PlanoCobranca {PlanoCobrancaID} editado com sucesso", registro._id);
 
             return base.Editar(registro);
         }

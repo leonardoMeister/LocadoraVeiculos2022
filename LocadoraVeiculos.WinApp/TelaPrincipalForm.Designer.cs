@@ -48,10 +48,11 @@
             this.tarefasMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cadastrosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.condutoresMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.planoCobrançaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panelRegistros = new System.Windows.Forms.Panel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.menu = new System.Windows.Forms.MenuStrip();
-            this.planoCobrançaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.veículoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolbox.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.menu.SuspendLayout();
@@ -233,7 +234,8 @@
             this.compromissosMenuItem,
             this.despesasMenuItem,
             this.condutoresMenuItem,
-            this.planoCobrançaToolStripMenuItem});
+            this.planoCobrançaToolStripMenuItem,
+            this.veículoToolStripMenuItem});
             this.cadastrosToolStripMenuItem.Name = "cadastrosToolStripMenuItem";
             this.cadastrosToolStripMenuItem.Size = new System.Drawing.Size(88, 24);
             this.cadastrosToolStripMenuItem.Text = "Cadastros";
@@ -244,7 +246,15 @@
             this.condutoresMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
             this.condutoresMenuItem.Size = new System.Drawing.Size(224, 26);
             this.condutoresMenuItem.Text = "Condutor";
-            this.condutoresMenuItem.Click += new System.EventHandler(this.condutoresMenuItem_Click);
+            this.condutoresMenuItem.Click += new System.EventHandler(this.CondutoresMenuItem_Click);
+            // 
+            // planoCobrançaToolStripMenuItem
+            // 
+            this.planoCobrançaToolStripMenuItem.Name = "planoCobrançaToolStripMenuItem";
+            this.planoCobrançaToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F6;
+            this.planoCobrançaToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.planoCobrançaToolStripMenuItem.Text = "Plano Cobrança";
+            this.planoCobrançaToolStripMenuItem.Click += new System.EventHandler(this.PlanoDeCobrancaMenuItem_Click);
             // 
             // panelRegistros
             // 
@@ -279,13 +289,13 @@
             this.menu.TabIndex = 4;
             this.menu.Text = "menuStrip1";
             // 
-            // planoCobrançaToolStripMenuItem
+            // veículoToolStripMenuItem
             // 
-            this.planoCobrançaToolStripMenuItem.Name = "planoCobrançaToolStripMenuItem";
-            this.planoCobrançaToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F6;
-            this.planoCobrançaToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.planoCobrançaToolStripMenuItem.Text = "Plano Cobrança";
-            this.planoCobrançaToolStripMenuItem.Click += new System.EventHandler(this.planoDeCobrancaMenuItem_Click);
+            this.veículoToolStripMenuItem.Name = "veículoToolStripMenuItem";
+            this.veículoToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F7;
+            this.veículoToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.veículoToolStripMenuItem.Text = "Veículo";
+            this.veículoToolStripMenuItem.Click += new System.EventHandler(this.VeiculoMenuItem_Click);
             // 
             // TelaPrincipalForm
             // 
@@ -340,5 +350,6 @@
         private System.Windows.Forms.MenuStrip menu;
         private System.Windows.Forms.ToolStripMenuItem condutoresMenuItem;
         private System.Windows.Forms.ToolStripMenuItem planoCobrançaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem veículoToolStripMenuItem;
     }
 }

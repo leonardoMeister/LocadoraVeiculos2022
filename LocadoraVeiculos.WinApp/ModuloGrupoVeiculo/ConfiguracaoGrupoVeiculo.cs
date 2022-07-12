@@ -37,7 +37,6 @@ namespace LocadoraVeiculos.WinApp.ModuloGrupoVeiculo
 
                 if (telaCadastroGrupoVeiculo.DialogResult == DialogResult.OK) AtualizarRodape("Edição Grupo Veiculo Realizada Com Sucesso");
             }
-
         }
 
         public void Excluir()
@@ -82,6 +81,5 @@ namespace LocadoraVeiculos.WinApp.ModuloGrupoVeiculo
 
             return tabelaGrupoVeiculos;
         }
-
     }
 }

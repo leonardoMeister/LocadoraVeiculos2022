@@ -26,7 +26,7 @@ namespace LocadoraVeiculos.Controladores.ModuloFuncionario
             var validacaoBanco = FuncionarioForValidoParaEditar(registro);
             if (validacaoBanco.IsValid)
             {
-                Log.Logger.Debug("Funcionario {FuncionarioNome} editado com sucesso", registro.Nome);
+                Log.Logger.Debug("Funcionario {FuncionarioID} editado com sucesso", registro._id);
 
                 return base.Editar(registro);
             }
@@ -34,8 +34,8 @@ namespace LocadoraVeiculos.Controladores.ModuloFuncionario
             {
                 foreach (var erros in validacaoBanco.Errors)
                 {
-                    Log.Logger.Warning("Falha ao tentar editar um Funcionario {FuncionarioNome} - {Motivo}",
-                        registro.Nome, erros.ErrorMessage);
+                    Log.Logger.Warning("Falha ao tentar editar um Funcionario {FuncionarioID} - {Motivo}",
+                        registro._id, erros.ErrorMessage);
                     return validacaoBanco;
                 }
             }
@@ -48,7 +48,7 @@ namespace LocadoraVeiculos.Controladores.ModuloFuncionario
             var validacaoBanco = FuncionarioForValidoParaInserir(registro);
             if (validacaoBanco.IsValid)
             {
-                Log.Logger.Debug("Funcionario {FuncionarioNome} inserido com sucesso", registro.Nome);
+                Log.Logger.Debug("Funcionario {FuncionarioID} inserido com sucesso", registro._id);
 
                 return base.InserirNovo(registro);
             }
@@ -56,8 +56,8 @@ namespace LocadoraVeiculos.Controladores.ModuloFuncionario
             {
                 foreach (var erros in validacaoBanco.Errors)
                 {
-                    Log.Logger.Warning("Falha ao tentar inserir um Funcionario {FuncionarioNome} - {Motivo}",
-                        registro.Nome, erros.ErrorMessage);
+                    Log.Logger.Warning("Falha ao tentar inserir um Funcionario {FuncionarioID} - {Motivo}",
+                        registro._id, erros.ErrorMessage);
                     return validacaoBanco;
                 }
             }
