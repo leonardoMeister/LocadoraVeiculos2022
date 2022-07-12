@@ -34,6 +34,9 @@ namespace LocadoraVeiculos.Dominio.ModuloFuncionario
                 .NotNull().WithMessage("Deve ser inserido uma Data de Admição")
                 .NotEmpty().WithMessage("Deve ser inserido uma Data de Admição");
 
+            RuleFor(x => x.TipoPerfil)
+                .NotEmpty().WithMessage("Deve Selecionar um tipo Funcionario");
+                
         }
     }
 }
