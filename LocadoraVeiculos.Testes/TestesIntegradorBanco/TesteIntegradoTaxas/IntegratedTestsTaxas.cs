@@ -11,8 +11,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoTaxas
     {
         public IntegratedTestsTaxas()
         {
-            string query = @"delete from TB_TAXAS;
-                            DBCC CHECKIDENT (TB_TAXAS, RESEED, 1)";
+            string query = @"delete from TB_TAXAS;";
             DataBase.ExecutarComando(query);
         }
 
@@ -28,7 +27,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoTaxas
             var taxas = repo.SelecionarPorId(tax._id);
 
             Assert.AreEqual(taxas._id, tax._id);
-            Assert.AreEqual(taxas.Descricao, tax.Descricao);
+            Assert.AreEqual(taxas.Descricao, tax.Descricao); 
             Assert.AreEqual(taxas.Valor, tax.Valor);
         }
 
