@@ -21,14 +21,14 @@ namespace LocadoraVeiculos.Controladores.ModuloVeiculo
 
         public override ValidationResult InserirNovo(Veiculo registro)
         {
-            Log.Logger.Debug("Veiculo {VeiculoNome} editado com sucesso", registro._id);
+            Log.Logger.Debug("Veiculo {VeiculoID} editado com sucesso", registro._id);
 
             return base.InserirNovo(registro);
         }
 
         public override ValidationResult Editar(Veiculo registro)
         {
-            Log.Logger.Debug("Veiculo {VeiculoNome} editado com sucesso", registro._id);
+            Log.Logger.Debug("Veiculo {VeiculoID} editado com sucesso", registro._id);
 
             return base.Editar(registro);
         }

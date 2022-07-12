@@ -26,7 +26,7 @@ namespace LocadoraVeiculos.Controladores.ModuloControladorGrupoVeiculos
             var validacaoBanco = GrupoVeiculosForValidoParaEditar(registro);
             if (validacaoBanco.IsValid)
             {
-                Log.Logger.Debug("GrupoVeiculos {GrupoVeiculosNome} editado com sucesso", registro.NomeGrupo);
+                Log.Logger.Debug("GrupoVeiculos {GrupoVeiculosID} editado com sucesso", registro._id);
 
                 return base.Editar(registro);
             }
@@ -34,8 +34,8 @@ namespace LocadoraVeiculos.Controladores.ModuloControladorGrupoVeiculos
             {
                 foreach (var erros in validacaoBanco.Errors)
                 {
-                    Log.Logger.Warning("Falha ao tentar editar um GrupoVeiculos {GrupoVeiculosNome} - {Motivo}",
-                        registro.NomeGrupo, erros.ErrorMessage);
+                    Log.Logger.Warning("Falha ao tentar editar um GrupoVeiculos {GrupoVeiculosID} - {Motivo}",
+                        registro._id, erros.ErrorMessage);
                     return validacaoBanco;
                 }
             }
@@ -48,7 +48,7 @@ namespace LocadoraVeiculos.Controladores.ModuloControladorGrupoVeiculos
             var validacaoBanco = GrupoVeiculosForValidoParaInserir(registro);
             if (validacaoBanco.IsValid)
             {
-                Log.Logger.Debug("GrupoVeiculos {GrupoVeiculosNome} inserido com sucesso", registro.NomeGrupo);
+                Log.Logger.Debug("GrupoVeiculos {GrupoVeiculosID} inserido com sucesso", registro._id);
 
                 return base.InserirNovo(registro);
             }
@@ -56,8 +56,8 @@ namespace LocadoraVeiculos.Controladores.ModuloControladorGrupoVeiculos
             {
                 foreach (var erros in validacaoBanco.Errors)
                 {
-                    Log.Logger.Warning("Falha ao tentar inserir um GrupoVeiculos {GrupoVeiculosNome} - {Motivo}",
-                        registro.NomeGrupo, erros.ErrorMessage);
+                    Log.Logger.Warning("Falha ao tentar inserir um GrupoVeiculos {GrupoVeiculosID} - {Motivo}",
+                        registro._id, erros.ErrorMessage);
                     return validacaoBanco;
                 }
             }
