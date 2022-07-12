@@ -10,7 +10,7 @@ namespace LocadoraVeiculos.RepositorioProject.ModuloCliente
     {
         public override Cliente ConverterEmRegistro(IDataReader dataReader)
         {
-            var id = Guid.Parse(dataReader["ID_CLIENTE"].ToString());
+            var id = Guid.Parse(dataReader[0].ToString());
             string nome = Convert.ToString(dataReader[1]);
             string cpf = Convert.ToString(dataReader[2]);
             string endereco = Convert.ToString(dataReader[3]);
@@ -28,7 +28,7 @@ namespace LocadoraVeiculos.RepositorioProject.ModuloCliente
         {
             var parametros = new Dictionary<string, object>();
 
-            parametros.Add("ID_CLIENTE", registro._id);
+            parametros.Add("ID", registro._id);
             parametros.Add("NOME", registro.Nome);
             parametros.Add("CPF", registro.Cpf);
             parametros.Add("ENDERECO", registro.Endereco);
