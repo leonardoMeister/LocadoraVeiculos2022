@@ -10,7 +10,7 @@ namespace LocadoraVeiculos.RepositorioProject.ModuloGrupoVeiculos
     {
         public override GrupoVeiculos ConverterEmRegistro(IDataReader dataReader)
         {
-            var id = Guid.Parse(dataReader["GRUPOVEICULOS_ID"].ToString());
+            var id = Guid.Parse(dataReader["IDGRUPO"].ToString());
             string nomeGrupo = Convert.ToString(dataReader["NOMEGRUPO"]);
 
             var gveiculos = new GrupoVeiculos(nomeGrupo);
