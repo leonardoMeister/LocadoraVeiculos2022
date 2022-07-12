@@ -62,7 +62,7 @@ namespace LocadoraVeiculos.WinApp.ModuloTaxa
 
         private bool PegarObjetoTela()
         {
-            Guid id;
+            Guid id = new Guid();
 
             if (txtId.Text != "")
                 id = new Guid(txtId.Text);
@@ -77,6 +77,10 @@ namespace LocadoraVeiculos.WinApp.ModuloTaxa
             decimal valor = Convert.ToDecimal(txtValor.Text);
             string tipo = (radioDiaria.Checked) ? EnumTaxa.Diaria.ToString() : EnumTaxa.Fixa.ToString();
             taxa = new Taxas(descricao, valor, tipo);
+
+            if (id != Guid.Empty)
+                taxa._id = id;
+
 
             return true;
         }

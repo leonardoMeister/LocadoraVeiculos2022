@@ -75,7 +75,7 @@ namespace LocadoraVeiculos.WinApp.ModuloCliente
 
         private bool PegarObjetoTela()
         {
-            Guid id;
+            Guid id = new Guid();
 
             if (txtId.Text != "")
                 id = new Guid(txtId.Text);
@@ -89,6 +89,9 @@ namespace LocadoraVeiculos.WinApp.ModuloCliente
             string cnpj = maskedTextBoxCNPJ.Text;
 
             cliente = new Cliente(nome, cpf, endereco, email, telefone, tipo, cnpj);
+
+            if (id != Guid.Empty)
+                cliente._id = id;
 
             return true;
         }
