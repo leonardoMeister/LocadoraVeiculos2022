@@ -2,6 +2,9 @@
 using System;
 using FluentValidation.Results;
 using System.Windows.Forms;
+using System.Drawing;
+using System.IO;
+using System.Drawing.Imaging;
 
 namespace LocadoraVeiculos.WinApp.ModuloVeiculo
 {
@@ -12,6 +15,7 @@ namespace LocadoraVeiculos.WinApp.ModuloVeiculo
             InitializeComponent();
         }
 
+        private Bitmap bmp;
         public Action<string> AtualizarRodape { get; set; }
 
         public Veiculo Veiculo;
@@ -41,6 +45,9 @@ namespace LocadoraVeiculos.WinApp.ModuloVeiculo
         private bool PegarObjetoTela()
         {           
 
+            MemoryStream memory = new MemoryStream();
+            bmp.Save(memory, ImageFormat.Bmp);
+
             Veiculo.Modelo = textBoxModelo.Text;
             Veiculo.Placa = textBoxPlacas.Text;
             Veiculo.Marca = textBoxMarca.Text;
@@ -49,7 +56,7 @@ namespace LocadoraVeiculos.WinApp.ModuloVeiculo
             Veiculo.CapacidadeTanque = Convert.ToDecimal(textBoxCapacidadeTanque.Text);
             Veiculo.Ano = Convert.ToDateTime(textBoxAno.Text);
             Veiculo.Quilometragem = Convert.ToDecimal(textBoxQuilometragem.Text);
-
+            Veiculo.Foto = memory.ToArray();
             return true;
         }
 
@@ -57,6 +64,18 @@ namespace LocadoraVeiculos.WinApp.ModuloVeiculo
         {
             AtualizarRodape("Inserção Cancelada.");
             this.DialogResult = DialogResult.Cancel;
+        }
+
+        private void buttonCarregarFoto_Click(object sender, EventArgs e)
+        {
+            if(openFileDialogFoto.ShowDialog() == DialogResult.OK)
+            {
+                string nome = openFileDialogFoto.FileName;
+
+                bmp = new Bitmap(nome);
+
+                pictureBoxFoto.Image = bmp;
+            }
         }
     }
 }

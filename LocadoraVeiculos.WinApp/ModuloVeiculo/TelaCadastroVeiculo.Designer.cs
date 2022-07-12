@@ -238,6 +238,7 @@
             this.buttonCarregarFoto.TabIndex = 4;
             this.buttonCarregarFoto.Text = "Carregar";
             this.buttonCarregarFoto.UseVisualStyleBackColor = true;
+            this.buttonCarregarFoto.Click += new System.EventHandler(this.buttonCarregarFoto_Click);
             // 
             // buttonCancelar
             // 
