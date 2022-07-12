@@ -18,7 +18,7 @@ namespace LocadoraVeiculos.RepositorioProject.ModuloVeiculo
 
         public override Veiculo ConverterEmRegistro(IDataReader dataReader)
         {
-            int id = Convert.ToInt32(dataReader["IDPLANO"]);
+            var id = Guid.Parse(dataReader["ID"].ToString());            
             string modelo = dataReader["MODELO"].ToString();
             string placa = dataReader["PLACA"].ToString();
             string marca = dataReader["MARCA"].ToString();
@@ -30,7 +30,10 @@ namespace LocadoraVeiculos.RepositorioProject.ModuloVeiculo
             byte[] foto = (byte[])dataReader["FOTO"];     
             var grupo = mapeadorGrupoVeiculos.ConverterEmRegistro(dataReader);
 
-            var planoCobranca = new Veiculo(modelo, placa, marca, cor, tipoCombustivel, capacidadeTanque, ano, quilometragem, foto, grupo);
+            var planoCobranca = new Veiculo(modelo, placa, marca, cor, tipoCombustivel, capacidadeTanque, ano, quilometragem, foto, grupo)
+            {
+                _id = id
+            };
 
             return planoCobranca;
         }
