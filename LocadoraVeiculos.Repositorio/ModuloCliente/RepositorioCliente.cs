@@ -34,21 +34,24 @@ namespace LocadoraVeiculos.RepositorioProject.ModuloCliente
                       ,[telefone] = @TELEFONE
                       ,[tipoCliente] =	@TIPOCLIENTE
                       ,[cnpj] = @CNPJ
-                 WHERE id_cliente = @ID";
+                 WHERE id_cliente = @ID_CLIENTE";
         protected override string SqlDelete =>
                 @"DELETE FROM TB_CLIENTE
-                WHERE id_cliente = @ID";
+                WHERE id_cliente = @ID_CLIENTE";
         protected override string SqlInsert =>
             @"INSERT INTO TB_CLIENTE
-                   ([nome]
-                   ,[cpf]
-                   ,[endereco]
-                   ,[email]
-                   ,[telefone]
-                   ,[tipoCliente]
-                   ,[cnpj])
+                  (
+                   [id_cliente],
+                   [nome],
+                   [cpf],
+                   [endereco],
+                   [email],
+                   [telefone],
+                   [tipoCliente],
+                   [cnpj]
+                  )
                  VALUES
-                       (@NOME, @CPF, @ENDERECO, @EMAIL, @TELEFONE, @TIPOCLIENTE, @CNPJ) ;";
+                       (@ID_CLIENTE, @NOME, @CPF, @ENDERECO, @EMAIL, @TELEFONE, @TIPOCLIENTE, @CNPJ);";
         protected override string SqlSelectAll => @"
                 SELECT [id_cliente]
                       ,[nome]
@@ -69,12 +72,12 @@ namespace LocadoraVeiculos.RepositorioProject.ModuloCliente
                       ,[tipoCliente]
                       ,[cnpj]
                   FROM TB_CLIENTE
-                    where id_cliente = @ID ; ";
+                    where id_cliente = @ID_CLIENTE; ";
         protected override string SqlExiste =>
             @"SELECT
                         COUNT(*)
                     FROM 
                         TB_CLIENTE
-                    WHERE id_cliente = @ID;";
+                    WHERE id_cliente = @ID_CLIENTE;";
     }
 }
