@@ -20,7 +20,6 @@ namespace LocadoraVeiculos.WinApp
         public ConfiguracaoCondutores configuracaoCondutores;
         public ConfiguracaoPlanoCobranca configuracaoPlanoCobranca;
         public ConfiguracaoVeiculo configuracaoVeiculo;
-        public ConfiguracaoPlanoCobranca configuracaoPlanoCobranca;
 
         public ICadastravel telaSelecionada;
 
@@ -38,7 +37,6 @@ namespace LocadoraVeiculos.WinApp
             this.configuracaoCondutores = new ConfiguracaoCondutores(this.AtualizarRodape);
             this.configuracaoPlanoCobranca = new ConfiguracaoPlanoCobranca(this.AtualizarRodape);
             this.configuracaoVeiculo = new(this.AtualizarRodape);
-            this.configuracaoPlanoCobranca = new ConfiguracaoPlanoCobranca(this.AtualizarRodape);
         }
 
         public void AtualizarRodape(string mensagem)
