@@ -45,7 +45,7 @@ namespace LocadoraVeiculos.RepositorioProject.shared
 
             connection.Open();
 
-            var id = command.ExecuteNonQuery();
+            command.ExecuteNonQuery();
         }
 
         public static void Update(string sql, Dictionary<string, object> parameters = null)

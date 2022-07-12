@@ -9,7 +9,7 @@
     [ano_carro]         DATETIME         NULL,
     [quilometragem]     DECIMAL (18)     NULL,
     [foto_carro]        VARBINARY (MAX)  NULL,
-    [grupo_veiculo_id]  INT              NULL,
+    [grupo_veiculo_id]  UNIQUEIDENTIFIER              NULL,
     CONSTRAINT [PK_TB_VEICULO_1] PRIMARY KEY CLUSTERED ([id_veiculo] ASC)
 );
 
