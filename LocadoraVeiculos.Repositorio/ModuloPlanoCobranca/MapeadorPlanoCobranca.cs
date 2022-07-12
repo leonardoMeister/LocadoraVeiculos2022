@@ -18,18 +18,16 @@ namespace LocadoraVeiculos.RepositorioProject.ModuloPlanoCobranca
 
         public override PlanoCobranca ConverterEmRegistro(IDataReader dataReader)
         {
-            var id = Guid.Parse(dataReader["IDPLANO"].ToString());
-            string tipo = Convert.ToString(dataReader["TIPOPLANO"]);
-            decimal valorDia = Convert.ToDecimal(dataReader["VALORPLANO"]);
-            decimal limite = Convert.ToDecimal(dataReader["LIMITEDEKILOMETRAGEM"]);
-            decimal valorKm = Convert.ToDecimal(dataReader["VALORPORKM"]);           
+            var id = Guid.Parse(dataReader[0].ToString());
+            string tipo = Convert.ToString(dataReader[1]);
+            decimal valorDia = Convert.ToDecimal(dataReader[2]);
+            decimal limite = Convert.ToDecimal(dataReader[3]);
+            decimal valorKm = Convert.ToDecimal(dataReader[4]);
                                   
             var grupo = mapeadorGrupoVeiculos.ConverterEmRegistro(dataReader);
 
-            var planoCobranca = new PlanoCobranca(tipo, valorDia, limite, valorKm, grupo)
-            {
-                _id = id
-            };
+            var planoCobranca = new PlanoCobranca(tipo, valorDia, limite, valorKm, grupo);
+            planoCobranca._id = id;
 
             return planoCobranca;
         }
@@ -39,11 +37,11 @@ namespace LocadoraVeiculos.RepositorioProject.ModuloPlanoCobranca
             var parametros = new Dictionary<string, object>();
 
             parametros.Add("ID", registro._id);
-            parametros.Add("@TIPOPLANO", registro.TipoPlano);
-            parametros.Add("@VALORPORDIA", registro.ValorDia);
-            parametros.Add("@LIMITEKM", registro.LimiteKM);
-            parametros.Add("@VALORKM", registro.ValorKM);
-            parametros.Add("@GRUPOVEICULOID", registro.GrupoVeiculos._id);
+            parametros.Add("TIPOPLANO", registro.TipoPlano);
+            parametros.Add("VALORPORDIA", registro.ValorDia);
+            parametros.Add("LIMITEKM", registro.LimiteKM);
+            parametros.Add("VALORKM", registro.ValorKM);
+            parametros.Add("GRUPOVEICULOID", registro.GrupoVeiculos._id);
 
             return parametros;
         }

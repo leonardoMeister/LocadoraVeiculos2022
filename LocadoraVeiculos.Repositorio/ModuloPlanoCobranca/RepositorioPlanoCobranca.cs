@@ -25,13 +25,15 @@ namespace LocadoraVeiculos.RepositorioProject.ModuloPlanoCobranca
                     WHERE id_plano = @ID";
         protected override string SqlInsert =>
                     @"INSERT INTO TB_PLANOCOBRANCA
-                           ([tipo_plano]
+                           (
+                            [id_plano]
+                           ,[tipo_plano]
                            ,[valor_por_diario]
                            ,[limite_de_kilometragem]
                            ,[valor_por_km]
                            ,[grupo_veiculo_id])
                      VALUES
-                           (@TIPOPLANO , @VALORPORDIA , @LIMITEKM , @VALORKM , @GRUPOVEICULOID )";
+                           (@ID, @TIPOPLANO , @VALORPORDIA , @LIMITEKM , @VALORKM , @GRUPOVEICULOID )";
 
         protected override string SqlSelectAll =>
                     @"SELECT [id_plano] IDPLANO
