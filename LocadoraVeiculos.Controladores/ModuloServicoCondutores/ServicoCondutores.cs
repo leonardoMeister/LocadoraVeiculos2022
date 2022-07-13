@@ -5,9 +5,9 @@ using LocadoraVeiculos.Repositorio.shared;
 using LocadoraVeiculos.RepositorioProject.ModuloCondutores;
 using Serilog;
 
-namespace LocadoraVeiculos.Controladores.ModuloCondutores
+namespace LocadoraVeiculos.Controladores.ModuloServicoCondutores
 {
-    public class ControladorCondutores : Controlador<Condutores>
+    public class ServicoCondutores : Controlador<Condutores>
     {
         protected override IRepository<Condutores> PegarRepositorio()
         {

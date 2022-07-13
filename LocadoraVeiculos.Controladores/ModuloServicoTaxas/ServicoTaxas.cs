@@ -5,9 +5,9 @@ using LocadoraVeiculos.Repositorio.shared;
 using LocadoraVeiculos.RepositorioProject.ModuloTaxas;
 using Serilog;
 
-namespace LocadoraVeiculos.Controladores.ModuloControladorTaxas
+namespace LocadoraVeiculos.Controladores.ModuloServicoTaxas 
 {
-    public class ControladorTaxas : Controlador<Taxas>
+    public class ServicoTaxas : Controlador<Taxas>
     {
         protected override IRepository<Taxas> PegarRepositorio()
         {

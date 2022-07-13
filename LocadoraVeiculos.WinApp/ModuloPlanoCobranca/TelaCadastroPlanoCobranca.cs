@@ -1,5 +1,5 @@
 ﻿using FluentValidation.Results;
-using LocadoraVeiculos.Controladores.ModuloControladorGrupoVeiculos;
+using LocadoraVeiculos.Controladores.ModuloServicoGrupoVeiculos;
 using LocadoraVeiculos.Dominio.ModuloGrupoVeiculos;
 using LocadoraVeiculos.Dominio.ModuloPlanoCobranca;
 using System;
@@ -36,7 +36,7 @@ namespace LocadoraVeiculos.WinApp.ModuloPlanoCobranca
 
         private void AtualizarPlanosCobranca()
         {
-            ControladorGrupoVeiculos control = new ControladorGrupoVeiculos();
+            ServicoGrupoVeiculos control = new ServicoGrupoVeiculos();
             var dados = control.SelecionarTodos();
             foreach (var dado in dados)
             {

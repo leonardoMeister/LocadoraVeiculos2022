@@ -6,9 +6,9 @@ using LocadoraVeiculos.RepositorioProject.ModuloFuncionario;
 using Serilog;
 using System;
 
-namespace LocadoraVeiculos.Controladores.ModuloFuncionario
+namespace LocadoraVeiculos.Controladores.ModuloServicoFuncionario
 {
-    public class ControladorFuncionario : Controlador<Funcionario>
+    public class ServicoFuncionario : Controlador<Funcionario> 
     {
         protected override IRepository<Funcionario> PegarRepositorio()
         {

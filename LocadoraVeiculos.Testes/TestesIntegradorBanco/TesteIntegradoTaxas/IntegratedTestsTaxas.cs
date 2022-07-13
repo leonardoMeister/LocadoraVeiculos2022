@@ -1,4 +1,4 @@
-﻿using LocadoraVeiculos.Controladores.ModuloControladorTaxas;
+﻿using LocadoraVeiculos.Controladores.ModuloServicoTaxas;
 using LocadoraVeiculos.Dominio.ModuloTaxas;
 using LocadoraVeiculos.RepositorioProject.ModuloTaxas;
 using LocadoraVeiculos.RepositorioProject.shared;
@@ -18,7 +18,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoTaxas
         [TestMethod]
         public void DeveInserirTaxas()
         {
-            ControladorTaxas repo = new ControladorTaxas();
+            ServicoTaxas repo = new ServicoTaxas();
 
             Taxas tax = new Taxas("Aluguel Onix", 1500, EnumTaxa.Diaria.ToString());
 
@@ -34,7 +34,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoTaxas
         [TestMethod]
         public void DeveBuscarVariosTaxas()
         {
-            ControladorTaxas repo = new ControladorTaxas();
+            ServicoTaxas repo = new ServicoTaxas();
 
             Taxas tax = new Taxas("Aluguel Onix", 1500, EnumTaxa.Diaria.ToString());
             Taxas tax2 = new Taxas("Aluguel HB20", 1000, EnumTaxa.Diaria.ToString());
@@ -51,7 +51,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoTaxas
         [TestMethod]
         public void DeveVerificarExistenciaTaxas()
         {
-            ControladorTaxas repo = new ControladorTaxas();
+            ServicoTaxas repo = new ServicoTaxas();
 
             Taxas tax = new Taxas("Aluguel Onix", 1500, EnumTaxa.Diaria.ToString());
 
@@ -65,7 +65,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoTaxas
         [TestMethod]
         public void DeveEditarTaxas()
         {
-            ControladorTaxas repo = new ControladorTaxas();
+            ServicoTaxas repo = new ServicoTaxas();
 
             Taxas tax = new Taxas("Aluguel Onix", 1500, EnumTaxa.Diaria.ToString());
 
@@ -84,7 +84,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoTaxas
         [TestMethod]
         public void DeveDeletarTaxas()
         {
-            ControladorTaxas repo = new ControladorTaxas();
+            ServicoTaxas repo = new ServicoTaxas();
 
             Taxas tax = new Taxas("Aluguel HB20", 1000, EnumTaxa.Diaria.ToString());
 

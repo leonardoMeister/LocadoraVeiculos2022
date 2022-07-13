@@ -1,4 +1,4 @@
-﻿using LocadoraVeiculos.Controladores.ModuloPlanoCobranca;
+﻿using LocadoraVeiculos.Controladores.ModuloServicoPlanoCobranca;
 using LocadoraVeiculos.Dominio.ModuloPlanoCobranca;
 using LocadoraVeiculos.WinApp.shared;
 using System;
@@ -10,14 +10,14 @@ namespace LocadoraVeiculos.WinApp.ModuloPlanoCobranca
     public class ConfiguracaoPlanoCobranca : ConfiguracaoBase, ICadastravel
     {
         TabelaPlanoCobranca tabelaPlanoCobranca; 
-        ControladorPlanoCobranca controlador;
+        ServicoPlanoCobranca controlador;
         Action<string> AtualizarRodape;
 
         public ConfiguracaoPlanoCobranca(Action<string> atualizar)
         {
             AtualizarRodape = atualizar;
             tabelaPlanoCobranca = new TabelaPlanoCobranca();
-            controlador = new ControladorPlanoCobranca();
+            controlador = new ServicoPlanoCobranca();
         }
 
         public void Editar()

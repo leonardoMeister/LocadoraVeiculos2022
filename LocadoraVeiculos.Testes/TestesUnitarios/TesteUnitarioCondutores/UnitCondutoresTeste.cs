@@ -30,7 +30,7 @@ namespace LocadoraVeiculos.Testes.TestesUnitarios.TesteUnitarioCondutores
         public void DevePermitirCriarCondutores()
         {
             ValidadorCondutores validador = new ValidadorCondutores();
-            Condutores condutores = new Condutores("Gustavo Paes", "02359919994", "Andre Gargioni", "emailteste@gmail.com", "99-99999-9999", "dasdasdasdasdas", "segunda - feira, 4 de julho de 2022");
+            Condutores condutores = new Condutores("Gustavo Paes", "023.599.199.94", "Andre Gargioni", "emailteste@gmail.com", "99-99999-9999", "12323432193", "segunda - feira, 4 de julho de 2022");
             var result = validador.Validate(condutores);
             Assert.AreEqual(result.IsValid, true);
 

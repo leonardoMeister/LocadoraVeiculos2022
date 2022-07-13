@@ -1,4 +1,4 @@
-﻿using LocadoraVeiculos.Controladores.ModuloControladorTaxas;
+﻿using LocadoraVeiculos.Controladores.ModuloServicoTaxas;
 using LocadoraVeiculos.Dominio.ModuloTaxas;
 using LocadoraVeiculos.WinApp.shared;
 using System;
@@ -10,12 +10,12 @@ namespace LocadoraVeiculos.WinApp.ModuloTaxa
     public class ConfiguracaoTaxa : ConfiguracaoBase, ICadastravel
     {
         TabelaTaxaControl tabelaTaxa;
-        ControladorTaxas controlador;
+        ServicoTaxas controlador;
         Action<string> AtualizarRodape;
         public ConfiguracaoTaxa(Action<string> atualizar)
         {
             tabelaTaxa = new TabelaTaxaControl();
-            controlador = new ControladorTaxas();
+            controlador = new ServicoTaxas();
             AtualizarRodape = atualizar;
         }
 

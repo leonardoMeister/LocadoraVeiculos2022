@@ -1,4 +1,4 @@
-﻿using LocadoraVeiculos.Controladores.ModuloControladorCliente;
+﻿using LocadoraVeiculos.Controladores.ModuloServicoCliente;
 using LocadoraVeiculos.Dominio.ModuloCliente;
 using LocadoraVeiculos.RepositorioProject.ModuloCliente;
 using LocadoraVeiculos.RepositorioProject.shared;
@@ -18,7 +18,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoCliente
         [TestMethod]
         public void DeveInserirCliente()
         {
-            ControladorCliente repo = new ControladorCliente();
+            ServicoCliente repo = new ServicoCliente();
 
             Cliente cli = new Cliente("Lonardo", "193.432.943.99", "estrada noeva", "leonrado@gmail.com", "47 99232-3433",
                 EnumCliente.PessoaFisica.ToString(), "");
@@ -36,7 +36,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoCliente
         [TestMethod]
         public void DeveBuscarVariosClientes()
         {
-            ControladorCliente repo = new ControladorCliente();
+            ServicoCliente repo = new ServicoCliente();
 
             Cliente cli = new Cliente("Lonardo", "193.432.943.99", "estrada noeva", "leonrado@gmail.com", "47 99232-3433",
                 EnumCliente.PessoaFisica.ToString(), "");
@@ -55,7 +55,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoCliente
         [TestMethod]
         public void DeveVerificarExistenciaCliente()
         {
-            ControladorCliente repo = new ControladorCliente();
+            ServicoCliente repo = new ServicoCliente();
 
             Cliente cli = new Cliente("Lonardo", "193.432.943.99", "estrada noeva", "leonrado@gmail.com", "47 99232-3433",
                            EnumCliente.PessoaFisica.ToString(), "");
@@ -70,7 +70,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoCliente
         [TestMethod]
         public void DeveEditarCliente()
         {
-            ControladorCliente repo = new ControladorCliente();
+            ServicoCliente repo = new ServicoCliente();
 
             Cliente cli = new Cliente("Lonardo", "193.432.943.99", "estrada noeva", "leonrado@gmail.com", "47 99232-3433",
                            EnumCliente.PessoaFisica.ToString(), "");
@@ -90,7 +90,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoCliente
         [TestMethod]
         public void DeveDeletarCliente()
         {
-            ControladorCliente repo = new ControladorCliente();
+            ServicoCliente repo = new ServicoCliente();
 
             Cliente cli = new Cliente("Lonardo", "193.432.943.99", "estrada noeva", "leonrado@gmail.com", "47 99232-3433",
                                        EnumCliente.PessoaFisica.ToString(), "");

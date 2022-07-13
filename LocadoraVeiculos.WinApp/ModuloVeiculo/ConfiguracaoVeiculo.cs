@@ -1,4 +1,4 @@
-﻿using LocadoraVeiculos.Controladores.ModuloVeiculo;
+﻿using LocadoraVeiculos.Controladores.ModuloServicoVeiculo;
 using LocadoraVeiculos.Dominio.ModuloVeiculo;
 using LocadoraVeiculos.WinApp.shared;
 using System;
@@ -10,7 +10,7 @@ namespace LocadoraVeiculos.WinApp.ModuloVeiculo
     public class ConfiguracaoVeiculo : ConfiguracaoBase, ICadastravel
     {
         TabelaVeiculoControl tabelaVeiculo;
-        ControladorVeiculo ControladorVeiculo;
+        ServicoVeiculo ControladorVeiculo;
         Action<string> AtualizarRodape;
         public ConfiguracaoVeiculo(Action<string> atualizar)
         {

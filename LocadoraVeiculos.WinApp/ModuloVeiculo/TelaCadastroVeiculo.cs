@@ -5,7 +5,7 @@ using System.Windows.Forms;
 using System.Drawing;
 using System.IO;
 using System.Drawing.Imaging;
-using LocadoraVeiculos.Controladores.ModuloControladorGrupoVeiculos;
+using LocadoraVeiculos.Controladores.ModuloServicoGrupoVeiculos;
 using LocadoraVeiculos.Dominio.ModuloGrupoVeiculos;
 
 namespace LocadoraVeiculos.WinApp.ModuloVeiculo
@@ -20,7 +20,7 @@ namespace LocadoraVeiculos.WinApp.ModuloVeiculo
 
         private void AtualizarPlanosCobranca()
         {
-            ControladorGrupoVeiculos control = new ControladorGrupoVeiculos();
+            ServicoGrupoVeiculos control = new ServicoGrupoVeiculos();
             var dados = control.SelecionarTodos();
             foreach (var dado in dados)
             {

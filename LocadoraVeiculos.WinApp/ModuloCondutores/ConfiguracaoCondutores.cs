@@ -1,4 +1,4 @@
-﻿using LocadoraVeiculos.Controladores.ModuloCondutores;
+﻿using LocadoraVeiculos.Controladores.ModuloServicoCondutores;
 using LocadoraVeiculos.Dominio.ModuloCondutores;
 using LocadoraVeiculos.WinApp.shared;
 using System;
@@ -10,14 +10,14 @@ namespace LocadoraVeiculos.WinApp.ModuloCondutores
     public class ConfiguracaoCondutores : ConfiguracaoBase, ICadastravel
     {
         Action<string> AtualizarRodape;
-        ControladorCondutores controlador;
+        ServicoCondutores controlador;
         TabelaCondutoresControl tabelaCondutoresControl;
 
         public ConfiguracaoCondutores(Action<string> atualizar)
         {
             AtualizarRodape = atualizar;
             tabelaCondutoresControl = new TabelaCondutoresControl();
-            controlador = new ControladorCondutores();
+            controlador = new ServicoCondutores();
         }
 
 

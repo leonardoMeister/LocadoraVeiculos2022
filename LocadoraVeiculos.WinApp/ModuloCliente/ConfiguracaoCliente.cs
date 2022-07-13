@@ -1,4 +1,4 @@
-﻿using LocadoraVeiculos.Controladores.ModuloControladorCliente;
+﻿using LocadoraVeiculos.Controladores.ModuloServicoCliente;
 using LocadoraVeiculos.Dominio.ModuloCliente;
 using LocadoraVeiculos.WinApp.shared;
 using System;
@@ -10,14 +10,14 @@ namespace LocadoraVeiculos.WinApp.ModuloCliente
     public class ConfiguracaoCliente : ConfiguracaoBase, ICadastravel
     {
         Action<string> AtualizarRodape;
-        ControladorCliente controlador;
+        ServicoCliente controlador;
         TabelaClienteControl tabelaClienteControl;
 
         public ConfiguracaoCliente(Action<string> atualizar)
         {
             AtualizarRodape = atualizar;
             tabelaClienteControl = new TabelaClienteControl();
-            controlador = new ControladorCliente();
+            controlador = new ServicoCliente();
         }
 
 

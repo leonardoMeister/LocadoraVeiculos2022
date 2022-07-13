@@ -1,4 +1,4 @@
-﻿using LocadoraVeiculos.Controladores.ModuloFuncionario;
+﻿using LocadoraVeiculos.Controladores.ModuloServicoFuncionario;
 using LocadoraVeiculos.Dominio.ModuloFuncionario;
 using LocadoraVeiculos.WinApp.shared;
 using System;
@@ -10,14 +10,14 @@ namespace LocadoraVeiculos.WinApp.ModuloFuncionario
     public class ConfiguracaoFuncionario : ConfiguracaoBase, ICadastravel
     {
         TabelaFuncionarioControl tabelaFuncionario;
-        ControladorFuncionario controlador;
+        ServicoFuncionario controlador;
         Action<string> AtualizarRodape;
 
         public ConfiguracaoFuncionario(Action<string> atualizar)
         {
             AtualizarRodape = atualizar;
             tabelaFuncionario = new TabelaFuncionarioControl();
-            controlador = new ControladorFuncionario();
+            controlador = new ServicoFuncionario();
         }
 
         public void Editar()

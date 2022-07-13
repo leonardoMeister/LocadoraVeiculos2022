@@ -1,4 +1,4 @@
-﻿using LocadoraVeiculos.Controladores.ModuloControladorGrupoVeiculos;
+﻿using LocadoraVeiculos.Controladores.ModuloServicoGrupoVeiculos;
 using LocadoraVeiculos.Dominio.ModuloGrupoVeiculos;
 using LocadoraVeiculos.WinApp.shared;
 using System;
@@ -10,12 +10,12 @@ namespace LocadoraVeiculos.WinApp.ModuloGrupoVeiculo
     public class ConfiguracaoGrupoVeiculo : ConfiguracaoBase, ICadastravel
     {
         TabelaGrupoVeiculo tabelaGrupoVeiculos;
-        ControladorGrupoVeiculos controlador;
+        ServicoGrupoVeiculos controlador;
         Action<string> AtualizarRodape;
         public ConfiguracaoGrupoVeiculo(Action<string> atualizar)
         {
             tabelaGrupoVeiculos = new TabelaGrupoVeiculo();
-            controlador = new ControladorGrupoVeiculos();
+            controlador = new ServicoGrupoVeiculos();
             AtualizarRodape = atualizar;
         }
 

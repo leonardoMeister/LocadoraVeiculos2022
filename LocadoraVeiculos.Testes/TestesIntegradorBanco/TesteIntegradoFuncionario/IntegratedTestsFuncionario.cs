@@ -1,4 +1,4 @@
-﻿using LocadoraVeiculos.Controladores.ModuloFuncionario;
+﻿using LocadoraVeiculos.Controladores.ModuloServicoFuncionario;
 using LocadoraVeiculos.Dominio.ModuloFuncionario;
 using LocadoraVeiculos.RepositorioProject.shared;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -19,7 +19,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoFuncionari
         [TestMethod]
         public void DeveInserirFuncionario()
         {
-            ControladorFuncionario repo = new ControladorFuncionario();
+            ServicoFuncionario repo = new ServicoFuncionario();
 
             var fun = new Funcionario("Leonardo", "leonardo123", "leoJosePedrinho123Senha", 2800, DateTime.Now, "Funcionario");
 
@@ -33,7 +33,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoFuncionari
         [TestMethod]
         public void DeveBuscarVariosFuncionarios()
         {
-            ControladorFuncionario repo = new ControladorFuncionario();
+            ServicoFuncionario repo = new ServicoFuncionario();
             var fun = new Funcionario("Leonardo", "leonardo123", "leoJosePedrinho123Senha", 2800, DateTime.Now, "Funcionario");
             var fun2 = new Funcionario("Leonardo2", "leonardo1233", "leoJosePedrinhoSenha", 4000, DateTime.Now, "Funcionario de elite");
 
@@ -46,7 +46,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoFuncionari
         [TestMethod]
         public void DeveVerificarExistenciaFuncionarios()
         {
-            ControladorFuncionario repo = new ControladorFuncionario();
+            ServicoFuncionario repo = new ServicoFuncionario();
             var fun = new Funcionario("Leonardo", "leonardo123", "leoJosePedrinho123Senha", 2800, DateTime.Now, "Funcionario");
             repo.InserirNovo(fun);
 
@@ -57,7 +57,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoFuncionari
         [TestMethod]
         public void DeveVerificarExclusaoFuncionarios()
         {
-            ControladorFuncionario repo = new ControladorFuncionario();
+            ServicoFuncionario repo = new ServicoFuncionario();
             var fun = new Funcionario("Leonardo", "leonardo123", "leoJosePedrinho123Senha", 2800, DateTime.Now, "Funcionario");
             repo.InserirNovo(fun);
 
@@ -71,7 +71,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoFuncionari
         [TestMethod]
         public void DeveEditarFuncionario()
         {
-            ControladorFuncionario repo = new ControladorFuncionario();
+            ServicoFuncionario repo = new ServicoFuncionario();
             var fun = new Funcionario("Leonardo", "leonardo123", "leoJosePedrinho123Senha", 2800, DateTime.Now, "Funcionario");
             repo.InserirNovo(fun);
 
