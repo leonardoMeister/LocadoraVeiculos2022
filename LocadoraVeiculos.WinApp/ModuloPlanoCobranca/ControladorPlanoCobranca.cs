@@ -7,17 +7,17 @@ using System.Windows.Forms;
 
 namespace LocadoraVeiculos.WinApp.ModuloPlanoCobranca
 {
-    public class ConfiguracaoPlanoCobranca : ConfiguracaoBase, ICadastravel
+    public class ControladorPlanoCobranca : ConfiguracaoBase, ICadastravel
     {
         TabelaPlanoCobranca tabelaPlanoCobranca; 
-        ServicoPlanoCobranca controlador;
+        ServicoPlanoCobranca servicoPlanoCobranca;
         Action<string> AtualizarRodape;
 
-        public ConfiguracaoPlanoCobranca(Action<string> atualizar)
+        public ControladorPlanoCobranca(Action<string> atualizar)
         {
             AtualizarRodape = atualizar;
             tabelaPlanoCobranca = new TabelaPlanoCobranca();
-            controlador = new ServicoPlanoCobranca();
+            servicoPlanoCobranca = new ServicoPlanoCobranca();
         }
 
         public void Editar()
@@ -25,14 +25,14 @@ namespace LocadoraVeiculos.WinApp.ModuloPlanoCobranca
             TelaCadastroPlanoCobranca telaCadastroPlanoCobranca = new TelaCadastroPlanoCobranca();
 
             Guid id = tabelaPlanoCobranca.ObtemNumeroPlanoSelecionado();
-            var registro = controlador.SelecionarPorId(id);
+            var registro = servicoPlanoCobranca.SelecionarPorId(id);
 
             if (registro != null)
             {
                 AtualizarRodape("Tela de Edição Plano de Cobrança");
                 telaCadastroPlanoCobranca.PlanoCobranca = registro;
 
-                telaCadastroPlanoCobranca.GravarRegistro = controlador.Editar;
+                telaCadastroPlanoCobranca.GravarRegistro = servicoPlanoCobranca.Editar;
                 telaCadastroPlanoCobranca.AtualizarRodape = AtualizarRodape;
                 telaCadastroPlanoCobranca.ShowDialog();
 
@@ -45,7 +45,7 @@ namespace LocadoraVeiculos.WinApp.ModuloPlanoCobranca
             Guid id = tabelaPlanoCobranca.ObtemNumeroPlanoSelecionado();
             try
             {
-                controlador.Excluir(id);
+                servicoPlanoCobranca.Excluir(id);
                 AtualizarRodape("Plano de Cobrança Removido com sucesso.");
             }
             catch (Exception ex)
@@ -61,7 +61,7 @@ namespace LocadoraVeiculos.WinApp.ModuloPlanoCobranca
 
             AtualizarRodape("Tela de Adição Plano de Cobrança");
 
-            telaCadastroPlanoCobranca.GravarRegistro = controlador.InserirNovo;
+            telaCadastroPlanoCobranca.GravarRegistro = servicoPlanoCobranca.InserirNovo;
             telaCadastroPlanoCobranca.AtualizarRodape = AtualizarRodape;
             telaCadastroPlanoCobranca.ShowDialog();
 
@@ -75,7 +75,7 @@ namespace LocadoraVeiculos.WinApp.ModuloPlanoCobranca
 
         public override UserControl ObtemListagem()
         {
-            List<PlanoCobranca> grupoVeiculos = controlador.SelecionarTodos();
+            List<PlanoCobranca> grupoVeiculos = servicoPlanoCobranca.SelecionarTodos();
 
             tabelaPlanoCobranca.AtualizarRegistros(grupoVeiculos);
 

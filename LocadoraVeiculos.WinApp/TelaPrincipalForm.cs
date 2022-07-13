@@ -13,13 +13,13 @@ namespace LocadoraVeiculos.WinApp
 {
     public partial class TelaPrincipalForm : Form
     {        
-        public ConfiguracaoGrupoVeiculo configuracaoGrupoVeiculos;
-        public ConfiguracaoTaxa configuracaoTaxa;
-        public ConfiguracaoCliente configuracaoCliente;
-        public ConfiguracaoFuncionario configuracaoFuncionario;
-        public ConfiguracaoCondutores configuracaoCondutores;
-        public ConfiguracaoPlanoCobranca configuracaoPlanoCobranca;
-        public ConfiguracaoVeiculo configuracaoVeiculo;
+        public ControladorGrupoVeiculo configuracaoGrupoVeiculos;
+        public ControladorTaxa configuracaoTaxa;
+        public ControladorCliente configuracaoCliente;
+        public ControladorFuncionario configuracaoFuncionario;
+        public ControladorCondutores configuracaoCondutores;
+        public ControladorPlanoCobranca configuracaoPlanoCobranca;
+        public ControladorVeiculo configuracaoVeiculo;
 
         public ICadastravel telaSelecionada;
 
@@ -30,12 +30,12 @@ namespace LocadoraVeiculos.WinApp
             labelRodape.Text = string.Empty;
             labelTipoCadastro.Text = string.Empty;
 
-            this.configuracaoGrupoVeiculos = new ConfiguracaoGrupoVeiculo(this.AtualizarRodape);
-            this.configuracaoTaxa = new ConfiguracaoTaxa(this.AtualizarRodape);
-            this.configuracaoCliente = new ConfiguracaoCliente(this.AtualizarRodape);
-            this.configuracaoFuncionario = new ConfiguracaoFuncionario(this.AtualizarRodape);
-            this.configuracaoCondutores = new ConfiguracaoCondutores(this.AtualizarRodape);
-            this.configuracaoPlanoCobranca = new ConfiguracaoPlanoCobranca(this.AtualizarRodape);
+            this.configuracaoGrupoVeiculos = new ControladorGrupoVeiculo(this.AtualizarRodape);
+            this.configuracaoTaxa = new ControladorTaxa(this.AtualizarRodape);
+            this.configuracaoCliente = new ControladorCliente(this.AtualizarRodape);
+            this.configuracaoFuncionario = new ControladorFuncionario(this.AtualizarRodape);
+            this.configuracaoCondutores = new ControladorCondutores(this.AtualizarRodape);
+            this.configuracaoPlanoCobranca = new ControladorPlanoCobranca(this.AtualizarRodape);
             this.configuracaoVeiculo = new(this.AtualizarRodape);
         }
 

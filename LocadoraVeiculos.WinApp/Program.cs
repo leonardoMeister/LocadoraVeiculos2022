@@ -44,7 +44,7 @@ namespace LocadoraVeiculos.WinApp
             var services = new ServiceCollection();
 
             //configuracoes
-            services.AddTransient<ConfiguracaoBase, ConfiguracaoGrupoVeiculo>();
+            services.AddTransient<ConfiguracaoBase, ControladorGrupoVeiculo>();
 
             //validadores
             services.AddSingleton<AbstractValidator<GrupoVeiculos>, ValidadorGrupoVeiculos>();
