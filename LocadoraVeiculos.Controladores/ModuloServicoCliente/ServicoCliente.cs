@@ -1,9 +1,11 @@
-﻿using FluentValidation;
+﻿using FluentResults;
+using FluentValidation;
 using FluentValidation.Results;
 using LocadoraVeiculos.Dominio.ModuloCliente;
 using LocadoraVeiculos.Repositorio.shared;
 using LocadoraVeiculos.RepositorioProject.ModuloCliente;
 using Serilog;
+using System.Collections.Generic;
 
 namespace LocadoraVeiculos.Controladores.ModuloServicoCliente
 { 
@@ -19,56 +21,50 @@ namespace LocadoraVeiculos.Controladores.ModuloServicoCliente
         {
             return new ValidadorCliente();
         }
-
-        public override ValidationResult InserirNovo(Cliente registro)
+        public override Result<Cliente> Editar(Cliente registro)
         {
-            Log.Logger.Debug("Tentando inserir um Cliente... {@f}", registro);
+            var validacaoBanco = ClienteForValidoParaEditar(registro);  //VALIDACAO DE BANCO
 
-            var validacaoBanco = FuncionarioForValidoParaInserir(registro);
             if (validacaoBanco.IsValid)
             {
-                Log.Logger.Debug("Cliente {ClienteID} inserido com sucesso", registro._id);
-
-                return base.InserirNovo(registro);
+                return base.Editar(registro);                              //VALIDACAO DE DOMINIO
             }
             else
             {
-                foreach (var erros in validacaoBanco.Errors)
+                List<Error> listaErros = new List<Error>();
+
+                foreach (var erro in validacaoBanco.Errors)
                 {
-                    Log.Logger.Warning("Falha ao tentar inserir um Cliente {ClienteID} - {Motivo}",
-                        registro._id, erros.ErrorMessage);
-                    return validacaoBanco;
+                    listaErros.Add(new Error(erro.ErrorMessage));
+                    Log.Logger.Warning("Falha ao tentar editar Cliente {ClienteID} - {Motivo}",
+                        registro._id, erro.ErrorMessage);
                 }
+                return Result.Fail(listaErros);
+
             }
-
-            return validacaoBanco;
         }
-
-        public override ValidationResult Editar(Cliente registro)
+        public override Result<Cliente> InserirNovo(Cliente registro)
         {
-            Log.Logger.Debug("Tentando editar um Cliente... {@f}", registro);
-
-            var validacaoBanco = FuncionarioForValidoParaEditar(registro);
+            var validacaoBanco = ClienteForValidoParaInserir(registro);         //VALIDACAO DO BANCO
             if (validacaoBanco.IsValid)
             {
-                Log.Logger.Debug("Cliente {ClienteID} editado com sucesso", registro._id);
-
-                return base.Editar(registro);
+                return base.InserirNovo(registro);                                  //VALIDACAO DO DOMINIO
             }
             else
             {
-                foreach (var erros in validacaoBanco.Errors)
+                List<Error> listaErros = new List<Error>();
+
+                foreach (var erro in validacaoBanco.Errors)
                 {
-                    Log.Logger.Warning("Falha ao tentar editar um Cliente {ClienteID} - {Motivo}",
-                        registro._id, erros.ErrorMessage);
-                    return validacaoBanco;
+                    listaErros.Add(new Error(erro.ErrorMessage));
+                    Log.Logger.Warning("Falha ao tentar Inserir Cliente {Cliente} - {Motivo}",
+                        registro._id, erro.ErrorMessage);
                 }
+                return Result.Fail(listaErros);
             }
+        }        
 
-            return validacaoBanco;
-        }
-
-        private ValidationResult FuncionarioForValidoParaEditar(Cliente registro)
+        private ValidationResult ClienteForValidoParaEditar(Cliente registro)
         {
             ValidationResult valido = new ValidationResult();
 
@@ -94,7 +90,7 @@ namespace LocadoraVeiculos.Controladores.ModuloServicoCliente
 
             return valido;
         }
-        private ValidationResult FuncionarioForValidoParaInserir(Cliente registro)
+        private ValidationResult ClienteForValidoParaInserir(Cliente registro)
         {
             ValidationResult valido = new ValidationResult();
 
