@@ -16,7 +16,6 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradorPlanoCobr
             DataBase.ExecutarComando(query);
 
             string query2 = @"delete from TB_PLANOCOBRANCA;";
-
             DataBase.ExecutarComando(query2);
 
             string query3 = @"delete from TB_GRUPOVEICULOS;";
@@ -33,10 +32,9 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradorPlanoCobr
             controGrupo.InserirNovo(grupo);
 
             PlanoCobranca plano = new PlanoCobranca("Tipo Grupo 1", 100, 0, 10, grupo);
-
             contro.InserirNovo(plano);
 
-            var planoNovo = contro.SelecionarPorId(plano._id);
+            var planoNovo = contro.SelecionarPorId(plano._id).Value;
 
             Assert.AreEqual(planoNovo, plano);
         }
@@ -56,7 +54,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradorPlanoCobr
             contro.InserirNovo(plano);
             contro.InserirNovo(plano2);
 
-            var planosNovos = contro.SelecionarTodos();
+            var planosNovos = contro.SelecionarTodos().Value;
 
             Assert.AreEqual(planosNovos.Count, 2);
         }
@@ -76,7 +74,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradorPlanoCobr
 
             var planoNovo = contro.Existe(plano._id);
 
-            Assert.AreEqual(planoNovo, true);
+            Assert.IsTrue(planoNovo.Value);
         }
 
         [TestMethod]
@@ -92,17 +90,16 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradorPlanoCobr
 
             contro.InserirNovo(plano);
 
-            contro.Excluir(plano._id);
+            contro.Excluir(contro.SelecionarPorId(plano._id).Value);
 
             var planoNovo = contro.Existe(plano._id);
 
-            Assert.AreEqual(planoNovo, false);
+            Assert.IsFalse(planoNovo.Value);
         }
 
         [TestMethod]
         public void DeveEditarPlano()
         {
-
             ServicoPlanoCobranca contro = new ServicoPlanoCobranca();
             ServicoGrupoVeiculos controGrupo = new ServicoGrupoVeiculos();
 
@@ -111,12 +108,12 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradorPlanoCobr
 
             PlanoCobranca plano = new PlanoCobranca("Tipo Grupo 1", 100, 0, 10, grupo);
             PlanoCobranca plano2 = new PlanoCobranca("Tipo Grupo 2", 10, 100, 16, grupo);
-
             contro.InserirNovo(plano);
+
             plano2._id = plano._id;
             contro.Editar(plano2);
 
-            var planoNovo = contro.SelecionarPorId(plano2._id);
+            var planoNovo = contro.SelecionarPorId(plano2._id).Value;
 
             Assert.AreEqual(planoNovo , plano2);
         }
