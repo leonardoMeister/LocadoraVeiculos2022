@@ -22,6 +22,10 @@ namespace LocadoraVeiculos.Dominio.ModuloFuncionario
         public DateTime DataAdmicao { get; set; }
         public string TipoPerfil { get; set; }
 
+        public Funcionario Clone()
+        {
+            return MemberwiseClone() as Funcionario;
+        }
         public override bool Equals(object obj)
         {
             return obj is Funcionario funcionario &&

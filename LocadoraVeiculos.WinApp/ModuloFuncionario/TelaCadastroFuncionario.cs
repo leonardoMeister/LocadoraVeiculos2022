@@ -1,4 +1,5 @@
-﻿using FluentValidation.Results;
+﻿using FluentResults;
+using FluentValidation.Results;
 using LocadoraVeiculos.Dominio.ModuloFuncionario;
 using System;
 using System.Windows.Forms;
@@ -8,7 +9,6 @@ namespace LocadoraVeiculos.WinApp.ModuloFuncionario
     public partial class TelaCadastroFuncionario : Form
     {
         private Funcionario funcionario;
-        public Func<Funcionario, ValidationResult> GravarRegistro { get; set; }
         public Action<string> AtualizarRodape { get; set; }
 
         public Funcionario Funcionario
@@ -27,6 +27,8 @@ namespace LocadoraVeiculos.WinApp.ModuloFuncionario
                 txtSenha.Text = funcionario.Senha;
             }
         }
+
+        public Func<Funcionario, Result<Funcionario>> GravarRegistro { get; internal set; }
 
         public TelaCadastroFuncionario()
         {
