@@ -1,9 +1,11 @@
-﻿using FluentValidation;
+﻿using FluentResults;
+using FluentValidation;
 using FluentValidation.Results;
 using LocadoraVeiculos.Dominio.ModuloGrupoVeiculos;
 using LocadoraVeiculos.Repositorio.shared;
 using LocadoraVeiculos.RepositorioProject.ModuloGrupoVeiculos;
 using Serilog;
+using System.Collections.Generic;
 
 namespace LocadoraVeiculos.Controladores.ModuloServicoGrupoVeiculos
 {
@@ -19,50 +21,48 @@ namespace LocadoraVeiculos.Controladores.ModuloServicoGrupoVeiculos
             return new ValidadorGrupoVeiculos();
         }
 
-        public override ValidationResult Editar(GrupoVeiculos registro)
+        public override Result<GrupoVeiculos> InserirNovo(GrupoVeiculos registro)
         {
-            Log.Logger.Debug("Tentando editar um GrupoVeiculos... {@f}", registro);
-
-            var validacaoBanco = GrupoVeiculosForValidoParaEditar(registro);
+            var validacaoBanco = GrupoVeiculosForValidoParaInserir(registro);         //VALIDACAO DO BANCO
             if (validacaoBanco.IsValid)
             {
-                Log.Logger.Debug("GrupoVeiculos {GrupoVeiculosID} editado com sucesso", registro._id);
-
-                return base.Editar(registro);
+                return base.InserirNovo(registro);                                  //VALIDACAO DO DOMINIO
             }
             else
             {
-                foreach (var erros in validacaoBanco.Errors)
-                {
-                    Log.Logger.Warning("Falha ao tentar editar um GrupoVeiculos {GrupoVeiculosID} - {Motivo}",
-                        registro._id, erros.ErrorMessage);
-                    return validacaoBanco;
-                }
-            }
+                List<Error> listaErros = new List<Error>();
 
-            return validacaoBanco;
+                foreach (var erro in validacaoBanco.Errors)
+                {
+                    listaErros.Add(new Error(erro.ErrorMessage));
+                    Log.Logger.Warning("Falha ao tentar inserir um GrupoVeiculos {GrupoVeiculosID} - {Motivo}",
+                        registro._id, erro.ErrorMessage);
+                }
+                return Result.Fail(listaErros);
+            }
         }
 
-        public override ValidationResult InserirNovo(GrupoVeiculos registro)
+        public override Result<GrupoVeiculos> Editar(GrupoVeiculos registro)
         {
-            var validacaoBanco = GrupoVeiculosForValidoParaInserir(registro);
+            var validacaoBanco = GrupoVeiculosForValidoParaEditar(registro);  //VALIDACAO DE BANCO
+
             if (validacaoBanco.IsValid)
             {
-                Log.Logger.Debug("GrupoVeiculos {GrupoVeiculosID} inserido com sucesso", registro._id);
-
-                return base.InserirNovo(registro);
+                return base.Editar(registro);                              //VALIDACAO DE DOMINIO
             }
             else
             {
-                foreach (var erros in validacaoBanco.Errors)
-                {
-                    Log.Logger.Warning("Falha ao tentar inserir um GrupoVeiculos {GrupoVeiculosID} - {Motivo}",
-                        registro._id, erros.ErrorMessage);
-                    return validacaoBanco;
-                }
-            }
+                List<Error> listaErros = new List<Error>();
 
-            return validacaoBanco;
+                foreach (var erro in validacaoBanco.Errors)
+                {
+                    listaErros.Add(new Error(erro.ErrorMessage));
+                    Log.Logger.Warning("Falha ao tentar editar GrupoVeiculos {GrupoVeiculosID} - {Motivo}",
+                        registro._id, erro.ErrorMessage);
+                }
+                return Result.Fail(listaErros);
+
+            }
         }
 
         private ValidationResult GrupoVeiculosForValidoParaEditar(GrupoVeiculos registro)
