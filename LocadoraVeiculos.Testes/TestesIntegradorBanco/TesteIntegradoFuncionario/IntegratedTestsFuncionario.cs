@@ -25,7 +25,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoFuncionari
 
             repo.InserirNovo(fun);
 
-            var funcionario = repo.SelecionarPorId(fun._id);
+            var funcionario = repo.SelecionarPorId(fun._id).Value;
 
             Assert.AreEqual(funcionario, fun);
         }

@@ -23,36 +23,89 @@ namespace LocadoraVeiculos.WinApp.ModuloCondutores
 
         public void Editar()
         {
-            TelaCadastroCondutoresForm telaCadastroCondutores = new();
+            var id = tabelaCondutoresControl.ObtemNumeroCondutorSelecionado();
 
-            Guid id = tabelaCondutoresControl.ObtemNumeroCondutoresSelecionado();
-            var registro = servicoCondutores.SelecionarPorId(id);
-
-            if (registro != null)
+            if (id == Guid.Empty)
             {
-                AtualizarRodape("Tela de Edição Condutores");
-                telaCadastroCondutores.Condutores = registro;
-
-                telaCadastroCondutores.GravarRegistro = servicoCondutores.Editar;
-                telaCadastroCondutores.AtualizarRodape = AtualizarRodape;
-                telaCadastroCondutores.ShowDialog();
-
-                if (telaCadastroCondutores.DialogResult == DialogResult.OK) AtualizarRodape("Edição Condutor Realizada Com Sucesso");
+                MessageBox.Show("Selecione um Condutor primeiro",
+                    "Edição de Condutores", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
             }
+
+            var resultado = servicoCondutores.SelecionarPorId(id);
+
+            if (resultado.IsFailed)
+            {
+                MessageBox.Show(resultado.Errors[0].Message,
+                    "Edição de Condutor", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            var condutorSelecionado = resultado.Value;
+
+            TelaCadastroCondutoresForm telaCadastroFuncionario = new TelaCadastroCondutoresForm();
+
+            AtualizarRodape("Tela de Edição Condutores");
+            telaCadastroFuncionario.Condutores = resultado.Value.Clone();
+
+            telaCadastroFuncionario.GravarRegistro = servicoCondutores.Editar;
+            telaCadastroFuncionario.AtualizarRodape = AtualizarRodape;
+            telaCadastroFuncionario.ShowDialog();
+
+            if (telaCadastroFuncionario.DialogResult == DialogResult.OK) AtualizarRodape("Edição Condutor Realizado Com Sucesso");
         }
 
         public void Excluir()
         {
-            Guid id = tabelaCondutoresControl.ObtemNumeroCondutoresSelecionado();
-            try
+            var id = tabelaCondutoresControl.ObtemNumeroCondutorSelecionado();
+
+            if (id == Guid.Empty)
             {
-                servicoCondutores.Excluir(id);
-                AtualizarRodape("Condutores Removido com sucesso.");
-            }
-            catch (Exception ex)
-            {
-                AtualizarRodape($"Não foi possivel Remover, Mensagem: {ex}");
+                MessageBox.Show("Selecione um funcionário primeiro",
+                    "Exclusão de Funcionário", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
+            }
+
+            var resultadoSelecao = servicoCondutores.SelecionarPorId(id);
+
+            if (resultadoSelecao.IsFailed)
+            {
+                MessageBox.Show(resultadoSelecao.Errors[0].Message,
+                    "Exclusão de Funcionário", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            var funcionarioSelecionado = resultadoSelecao.Value;
+
+            if (MessageBox.Show("Deseja realmente excluir o funcionário?", "Exclusão de Funcionário",
+                 MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+            {
+                var resultadoExclusao = servicoCondutores.Excluir(funcionarioSelecionado);
+
+                if (resultadoExclusao.IsSuccess)
+                    CarregarFuncionarios();
+                else
+                    MessageBox.Show(resultadoExclusao.Errors[0].Message,
+                        "Exclusão de Funcionário", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void CarregarFuncionarios()
+        {
+            var resultado = servicoCondutores.SelecionarTodos();
+
+            if (resultado.IsSuccess)
+            {
+                List<Condutores> funcionarios = resultado.Value;
+
+                tabelaCondutoresControl.AtualizarRegistros(funcionarios);
+
+                AtualizarRodape($"Visualizando {funcionarios.Count} Condutor(es)");
+            }
+            else
+            {
+                MessageBox.Show(resultado.Errors[0].Message, "Exclusão de Condutor",
+                 MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -76,7 +129,7 @@ namespace LocadoraVeiculos.WinApp.ModuloCondutores
 
         public override UserControl ObtemListagem()
         {
-            List<Condutores> condutores = servicoCondutores.SelecionarTodos();
+            List<Condutores> condutores = servicoCondutores.SelecionarTodos().Value;
 
             tabelaCondutoresControl.AtualizarRegistros(condutores);
 

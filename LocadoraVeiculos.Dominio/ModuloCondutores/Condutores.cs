@@ -24,6 +24,10 @@ namespace LocadoraVeiculos.Dominio.ModuloCondutores
         public string Cnh { get; set; }
         public string ValidadeCnh { get; set; }
 
+        public Condutores Clone()
+        {
+            return MemberwiseClone() as Condutores;
+        }
         public override bool Equals(object obj)
         {
             return obj is Condutores condutores &&
