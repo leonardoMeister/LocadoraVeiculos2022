@@ -1,4 +1,5 @@
-﻿using FluentValidation.Results;
+﻿using FluentResults;
+using FluentValidation.Results;
 using LocadoraVeiculos.Dominio.ModuloTaxas;
 using System;
 using System.Windows.Forms;
@@ -25,18 +26,11 @@ namespace LocadoraVeiculos.WinApp.ModuloTaxa
             }
         }
 
-        public Func<Taxas, ValidationResult> GravarRegistro { get; internal set; }
+        public Func<Taxas, Result<Taxas>> GravarRegistro { get; internal set; }
 
         public TelaCadastroTaxaForm()
         {
             InitializeComponent();
-        }
-
-        private void BtnCancelar_Click(object sender, EventArgs e)
-        {
-            AtualizarRodape("Inserção Cancelada.");
-            this.DialogResult = DialogResult.Cancel;
-
         }
 
         private void BtnSalvar_Click(object sender, EventArgs e)
@@ -46,18 +40,29 @@ namespace LocadoraVeiculos.WinApp.ModuloTaxa
 
             var resultadoValidacao = GravarRegistro(taxa);
 
-            if (resultadoValidacao.IsValid == false)
+            if (resultadoValidacao.IsFailed)
             {
-                string erro = resultadoValidacao.Errors[0].ErrorMessage;
+                string erro = resultadoValidacao.Errors[0].Message;
 
-                AtualizarRodape(erro);
+                if (erro.StartsWith("Falha no sistema"))
+                {
+                    MessageBox.Show(erro,
+                    "Inserção de Taxa", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    AtualizarRodape(erro);
 
-                DialogResult = DialogResult.None;
+                    DialogResult = DialogResult.None;
+                }
             }
-            else
-            {
-                DialogResult = DialogResult.OK;
-            }
+        }
+
+        private void BtnCancelar_Click(object sender, EventArgs e)
+        {
+            AtualizarRodape("Inserção Cancelada.");
+            this.DialogResult = DialogResult.Cancel;
+
         }
 
         private bool PegarObjetoTela()
