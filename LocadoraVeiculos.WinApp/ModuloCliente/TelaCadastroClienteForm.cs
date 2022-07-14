@@ -9,7 +9,6 @@ namespace LocadoraVeiculos.WinApp.ModuloCliente
     {
         private Cliente cliente;
         public Action<string> AtualizarRodape { get; set; }
-        public Func<Cliente, ValidationResult> GravarRegistro { get; internal set; }
 
 
         public Cliente Cliente
@@ -24,6 +23,8 @@ namespace LocadoraVeiculos.WinApp.ModuloCliente
 
             }
         }
+
+        public Func<Cliente, FluentResults.Result<Cliente>> GravarRegistro { get; internal set; }
 
         private void PreencherDadosNaTela()
         {
@@ -54,14 +55,14 @@ namespace LocadoraVeiculos.WinApp.ModuloCliente
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
-            if (!PegarObjetoTela()) return;
+            PegarObjetoTela();
 
 
             var resultadoValidacao = GravarRegistro(cliente);
 
-            if (resultadoValidacao.IsValid == false)
+            if (resultadoValidacao.IsFailed)
             {
-                string erro = resultadoValidacao.Errors[0].ErrorMessage;
+                string erro = resultadoValidacao.Errors[0].Message;
 
                 AtualizarRodape(erro);
 
@@ -73,7 +74,7 @@ namespace LocadoraVeiculos.WinApp.ModuloCliente
             DialogResult = DialogResult.OK;
         }
 
-        private bool PegarObjetoTela()
+        private void PegarObjetoTela()
         {
             Guid id = new Guid();
 
@@ -93,7 +94,6 @@ namespace LocadoraVeiculos.WinApp.ModuloCliente
             if (id != Guid.Empty)
                 cliente._id = id;
 
-            return true;
         }
 
         private string PegarTelefone()

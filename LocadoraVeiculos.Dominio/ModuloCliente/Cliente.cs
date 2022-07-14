@@ -24,7 +24,10 @@ namespace LocadoraVeiculos.Dominio.ModuloCliente
         public string Email { get; set; }
         public string Telefone { get; set; }
         public string TipoCliente { get; set; }
-
+        public Cliente Clone()
+        {
+            return MemberwiseClone() as Cliente;
+        }
         public override bool Equals(object obj)
         {
             return obj is Cliente cliente &&
