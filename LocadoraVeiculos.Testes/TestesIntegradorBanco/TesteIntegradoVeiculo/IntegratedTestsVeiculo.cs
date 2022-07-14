@@ -118,7 +118,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoVeiculo
             vei2._id = vei._id;
             controlador.Editar(vei2);
                 
-            var resultado = controlador.SelecionarPorId(vei._id);
+            var resultado = controlador.SelecionarPorId(vei._id).Value;
 
             Assert.AreEqual(resultado, vei2);
         }
