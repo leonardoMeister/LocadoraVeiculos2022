@@ -25,7 +25,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoFuncionari
 
             repo.InserirNovo(fun);
 
-            var funcionario = repo.SelecionarPorId(fun._id);
+            var funcionario = repo.SelecionarPorId(fun._id).Value;
 
             Assert.AreEqual(funcionario, fun);
         }
@@ -39,7 +39,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoFuncionari
 
             repo.InserirNovo(fun);
             repo.InserirNovo(fun2);
-            var lista = repo.SelecionarTodos();
+            var lista = repo.SelecionarTodos().Value;
 
             Assert.AreEqual(2, lista.Count);
         }
@@ -52,7 +52,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoFuncionari
 
             var existe = repo.Existe(fun._id);
 
-            Assert.IsTrue(existe);
+            Assert.IsTrue(existe.Value);
         }
         [TestMethod]
         public void DeveVerificarExclusaoFuncionarios()
@@ -60,12 +60,12 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoFuncionari
             ServicoFuncionario repo = new ServicoFuncionario();
             var fun = new Funcionario("Leonardo", "leonardo123", "leoJosePedrinho123Senha", 2800, DateTime.Now, "Funcionario");
             repo.InserirNovo(fun);
-
-            repo.Excluir(fun._id);
+            
+            repo.Excluir(repo.SelecionarPorId(fun._id).Value);
 
             var existe = repo.Existe(fun._id);
 
-            Assert.IsFalse(existe);
+            Assert.IsFalse(existe.Value);
         }
 
         [TestMethod]
@@ -79,7 +79,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoFuncionari
             fun2._id = fun._id;
             repo.Editar(fun2);
 
-            var funNovo = repo.SelecionarPorId(fun._id);
+            var funNovo = repo.SelecionarPorId(fun._id).Value;
             Assert.AreEqual(funNovo, fun2);
         }
     }

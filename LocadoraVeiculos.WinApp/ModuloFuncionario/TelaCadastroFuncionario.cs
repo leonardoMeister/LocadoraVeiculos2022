@@ -37,15 +37,14 @@ namespace LocadoraVeiculos.WinApp.ModuloFuncionario
 
         private void BtnSalvar_Click(object sender, EventArgs e)
         {
-            if (!PegarObjetoTela()) return;
-
+            PegarObjetoTela();
 
             var resultadoValidacao = GravarRegistro(funcionario);
 
             if (resultadoValidacao.IsFailed)
             {
                 string erro = resultadoValidacao.Errors[0].Message;
-
+                
                 if (erro.StartsWith("Falha no sistema"))
                 {
                     MessageBox.Show(erro,
@@ -60,7 +59,7 @@ namespace LocadoraVeiculos.WinApp.ModuloFuncionario
             }
         }
 
-        private bool PegarObjetoTela()
+        private void PegarObjetoTela()
         {
             Guid id = new Guid();           
 
@@ -78,8 +77,7 @@ namespace LocadoraVeiculos.WinApp.ModuloFuncionario
 
             if(id !=Guid.Empty)
                 funcionario._id = id;
- 
-            return true;
+             
         }
 
         private void BtnCancelar_Click(object sender, EventArgs e)

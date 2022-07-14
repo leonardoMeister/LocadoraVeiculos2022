@@ -19,82 +19,67 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoTaxas
         public void DeveInserirTaxas()
         {
             ServicoTaxas repo = new ServicoTaxas();
-
             Taxas tax = new Taxas("Aluguel Onix", 1500, EnumTaxa.Diaria.ToString());
-
             repo.InserirNovo(tax);
 
-            var taxas = repo.SelecionarPorId(tax._id);
+            var taxas = repo.SelecionarPorId(tax._id).Value;
 
-            Assert.AreEqual(taxas._id, tax._id);
-            Assert.AreEqual(taxas.Descricao, tax.Descricao); 
-            Assert.AreEqual(taxas.Valor, tax.Valor);
+            Assert.AreEqual(taxas, tax);
         }
 
         [TestMethod]
         public void DeveBuscarVariosTaxas()
         {
             ServicoTaxas repo = new ServicoTaxas();
-
             Taxas tax = new Taxas("Aluguel Onix", 1500, EnumTaxa.Diaria.ToString());
             Taxas tax2 = new Taxas("Aluguel HB20", 1000, EnumTaxa.Diaria.ToString());
 
             repo.InserirNovo(tax);
             repo.InserirNovo(tax2);
+            var lista = repo.SelecionarTodos().Value;
 
-            var dados = repo.SelecionarTodos();
-
-            Assert.AreEqual(2, dados.Count);
-
+            Assert.AreEqual(2, lista.Count);
         }
 
         [TestMethod]
         public void DeveVerificarExistenciaTaxas()
         {
             ServicoTaxas repo = new ServicoTaxas();
-
             Taxas tax = new Taxas("Aluguel Onix", 1500, EnumTaxa.Diaria.ToString());
-
             repo.InserirNovo(tax);
 
             var exite = repo.Existe(tax._id);
 
-            Assert.IsTrue(exite);
+            Assert.IsTrue(exite.Value);
         }
 
         [TestMethod]
         public void DeveEditarTaxas()
         {
             ServicoTaxas repo = new ServicoTaxas();
-
             Taxas tax = new Taxas("Aluguel Onix", 1500, EnumTaxa.Diaria.ToString());
-
             repo.InserirNovo(tax);
 
             Taxas tax2 = new Taxas("Aluguel HB20", 1000, EnumTaxa.Diaria.ToString());
             tax2._id = tax._id;
-
             repo.Editar(tax2);
 
-            var taxasBanco = repo.SelecionarPorId(tax2._id);
-
-            Assert.AreEqual(tax2, taxasBanco);
+            var taxNovo = repo.SelecionarPorId(tax2._id).Value;
+            Assert.AreEqual(taxNovo, tax2);
         }
 
         [TestMethod]
         public void DeveDeletarTaxas()
         {
             ServicoTaxas repo = new ServicoTaxas();
-
             Taxas tax = new Taxas("Aluguel HB20", 1000, EnumTaxa.Diaria.ToString());
-
             repo.InserirNovo(tax);
 
-            repo.Excluir(tax._id);
+            repo.Excluir(repo.SelecionarPorId(tax._id).Value);
 
             var existe = repo.Existe(tax._id);
 
-            Assert.IsFalse(existe);
+            Assert.IsFalse(existe.Value);
         }
     }
 }

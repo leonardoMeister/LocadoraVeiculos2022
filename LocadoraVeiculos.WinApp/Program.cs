@@ -29,41 +29,42 @@ namespace LocadoraVeiculos.WinApp
         {
             ConfiguracaoLogsLocadora.ConfigurarEscritaLogs();
 
-            ServiceProvider = RegistrarServicos();
+            //ServiceProvider = RegistrarServicos();
 
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(ServiceProvider.GetRequiredService<TelaPrincipalForm>());
+            //Application.Run(ServiceProvider.GetRequiredService<TelaPrincipalForm>());
+            Application.Run(new TelaPrincipalForm());
         }
 
-        public static IServiceProvider ServiceProvider { get; private set; }
+        //public static IServiceProvider ServiceProvider { get; private set; }
 
-        static ServiceProvider RegistrarServicos()
-        {
-            var services = new ServiceCollection();
+        //static ServiceProvider RegistrarServicos()
+        //{
+        //    var services = new ServiceCollection();
 
-            //configuracoes
-            services.AddTransient<ConfiguracaoBase, ControladorGrupoVeiculo>();
+        //    //configuracoes
+        //    services.AddTransient<ConfiguracaoBase, ControladorGrupoVeiculo>();
 
-            //validadores
-            services.AddSingleton<AbstractValidator<GrupoVeiculos>, ValidadorGrupoVeiculos>();
+        //    //validadores
+        //    services.AddSingleton<AbstractValidator<GrupoVeiculos>, ValidadorGrupoVeiculos>();
 
-            //controladores
-            services.AddSingleton<ServicoGrupoVeiculos>();
-            services.AddSingleton<ServicoBase<Taxas>, ServicoTaxas>();
+        //    //controladores
+        //    services.AddSingleton<ServicoGrupoVeiculos>();
+        //    services.AddSingleton<ServicoBase<Taxas>, ServicoTaxas>();
 
-            //mapeadores
-            services.AddSingleton<MapeadorBase<GrupoVeiculos>, MapeadorGrupoVeiculos>();
+        //    //mapeadores
+        //    services.AddSingleton<MapeadorBase<GrupoVeiculos>, MapeadorGrupoVeiculos>();
 
-            //repositorios            
+        //    //repositorios            
 
-            //telas
-            services.AddTransient<TelaPrincipalForm>();
-            services.AddTransient<TelaCadastroTaxaForm>();
+        //    //telas
+        //    services.AddTransient<TelaPrincipalForm>();
+        //    services.AddTransient<TelaCadastroTaxaForm>();
 
-            return services.BuildServiceProvider();
-        }
+        //    return services.BuildServiceProvider();
+        //}
     }
 
     //referencia
