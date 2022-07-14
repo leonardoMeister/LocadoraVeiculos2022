@@ -11,7 +11,6 @@ namespace LocadoraVeiculos.WinApp.ModuloPlanoCobranca
     {
         private PlanoCobranca planoCobranca;
         public Action<string> AtualizarRodape { get; set; }
-        public Func<PlanoCobranca, ValidationResult> GravarRegistro { get; internal set; }
         public PlanoCobranca PlanoCobranca
         {
             get { return planoCobranca; }
@@ -28,6 +27,8 @@ namespace LocadoraVeiculos.WinApp.ModuloPlanoCobranca
             }
         }
 
+        public Func<PlanoCobranca, FluentResults.Result<PlanoCobranca>> GravarRegistro { get; internal set; }
+
         public TelaCadastroPlanoCobranca()
         {
             InitializeComponent();
@@ -37,7 +38,7 @@ namespace LocadoraVeiculos.WinApp.ModuloPlanoCobranca
         private void AtualizarPlanosCobranca()
         {
             ServicoGrupoVeiculos control = new ServicoGrupoVeiculos();
-            var dados = control.SelecionarTodos();
+            var dados = control.SelecionarTodos().Value;
             foreach (var dado in dados)
             {
                 cmbGrupoVeiculo.Items.Add(dado);
@@ -57,9 +58,9 @@ namespace LocadoraVeiculos.WinApp.ModuloPlanoCobranca
 
             var resultadoValidacao = GravarRegistro(PlanoCobranca);
 
-            if (resultadoValidacao.IsValid == false)
+            if (resultadoValidacao.IsFailed)
             {
-                string erro = resultadoValidacao.Errors[0].ErrorMessage;
+                string erro = resultadoValidacao.Errors[0].Message;
 
                 AtualizarRodape(erro);
 

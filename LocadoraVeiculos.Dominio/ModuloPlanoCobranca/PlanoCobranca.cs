@@ -25,7 +25,10 @@ namespace LocadoraVeiculos.Dominio.ModuloPlanoCobranca
         public decimal ValorKM { get; set; }
 
         public GrupoVeiculos GrupoVeiculos { get; set; }
-
+        public PlanoCobranca Clone()
+        {
+            return MemberwiseClone() as PlanoCobranca;
+        }
         public override bool Equals(object obj)
         {
             return obj is PlanoCobranca cobranca &&
