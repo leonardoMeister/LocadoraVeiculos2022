@@ -51,7 +51,7 @@ namespace LocadoraVeiculos.WinApp
 
             //controladores
             services.AddSingleton<ServicoGrupoVeiculos>();
-            services.AddSingleton<Controlador<Taxas>, ServicoTaxas>();
+            services.AddSingleton<ServicoBase<Taxas>, ServicoTaxas>();
 
             //mapeadores
             services.AddSingleton<MapeadorBase<GrupoVeiculos>, MapeadorGrupoVeiculos>();

@@ -7,7 +7,7 @@ using Serilog;
 
 namespace LocadoraVeiculos.Controladores.ModuloServicoGrupoVeiculos
 {
-    public class ServicoGrupoVeiculos : Controlador<GrupoVeiculos>
+    public class ServicoGrupoVeiculos : ServicoBase<GrupoVeiculos>
     {
         protected override IRepository<GrupoVeiculos> PegarRepositorio()
         {

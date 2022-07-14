@@ -8,7 +8,7 @@ using System;
 
 namespace LocadoraVeiculos.Controladores.ModuloServicoFuncionario
 {
-    public class ServicoFuncionario : Controlador<Funcionario> 
+    public class ServicoFuncionario : ServicoBase<Funcionario> 
     {
         protected override IRepository<Funcionario> PegarRepositorio()
         {

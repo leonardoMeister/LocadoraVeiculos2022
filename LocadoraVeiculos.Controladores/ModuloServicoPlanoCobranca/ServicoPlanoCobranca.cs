@@ -7,7 +7,7 @@ using Serilog;
 
 namespace LocadoraVeiculos.Controladores.ModuloServicoPlanoCobranca
 {
-    public class ServicoPlanoCobranca : Controlador<PlanoCobranca>
+    public class ServicoPlanoCobranca : ServicoBase<PlanoCobranca>
     {
         protected override IRepository<PlanoCobranca> PegarRepositorio()
         {

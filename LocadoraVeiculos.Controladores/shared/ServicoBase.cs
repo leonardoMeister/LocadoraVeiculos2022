@@ -9,13 +9,13 @@ using System.Linq;
 
 namespace LocadoraVeiculos.Repositorio.shared
 {
-    public abstract class Controlador<T> where T : EntidadeBase
+    public abstract class ServicoBase<T> where T : EntidadeBase
     {
         protected IRepository<T> Repositorio;
 
         protected AbstractValidator<T> Validator;
 
-        public Controlador()
+        public ServicoBase()
         {
             Validator = PegarValidador();
             Repositorio = PegarRepositorio();
