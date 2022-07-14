@@ -49,7 +49,6 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoCliente
             var dados = repo.SelecionarTodos().Value;
 
             Assert.AreEqual(2, dados.Count);
-
         }
 
         [TestMethod]

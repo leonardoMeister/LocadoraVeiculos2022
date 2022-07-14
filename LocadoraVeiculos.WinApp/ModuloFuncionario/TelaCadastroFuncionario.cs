@@ -44,7 +44,7 @@ namespace LocadoraVeiculos.WinApp.ModuloFuncionario
             if (resultadoValidacao.IsFailed)
             {
                 string erro = resultadoValidacao.Errors[0].Message;
-
+                
                 if (erro.StartsWith("Falha no sistema"))
                 {
                     MessageBox.Show(erro,
