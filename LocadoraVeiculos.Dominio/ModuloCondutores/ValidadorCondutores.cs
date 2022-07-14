@@ -33,11 +33,21 @@ namespace LocadoraVeiculos.Dominio.ModuloCondutores
                 .NotEqual(true)
                 .WithMessage("O telefone só deve conter números");
 
+            RuleFor(x => Regex.IsMatch(x.Cnh, "[^0-9- ]+", RegexOptions.IgnoreCase))
+                .NotEqual(true).WithMessage("A CNH só deve conter números");
+
             RuleFor(x => x.Cnh)
-                .Matches(regEx).WithMessage("A CNH não deve possuir Caracteres Especiais")
-                .MinimumLength(8).WithMessage("A CNH deve ter no minimo 8 letras")
+                .MinimumLength(11).WithMessage("A CNH deve ter 11 números")
+                .MinimumLength(11).WithMessage("A CNH deve ter 11 números")
                 .NotNull().WithMessage("Deve ser inserido uma CNH")
                 .NotEmpty().WithMessage("Deve ser inserido uma CNH");
+
+            RuleFor(x => x.Cpf)
+                .NotNull().WithMessage("Deve ser inserido um CPF")
+                .NotEmpty().WithMessage("Deve ser inserido um CPF");
+
+            RuleFor(x => x)
+                .Custom(ValidarCPF);
 
             RuleFor(x => x.ValidadeCnh)
                 .NotNull().WithMessage("Deve ser inserido uma Validade para a CNH")
@@ -47,6 +57,12 @@ namespace LocadoraVeiculos.Dominio.ModuloCondutores
         private void ValidarEmail(string email, ValidationContext<Condutores> validacao)
         {
             if (!email.EmailValido()) validacao.AddFailure(new ValidationFailure("Email", "Email deve ser valido"));
+        }
+
+        private void ValidarCPF(Condutores condutor, ValidationContext<Condutores> validation)
+        {
+            if (condutor.Cpf.Length != 14)
+                validation.AddFailure(new ValidationFailure("CPF", "O campo CPF deve ser Válido"));
         }
     }
 }

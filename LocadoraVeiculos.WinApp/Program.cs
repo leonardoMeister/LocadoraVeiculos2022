@@ -1,6 +1,6 @@
 using FluentValidation;
-using LocadoraVeiculos.Controladores.ModuloControladorGrupoVeiculos;
-using LocadoraVeiculos.Controladores.ModuloControladorTaxas;
+using LocadoraVeiculos.Controladores.ModuloServicoGrupoVeiculos;
+using LocadoraVeiculos.Controladores.ModuloServicoTaxas;
 using LocadoraVeiculos.Dominio.ModuloGrupoVeiculos;
 using LocadoraVeiculos.Dominio.ModuloTaxas;
 using LocadoraVeiculos.Infra.Logging;
@@ -44,14 +44,14 @@ namespace LocadoraVeiculos.WinApp
             var services = new ServiceCollection();
 
             //configuracoes
-            services.AddTransient<ConfiguracaoBase, ConfiguracaoGrupoVeiculo>();
+            services.AddTransient<ConfiguracaoBase, ControladorGrupoVeiculo>();
 
             //validadores
             services.AddSingleton<AbstractValidator<GrupoVeiculos>, ValidadorGrupoVeiculos>();
 
             //controladores
-            services.AddSingleton<ControladorGrupoVeiculos>();
-            services.AddSingleton<Controlador<Taxas>, ControladorTaxas>();
+            services.AddSingleton<ServicoGrupoVeiculos>();
+            services.AddSingleton<Controlador<Taxas>, ServicoTaxas>();
 
             //mapeadores
             services.AddSingleton<MapeadorBase<GrupoVeiculos>, MapeadorGrupoVeiculos>();
@@ -69,9 +69,9 @@ namespace LocadoraVeiculos.WinApp
     //referencia
     public class classe1
     {
-        public ControladorGrupoVeiculos controlador;
+        public ServicoGrupoVeiculos controlador;
 
-        public classe1(ControladorGrupoVeiculos controlador)
+        public classe1(ServicoGrupoVeiculos controlador)
         {
             this.controlador = controlador;
         }

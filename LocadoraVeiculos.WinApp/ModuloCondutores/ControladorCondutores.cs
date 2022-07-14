@@ -1,4 +1,4 @@
-﻿using LocadoraVeiculos.Controladores.ModuloCondutores;
+﻿using LocadoraVeiculos.Controladores.ModuloServicoCondutores;
 using LocadoraVeiculos.Dominio.ModuloCondutores;
 using LocadoraVeiculos.WinApp.shared;
 using System;
@@ -7,17 +7,17 @@ using System.Windows.Forms;
 
 namespace LocadoraVeiculos.WinApp.ModuloCondutores
 {
-    public class ConfiguracaoCondutores : ConfiguracaoBase, ICadastravel
+    public class ControladorCondutores : ConfiguracaoBase, ICadastravel
     {
         Action<string> AtualizarRodape;
-        ControladorCondutores controlador;
+        ServicoCondutores servicoCondutores;
         TabelaCondutoresControl tabelaCondutoresControl;
 
-        public ConfiguracaoCondutores(Action<string> atualizar)
+        public ControladorCondutores(Action<string> atualizar)
         {
             AtualizarRodape = atualizar;
             tabelaCondutoresControl = new TabelaCondutoresControl();
-            controlador = new ControladorCondutores();
+            servicoCondutores = new ServicoCondutores();
         }
 
 
@@ -26,14 +26,14 @@ namespace LocadoraVeiculos.WinApp.ModuloCondutores
             TelaCadastroCondutoresForm telaCadastroCondutores = new();
 
             Guid id = tabelaCondutoresControl.ObtemNumeroCondutoresSelecionado();
-            var registro = controlador.SelecionarPorId(id);
+            var registro = servicoCondutores.SelecionarPorId(id);
 
             if (registro != null)
             {
                 AtualizarRodape("Tela de Edição Condutores");
                 telaCadastroCondutores.Condutores = registro;
 
-                telaCadastroCondutores.GravarRegistro = controlador.Editar;
+                telaCadastroCondutores.GravarRegistro = servicoCondutores.Editar;
                 telaCadastroCondutores.AtualizarRodape = AtualizarRodape;
                 telaCadastroCondutores.ShowDialog();
 
@@ -46,7 +46,7 @@ namespace LocadoraVeiculos.WinApp.ModuloCondutores
             Guid id = tabelaCondutoresControl.ObtemNumeroCondutoresSelecionado();
             try
             {
-                controlador.Excluir(id);
+                servicoCondutores.Excluir(id);
                 AtualizarRodape("Condutores Removido com sucesso.");
             }
             catch (Exception ex)
@@ -62,7 +62,7 @@ namespace LocadoraVeiculos.WinApp.ModuloCondutores
 
             AtualizarRodape("Tela de Adição Condutores");
 
-            telaCadastroCondutores.GravarRegistro = controlador.InserirNovo;
+            telaCadastroCondutores.GravarRegistro = servicoCondutores.InserirNovo;
             telaCadastroCondutores.AtualizarRodape = AtualizarRodape;
             telaCadastroCondutores.ShowDialog();
 
@@ -76,7 +76,7 @@ namespace LocadoraVeiculos.WinApp.ModuloCondutores
 
         public override UserControl ObtemListagem()
         {
-            List<Condutores> condutores = controlador.SelecionarTodos();
+            List<Condutores> condutores = servicoCondutores.SelecionarTodos();
 
             tabelaCondutoresControl.AtualizarRegistros(condutores);
 

@@ -33,7 +33,8 @@ namespace LocadoraVeiculos.RepositorioProject.ModuloCondutores
                 WHERE id_condutores = @ID";
         protected override string SqlInsert =>
             @"INSERT INTO TB_CONDUTORES
-                   ([nome]
+                   ([id_condutores]
+                   ,[nome]
                    ,[cpf]
                    ,[endereco]
                    ,[email]
@@ -41,7 +42,7 @@ namespace LocadoraVeiculos.RepositorioProject.ModuloCondutores
                    ,[cnh]
                    ,[validadeCnh])
                  VALUES
-                       (@NOME, @CPF, @ENDERECO, @EMAIL, @TELEFONE, @CNH, @VALIDADECNH) ;";
+                       (@ID, @NOME, @CPF, @ENDERECO, @EMAIL, @TELEFONE, @CNH, @VALIDADECNH) ;";
         protected override string SqlSelectAll => @"
                 SELECT [id_condutores]
                       ,[nome]

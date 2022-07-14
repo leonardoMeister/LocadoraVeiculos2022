@@ -6,9 +6,9 @@ using LocadoraVeiculos.RepositorioProject.ModuloFuncionario;
 using Serilog;
 using System;
 
-namespace LocadoraVeiculos.Controladores.ModuloFuncionario
+namespace LocadoraVeiculos.Controladores.ModuloServicoFuncionario
 {
-    public class ControladorFuncionario : Controlador<Funcionario>
+    public class ServicoFuncionario : Controlador<Funcionario> 
     {
         protected override IRepository<Funcionario> PegarRepositorio()
         {
@@ -70,9 +70,9 @@ namespace LocadoraVeiculos.Controladores.ModuloFuncionario
             ValidationResult valido = new ValidationResult();
 
             var func1 = ((RepositorioFuncionario)Repositorio).SelecionarPorNome(registro.Nome);
-            if (func1 != null && func1._id != registro._id) valido.Errors.Add(new ValidationFailure("Nome", "Nao pode ter nomes repetidos"));
+            if (func1 != null && func1.Nome != registro.Nome) valido.Errors.Add(new ValidationFailure("Nome", "Nao pode ter nomes repetidos"));
             var func2 = ((RepositorioFuncionario)Repositorio).SelecionarPorUsuario(registro.Login);
-            if (func2 != null && func1._id != registro._id) valido.Errors.Add(new ValidationFailure("login", "Nao pode ter login repetidos"));
+            if (func2 != null && func1.Login != registro.Login) valido.Errors.Add(new ValidationFailure("login", "Nao pode ter login repetidos"));
 
             return valido;
         }

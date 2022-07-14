@@ -40,15 +40,18 @@ namespace LocadoraVeiculos.RepositorioProject.ModuloCliente
                 WHERE id_cliente = @ID";
         protected override string SqlInsert =>
             @"INSERT INTO TB_CLIENTE
-                   ([nome]
-                   ,[cpf]
-                   ,[endereco]
-                   ,[email]
-                   ,[telefone]
-                   ,[tipoCliente]
-                   ,[cnpj])
+                  (
+                   [id_cliente],
+                   [nome],
+                   [cpf],
+                   [endereco],
+                   [email],
+                   [telefone],
+                   [tipoCliente],
+                   [cnpj]
+                  )
                  VALUES
-                       (@NOME, @CPF, @ENDERECO, @EMAIL, @TELEFONE, @TIPOCLIENTE, @CNPJ) ;";
+                       (@ID, @NOME, @CPF, @ENDERECO, @EMAIL, @TELEFONE, @TIPOCLIENTE, @CNPJ);";
         protected override string SqlSelectAll => @"
                 SELECT [id_cliente]
                       ,[nome]
@@ -69,7 +72,7 @@ namespace LocadoraVeiculos.RepositorioProject.ModuloCliente
                       ,[tipoCliente]
                       ,[cnpj]
                   FROM TB_CLIENTE
-                    where id_cliente = @ID ; ";
+                    where id_cliente = @ID; ";
         protected override string SqlExiste =>
             @"SELECT
                         COUNT(*)

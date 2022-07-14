@@ -5,7 +5,7 @@ using System.Windows.Forms;
 using System.Drawing;
 using System.IO;
 using System.Drawing.Imaging;
-using LocadoraVeiculos.Controladores.ModuloControladorGrupoVeiculos;
+using LocadoraVeiculos.Controladores.ModuloServicoGrupoVeiculos;
 using LocadoraVeiculos.Dominio.ModuloGrupoVeiculos;
 
 namespace LocadoraVeiculos.WinApp.ModuloVeiculo
@@ -20,7 +20,7 @@ namespace LocadoraVeiculos.WinApp.ModuloVeiculo
 
         private void AtualizarPlanosCobranca()
         {
-            ControladorGrupoVeiculos control = new ControladorGrupoVeiculos();
+            ServicoGrupoVeiculos control = new ServicoGrupoVeiculos();
             var dados = control.SelecionarTodos();
             foreach (var dado in dados)
             {
@@ -65,7 +65,7 @@ namespace LocadoraVeiculos.WinApp.ModuloVeiculo
 
         private void PegarObjetoTela()
         {
-            Guid id;
+            Guid id = new Guid();
 
             if (txtId.Text != "")
                 id = new Guid(txtId.Text);
@@ -93,6 +93,9 @@ namespace LocadoraVeiculos.WinApp.ModuloVeiculo
             if (cmbGrupoVeiculo.SelectedIndex != -1) grupo = (GrupoVeiculos)cmbGrupoVeiculo.SelectedItem;
 
             veiculo = new Veiculo(modelo, placa, marca, cor, tipoCombustivel, capacidadeTanque, ano, quilometragem, foto, grupo);
+
+            if (id != Guid.Empty)
+                veiculo._id = id;
 
         }
         private void buttonCarregarFoto_Click(object sender, EventArgs e)

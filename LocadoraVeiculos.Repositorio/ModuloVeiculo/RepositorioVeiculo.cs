@@ -31,7 +31,8 @@ namespace LocadoraVeiculos.RepositorioProject.ModuloVeiculo
 
         protected override string SqlInsert =>
                         @"INSERT INTO [dbo].[TB_VEICULO]
-                               ([modelo]
+                               ([id_veiculo]
+                               ,[modelo]
                                ,[placa]
                                ,[marca]
                                ,[cor]
@@ -42,10 +43,10 @@ namespace LocadoraVeiculos.RepositorioProject.ModuloVeiculo
                                ,[foto_carro]
                                ,[grupo_veiculo_id])
                          VALUES
-                               (@MODELO ,@PLACA ,@MARCA ,@COR ,@TIPOCOMBUSTIVEL ,@CAPACIDADETANQUE ,@ANO ,@QUILOMETRAGEM ,@FOTOCARRO ,@GRUPOID )";
+                               (@ID, @MODELO ,@PLACA ,@MARCA ,@COR ,@TIPOCOMBUSTIVEL ,@CAPACIDADETANQUE ,@ANO ,@QUILOMETRAGEM ,@FOTOCARRO ,@GRUPOID )";
 
         protected override string SqlSelectAll =>
-                         @"SELECT [id_veiculo] as IDPLANO
+                         @"SELECT [id_veiculo] as ID
                               ,[modelo] AS MODELO
                               ,[placa] AS PLACA
                               ,[marca] AS MARCA
@@ -64,7 +65,7 @@ namespace LocadoraVeiculos.RepositorioProject.ModuloVeiculo
 ";
 
         protected override string SqlSelectId =>
-                         @"SELECT [id_veiculo] as IDPLANO
+                         @"SELECT [id_veiculo] as ID
                               ,[modelo] AS MODELO
                               ,[placa] AS PLACA
                               ,[marca] AS MARCA

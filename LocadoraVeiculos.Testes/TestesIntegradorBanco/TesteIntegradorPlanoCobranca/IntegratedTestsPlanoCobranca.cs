@@ -1,5 +1,5 @@
-﻿using LocadoraVeiculos.Controladores.ModuloControladorGrupoVeiculos;
-using LocadoraVeiculos.Controladores.ModuloPlanoCobranca;
+﻿using LocadoraVeiculos.Controladores.ModuloServicoGrupoVeiculos;
+using LocadoraVeiculos.Controladores.ModuloServicoPlanoCobranca;
 using LocadoraVeiculos.Dominio.ModuloGrupoVeiculos;
 using LocadoraVeiculos.Dominio.ModuloPlanoCobranca;
 using LocadoraVeiculos.RepositorioProject.shared;
@@ -12,25 +12,22 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradorPlanoCobr
     {
         public IntegratedTestsPlanoCobranca()
         {
-            string query = @"delete from TB_VEICULO;
-                            DBCC CHECKIDENT (TB_VEICULO, RESEED, 1)";
+            string query = @"delete from TB_VEICULO;";
             DataBase.ExecutarComando(query);
 
-            string query2 = @"delete from TB_PLANOCOBRANCA;
-                            DBCC CHECKIDENT (TB_PLANOCOBRANCA, RESEED, 1)";
+            string query2 = @"delete from TB_PLANOCOBRANCA;";
 
             DataBase.ExecutarComando(query2);
 
-            string query3 = @"delete from TB_GRUPOVEICULOS;
-                            DBCC CHECKIDENT (TB_GRUPOVEICULOS, RESEED, 1)";
+            string query3 = @"delete from TB_GRUPOVEICULOS;";
             DataBase.ExecutarComando(query3);
         }
 
         [TestMethod]
         public void DeveInserirPlanoCobranca()
         {
-            ControladorPlanoCobranca contro = new ControladorPlanoCobranca();
-            ControladorGrupoVeiculos controGrupo = new ControladorGrupoVeiculos();
+            ServicoPlanoCobranca contro = new ServicoPlanoCobranca();
+            ServicoGrupoVeiculos controGrupo = new ServicoGrupoVeiculos();
 
             GrupoVeiculos grupo = new GrupoVeiculos("Nome grupo Veiculos 1");
             controGrupo.InserirNovo(grupo);
@@ -47,8 +44,8 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradorPlanoCobr
         [TestMethod]
         public void DeveBuscarVariosPlanos()
         {
-            ControladorPlanoCobranca contro = new ControladorPlanoCobranca();
-            ControladorGrupoVeiculos controGrupo = new ControladorGrupoVeiculos();
+            ServicoPlanoCobranca contro = new ServicoPlanoCobranca();
+            ServicoGrupoVeiculos controGrupo = new ServicoGrupoVeiculos();
 
             GrupoVeiculos grupo = new GrupoVeiculos("Nome grupo Veiculos 1");
             controGrupo.InserirNovo(grupo);
@@ -67,8 +64,8 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradorPlanoCobr
         [TestMethod]
         public void DeveVerificarExistenciaPlano()
         {
-            ControladorPlanoCobranca contro = new ControladorPlanoCobranca();
-            ControladorGrupoVeiculos controGrupo = new ControladorGrupoVeiculos();
+            ServicoPlanoCobranca contro = new ServicoPlanoCobranca();
+            ServicoGrupoVeiculos controGrupo = new ServicoGrupoVeiculos();
 
             GrupoVeiculos grupo = new GrupoVeiculos("Nome grupo Veiculos 1");
             controGrupo.InserirNovo(grupo);
@@ -85,8 +82,8 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradorPlanoCobr
         [TestMethod]
         public void DeveDeletarPlano()
         {
-            ControladorPlanoCobranca contro = new ControladorPlanoCobranca();
-            ControladorGrupoVeiculos controGrupo = new ControladorGrupoVeiculos();
+            ServicoPlanoCobranca contro = new ServicoPlanoCobranca();
+            ServicoGrupoVeiculos controGrupo = new ServicoGrupoVeiculos();
 
             GrupoVeiculos grupo = new GrupoVeiculos("Nome grupo Veiculos 1");
             controGrupo.InserirNovo(grupo);
@@ -106,8 +103,8 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradorPlanoCobr
         public void DeveEditarPlano()
         {
 
-            ControladorPlanoCobranca contro = new ControladorPlanoCobranca();
-            ControladorGrupoVeiculos controGrupo = new ControladorGrupoVeiculos();
+            ServicoPlanoCobranca contro = new ServicoPlanoCobranca();
+            ServicoGrupoVeiculos controGrupo = new ServicoGrupoVeiculos();
 
             GrupoVeiculos grupo = new GrupoVeiculos("Nome grupo Veiculos 1");
             controGrupo.InserirNovo(grupo);

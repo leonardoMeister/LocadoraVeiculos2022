@@ -5,9 +5,9 @@ using LocadoraVeiculos.Repositorio.shared;
 using LocadoraVeiculos.RepositorioProject.ModuloPlanoCobranca;
 using Serilog;
 
-namespace LocadoraVeiculos.Controladores.ModuloPlanoCobranca
+namespace LocadoraVeiculos.Controladores.ModuloServicoPlanoCobranca
 {
-    public class ControladorPlanoCobranca : Controlador<PlanoCobranca>
+    public class ServicoPlanoCobranca : Controlador<PlanoCobranca>
     {
         protected override IRepository<PlanoCobranca> PegarRepositorio()
         {

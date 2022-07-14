@@ -1,4 +1,4 @@
-﻿using LocadoraVeiculos.Controladores.ModuloControladorGrupoVeiculos;
+﻿using LocadoraVeiculos.Controladores.ModuloServicoGrupoVeiculos;
 using LocadoraVeiculos.Dominio.ModuloGrupoVeiculos;
 using LocadoraVeiculos.WinApp.shared;
 using System;
@@ -7,15 +7,15 @@ using System.Windows.Forms;
 
 namespace LocadoraVeiculos.WinApp.ModuloGrupoVeiculo
 {
-    public class ConfiguracaoGrupoVeiculo : ConfiguracaoBase, ICadastravel
+    public class ControladorGrupoVeiculo : ConfiguracaoBase, ICadastravel
     {
         TabelaGrupoVeiculo tabelaGrupoVeiculos;
-        ControladorGrupoVeiculos controlador;
+        ServicoGrupoVeiculos servicoGrupoVeiculos;
         Action<string> AtualizarRodape;
-        public ConfiguracaoGrupoVeiculo(Action<string> atualizar)
+        public ControladorGrupoVeiculo(Action<string> atualizar)
         {
             tabelaGrupoVeiculos = new TabelaGrupoVeiculo();
-            controlador = new ControladorGrupoVeiculos();
+            servicoGrupoVeiculos = new ServicoGrupoVeiculos();
             AtualizarRodape = atualizar;
         }
 
@@ -24,14 +24,14 @@ namespace LocadoraVeiculos.WinApp.ModuloGrupoVeiculo
             TelaCadastroGrupoVeiculo telaCadastroGrupoVeiculo = new TelaCadastroGrupoVeiculo();
 
             Guid id = tabelaGrupoVeiculos.ObtemNumeroTarefaSelecionado();
-            var registro = controlador.SelecionarPorId(id);
+            var registro = servicoGrupoVeiculos.SelecionarPorId(id);
 
             if (registro != null)
             {
                 AtualizarRodape("Tela de Edição Grupo Veiculo");
                 telaCadastroGrupoVeiculo.GrupoVeiculos = registro;
 
-                telaCadastroGrupoVeiculo.GravarRegistro = controlador.Editar;
+                telaCadastroGrupoVeiculo.GravarRegistro = servicoGrupoVeiculos.Editar;
                 telaCadastroGrupoVeiculo.AtualizarRodape = AtualizarRodape;
                 telaCadastroGrupoVeiculo.ShowDialog();
 
@@ -44,7 +44,7 @@ namespace LocadoraVeiculos.WinApp.ModuloGrupoVeiculo
             Guid id = tabelaGrupoVeiculos.ObtemNumeroTarefaSelecionado();
             try
             {
-                controlador.Excluir(id);
+                servicoGrupoVeiculos.Excluir(id);
                 AtualizarRodape("Grupo de Veiculos Removido com sucesso.");
             }
             catch (Exception ex)
@@ -61,7 +61,7 @@ namespace LocadoraVeiculos.WinApp.ModuloGrupoVeiculo
 
             AtualizarRodape("Tela de Adição Grupo Veiculo");
 
-            telaCadastroGrupoVeiculo.GravarRegistro = controlador.InserirNovo;
+            telaCadastroGrupoVeiculo.GravarRegistro = servicoGrupoVeiculos.InserirNovo;
             telaCadastroGrupoVeiculo.AtualizarRodape = AtualizarRodape;
             telaCadastroGrupoVeiculo.ShowDialog();
 
@@ -75,7 +75,7 @@ namespace LocadoraVeiculos.WinApp.ModuloGrupoVeiculo
 
         public override UserControl ObtemListagem()
         {
-            List<GrupoVeiculos> grupoVeiculos = controlador.SelecionarTodos();
+            List<GrupoVeiculos> grupoVeiculos = servicoGrupoVeiculos.SelecionarTodos();
 
             tabelaGrupoVeiculos.AtualizarRegistros(grupoVeiculos);
 

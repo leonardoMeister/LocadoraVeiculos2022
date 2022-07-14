@@ -31,11 +31,18 @@ namespace LocadoraVeiculos.RepositorioProject.ModuloTaxas
 
         protected override string SqlInsert =>
             @"INSERT INTO TB_TAXAS
-                   ([descricao],
+                   (
+                    [id_taxas],
+                    [descricao],
                     [valor],
                     [tipo])
                  VALUES
-                       (@DESCRICAO, @VALOR, @TIPO) ;";
+                       (
+                    @ID,
+                    @DESCRICAO,
+                    @VALOR,
+                    @TIPO
+                );";
 
         protected override string SqlSelectAll => @"
                 SELECT [id_taxas],
@@ -50,7 +57,7 @@ namespace LocadoraVeiculos.RepositorioProject.ModuloTaxas
                        [valor],
                        [tipo]
                   FROM TB_TAXAS
-                    where id_taxas = @ID ; ";
+                    where id_taxas = @ID; ";
 
         protected override string SqlExiste =>
             @"SELECT

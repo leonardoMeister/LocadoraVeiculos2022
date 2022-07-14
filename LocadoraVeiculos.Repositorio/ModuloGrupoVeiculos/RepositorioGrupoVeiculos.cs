@@ -29,9 +29,9 @@ namespace LocadoraVeiculos.RepositorioProject.ModuloGrupoVeiculos
 
         protected override string SqlInsert =>
             @"INSERT INTO TB_GRUPOVEICULOS
-                   (nomeGrupo)
+                   (id_grupoveiculos, nomeGrupo)
                  VALUES
-                       (@NOMEGRUPO) ;";
+                       (@ID, @NOMEGRUPO) ;";
 
         protected override string SqlSelectAll => @"
                 SELECT [id_grupoveiculos] as IDGRUPO,
@@ -49,6 +49,6 @@ namespace LocadoraVeiculos.RepositorioProject.ModuloGrupoVeiculos
                         COUNT(*)
                     FROM 
                         TB_GRUPOVEICULOS
-                    WHERE id_grupoveiculos = @ID;";
+                    WHERE id_grupoveiculos = @ID ;";
     }
 }

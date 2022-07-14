@@ -1,4 +1,4 @@
-﻿using LocadoraVeiculos.Controladores.ModuloVeiculo;
+﻿using LocadoraVeiculos.Controladores.ModuloServicoVeiculo;
 using LocadoraVeiculos.Dominio.ModuloVeiculo;
 using LocadoraVeiculos.WinApp.shared;
 using System;
@@ -7,15 +7,15 @@ using System.Windows.Forms;
 
 namespace LocadoraVeiculos.WinApp.ModuloVeiculo
 {
-    public class ConfiguracaoVeiculo : ConfiguracaoBase, ICadastravel
+    public class ControladorVeiculo : ConfiguracaoBase, ICadastravel
     {
         TabelaVeiculoControl tabelaVeiculo;
-        ControladorVeiculo ControladorVeiculo;
+        ServicoVeiculo ServicoVeiculo;
         Action<string> AtualizarRodape;
-        public ConfiguracaoVeiculo(Action<string> atualizar)
+        public ControladorVeiculo(Action<string> atualizar)
         {
             AtualizarRodape = atualizar;
-            ControladorVeiculo = new();
+            ServicoVeiculo = new();
             tabelaVeiculo = new();
         }
 
@@ -24,14 +24,14 @@ namespace LocadoraVeiculos.WinApp.ModuloVeiculo
             TelaCadastroVeiculo telaCadastroVeiculo = new();
 
             Guid id = tabelaVeiculo.ObtemNumeroVeiculoSelecionado();
-            var registro = ControladorVeiculo.SelecionarPorId(id);
+            var registro = ServicoVeiculo.SelecionarPorId(id);
 
             if (registro != null)
             {
                 AtualizarRodape("Tela de Edição Veiculo");
                 telaCadastroVeiculo.Veiculo = registro;
 
-                telaCadastroVeiculo.GravarRegistro = ControladorVeiculo.Editar;
+                telaCadastroVeiculo.GravarRegistro = ServicoVeiculo.Editar;
                 telaCadastroVeiculo.AtualizarRodape = AtualizarRodape;
                 telaCadastroVeiculo.ShowDialog();
 
@@ -41,10 +41,10 @@ namespace LocadoraVeiculos.WinApp.ModuloVeiculo
 
         public void Excluir()
         {
-            var id = tabelaVeiculo.ObtemNumeroVeiculoSelecionado();
+            Guid id = tabelaVeiculo.ObtemNumeroVeiculoSelecionado();
             try
             {
-                ControladorVeiculo.Excluir(id);
+                ServicoVeiculo.Excluir(id);
                 AtualizarRodape("Veiculo Removido com sucesso.");
             }
             catch (Exception ex)
@@ -60,7 +60,7 @@ namespace LocadoraVeiculos.WinApp.ModuloVeiculo
 
             AtualizarRodape("Tela de Adição Veiculo");
 
-            telaCadastroVeiculo.GravarRegistro = ControladorVeiculo.InserirNovo;
+            telaCadastroVeiculo.GravarRegistro = ServicoVeiculo.InserirNovo;
             telaCadastroVeiculo.AtualizarRodape = AtualizarRodape;
             telaCadastroVeiculo.ShowDialog();
 
@@ -74,7 +74,7 @@ namespace LocadoraVeiculos.WinApp.ModuloVeiculo
 
         public override UserControl ObtemListagem()
         {
-            List<Veiculo> veiculos = ControladorVeiculo.SelecionarTodos();
+            List<Veiculo> veiculos = ServicoVeiculo.SelecionarTodos();
 
             tabelaVeiculo.AtualizarRegistros(veiculos);
 

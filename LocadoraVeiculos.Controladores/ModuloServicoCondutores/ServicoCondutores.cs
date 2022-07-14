@@ -5,9 +5,9 @@ using LocadoraVeiculos.Repositorio.shared;
 using LocadoraVeiculos.RepositorioProject.ModuloCondutores;
 using Serilog;
 
-namespace LocadoraVeiculos.Controladores.ModuloCondutores
+namespace LocadoraVeiculos.Controladores.ModuloServicoCondutores
 {
-    public class ControladorCondutores : Controlador<Condutores>
+    public class ServicoCondutores : Controlador<Condutores>
     {
         protected override IRepository<Condutores> PegarRepositorio()
         {
@@ -66,31 +66,11 @@ namespace LocadoraVeiculos.Controladores.ModuloCondutores
         {
             ValidationResult valido = new ValidationResult();
 
-            var func1 = ((RepositorioCondutores)Repositorio).SelecionarPorCpf(registro.Cpf);
-            if (func1 != null && func1._id != registro._id)
-            {
-                if (func1.Cpf != "   .   .   -")
-                {
-                    valido.Errors.Add(new ValidationFailure("Cpf", "Nao pode ter Cpf repetido"));
-                }
-
-            }
-
             return valido;
         }
         private ValidationResult CondutorForValidoParaInserir(Condutores registro)
         {
             ValidationResult valido = new ValidationResult();
-
-            var func1 = ((RepositorioCondutores)Repositorio).SelecionarPorCpf(registro.Cpf);
-            if (func1 != null)
-            {
-                if (func1.Cpf != "   .   .   -")
-                {
-                    valido.Errors.Add(new ValidationFailure("Cpf", "Nao pode ter Cpf repetido"));
-                }
-
-            }
 
             return valido;
 

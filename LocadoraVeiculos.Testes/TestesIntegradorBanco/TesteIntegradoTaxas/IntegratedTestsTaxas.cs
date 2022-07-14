@@ -1,4 +1,4 @@
-﻿using LocadoraVeiculos.Controladores.ModuloControladorTaxas;
+﻿using LocadoraVeiculos.Controladores.ModuloServicoTaxas;
 using LocadoraVeiculos.Dominio.ModuloTaxas;
 using LocadoraVeiculos.RepositorioProject.ModuloTaxas;
 using LocadoraVeiculos.RepositorioProject.shared;
@@ -11,15 +11,14 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoTaxas
     {
         public IntegratedTestsTaxas()
         {
-            string query = @"delete from TB_TAXAS;
-                            DBCC CHECKIDENT (TB_TAXAS, RESEED, 1)";
+            string query = @"delete from TB_TAXAS;";
             DataBase.ExecutarComando(query);
         }
 
         [TestMethod]
         public void DeveInserirTaxas()
         {
-            ControladorTaxas repo = new ControladorTaxas();
+            ServicoTaxas repo = new ServicoTaxas();
 
             Taxas tax = new Taxas("Aluguel Onix", 1500, EnumTaxa.Diaria.ToString());
 
@@ -28,14 +27,14 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoTaxas
             var taxas = repo.SelecionarPorId(tax._id);
 
             Assert.AreEqual(taxas._id, tax._id);
-            Assert.AreEqual(taxas.Descricao, tax.Descricao);
+            Assert.AreEqual(taxas.Descricao, tax.Descricao); 
             Assert.AreEqual(taxas.Valor, tax.Valor);
         }
 
         [TestMethod]
         public void DeveBuscarVariosTaxas()
         {
-            ControladorTaxas repo = new ControladorTaxas();
+            ServicoTaxas repo = new ServicoTaxas();
 
             Taxas tax = new Taxas("Aluguel Onix", 1500, EnumTaxa.Diaria.ToString());
             Taxas tax2 = new Taxas("Aluguel HB20", 1000, EnumTaxa.Diaria.ToString());
@@ -52,7 +51,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoTaxas
         [TestMethod]
         public void DeveVerificarExistenciaTaxas()
         {
-            ControladorTaxas repo = new ControladorTaxas();
+            ServicoTaxas repo = new ServicoTaxas();
 
             Taxas tax = new Taxas("Aluguel Onix", 1500, EnumTaxa.Diaria.ToString());
 
@@ -66,7 +65,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoTaxas
         [TestMethod]
         public void DeveEditarTaxas()
         {
-            ControladorTaxas repo = new ControladorTaxas();
+            ServicoTaxas repo = new ServicoTaxas();
 
             Taxas tax = new Taxas("Aluguel Onix", 1500, EnumTaxa.Diaria.ToString());
 
@@ -85,7 +84,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoTaxas
         [TestMethod]
         public void DeveDeletarTaxas()
         {
-            ControladorTaxas repo = new ControladorTaxas();
+            ServicoTaxas repo = new ServicoTaxas();
 
             Taxas tax = new Taxas("Aluguel HB20", 1000, EnumTaxa.Diaria.ToString());
 

@@ -1,5 +1,5 @@
 ﻿using FluentValidation.Results;
-using LocadoraVeiculos.Controladores.ModuloControladorCliente;
+using LocadoraVeiculos.Controladores.ModuloServicoCliente;
 using LocadoraVeiculos.Dominio.ModuloCliente;
 using LocadoraVeiculos.Dominio.ModuloCondutores;
 using LocadoraVeiculos.RepositorioProject.ModuloCliente;
@@ -14,7 +14,7 @@ namespace LocadoraVeiculos.WinApp.ModuloCondutores
         public Action<string> AtualizarRodape { get; set; }
         public Func<Condutores, ValidationResult> GravarRegistro { get; internal set; }
 
-        public ControladorCliente controladorCliente;
+        public ServicoCliente controladorCliente;
 
 
         public Condutores Condutores
@@ -47,7 +47,7 @@ namespace LocadoraVeiculos.WinApp.ModuloCondutores
         public TelaCadastroCondutoresForm()
         {
             InitializeComponent();
-            controladorCliente = new ControladorCliente();
+            controladorCliente = new ServicoCliente();
             CarregarClientes();
         }
 
@@ -84,7 +84,7 @@ namespace LocadoraVeiculos.WinApp.ModuloCondutores
 
         private bool PegarObjetoTela()
         {
-            Guid id;
+            Guid id = new Guid();
 
             if (txtId.Text != "")
                 id = new Guid(txtId.Text);
@@ -98,7 +98,10 @@ namespace LocadoraVeiculos.WinApp.ModuloCondutores
             string validadecnh = dateTimeCnh.Text;
 
             condutor = new Condutores(nome, cpf, endereco, email, telefone, cnh, validadecnh);
-     
+
+            if (id != Guid.Empty)
+                condutor._id = id;
+
             return true;
         }
 

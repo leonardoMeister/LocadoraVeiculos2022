@@ -1,5 +1,5 @@
 ﻿using FluentValidation.Results;
-using LocadoraVeiculos.Controladores.ModuloControladorGrupoVeiculos;
+using LocadoraVeiculos.Controladores.ModuloServicoGrupoVeiculos;
 using LocadoraVeiculos.Dominio.ModuloGrupoVeiculos;
 using LocadoraVeiculos.Dominio.ModuloPlanoCobranca;
 using System;
@@ -36,7 +36,7 @@ namespace LocadoraVeiculos.WinApp.ModuloPlanoCobranca
 
         private void AtualizarPlanosCobranca()
         {
-            ControladorGrupoVeiculos control = new ControladorGrupoVeiculos();
+            ServicoGrupoVeiculos control = new ServicoGrupoVeiculos();
             var dados = control.SelecionarTodos();
             foreach (var dado in dados)
             {
@@ -73,7 +73,7 @@ namespace LocadoraVeiculos.WinApp.ModuloPlanoCobranca
 
         private bool PegarObjetoTela()
         {
-            Guid id;
+            Guid id = new Guid();
 
             if (txtId.Text != "")
                 id = new Guid(txtId.Text);
@@ -91,6 +91,9 @@ namespace LocadoraVeiculos.WinApp.ModuloPlanoCobranca
             if (cmbGrupoVeiculo.SelectedIndex != -1) grupo = (GrupoVeiculos)cmbGrupoVeiculo.SelectedItem;
 
             planoCobranca = new PlanoCobranca(tipo, valorDia, limite, valorKm, grupo);
+
+            if (id != Guid.Empty)
+                planoCobranca._id = id;
 
             return true;
         }

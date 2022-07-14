@@ -1,5 +1,5 @@
-﻿using LocadoraVeiculos.Controladores.ModuloControladorGrupoVeiculos;
-using LocadoraVeiculos.Controladores.ModuloVeiculo;
+﻿using LocadoraVeiculos.Controladores.ModuloServicoGrupoVeiculos;
+using LocadoraVeiculos.Controladores.ModuloServicoVeiculo;
 using LocadoraVeiculos.Dominio.ModuloGrupoVeiculos;
 using LocadoraVeiculos.Dominio.ModuloVeiculo;
 using LocadoraVeiculos.RepositorioProject.shared;
@@ -17,23 +17,19 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoVeiculo
     {
         public IntegratedTestsVeiculo()
         {
-            string query = @"delete from TB_VEICULO;
-                            DBCC CHECKIDENT (TB_VEICULO, RESEED, 1)";
+            string query = @"delete from TB_VEICULO;";
             DataBase.ExecutarComando(query);
-            string query2 = @"delete from TB_PLANOCOBRANCA;
-                            DBCC CHECKIDENT (TB_PLANOCOBRANCA, RESEED, 1)";
+            string query2 = @"delete from TB_PLANOCOBRANCA;";
             DataBase.ExecutarComando(query2);
-
-            string query3 = @"delete from TB_GRUPOVEICULOS;
-                            DBCC CHECKIDENT (TB_GRUPOVEICULOS, RESEED, 1)";
+            string query3 = @"delete from TB_GRUPOVEICULOS;";
             DataBase.ExecutarComando(query3);
         }
 
         [TestMethod]
         public void DeveInserirVeiculo()
         {
-            ControladorVeiculo controlador = new ControladorVeiculo();
-            ControladorGrupoVeiculos controladorGrupoVeiculos = new ControladorGrupoVeiculos();
+            ServicoVeiculo controlador = new ServicoVeiculo();
+            ServicoGrupoVeiculos controladorGrupoVeiculos = new ServicoGrupoVeiculos();
 
             GrupoVeiculos grupo = new GrupoVeiculos("Nome do grupo de teste");
             controladorGrupoVeiculos.InserirNovo(grupo);
@@ -50,9 +46,9 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoVeiculo
         [TestMethod]
         public void DeveBuscarVeiculo()
         {
-            ControladorVeiculo controlador = new ControladorVeiculo();
+            ServicoVeiculo controlador = new ServicoVeiculo();
 
-            ControladorGrupoVeiculos controladorGrupoVeiculos = new ControladorGrupoVeiculos();
+            ServicoGrupoVeiculos controladorGrupoVeiculos = new ServicoGrupoVeiculos();
 
             GrupoVeiculos grupo = new GrupoVeiculos("Nome do grupo de teste");
             controladorGrupoVeiculos.InserirNovo(grupo);
@@ -70,9 +66,9 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoVeiculo
         [TestMethod]
         public void DeveVerificarExistenciaVeiculo()
         {
-            ControladorVeiculo controlador = new ControladorVeiculo();
+            ServicoVeiculo controlador = new ServicoVeiculo();
 
-            ControladorGrupoVeiculos controladorGrupoVeiculos = new ControladorGrupoVeiculos();
+            ServicoGrupoVeiculos controladorGrupoVeiculos = new ServicoGrupoVeiculos();
 
             GrupoVeiculos grupo = new GrupoVeiculos("Nome do grupo de teste");
             controladorGrupoVeiculos.InserirNovo(grupo);
@@ -89,9 +85,9 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoVeiculo
         [TestMethod]
         public void DeveDeletarVeiculo()
         {
-            ControladorVeiculo controlador = new ControladorVeiculo();
+            ServicoVeiculo controlador = new ServicoVeiculo();
 
-            ControladorGrupoVeiculos controladorGrupoVeiculos = new ControladorGrupoVeiculos();
+            ServicoGrupoVeiculos controladorGrupoVeiculos = new ServicoGrupoVeiculos();
 
             GrupoVeiculos grupo = new GrupoVeiculos("Nome do grupo de teste");
             controladorGrupoVeiculos.InserirNovo(grupo);
@@ -109,9 +105,9 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoVeiculo
         [TestMethod]
         public void DeveEditarVeiculo()
         {
-            ControladorVeiculo controlador = new ControladorVeiculo();
+            ServicoVeiculo controlador = new ServicoVeiculo();
 
-            ControladorGrupoVeiculos controladorGrupoVeiculos = new ControladorGrupoVeiculos();
+            ServicoGrupoVeiculos controladorGrupoVeiculos = new ServicoGrupoVeiculos();
 
             GrupoVeiculos grupo = new GrupoVeiculos("Nome do grupo de teste");
             controladorGrupoVeiculos.InserirNovo(grupo);

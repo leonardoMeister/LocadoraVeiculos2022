@@ -21,7 +21,7 @@ namespace LocadoraVeiculos.WinApp.ModuloFuncionario
                 txtId.Text = Convert.ToString(funcionario._id);
                 txtNome.Text = funcionario.Nome;
                 txtSalario.Text = Convert.ToString(funcionario.Salario);
-                txtTipoPerfil.Text = funcionario.TipoPerfil;
+                cmbTipoPerfil.SelectedItem= funcionario.TipoPerfil;
                 txtData.Value = funcionario.DataAdmicao;
                 txtLogin.Text = funcionario.Login;
                 txtSenha.Text = funcionario.Senha;
@@ -56,27 +56,22 @@ namespace LocadoraVeiculos.WinApp.ModuloFuncionario
 
         private bool PegarObjetoTela()
         {
-            Guid id;
+            Guid id = new Guid();           
 
             if (txtId.Text != "")
                 id = new Guid(txtId.Text);
 
-            if (txtLogin.Text == "" || txtNome.Text == "" || txtSalario.Text == ""
-                || txtSenha.Text == "" || txtTipoPerfil.Text == "")
-            {
-                AtualizarRodape("Favor Preencher todos os campos.");
-                return false;
-            }
-
-
             string nome = txtNome.Text;
             string login = txtLogin.Text;
             string senha = txtSenha.Text;
-            decimal salario = Convert.ToDecimal(txtSalario.Text);
+            decimal salario =(txtSalario.Text =="")?0: Convert.ToDecimal(txtSalario.Text);
             DateTime dataAdmicao = txtData.Value;
-            string tipoPerfil = txtTipoPerfil.Text;
+            string tipoPerfil = cmbTipoPerfil.Text;
 
             funcionario = new Funcionario(nome, login, senha, salario, dataAdmicao, tipoPerfil);
+
+            if(id !=Guid.Empty)
+                funcionario._id = id;
  
             return true;
         }

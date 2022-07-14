@@ -1,4 +1,4 @@
-﻿using LocadoraVeiculos.Controladores.ModuloControladorTaxas;
+﻿using LocadoraVeiculos.Controladores.ModuloServicoTaxas;
 using LocadoraVeiculos.Dominio.ModuloTaxas;
 using LocadoraVeiculos.WinApp.shared;
 using System;
@@ -7,15 +7,15 @@ using System.Windows.Forms;
 
 namespace LocadoraVeiculos.WinApp.ModuloTaxa
 {
-    public class ConfiguracaoTaxa : ConfiguracaoBase, ICadastravel
+    public class ControladorTaxa : ConfiguracaoBase, ICadastravel
     {
         TabelaTaxaControl tabelaTaxa;
-        ControladorTaxas controlador;
+        ServicoTaxas servicoTaxas;
         Action<string> AtualizarRodape;
-        public ConfiguracaoTaxa(Action<string> atualizar)
+        public ControladorTaxa(Action<string> atualizar)
         {
             tabelaTaxa = new TabelaTaxaControl();
-            controlador = new ControladorTaxas();
+            servicoTaxas = new ServicoTaxas();
             AtualizarRodape = atualizar;
         }
 
@@ -24,14 +24,14 @@ namespace LocadoraVeiculos.WinApp.ModuloTaxa
             TelaCadastroTaxaForm telaCadastroTaxa = new TelaCadastroTaxaForm();
 
             Guid id = tabelaTaxa.ObtemNumeroTarefaSelecionado();
-            var registro = controlador.SelecionarPorId(id);
+            var registro = servicoTaxas.SelecionarPorId(id);
 
             if (registro != null)
             {
                 AtualizarRodape("Tela de Edição Taxa");
                 telaCadastroTaxa.Taxa = registro;
 
-                telaCadastroTaxa.GravarRegistro = controlador.Editar;
+                telaCadastroTaxa.GravarRegistro = servicoTaxas.Editar;
                 telaCadastroTaxa.AtualizarRodape = AtualizarRodape;
                 telaCadastroTaxa.ShowDialog();
 
@@ -44,7 +44,7 @@ namespace LocadoraVeiculos.WinApp.ModuloTaxa
             Guid id = tabelaTaxa.ObtemNumeroTarefaSelecionado();
             try
             {
-                controlador.Excluir(id);
+                servicoTaxas.Excluir(id);
                 AtualizarRodape("Taxa Removida com sucesso.");
             }
             catch (Exception ex)
@@ -60,7 +60,7 @@ namespace LocadoraVeiculos.WinApp.ModuloTaxa
 
             AtualizarRodape("Tela de Adição Taxa");
 
-            telaCadastroGrupoVeiculo.GravarRegistro = controlador.InserirNovo;
+            telaCadastroGrupoVeiculo.GravarRegistro = servicoTaxas.InserirNovo;
             telaCadastroGrupoVeiculo.AtualizarRodape = AtualizarRodape;
             telaCadastroGrupoVeiculo.ShowDialog();
 
@@ -74,7 +74,7 @@ namespace LocadoraVeiculos.WinApp.ModuloTaxa
 
         public override UserControl ObtemListagem()
         {
-            List<Taxas> grupoVeiculos = controlador.SelecionarTodos();
+            List<Taxas> grupoVeiculos = servicoTaxas.SelecionarTodos();
 
             tabelaTaxa.AtualizarRegistros(grupoVeiculos);
 

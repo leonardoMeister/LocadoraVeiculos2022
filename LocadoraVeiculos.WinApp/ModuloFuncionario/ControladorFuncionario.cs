@@ -1,4 +1,4 @@
-﻿using LocadoraVeiculos.Controladores.ModuloFuncionario;
+﻿using LocadoraVeiculos.Controladores.ModuloServicoFuncionario;
 using LocadoraVeiculos.Dominio.ModuloFuncionario;
 using LocadoraVeiculos.WinApp.shared;
 using System;
@@ -7,17 +7,17 @@ using System.Windows.Forms;
 
 namespace LocadoraVeiculos.WinApp.ModuloFuncionario
 {
-    public class ConfiguracaoFuncionario : ConfiguracaoBase, ICadastravel
+    public class ControladorFuncionario : ConfiguracaoBase, ICadastravel
     {
         TabelaFuncionarioControl tabelaFuncionario;
-        ControladorFuncionario controlador;
+        ServicoFuncionario servicoFuncionario;
         Action<string> AtualizarRodape;
 
-        public ConfiguracaoFuncionario(Action<string> atualizar)
+        public ControladorFuncionario(Action<string> atualizar)
         {
             AtualizarRodape = atualizar;
             tabelaFuncionario = new TabelaFuncionarioControl();
-            controlador = new ControladorFuncionario();
+            servicoFuncionario = new ServicoFuncionario();
         }
 
         public void Editar()
@@ -25,14 +25,14 @@ namespace LocadoraVeiculos.WinApp.ModuloFuncionario
             TelaCadastroFuncionario telaCadastroFuncionario = new TelaCadastroFuncionario();
 
             Guid id = tabelaFuncionario.ObtemNumeroTarefaSelecionado();
-            var registro = controlador.SelecionarPorId(id);
+            var registro = servicoFuncionario.SelecionarPorId(id);
 
             if (registro != null)
             {
                 AtualizarRodape("Tela de Edição Funcionário");
                 telaCadastroFuncionario.Funcionario = registro;
 
-                telaCadastroFuncionario.GravarRegistro = controlador.Editar;
+                telaCadastroFuncionario.GravarRegistro = servicoFuncionario.Editar;
                 telaCadastroFuncionario.AtualizarRodape = AtualizarRodape;
                 telaCadastroFuncionario.ShowDialog();
 
@@ -45,7 +45,7 @@ namespace LocadoraVeiculos.WinApp.ModuloFuncionario
             Guid id = tabelaFuncionario.ObtemNumeroTarefaSelecionado();
             try
             {
-                controlador.Excluir(id);
+                servicoFuncionario.Excluir(id);
                AtualizarRodape("Funcionário Removido com sucesso.");
             }
             catch (Exception ex)
@@ -61,7 +61,7 @@ namespace LocadoraVeiculos.WinApp.ModuloFuncionario
 
             AtualizarRodape("Tela de Add Funcionário");
 
-            telaCadastroFuncionario.GravarRegistro = controlador.InserirNovo;
+            telaCadastroFuncionario.GravarRegistro = servicoFuncionario.InserirNovo;
             telaCadastroFuncionario.AtualizarRodape = AtualizarRodape;
             telaCadastroFuncionario.ShowDialog();
 
@@ -76,7 +76,7 @@ namespace LocadoraVeiculos.WinApp.ModuloFuncionario
 
         public override UserControl ObtemListagem()
         {
-            List<Funcionario> grupoVeiculos = controlador.SelecionarTodos();
+            List<Funcionario> grupoVeiculos = servicoFuncionario.SelecionarTodos();
 
             tabelaFuncionario.AtualizarRegistros(grupoVeiculos);
 

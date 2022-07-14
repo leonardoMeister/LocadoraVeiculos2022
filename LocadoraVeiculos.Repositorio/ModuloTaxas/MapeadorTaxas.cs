@@ -10,7 +10,7 @@ namespace LocadoraVeiculos.RepositorioProject.ModuloTaxas
     {
         public override Taxas ConverterEmRegistro(IDataReader dataReader)
         {
-            var id = Guid.Parse(dataReader["ID_TAXAS"].ToString());
+            var id = Guid.Parse(dataReader[0].ToString());
             string descricao = Convert.ToString(dataReader[1]);
             decimal valor = Convert.ToDecimal(dataReader[2]);
             string tipo = Convert.ToString(dataReader[3]);

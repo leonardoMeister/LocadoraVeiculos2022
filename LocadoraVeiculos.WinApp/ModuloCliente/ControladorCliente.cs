@@ -1,4 +1,4 @@
-﻿using LocadoraVeiculos.Controladores.ModuloControladorCliente;
+﻿using LocadoraVeiculos.Controladores.ModuloServicoCliente;
 using LocadoraVeiculos.Dominio.ModuloCliente;
 using LocadoraVeiculos.WinApp.shared;
 using System;
@@ -7,17 +7,17 @@ using System.Windows.Forms;
 
 namespace LocadoraVeiculos.WinApp.ModuloCliente
 {
-    public class ConfiguracaoCliente : ConfiguracaoBase, ICadastravel
+    public class ControladorCliente : ConfiguracaoBase, ICadastravel
     {
         Action<string> AtualizarRodape;
-        ControladorCliente controlador;
+        ServicoCliente servicoCliente;
         TabelaClienteControl tabelaClienteControl;
 
-        public ConfiguracaoCliente(Action<string> atualizar)
+        public ControladorCliente(Action<string> atualizar)
         {
             AtualizarRodape = atualizar;
             tabelaClienteControl = new TabelaClienteControl();
-            controlador = new ControladorCliente();
+            servicoCliente = new ServicoCliente();
         }
 
 
@@ -26,14 +26,14 @@ namespace LocadoraVeiculos.WinApp.ModuloCliente
             TelaCadastroClienteForm telaCadastroCliente = new();
 
             Guid id = tabelaClienteControl.ObtemNumeroClienteSelecionado();
-            var registro = controlador.SelecionarPorId(id);
+            var registro = servicoCliente.SelecionarPorId(id);
 
             if (registro != null)
             {
                 AtualizarRodape("Tela de Edição Cliente");
                 telaCadastroCliente.Cliente = registro;
 
-                telaCadastroCliente.GravarRegistro = controlador.Editar;
+                telaCadastroCliente.GravarRegistro = servicoCliente.Editar;
                 telaCadastroCliente.AtualizarRodape = AtualizarRodape;
                 telaCadastroCliente.ShowDialog();
 
@@ -46,7 +46,7 @@ namespace LocadoraVeiculos.WinApp.ModuloCliente
             Guid id = tabelaClienteControl.ObtemNumeroClienteSelecionado();
             try
             {
-                controlador.Excluir(id);
+                servicoCliente.Excluir(id);
                 AtualizarRodape("Cliente Removido com sucesso.");
             }
             catch (Exception ex)
@@ -62,7 +62,7 @@ namespace LocadoraVeiculos.WinApp.ModuloCliente
 
             AtualizarRodape("Tela de Adição Cliente");
 
-            telaCadastroCliente.GravarRegistro = controlador.InserirNovo;
+            telaCadastroCliente.GravarRegistro = servicoCliente.InserirNovo;
             telaCadastroCliente.AtualizarRodape = AtualizarRodape;
             telaCadastroCliente.ShowDialog();
 
@@ -76,7 +76,7 @@ namespace LocadoraVeiculos.WinApp.ModuloCliente
 
         public override UserControl ObtemListagem()
         {
-            List<Cliente> clientes = controlador.SelecionarTodos();
+            List<Cliente> clientes = servicoCliente.SelecionarTodos();
 
             tabelaClienteControl.AtualizarRegistros(clientes);
 

@@ -41,9 +41,9 @@ namespace LocadoraVeiculos.RepositorioProject.ModuloFuncionario
 
         protected override string SqlInsert => 
             @"INSERT INTO TB_FUNCIONARIO
-                   ([nome],[login],[senha],[salario],[dataAdmicao],[tipoPerfil])
+                   ([id_funcionario],[nome],[login],[senha],[salario],[dataAdmicao],[tipoPerfil])
              VALUES
-                (@NOME, @LOGIN, @SENHA, @SALARIO, @DATAADMICAO, @TIPOPERFIL);";
+                (@ID, @NOME, @LOGIN, @SENHA, @SALARIO, @DATAADMICAO, @TIPOPERFIL);";
 
         protected override string SqlSelectAll =>
                 @"SELECT * FROM TB_FUNCIONARIO;";

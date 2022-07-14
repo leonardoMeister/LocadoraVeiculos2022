@@ -5,9 +5,9 @@ using LocadoraVeiculos.Repositorio.shared;
 using LocadoraVeiculos.RepositorioProject.ModuloCliente;
 using Serilog;
 
-namespace LocadoraVeiculos.Controladores.ModuloControladorCliente
-{
-    public class ControladorCliente : Controlador<Cliente>
+namespace LocadoraVeiculos.Controladores.ModuloServicoCliente
+{ 
+    public class ServicoCliente : Controlador<Cliente> 
     {
 
         protected override IRepository<Cliente> PegarRepositorio()
