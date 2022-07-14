@@ -13,6 +13,10 @@ namespace LocadoraVeiculos.Infra.Logging
                 .AddJsonFile("ConfiguracaoAplicacao.json")
                 .Build();
 
+            var configuracaoLogsNaWeb = new LoggerConfiguration()
+                .MinimumLevel.Debug()
+                .WriteTo.Seq("http://localhost:5341");
+
             var diretorioSaida = configuracao
                 .GetSection("ConfiguracaoLogs")
                 .GetSection("DiretorioSaida")
