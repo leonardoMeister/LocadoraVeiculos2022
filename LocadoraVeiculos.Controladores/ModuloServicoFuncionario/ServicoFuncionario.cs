@@ -39,8 +39,8 @@ namespace LocadoraVeiculos.Controladores.ModuloServicoFuncionario
                     Log.Logger.Warning("Falha ao tentar editar Funcionario {FuncionarioID} - {Motivo}",
                         registro._id, erro.ErrorMessage);
                 }
-                return Result.Fail(listaErros);
 
+                return Result.Fail(listaErros);
             }
         }
 

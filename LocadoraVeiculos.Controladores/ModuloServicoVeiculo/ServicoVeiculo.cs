@@ -1,4 +1,5 @@
-﻿using FluentValidation;
+﻿using FluentResults;
+using FluentValidation;
 using FluentValidation.Results;
 using LocadoraVeiculos.Dominio.ModuloVeiculo;
 using LocadoraVeiculos.Repositorio.shared;
@@ -20,7 +21,7 @@ namespace LocadoraVeiculos.Controladores.ModuloServicoVeiculo
             return new ValidadorVeiculo();
         }
 
-        public override ValidationResult InserirNovo(Veiculo registro)
+        public override Result<Veiculo> InserirNovo(Veiculo registro)
         {
             Log.Logger.Debug("Veiculo {VeiculoID} editado com sucesso", registro._id);
 
@@ -28,12 +29,19 @@ namespace LocadoraVeiculos.Controladores.ModuloServicoVeiculo
             //Log.Logger.Debug("Veiculo {VeiculoNome} editado com sucesso", registro._id);
         }
 
-        public override ValidationResult Editar(Veiculo registro)
+        public override Result<Veiculo> Editar(Veiculo registro)
         {
             Log.Logger.Debug("Veiculo {VeiculoID} editado com sucesso", registro._id);
 
             return base.Editar(registro);
             //Log.Logger.Debug("Veiculo {VeiculoNome} editado com sucesso", registro._id);
+        }
+
+        private ValidationResult VeiculoForValidoParaInserir(Veiculo registro)
+        {
+            ValidationResult valido = new ValidationResult();
+
+            return valido;
         }
     }
 }

@@ -24,7 +24,7 @@ namespace LocadoraVeiculos.WinApp.ModuloVeiculo
             TelaCadastroVeiculo telaCadastroVeiculo = new();
 
             Guid id = tabelaVeiculo.ObtemNumeroVeiculoSelecionado();
-            var registro = ServicoVeiculo.SelecionarPorId(id);
+            var registro = ServicoVeiculo.SelecionarPorId(id).Value;
 
             if (registro != null)
             {
@@ -44,7 +44,7 @@ namespace LocadoraVeiculos.WinApp.ModuloVeiculo
             Guid id = tabelaVeiculo.ObtemNumeroVeiculoSelecionado();
             try
             {
-                ServicoVeiculo.Excluir(id);
+                ServicoVeiculo.Excluir(ServicoVeiculo.SelecionarPorId(id).Value);
                 AtualizarRodape("Veiculo Removido com sucesso.");
             }
             catch (Exception ex)
@@ -74,7 +74,7 @@ namespace LocadoraVeiculos.WinApp.ModuloVeiculo
 
         public override UserControl ObtemListagem()
         {
-            List<Veiculo> veiculos = ServicoVeiculo.SelecionarTodos();
+            List<Veiculo> veiculos = ServicoVeiculo.SelecionarTodos().Value;
 
             tabelaVeiculo.AtualizarRegistros(veiculos);
 
