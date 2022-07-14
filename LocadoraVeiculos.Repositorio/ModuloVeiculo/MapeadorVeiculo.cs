@@ -18,7 +18,7 @@ namespace LocadoraVeiculos.RepositorioProject.ModuloVeiculo
 
         public override Veiculo ConverterEmRegistro(IDataReader dataReader)
         {
-            int id = Convert.ToInt32(dataReader["IDPLANO"]);
+            var id = Guid.Parse(dataReader["IDPLANO"].ToString());
             string modelo = dataReader["MODELO"].ToString();
             string placa = dataReader["PLACA"].ToString();
             string marca = dataReader["MARCA"].ToString();

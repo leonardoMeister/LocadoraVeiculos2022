@@ -65,10 +65,10 @@ namespace LocadoraVeiculos.WinApp.ModuloVeiculo
 
         private void PegarObjetoTela()
         {
-            int id = 0;
+            Guid id;
 
             if (txtId.Text != "")
-                id = Convert.ToInt32(txtId.Text);
+                id = new Guid(txtId.Text);
 
             MemoryStream memory = new MemoryStream();
             byte[] foto = null;
@@ -92,10 +92,7 @@ namespace LocadoraVeiculos.WinApp.ModuloVeiculo
             GrupoVeiculos grupo = null;
             if (cmbGrupoVeiculo.SelectedIndex != -1) grupo = (GrupoVeiculos)cmbGrupoVeiculo.SelectedItem;
 
-            veiculo = new Veiculo(modelo, placa, marca, cor, tipoCombustivel, capacidadeTanque, ano, quilometragem, foto, grupo)
-            {
-                _id = id
-            };
+            veiculo = new Veiculo(modelo, placa, marca, cor, tipoCombustivel, capacidadeTanque, ano, quilometragem, foto, grupo);
 
         }
         private void buttonCarregarFoto_Click(object sender, EventArgs e)

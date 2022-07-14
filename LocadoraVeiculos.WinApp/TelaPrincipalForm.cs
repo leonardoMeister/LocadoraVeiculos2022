@@ -20,7 +20,6 @@ namespace LocadoraVeiculos.WinApp
         public ConfiguracaoCondutores configuracaoCondutores;
         public ConfiguracaoPlanoCobranca configuracaoPlanoCobranca;
         public ConfiguracaoVeiculo configuracaoVeiculo;
-        public ConfiguracaoPlanoCobranca configuracaoPlanoCobranca;
 
         public ICadastravel telaSelecionada;
 
