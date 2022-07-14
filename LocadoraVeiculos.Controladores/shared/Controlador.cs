@@ -1,9 +1,11 @@
-﻿using FluentValidation;
+﻿using FluentResults;
+using FluentValidation;
 using FluentValidation.Results;
 using LocadoraVeiculos.Dominio.shared;
 using Serilog;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace LocadoraVeiculos.Repositorio.shared
 {
@@ -24,77 +26,166 @@ namespace LocadoraVeiculos.Repositorio.shared
 
         protected abstract AbstractValidator<T> PegarValidador();
 
-        public virtual ValidationResult InserirNovo(T registro)
+        private Result ValidarRegistro(T registro)
         {
-            var resultadoValidacao = Validator.Validate(registro); 
+            var resultado = Validator.Validate(registro);
 
-            if (resultadoValidacao.IsValid)
-            {
-                Repositorio.InserirNovo(registro);
-            }
-            else
-            {
-                foreach (var erros in resultadoValidacao.Errors)
-                {
-                    Log.Logger.Warning("Falha ao tentar inserir {RegistroType} - {ID} - {Motivo}", registro.GetType(), registro._id, erros.ErrorMessage);
-                    return resultadoValidacao;
-                }
-            }
+            List<Error> erros = new List<Error>(); //FluentResult
 
-            return resultadoValidacao;
+            foreach (ValidationFailure item in resultado.Errors) //FluentValidation            
+                erros.Add(new Error(item.ErrorMessage));
+
+            if (erros.Any())
+                return Result.Fail(erros);
+
+            return Result.Ok();
+
         }
 
-        public virtual ValidationResult Editar( T registro)
+        public virtual Result<T> InserirNovo(T registro)
         {
-            var resultadoValidacao = Validator.Validate(registro);
+            Log.Logger.Warning("Tentando inserir Registro: {RegistroType} - {ID}", registro.GetType(), registro._id);
 
-            if (resultadoValidacao.IsValid)
+            Result resultadoValidacao = ValidarRegistro(registro);
+
+            if (resultadoValidacao.IsFailed)
             {
-                Repositorio.Editar(registro._id, registro);
-            }
-            else
-            {
-                foreach (var erros in resultadoValidacao.Errors)
-                {
-                    Log.Logger.Warning("Falha ao tentar editar {RegistroType} - {ID} - {Motivo}",
-                        registro.GetType(), registro._id, erros.ErrorMessage);
-                    return resultadoValidacao;
+                foreach (var erro in resultadoValidacao.Errors)
+                {                    
+                    Log.Logger.Warning("Falha ao tentar inserir {RegistroType} - {ID} - {Motivo}", registro.GetType(), registro._id, erro.Message);
                 }
+
+                return Result.Fail(resultadoValidacao.Errors);
             }
 
-            return resultadoValidacao;
-        }
-
-        public virtual bool Existe(Guid id)
-        {
-            return Repositorio.Existe(id);
-        }        
-
-        public virtual ValidationResult Excluir(Guid id)
-        {
-            var resultadoValidacao = new ValidationResult();
             try
             {
-                Repositorio.Excluir(id);
+                Repositorio.InserirNovo(registro);
+
+                Log.Logger.Information("Registro {RegistroID} inserido com sucesso", registro._id);
+
+                return Result.Ok(registro);
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                Log.Logger.Warning("Falha ao tentar excluir {ID} - {Motivo}", id, e.Message);
+                string msgErro = "Falha no sistema ao tentar inserir o Registro";
+                Log.Logger.Error("Falha ao tentar inserir {RegistroType} - {ID} - {Motivo}", registro.GetType(), registro._id, msgErro);
 
-                resultadoValidacao.Errors.Add(new ValidationFailure("", $"{e.Message}"));
+                return Result.Fail(msgErro);
             }
 
-            return resultadoValidacao;
         }
 
-        public virtual List<T> SelecionarTodos()
+        public virtual Result<T> Editar( T registro)
         {
-            return Repositorio.SelecionarTodos();
+            Log.Logger.Warning("Tentando Editar Registro: {RegistroType} - {ID}", registro.GetType(), registro._id);
+
+            Result resultadoValidacao = ValidarRegistro(registro);
+
+            if (resultadoValidacao.IsFailed)
+            {
+                foreach (var erro in resultadoValidacao.Errors)
+                {
+                    Log.Logger.Warning("Falha ao tentar Editar {RegistroType} - {ID} - {Motivo}", registro.GetType(), registro._id, erro.Message);
+                }
+
+                return Result.Fail(resultadoValidacao.Errors);
+            }
+
+            try
+            {
+                Repositorio.Editar(registro);
+
+                Log.Logger.Information("Registro {RegistroID} editado com sucesso", registro._id);
+
+                return Result.Ok(registro);
+            }
+            catch (Exception ex)
+            {
+                string msgErro = "Falha no sistema ao tentar Editar o Registro";
+
+                Log.Logger.Warning("Falha ao tentar Editar {RegistroType} - {ID} - {Motivo}", registro.GetType(), registro._id, msgErro);
+
+                return Result.Fail(msgErro);
+            }
         }
 
-        public virtual T SelecionarPorId(Guid id)
+        public virtual Result<bool> Existe(Guid id)
         {
-            return Repositorio.SelecionarPorId(id);
+            Log.Logger.Debug("Tentando Verificar Existencia de registro... {@f}", id);
+
+            try
+            {
+                var resultado = Repositorio.Existe(id);
+
+                Log.Logger.Information("Registro {RegistroID} Existe.", id);
+
+                return Result.Ok(resultado);
+            }
+            catch (Exception ex)
+            {
+                string msgErro = "Falha no sistema ao tentar Verificar Existencia";
+
+                Log.Logger.Error(ex, msgErro + "{RegistroID}", id);
+
+                return Result.Fail(msgErro);
+            }
+            
+        }        
+
+        public virtual Result Excluir(T registro)
+        {
+
+            Log.Logger.Debug("Tentando excluir registro... {@f}", registro);
+
+            try
+            {
+                Repositorio.Excluir(registro._id);
+
+                Log.Logger.Information("Registro {RegistroID} excluído com sucesso", registro._id);
+
+                return Result.Ok();
+            }
+            catch (Exception ex)
+            {
+                string msgErro = "Falha no sistema ao tentar excluir o registro";
+                
+                Log.Logger.Error("Falha ao tentar Excluir {RegistroType} - {ID} - {Motivo}", registro.GetType(), registro._id, msgErro);
+
+                return Result.Fail(msgErro);
+            }
+        }
+
+        public virtual Result<List<T>> SelecionarTodos()
+        {
+            try
+            {
+                return Result.Ok(Repositorio.SelecionarTodos());
+            }
+            catch (Exception ex)
+            {
+                string msgErro = "Falha no sistema ao tentar selecionar todos os Registros";
+
+                Log.Logger.Error(ex, msgErro);
+
+                return Result.Fail(msgErro);
+            }            
+        }
+
+        public virtual Result<T> SelecionarPorId(Guid id)
+        {
+            try
+            {
+                return Result.Ok(Repositorio.SelecionarPorId(id));
+            }
+            catch (Exception ex)
+            {
+                string msgErro = "Falha no sistema ao tentar selecionar o registro";
+
+                Log.Logger.Error(ex, msgErro + "{RegistroID}", id);
+
+                return Result.Fail(msgErro);
+            }            
         }
     }
 }
