@@ -40,7 +40,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoVeiculo
 
             var resultado = controlador.InserirNovo(vei);
 
-            Assert.IsTrue(resultado.IsValid);
+            Assert.IsTrue(resultado.IsSuccess);
         }
 
         [TestMethod]
@@ -57,7 +57,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoVeiculo
 
             controlador.InserirNovo(vei);
 
-            var resultado = controlador.SelecionarPorId(vei._id);
+            var resultado = controlador.SelecionarPorId(vei._id).Value;
 
             Assert.AreEqual(resultado, vei);
             
@@ -77,7 +77,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoVeiculo
 
             controlador.InserirNovo(vei);
 
-            var resultado = controlador.Existe(vei._id);
+            var resultado = controlador.Existe(vei._id).Value;
 
             Assert.IsTrue(resultado);
         }
@@ -95,9 +95,9 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoVeiculo
             Veiculo vei = new Veiculo("Modelo do Veiculo", "ASD-3021", "Gol", "Rosa", "Gasolina", 10, DateTime.Now, 10, foto, grupo);
 
             controlador.InserirNovo(vei);
-            controlador.Excluir(vei._id);
+            controlador.Excluir(controlador.SelecionarPorId(vei._id).Value);
 
-            var resultado = controlador.Existe(vei._id);
+            var resultado = controlador.Existe(vei._id).Value;
 
             Assert.IsFalse(resultado);
         }

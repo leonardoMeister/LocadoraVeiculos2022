@@ -92,9 +92,9 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradorPlanoCobr
 
             contro.Excluir(contro.SelecionarPorId(plano._id).Value);
 
-            var planoNovo = contro.Existe(plano._id);
+            var planoNovo = contro.Existe(plano._id).Value;
 
-            Assert.IsFalse(planoNovo.Value);
+            Assert.IsFalse(planoNovo);
         }
 
         [TestMethod]

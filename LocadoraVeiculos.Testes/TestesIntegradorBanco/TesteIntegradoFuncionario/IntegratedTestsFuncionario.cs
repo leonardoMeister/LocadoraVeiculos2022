@@ -50,9 +50,9 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoFuncionari
             var fun = new Funcionario("Leonardo", "leonardo123", "leoJosePedrinho123Senha", 2800, DateTime.Now, "Funcionario");
             repo.InserirNovo(fun);
 
-            var existe = repo.Existe(fun._id);
+            var existe = repo.Existe(fun._id).Value;
 
-            Assert.IsTrue(existe.Value);
+            Assert.IsTrue(existe);
         }
         [TestMethod]
         public void DeveVerificarExclusaoFuncionarios()
@@ -63,9 +63,9 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoFuncionari
             
             repo.Excluir(repo.SelecionarPorId(fun._id).Value);
 
-            var existe = repo.Existe(fun._id);
+            var existe = repo.Existe(fun._id).Value;
 
-            Assert.IsFalse(existe.Value);
+            Assert.IsFalse(existe);
         }
 
         [TestMethod]

@@ -33,7 +33,10 @@ namespace LocadoraVeiculos.Dominio.ModuloVeiculo
             Foto = foto;
             GrupoVeiculos = grupoVeiculos;
         }
-
+        public Veiculo Clone()
+        {
+            return MemberwiseClone() as Veiculo;
+        }
         public override bool Equals(object obj)
         {
             return obj is Veiculo veiculo &&
