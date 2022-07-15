@@ -41,9 +41,8 @@ namespace LocadoraVeiculos.Repositorio.shared
             DataBase.Insert(SqlInsert, Mapeador.ObtemParametrosRegistro(registro));
         }
 
-        public void Editar(Guid id, T registro)
-        {
-            registro._id = id;
+        public void Editar(T registro)
+        {            
             DataBase.Update(SqlUpdate, Mapeador.ObtemParametrosRegistro(registro));
         }
 

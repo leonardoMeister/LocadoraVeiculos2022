@@ -1,4 +1,5 @@
-﻿using FluentValidation.Results;
+﻿using FluentResults;
+using FluentValidation.Results;
 using LocadoraVeiculos.Dominio.ModuloFuncionario;
 using System;
 using System.Windows.Forms;
@@ -8,7 +9,6 @@ namespace LocadoraVeiculos.WinApp.ModuloFuncionario
     public partial class TelaCadastroFuncionario : Form
     {
         private Funcionario funcionario;
-        public Func<Funcionario, ValidationResult> GravarRegistro { get; set; }
         public Action<string> AtualizarRodape { get; set; }
 
         public Funcionario Funcionario
@@ -28,6 +28,8 @@ namespace LocadoraVeiculos.WinApp.ModuloFuncionario
             }
         }
 
+        public Func<Funcionario, Result<Funcionario>> GravarRegistro { get; internal set; }
+
         public TelaCadastroFuncionario()
         {
             InitializeComponent();
@@ -35,26 +37,29 @@ namespace LocadoraVeiculos.WinApp.ModuloFuncionario
 
         private void BtnSalvar_Click(object sender, EventArgs e)
         {
-            if (!PegarObjetoTela()) return;
-
+            PegarObjetoTela();
 
             var resultadoValidacao = GravarRegistro(funcionario);
 
-            if (resultadoValidacao.IsValid == false)
+            if (resultadoValidacao.IsFailed)
             {
-                string erro = resultadoValidacao.Errors[0].ErrorMessage;
+                string erro = resultadoValidacao.Errors[0].Message;
+                
+                if (erro.StartsWith("Falha no sistema"))
+                {
+                    MessageBox.Show(erro,
+                    "Inserção de Funcionário", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    AtualizarRodape(erro);
 
-                AtualizarRodape(erro);
-
-                DialogResult = DialogResult.None;
-            }
-            else
-            {
-                DialogResult = DialogResult.OK;
+                    DialogResult = DialogResult.None;
+                }
             }
         }
 
-        private bool PegarObjetoTela()
+        private void PegarObjetoTela()
         {
             Guid id = new Guid();           
 
@@ -72,8 +77,7 @@ namespace LocadoraVeiculos.WinApp.ModuloFuncionario
 
             if(id !=Guid.Empty)
                 funcionario._id = id;
- 
-            return true;
+             
         }
 
         private void BtnCancelar_Click(object sender, EventArgs e)

@@ -7,6 +7,7 @@ using System.IO;
 using System.Drawing.Imaging;
 using LocadoraVeiculos.Controladores.ModuloServicoGrupoVeiculos;
 using LocadoraVeiculos.Dominio.ModuloGrupoVeiculos;
+using FluentResults;
 
 namespace LocadoraVeiculos.WinApp.ModuloVeiculo
 {
@@ -21,7 +22,7 @@ namespace LocadoraVeiculos.WinApp.ModuloVeiculo
         private void AtualizarPlanosCobranca()
         {
             ServicoGrupoVeiculos control = new ServicoGrupoVeiculos();
-            var dados = control.SelecionarTodos();
+            var dados = control.SelecionarTodos().Value;
             foreach (var dado in dados)
             {
                 cmbGrupoVeiculo.Items.Add(dado);
@@ -61,7 +62,7 @@ namespace LocadoraVeiculos.WinApp.ModuloVeiculo
             bmp = new Bitmap(pictureBoxFoto.Image);
         }
 
-        public Func<Veiculo, ValidationResult> GravarRegistro { get; internal set; }
+        public Func<Veiculo, Result<Veiculo>> GravarRegistro { get; internal set; }
 
         private void PegarObjetoTela()
         {
@@ -124,9 +125,9 @@ namespace LocadoraVeiculos.WinApp.ModuloVeiculo
 
             var resultadoValidacao = GravarRegistro(veiculo);
 
-            if (resultadoValidacao.IsValid == false)
+            if (resultadoValidacao.IsFailed)
             {
-                string erro = resultadoValidacao.Errors[0].ErrorMessage;
+                string erro = resultadoValidacao.Errors[0].Message;
 
                 AtualizarRodape(erro);
 

@@ -1,13 +1,15 @@
-﻿using FluentValidation;
+﻿using FluentResults;
+using FluentValidation;
 using FluentValidation.Results;
 using LocadoraVeiculos.Dominio.ModuloPlanoCobranca;
 using LocadoraVeiculos.Repositorio.shared;
 using LocadoraVeiculos.RepositorioProject.ModuloPlanoCobranca;
 using Serilog;
+using System.Collections.Generic;
 
 namespace LocadoraVeiculos.Controladores.ModuloServicoPlanoCobranca
 {
-    public class ServicoPlanoCobranca : Controlador<PlanoCobranca>
+    public class ServicoPlanoCobranca : ServicoBase<PlanoCobranca>
     {
         protected override IRepository<PlanoCobranca> PegarRepositorio()
         {
@@ -18,18 +20,60 @@ namespace LocadoraVeiculos.Controladores.ModuloServicoPlanoCobranca
         {
             return new ValidadorPlanoCobranca();
         }
-        public override ValidationResult InserirNovo(PlanoCobranca registro)
+        public override Result<PlanoCobranca> InserirNovo(PlanoCobranca registro)
         {
-            Log.Logger.Debug("PlanoCobranca {PlanoCobrancaID} editado com sucesso", registro._id);
+            var validacaoBanco = PlanoCobrancaForValidoParaInserir(registro);         //VALIDACAO DO BANCO
+            if (validacaoBanco.IsValid)
+            {
+                return base.InserirNovo(registro);                                  //VALIDACAO DO DOMINIO
+            }
+            else
+            {
+                List<Error> listaErros = new List<Error>();
 
-            return base.InserirNovo(registro);
+                foreach (var erro in validacaoBanco.Errors)
+                {
+                    listaErros.Add(new Error(erro.ErrorMessage));
+                    Log.Logger.Warning("Falha ao tentar Inserir Plano Cobranca {PlanoCobrancaID} - {Motivo}",
+                        registro._id, erro.ErrorMessage);
+                }
+                return Result.Fail(listaErros);
+            }
         }
-
-        public override ValidationResult Editar(PlanoCobranca registro)
+       
+        public override Result<PlanoCobranca> Editar(PlanoCobranca registro)
         {
-            Log.Logger.Debug("PlanoCobranca {PlanoCobrancaID} editado com sucesso", registro._id);
+            var validacaoBanco = PlanoCobrancaForValidoParaEditar(registro);  //VALIDACAO DE BANCO
 
-            return base.Editar(registro);
+            if (validacaoBanco.IsValid)
+            {
+                return base.Editar(registro);                              //VALIDACAO DE DOMINIO
+            }
+            else
+            {
+                List<Error> listaErros = new List<Error>();
+
+                foreach (var erro in validacaoBanco.Errors)
+                {
+                    listaErros.Add(new Error(erro.ErrorMessage));
+                    Log.Logger.Warning("Falha ao tentar editar Plano Cobraca {PlanoCobrancaID} - {Motivo}",
+                        registro._id, erro.ErrorMessage);
+                }
+                return Result.Fail(listaErros);
+
+            }
+        }
+        private ValidationResult PlanoCobrancaForValidoParaInserir(PlanoCobranca registro)
+        {
+            ValidationResult valido = new ValidationResult();
+
+            return valido;
+        }
+        private ValidationResult PlanoCobrancaForValidoParaEditar(PlanoCobranca registro)
+        {
+            ValidationResult valido = new ValidationResult();
+
+            return valido;
         }
     }
 }

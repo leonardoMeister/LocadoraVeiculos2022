@@ -22,36 +22,91 @@ namespace LocadoraVeiculos.WinApp.ModuloFuncionario
 
         public void Editar()
         {
+            var id = tabelaFuncionario.ObtemNumeroFuncionarioSelecionado();
+
+            if (id == Guid.Empty)
+            {
+                MessageBox.Show("Selecione um funcionário primeiro",
+                    "Edição de Funcionário", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            var resultado = servicoFuncionario.SelecionarPorId(id);
+
+            if (resultado.IsFailed)
+            {
+                MessageBox.Show(resultado.Errors[0].Message,
+                    "Edição de Funcionário", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            var funcionarioSelecionado = resultado.Value;
+
             TelaCadastroFuncionario telaCadastroFuncionario = new TelaCadastroFuncionario();
 
-            Guid id = tabelaFuncionario.ObtemNumeroTarefaSelecionado();
-            var registro = servicoFuncionario.SelecionarPorId(id);
+            AtualizarRodape("Tela de Edição Funcionário");
+            telaCadastroFuncionario.Funcionario = resultado.Value.Clone();
 
-            if (registro != null)
-            {
-                AtualizarRodape("Tela de Edição Funcionário");
-                telaCadastroFuncionario.Funcionario = registro;
+            telaCadastroFuncionario.GravarRegistro = servicoFuncionario.Editar;
+            telaCadastroFuncionario.AtualizarRodape = AtualizarRodape;
+            telaCadastroFuncionario.ShowDialog();
 
-                telaCadastroFuncionario.GravarRegistro = servicoFuncionario.Editar;
-                telaCadastroFuncionario.AtualizarRodape = AtualizarRodape;
-                telaCadastroFuncionario.ShowDialog();
+            if (telaCadastroFuncionario.DialogResult == DialogResult.OK) AtualizarRodape("Edição Funcionário Realizado Com Sucesso");
 
-                if (telaCadastroFuncionario.DialogResult == DialogResult.OK) AtualizarRodape("Edição Funcionário Realizado Com Sucesso");
-            }
         }
 
         public void Excluir()
         {
-            Guid id = tabelaFuncionario.ObtemNumeroTarefaSelecionado();
-            try
+            var id = tabelaFuncionario.ObtemNumeroFuncionarioSelecionado();
+
+            if (id == Guid.Empty)
             {
-                servicoFuncionario.Excluir(id);
-               AtualizarRodape("Funcionário Removido com sucesso.");
-            }
-            catch (Exception ex)
-            {
-                AtualizarRodape($"Não foi possivel Remover, Mensagem: {ex}");
+                MessageBox.Show("Selecione um funcionário primeiro",
+                    "Exclusão de Funcionário", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
+            }
+
+            var resultadoSelecao = servicoFuncionario.SelecionarPorId(id);
+
+            if (resultadoSelecao.IsFailed)
+            {
+                MessageBox.Show(resultadoSelecao.Errors[0].Message,
+                    "Exclusão de Funcionário", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            var funcionarioSelecionado = resultadoSelecao.Value;
+
+            if (MessageBox.Show("Deseja realmente excluir o funcionário?", "Exclusão de Funcionário",
+                 MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+            {
+                var resultadoExclusao = servicoFuncionario.Excluir(funcionarioSelecionado);
+
+                if (resultadoExclusao.IsSuccess)
+                    CarregarFuncionarios();
+                else
+                    MessageBox.Show(resultadoExclusao.Errors[0].Message,
+                        "Exclusão de Funcionário", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
+        }
+
+        private void CarregarFuncionarios()
+        {
+            var resultado = servicoFuncionario.SelecionarTodos();
+
+            if (resultado.IsSuccess)
+            {
+                List<Funcionario> funcionarios = resultado.Value;
+
+                tabelaFuncionario.AtualizarRegistros(funcionarios);
+
+                AtualizarRodape($"Visualizando {funcionarios.Count} funcionário(s)");
+            }
+            else
+            {
+                MessageBox.Show(resultado.Errors[0].Message, "Exclusão de Funcionário",
+                 MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -76,7 +131,7 @@ namespace LocadoraVeiculos.WinApp.ModuloFuncionario
 
         public override UserControl ObtemListagem()
         {
-            List<Funcionario> grupoVeiculos = servicoFuncionario.SelecionarTodos();
+            List<Funcionario> grupoVeiculos = servicoFuncionario.SelecionarTodos().Value;
 
             tabelaFuncionario.AtualizarRegistros(grupoVeiculos);
 

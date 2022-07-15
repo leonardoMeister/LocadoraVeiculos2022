@@ -23,36 +23,89 @@ namespace LocadoraVeiculos.WinApp.ModuloCliente
 
         public void Editar()
         {
-            TelaCadastroClienteForm telaCadastroCliente = new();
+            var id = tabelaClienteControl.ObtemNumeroClienteSelecionado();
 
-            Guid id = tabelaClienteControl.ObtemNumeroClienteSelecionado();
-            var registro = servicoCliente.SelecionarPorId(id);
-
-            if (registro != null)
+            if (id == Guid.Empty)
             {
-                AtualizarRodape("Tela de Edição Cliente");
-                telaCadastroCliente.Cliente = registro;
-
-                telaCadastroCliente.GravarRegistro = servicoCliente.Editar;
-                telaCadastroCliente.AtualizarRodape = AtualizarRodape;
-                telaCadastroCliente.ShowDialog();
-
-                if (telaCadastroCliente.DialogResult == DialogResult.OK) AtualizarRodape("Edição Cliente Realizada Com Sucesso");
+                MessageBox.Show("Selecione um Cliente primeiro",
+                    "Edição de Cliente", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
             }
+
+            var resultado = servicoCliente.SelecionarPorId(id);
+
+            if (resultado.IsFailed)
+            {
+                MessageBox.Show(resultado.Errors[0].Message,
+                    "Edição de Cliente", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            var clienteSelecionado = resultado.Value;
+
+            TelaCadastroClienteForm telaCadastroFuncionario = new TelaCadastroClienteForm();
+
+            AtualizarRodape("Tela de Edição Funcionário");
+            telaCadastroFuncionario.Cliente = resultado.Value.Clone();
+
+            telaCadastroFuncionario.GravarRegistro = servicoCliente.Editar;
+            telaCadastroFuncionario.AtualizarRodape = AtualizarRodape;
+            telaCadastroFuncionario.ShowDialog();
+
+            if (telaCadastroFuncionario.DialogResult == DialogResult.OK) AtualizarRodape("Edição Funcionário Realizado Com Sucesso");
         }
 
         public void Excluir()
         {
-            Guid id = tabelaClienteControl.ObtemNumeroClienteSelecionado();
-            try
+            var id = tabelaClienteControl.ObtemNumeroClienteSelecionado();
+
+            if (id == Guid.Empty)
             {
-                servicoCliente.Excluir(id);
-                AtualizarRodape("Cliente Removido com sucesso.");
-            }
-            catch (Exception ex)
-            {
-                AtualizarRodape($"Não foi possivel Remover, Mensagem: {ex}");
+                MessageBox.Show("Selecione um Cliente primeiro",
+                    "Exclusão de Cliente", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
+            }
+
+            var resultadoSelecao = servicoCliente.SelecionarPorId(id);
+
+            if (resultadoSelecao.IsFailed)
+            {
+                MessageBox.Show(resultadoSelecao.Errors[0].Message,
+                    "Exclusão de Funcionário", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            var funcionarioSelecionado = resultadoSelecao.Value;
+
+            if (MessageBox.Show("Deseja realmente excluir o funcionário?", "Exclusão de Funcionário",
+                 MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+            {
+                var resultadoExclusao = servicoCliente.Excluir(funcionarioSelecionado);
+
+                if (resultadoExclusao.IsSuccess)
+                    CarregarClientes();
+                else
+                    MessageBox.Show(resultadoExclusao.Errors[0].Message,
+                        "Exclusão de Funcionário", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void CarregarClientes()
+        {
+            var resultado = servicoCliente.SelecionarTodos();
+
+            if (resultado.IsSuccess)
+            {
+                List<Cliente> funcionarios = resultado.Value;
+
+                tabelaClienteControl.AtualizarRegistros(funcionarios);
+
+                AtualizarRodape($"Visualizando {funcionarios.Count} Cliente(s)");
+            }
+            else
+            {
+                MessageBox.Show(resultado.Errors[0].Message, "Exclusão de Cliente",
+                 MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -76,7 +129,7 @@ namespace LocadoraVeiculos.WinApp.ModuloCliente
 
         public override UserControl ObtemListagem()
         {
-            List<Cliente> clientes = servicoCliente.SelecionarTodos();
+            List<Cliente> clientes = servicoCliente.SelecionarTodos().Value;
 
             tabelaClienteControl.AtualizarRegistros(clientes);
 

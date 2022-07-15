@@ -1,13 +1,15 @@
-﻿using FluentValidation;
+﻿using FluentResults;
+using FluentValidation;
 using FluentValidation.Results;
 using LocadoraVeiculos.Dominio.ModuloTaxas;
 using LocadoraVeiculos.Repositorio.shared;
 using LocadoraVeiculos.RepositorioProject.ModuloTaxas;
 using Serilog;
+using System.Collections.Generic;
 
 namespace LocadoraVeiculos.Controladores.ModuloServicoTaxas 
 {
-    public class ServicoTaxas : Controlador<Taxas>
+    public class ServicoTaxas : ServicoBase<Taxas>
     {
         protected override IRepository<Taxas> PegarRepositorio()
         {
@@ -18,50 +20,48 @@ namespace LocadoraVeiculos.Controladores.ModuloServicoTaxas
             return new ValidadorTaxas();
         }
 
-        public override ValidationResult InserirNovo(Taxas registro)
+        public override Result<Taxas> InserirNovo(Taxas registro)
         {
-            var validacaoBanco = TaxasForValidaParaInserir(registro);
+            var validacaoBanco = TaxasForValidaParaInserir(registro);         //VALIDACAO DO BANCO
             if (validacaoBanco.IsValid)
             {
-                Log.Logger.Debug("Taxas {TaxasID} inserido com sucesso", registro._id);
-
-                return base.InserirNovo(registro);
+                return base.InserirNovo(registro);                                  //VALIDACAO DO DOMINIO
             }
             else
             {
-                foreach (var erros in validacaoBanco.Errors)
-                {
-                    Log.Logger.Warning("Falha ao tentar inserir um Taxas {TaxasID} - {Motivo}",
-                        registro._id, erros.ErrorMessage);
-                    return validacaoBanco;
-                }
-            }
+                List<Error> listaErros = new List<Error>();
 
-            return validacaoBanco;
+                foreach (var erro in validacaoBanco.Errors)
+                {
+                    listaErros.Add(new Error(erro.ErrorMessage));
+                    Log.Logger.Warning("Falha ao tentar inserir um Taxas {TaxasID} - {Motivo}",
+                        registro._id, erro.ErrorMessage);
+                }
+                return Result.Fail(listaErros);
+            }
         }
 
-        public override ValidationResult Editar(Taxas registro)
+        public override Result<Taxas> Editar(Taxas registro)
         {
-            Log.Logger.Debug("Tentando editar uma Taxa... {@f}", registro);
+            var validacaoBanco = TaxaForValidaParaEditar(registro);  //VALIDACAO DE BANCO
 
-            var validacaoBanco = TaxaForValidaParaEditar(registro);
             if (validacaoBanco.IsValid)
             {
-                Log.Logger.Debug("Taxa {TaxasID} editada com sucesso", registro._id);
-
-                return base.Editar(registro);
+                return base.Editar(registro);                              //VALIDACAO DE DOMINIO
             }
             else
             {
-                foreach (var erros in validacaoBanco.Errors)
-                {
-                    Log.Logger.Warning("Falha ao tentar editar uma Taxa {TaxasID} - {Motivo}",
-                        registro._id, erros.ErrorMessage);
-                    return validacaoBanco;
-                }
-            }
+                List<Error> listaErros = new List<Error>();
 
-            return validacaoBanco;
+                foreach (var erro in validacaoBanco.Errors)
+                {
+                    listaErros.Add(new Error(erro.ErrorMessage));
+                    Log.Logger.Warning("Falha ao tentar editar uma Taxa {TaxasID} - {Motivo}",
+                        registro._id, erro.ErrorMessage);
+                }
+                return Result.Fail(listaErros);
+
+            }
         }
 
         private ValidationResult TaxaForValidaParaEditar(Taxas registro)
