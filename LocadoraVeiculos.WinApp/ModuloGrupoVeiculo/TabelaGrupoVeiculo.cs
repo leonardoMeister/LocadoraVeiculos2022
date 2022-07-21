@@ -34,7 +34,7 @@ namespace LocadoraVeiculos.WinApp.ModuloGrupoVeiculo
             return colunas;
         }
 
-        public Guid ObtemNumeroTarefaSelecionado()
+        public Guid ObtemNumeroGrupoVeiculosSelecionado()
         {
             return grid.SelecionarNumero<Guid>();
         }

@@ -19,41 +19,6 @@ namespace LocadoraVeiculos.WinApp.ModuloTaxa
             AtualizarRodape = atualizar;
         }
 
-        public void Editar()
-        {
-            TelaCadastroTaxaForm telaCadastroTaxa = new TelaCadastroTaxaForm();
-
-            Guid id = tabelaTaxa.ObtemNumeroTarefaSelecionado();
-            var registro = servicoTaxas.SelecionarPorId(id);
-
-            if (registro != null)
-            {
-                AtualizarRodape("Tela de Edição Taxa");
-                telaCadastroTaxa.Taxa = registro;
-
-                telaCadastroTaxa.GravarRegistro = servicoTaxas.Editar;
-                telaCadastroTaxa.AtualizarRodape = AtualizarRodape;
-                telaCadastroTaxa.ShowDialog();
-
-                if (telaCadastroTaxa.DialogResult == DialogResult.OK) AtualizarRodape("Edição Taxa Realizada Com Sucesso");
-            }
-        }
-
-        public void Excluir()
-        {
-            Guid id = tabelaTaxa.ObtemNumeroTarefaSelecionado();
-            try
-            {
-                servicoTaxas.Excluir(id);
-                AtualizarRodape("Taxa Removida com sucesso.");
-            }
-            catch (Exception ex)
-            {
-                AtualizarRodape($"Não foi possivel Remover, Mensagem: {ex}");
-                return;
-            }
-        }
-
         public void Inserir()
         {
             TelaCadastroTaxaForm telaCadastroGrupoVeiculo = new TelaCadastroTaxaForm();
@@ -67,6 +32,75 @@ namespace LocadoraVeiculos.WinApp.ModuloTaxa
             if (telaCadastroGrupoVeiculo.DialogResult == DialogResult.OK) AtualizarRodape("Cadastro Taxa Realizado Com Sucesso");
         }
 
+        public void Editar()
+        {
+            var id = tabelaTaxa.ObtemNumeroTaxaSelecionada();
+
+            if (id == Guid.Empty)
+            {
+                MessageBox.Show("Selecione uma taxa primeiro",
+                    "Edição de Taxas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            var resultado = servicoTaxas.SelecionarPorId(id);
+
+            if (resultado.IsFailed)
+            {
+                MessageBox.Show(resultado.Errors[0].Message,
+                    "Edição de Taxas", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            var taxaSelecionada = resultado.Value;
+
+            TelaCadastroTaxaForm telaCadastroTaxa = new TelaCadastroTaxaForm();
+
+            AtualizarRodape("Tela de Edição Taxa");
+            telaCadastroTaxa.Taxa = resultado.Value.Clone();
+
+            telaCadastroTaxa.GravarRegistro = servicoTaxas.Editar;
+            telaCadastroTaxa.AtualizarRodape = AtualizarRodape;
+            telaCadastroTaxa.ShowDialog();
+
+            if (telaCadastroTaxa.DialogResult == DialogResult.OK) AtualizarRodape("Edição Taxa Realizada Com Sucesso");
+        }
+
+        public void Excluir()
+        {
+            var id = tabelaTaxa.ObtemNumeroTaxaSelecionada();
+
+            if (id == Guid.Empty)
+            {
+                MessageBox.Show("Selecione uma Taxa primeiro",
+                    "Exclusão de Taxas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            var resultadoSelecao = servicoTaxas.SelecionarPorId(id);
+
+            if (resultadoSelecao.IsFailed)
+            {
+                MessageBox.Show(resultadoSelecao.Errors[0].Message,
+                    "Exclusão de Taxa", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            var funcionarioSelecionado = resultadoSelecao.Value;
+
+            if (MessageBox.Show("Deseja realmente excluir a taxa?", "Exclusão de Taxas",
+                 MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+            {
+                var resultadoExclusao = servicoTaxas.Excluir(funcionarioSelecionado);
+
+                if (resultadoExclusao.IsSuccess)
+                    CarregarTaxas();
+                else
+                    MessageBox.Show(resultadoExclusao.Errors[0].Message,
+                        "Exclusão de Taxas", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         public ConfiguracaoToolboxBase ObtemConfiguracaoToolbox()
         {
             return new ConfiguracaoToolBoxTaxa();
@@ -74,12 +108,34 @@ namespace LocadoraVeiculos.WinApp.ModuloTaxa
 
         public override UserControl ObtemListagem()
         {
-            List<Taxas> grupoVeiculos = servicoTaxas.SelecionarTodos();
+            List<Taxas> grupoVeiculos = servicoTaxas.SelecionarTodos().Value;
 
             tabelaTaxa.AtualizarRegistros(grupoVeiculos);
 
             return tabelaTaxa;
         }
 
+        #region Métodos Privados
+
+        private void CarregarTaxas()
+        {
+            var resultado = servicoTaxas.SelecionarTodos();
+
+            if (resultado.IsSuccess)
+            {
+                List<Taxas> funcionarios = resultado.Value;
+
+                tabelaTaxa.AtualizarRegistros(funcionarios);
+
+                AtualizarRodape($"Visualizando {funcionarios.Count} taxa(s)");
+            }
+            else
+            {
+                MessageBox.Show(resultado.Errors[0].Message, "Exclusão de Taxas",
+                 MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        #endregion
     }
 }

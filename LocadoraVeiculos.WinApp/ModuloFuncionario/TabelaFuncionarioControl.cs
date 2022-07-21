@@ -38,7 +38,7 @@ namespace LocadoraVeiculos.WinApp.ModuloFuncionario
             return colunas;
         }
 
-        public Guid ObtemNumeroTarefaSelecionado()
+        public Guid ObtemNumeroFuncionarioSelecionado()
         {
             return grid.SelecionarNumero<Guid>();
         }
@@ -53,5 +53,6 @@ namespace LocadoraVeiculos.WinApp.ModuloFuncionario
                     grupoVeiculos.DataAdmicao, grupoVeiculos.TipoPerfil);
             }
         }
+
     }
 }

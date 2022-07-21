@@ -12,7 +12,6 @@ namespace LocadoraVeiculos.WinApp.ModuloCondutores
     {
         private Condutores condutor;
         public Action<string> AtualizarRodape { get; set; }
-        public Func<Condutores, ValidationResult> GravarRegistro { get; internal set; }
 
         public ServicoCliente controladorCliente;
 
@@ -27,7 +26,9 @@ namespace LocadoraVeiculos.WinApp.ModuloCondutores
                 PreencherDadosNaTela();
 
             }
-        }
+        } 
+
+        public Func<Condutores, FluentResults.Result<Condutores>> GravarRegistro { get; internal set; }
 
         private void PreencherDadosNaTela()
         {
@@ -53,7 +54,7 @@ namespace LocadoraVeiculos.WinApp.ModuloCondutores
 
         private void CarregarClientes()
         {
-            var cliente = controladorCliente.SelecionarTodos();
+            var cliente = controladorCliente.SelecionarTodos().Value;
 
             foreach (var item in cliente)
             {
@@ -68,9 +69,9 @@ namespace LocadoraVeiculos.WinApp.ModuloCondutores
 
             var resultadoValidacao = GravarRegistro(condutor);
 
-            if (resultadoValidacao.IsValid == false)
+            if (resultadoValidacao.IsFailed)
             {
-                string erro = resultadoValidacao.Errors[0].ErrorMessage;
+                string erro = resultadoValidacao.Errors[0].Message;
 
                 AtualizarRodape(erro);
 

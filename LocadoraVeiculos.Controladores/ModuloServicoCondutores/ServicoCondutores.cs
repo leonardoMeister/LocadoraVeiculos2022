@@ -1,13 +1,15 @@
-﻿using FluentValidation;
+﻿using FluentResults;
+using FluentValidation;
 using FluentValidation.Results;
 using LocadoraVeiculos.Dominio.ModuloCondutores;
 using LocadoraVeiculos.Repositorio.shared;
 using LocadoraVeiculos.RepositorioProject.ModuloCondutores;
 using Serilog;
+using System.Collections.Generic;
 
 namespace LocadoraVeiculos.Controladores.ModuloServicoCondutores
 {
-    public class ServicoCondutores : Controlador<Condutores>
+    public class ServicoCondutores : ServicoBase<Condutores>
     {
         protected override IRepository<Condutores> PegarRepositorio()
         {
@@ -19,48 +21,48 @@ namespace LocadoraVeiculos.Controladores.ModuloServicoCondutores
             return new ValidadorCondutores();
         }
 
-        public override ValidationResult Editar(Condutores registro)
+        public override Result<Condutores> Editar(Condutores registro)
         {
-            var validacaoBanco = CondutorForValidoParaEditar(registro);
+            var validacaoBanco = CondutorForValidoParaEditar(registro);  //VALIDACAO DE BANCO
+
             if (validacaoBanco.IsValid)
             {
-                Log.Logger.Debug("Condutor {CondutorID} editado com sucesso", registro._id);
-
-                return base.Editar(registro);
+                return base.Editar(registro);                              //VALIDACAO DE DOMINIO
             }
             else
             {
-                foreach (var erros in validacaoBanco.Errors)
-                {
-                    Log.Logger.Warning("Falha ao tentar editar um Condutor {CondutorID} - {Motivo}",
-                        registro._id, erros.ErrorMessage);
-                    return validacaoBanco;
-                }
-            }
+                List<Error> listaErros = new List<Error>();
 
-            return validacaoBanco;
+                foreach (var erro in validacaoBanco.Errors)
+                {
+                    listaErros.Add(new Error(erro.ErrorMessage));
+                    Log.Logger.Warning("Falha ao tentar editar Condutor {CondutorId} - {Motivo}",
+                        registro._id, erro.ErrorMessage);
+                }
+                return Result.Fail(listaErros);
+
+            }
         }
 
-        public override ValidationResult InserirNovo(Condutores registro)
+        public override Result<Condutores> InserirNovo(Condutores registro)
         {
-            var validacaoBanco = CondutorForValidoParaInserir(registro);
+            var validacaoBanco = CondutorForValidoParaInserir(registro);         //VALIDACAO DO BANCO
             if (validacaoBanco.IsValid)
             {
-                Log.Logger.Debug("Condutor {CondutorID} inserido com sucesso", registro._id);
-
-                return base.InserirNovo(registro);
+                return base.InserirNovo(registro);                                  //VALIDACAO DO DOMINIO
             }
             else
             {
-                foreach (var erros in validacaoBanco.Errors)
-                {
-                    Log.Logger.Warning("Falha ao tentar inserir um Condutor {CondutorID} - {Motivo}",
-                        registro._id, erros.ErrorMessage);
-                    return validacaoBanco;
-                }
-            }
+                List<Error> listaErros = new List<Error>();
 
-            return validacaoBanco;
+                foreach (var erro in validacaoBanco.Errors)
+                {
+                    listaErros.Add(new Error(erro.ErrorMessage));
+                    Log.Logger.Warning("Falha ao tentar Inserir Condutor {CondutorID} - {Motivo}",
+                        registro._id, erro.ErrorMessage);
+                }
+                return Result.Fail(listaErros);
+            }
         }
         private ValidationResult CondutorForValidoParaEditar(Condutores registro)
         {

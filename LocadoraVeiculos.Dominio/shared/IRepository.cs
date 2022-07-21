@@ -8,7 +8,7 @@ namespace LocadoraVeiculos.Repositorio.shared
     {
         public void InserirNovo(T registro);
 
-        public void Editar(Guid id, T registro);
+        public void Editar(T registro);
 
         public bool Existe(Guid id);
 

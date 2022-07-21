@@ -23,7 +23,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoCondutores
 
             repo.InserirNovo(condutor);
 
-            var condutores = repo.SelecionarPorId(condutor._id);
+            var condutores = repo.SelecionarPorId(condutor._id).Value;
 
             Assert.AreEqual(condutores, condutor);
         }
@@ -39,7 +39,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoCondutores
             repo.InserirNovo(tax);
             repo.InserirNovo(tax2);
 
-            var dados = repo.SelecionarTodos();
+            var dados = repo.SelecionarTodos().Value;
 
             Assert.AreEqual(2, dados.Count);
 
@@ -54,7 +54,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoCondutores
 
             repo.InserirNovo(tax);
 
-            var exite = repo.Existe(tax._id);
+            var exite = repo.Existe(tax._id).Value;
 
             Assert.IsTrue(exite);
         }
@@ -64,13 +64,13 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoCondutores
         {
             ServicoCondutores repo = new ServicoCondutores();
 
-            Condutores tax = new Condutores("Gustavo Paes", "02359919994", "Andre Gargioni", "emailteste@gmail.com", "99-99999-9999", "dasdasdasdasdas", "segunda - feira, 4 de julho de 2022");
+            Condutores condutore = new Condutores("Gustavo Paes", "023.599.199.94", "Andre Gargioni", "emailteste@gmail.com", "99-99999-9999", "12323432193", "segunda - feira, 4 de julho de 2022");
 
-            repo.InserirNovo(tax);
+            repo.InserirNovo(condutore);
 
-            repo.Excluir(tax._id);
+            repo.Excluir(repo.SelecionarPorId(condutore._id).Value);
 
-            var existe = repo.Existe(tax._id);
+            var existe = repo.Existe(condutore._id).Value;
 
             Assert.IsFalse(existe);
         }
