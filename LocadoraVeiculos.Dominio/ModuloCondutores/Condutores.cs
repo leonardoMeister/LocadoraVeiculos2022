@@ -5,7 +5,7 @@ namespace LocadoraVeiculos.Dominio.ModuloCondutores
 {
     public class Condutores:EntidadeBase
     {
-        public Condutores(string nome, string cpf, string endereco, string email, string telefone, string cnh, string validadecnh)
+        public Condutores(string nome, string cpf, string endereco, string email, string telefone, string cnh, string validadeCnh)
         {
             Nome = nome;
             Cpf = cpf;
@@ -13,7 +13,7 @@ namespace LocadoraVeiculos.Dominio.ModuloCondutores
             Email = email;
             Telefone = telefone;
             Cnh = cnh;
-            ValidadeCnh = validadecnh;
+            ValidadeCnh = validadeCnh;
         }
 
         public string Nome { get; set; }

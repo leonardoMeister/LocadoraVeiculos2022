@@ -4,14 +4,16 @@ using LocadoraVeiculos.Infra.Orm;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LocadoraVeiculos.Infra.Orm.Migrations
 {
     [DbContext(typeof(GeradorLocadoraDbContext))]
-    partial class GeradorLocadoraDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220721193905_AddCondutores")]
+    partial class AddCondutores
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

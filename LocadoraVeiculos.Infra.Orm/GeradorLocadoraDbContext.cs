@@ -1,4 +1,5 @@
 ﻿using LocadoraVeiculos.Dominio.ModuloCliente;
+using LocadoraVeiculos.Dominio.ModuloCondutores;
 using LocadoraVeiculos.Dominio.ModuloFuncionario;
 using LocadoraVeiculos.Dominio.ModuloGrupoVeiculos;
 using LocadoraVeiculos.Dominio.ModuloTaxas;
@@ -17,7 +18,7 @@ namespace LocadoraVeiculos.Infra.Orm
         public DbSet<Funcionario> Funcionarios { get; set; }
         public DbSet<Cliente> Cliente { get; set; }
         public DbSet<GrupoVeiculos> GrupoVeiculos { get; set; }
-
+        public DbSet<Condutores> Condutores { get; set; }   
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             var con = @"Data Source=(LocalDB)\MSSqlLocalDB;Initial Catalog=TesteORM;Integrated Security=True";
@@ -59,12 +60,27 @@ namespace LocadoraVeiculos.Infra.Orm
                 entidade.Property(x => x.Telefone).HasColumnType("varchar(100)").IsRequired();
                 entidade.Property(x => x.TipoCliente).HasColumnType("varchar(100)").IsRequired();
             });
+
             modelBuilder.Entity<GrupoVeiculos>(entidade =>
             {
                 entidade.ToTable("TB_GRUPOVEICULOS");
                 entidade.Property(x => x.Id).ValueGeneratedNever().IsUnicode();
                 entidade.Property(x => x.NomeGrupo).HasColumnType("varchar(100)").IsRequired();
             });
+
+            modelBuilder.Entity<Condutores>(entidade =>
+            {
+                entidade.ToTable("TB_CONDUTORES");
+                entidade.Property(x => x.Id).ValueGeneratedNever().IsUnicode();
+                entidade.Property(x => x.Nome).HasColumnType("varchar(100)").IsRequired();
+                entidade.Property(x => x.Cpf).HasColumnType("varchar(100)").IsRequired();
+                entidade.Property(x => x.Endereco).HasColumnType("varchar(100)").IsRequired();
+                entidade.Property(x => x.Email).HasColumnType("varchar(100)").IsRequired();
+                entidade.Property(x => x.Telefone).HasColumnType("varchar(100)").IsRequired();
+                entidade.Property(x => x.Cnh).HasColumnType("varchar(100)").IsRequired();
+                entidade.Property(x => x.ValidadeCnh).HasColumnType("varchar(100)").IsRequired();
+            });
+
         }
     }
 
