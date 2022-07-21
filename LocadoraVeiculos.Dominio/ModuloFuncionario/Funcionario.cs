@@ -5,14 +5,14 @@ namespace LocadoraVeiculos.Dominio.ModuloFuncionario
 {
     public class Funcionario : EntidadeBase
     {
-        public Funcionario(string nome, string login, string senha, decimal salario, DateTime dataadmicao, string tipoperfil)
+        public Funcionario(string nome, string login, string senha, decimal salario, DateTime dataAdmicao, string tipoPerfil)
         {
             Nome = nome;
             Login = login;
             Senha = senha;
             Salario = salario;
-            DataAdmicao = dataadmicao;
-            TipoPerfil = tipoperfil;
+            DataAdmicao = dataAdmicao;
+            TipoPerfil = tipoPerfil;
         }
 
         public string Nome { get; set; }

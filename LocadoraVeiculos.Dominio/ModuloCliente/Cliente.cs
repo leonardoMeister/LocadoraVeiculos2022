@@ -6,7 +6,7 @@ namespace LocadoraVeiculos.Dominio.ModuloCliente
     public class Cliente : EntidadeBase
     {
 
-        public Cliente(string nome, string cpf, string endereco, string email, string telefone, string tipocliente, string cnpj)
+        public Cliente(string nome, string cpf, string endereco, string email, string telefone, string tipoCliente, string cnpj)
         {
             Cnpj = cnpj;
             Nome = nome;
@@ -14,7 +14,7 @@ namespace LocadoraVeiculos.Dominio.ModuloCliente
             Endereco = endereco;
             Email = email;
             Telefone = telefone;
-            TipoCliente = tipocliente;
+            TipoCliente = tipoCliente;
 
         }
         public string Cnpj { get; set; }

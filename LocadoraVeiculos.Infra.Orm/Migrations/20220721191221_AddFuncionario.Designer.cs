@@ -4,56 +4,22 @@ using LocadoraVeiculos.Infra.Orm;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LocadoraVeiculos.Infra.Orm.Migrations
 {
     [DbContext(typeof(GeradorLocadoraDbContext))]
-    partial class GeradorLocadoraDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220721191221_AddFuncionario")]
+    partial class AddFuncionario
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.17")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("LocadoraVeiculos.Dominio.ModuloCliente.Cliente", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .IsUnicode(true)
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Cnpj")
-                        .HasColumnType("varchar(20)");
-
-                    b.Property<string>("Cpf")
-                        .HasColumnType("varchar(20)");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("varchar(100)");
-
-                    b.Property<string>("Endereco")
-                        .IsRequired()
-                        .HasColumnType("varchar(100)");
-
-                    b.Property<string>("Nome")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Telefone")
-                        .IsRequired()
-                        .HasColumnType("varchar(100)");
-
-                    b.Property<string>("TipoCliente")
-                        .IsRequired()
-                        .HasColumnType("varchar(100)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("TB_CLIENTE");
-                });
 
             modelBuilder.Entity("LocadoraVeiculos.Dominio.ModuloFuncionario.Funcionario", b =>
                 {
@@ -86,21 +52,6 @@ namespace LocadoraVeiculos.Infra.Orm.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("TB_FUNCIONARIOS");
-                });
-
-            modelBuilder.Entity("LocadoraVeiculos.Dominio.ModuloGrupoVeiculos.GrupoVeiculos", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .IsUnicode(true)
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("NomeGrupo")
-                        .IsRequired()
-                        .HasColumnType("varchar(100)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("TB_GRUPOVEICULOS");
                 });
 
             modelBuilder.Entity("LocadoraVeiculos.Dominio.ModuloTaxas.Taxas", b =>
