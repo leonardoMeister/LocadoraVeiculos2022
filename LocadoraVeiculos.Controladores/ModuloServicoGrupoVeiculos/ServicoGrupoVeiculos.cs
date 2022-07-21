@@ -36,7 +36,7 @@ namespace LocadoraVeiculos.Controladores.ModuloServicoGrupoVeiculos
                 {
                     listaErros.Add(new Error(erro.ErrorMessage));
                     Log.Logger.Warning("Falha ao tentar inserir um GrupoVeiculos {GrupoVeiculosID} - {Motivo}",
-                        registro._id, erro.ErrorMessage);
+                        registro.Id, erro.ErrorMessage);
                 }
                 return Result.Fail(listaErros);
             }
@@ -58,7 +58,7 @@ namespace LocadoraVeiculos.Controladores.ModuloServicoGrupoVeiculos
                 {
                     listaErros.Add(new Error(erro.ErrorMessage));
                     Log.Logger.Warning("Falha ao tentar editar GrupoVeiculos {GrupoVeiculosID} - {Motivo}",
-                        registro._id, erro.ErrorMessage);
+                        registro.Id, erro.ErrorMessage);
                 }
                 return Result.Fail(listaErros);
 
@@ -70,7 +70,7 @@ namespace LocadoraVeiculos.Controladores.ModuloServicoGrupoVeiculos
             ValidationResult valido = new ValidationResult();
 
             var func1 = ((RepositorioGrupoVeiculos)Repositorio).SelecionarPorNome(registro.NomeGrupo);
-            if (func1 != null && func1._id != registro._id) valido.Errors.Add(new ValidationFailure("Nome", "Nao pode ter nome repetido"));
+            if (func1 != null && func1.Id != registro.Id) valido.Errors.Add(new ValidationFailure("Nome", "Nao pode ter nome repetido"));
 
             return valido;
         }

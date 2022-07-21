@@ -4,11 +4,11 @@ namespace LocadoraVeiculos.Dominio.shared
 {
     public abstract class EntidadeBase
     {
-        public Guid _id;
+        public Guid Id;
 
         public EntidadeBase()
         {
-            _id = Guid.NewGuid();
+            Id = Guid.NewGuid();
         }
 
     }

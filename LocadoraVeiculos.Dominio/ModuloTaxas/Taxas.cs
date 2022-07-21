@@ -23,7 +23,7 @@ namespace LocadoraVeiculos.Dominio.ModuloTaxas
         public override bool Equals(object obj)
         {
             return obj is Taxas taxas &&
-                   _id == taxas._id &&
+                   Id == taxas.Id &&
                    Tipo == taxas.Tipo &&
                    Descricao == taxas.Descricao &&
                    Valor == taxas.Valor;
@@ -31,11 +31,11 @@ namespace LocadoraVeiculos.Dominio.ModuloTaxas
 
         public override string ToString()
         {
-            return $"Id: {_id}, Tipo: {Tipo}";
+            return $"Id: {Id}, Tipo: {Tipo}";
         }
         public override int GetHashCode()
         {
-            return HashCode.Combine(_id, Tipo, Descricao, Valor);
+            return HashCode.Combine(Id, Tipo, Descricao, Valor);
         }
     }
 }

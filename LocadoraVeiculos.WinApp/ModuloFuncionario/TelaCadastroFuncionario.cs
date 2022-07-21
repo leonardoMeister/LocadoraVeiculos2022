@@ -18,7 +18,7 @@ namespace LocadoraVeiculos.WinApp.ModuloFuncionario
             {
                 funcionario = value;
 
-                txtId.Text = Convert.ToString(funcionario._id);
+                txtId.Text = Convert.ToString(funcionario.Id);
                 txtNome.Text = funcionario.Nome;
                 txtSalario.Text = Convert.ToString(funcionario.Salario);
                 cmbTipoPerfil.SelectedItem= funcionario.TipoPerfil;
@@ -76,7 +76,7 @@ namespace LocadoraVeiculos.WinApp.ModuloFuncionario
             funcionario = new Funcionario(nome, login, senha, salario, dataAdmicao, tipoPerfil);
 
             if(id !=Guid.Empty)
-                funcionario._id = id;
+                funcionario.Id = id;
              
         }
 

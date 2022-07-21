@@ -44,7 +44,7 @@ namespace LocadoraVeiculos.Repositorio.shared
 
         public virtual Result<T> InserirNovo(T registro)
         {
-            Log.Logger.Warning("Tentando inserir Registro: {RegistroType} - {ID}", registro.GetType(), registro._id);
+            Log.Logger.Warning("Tentando inserir Registro: {RegistroType} - {ID}", registro.GetType(), registro.Id);
 
             Result resultadoValidacao = ValidarRegistro(registro);
 
@@ -52,7 +52,7 @@ namespace LocadoraVeiculos.Repositorio.shared
             {
                 foreach (var erro in resultadoValidacao.Errors)
                 {                    
-                    Log.Logger.Warning("Falha ao tentar inserir {RegistroType} - {ID} - {Motivo}", registro.GetType(), registro._id, erro.Message);
+                    Log.Logger.Warning("Falha ao tentar inserir {RegistroType} - {ID} - {Motivo}", registro.GetType(), registro.Id, erro.Message);
                 }
 
                 return Result.Fail(resultadoValidacao.Errors);
@@ -62,14 +62,14 @@ namespace LocadoraVeiculos.Repositorio.shared
             {
                 Repositorio.InserirNovo(registro);
 
-                Log.Logger.Information("Registro {RegistroID} inserido com sucesso", registro._id);
+                Log.Logger.Information("Registro {RegistroID} inserido com sucesso", registro.Id);
 
                 return Result.Ok(registro);
             }
             catch (Exception ex)
             {
                 string msgErro = "Falha no sistema ao tentar inserir o Registro";
-                Log.Logger.Error("Falha ao tentar inserir {RegistroType} - {ID} - {Motivo}", registro.GetType(), registro._id, msgErro);
+                Log.Logger.Error("Falha ao tentar inserir {RegistroType} - {ID} - {Motivo}", registro.GetType(), registro.Id, msgErro);
 
                 return Result.Fail(msgErro);
             }
@@ -78,7 +78,7 @@ namespace LocadoraVeiculos.Repositorio.shared
 
         public virtual Result<T> Editar( T registro)
         {
-            Log.Logger.Warning("Tentando Editar Registro: {RegistroType} - {ID}", registro.GetType(), registro._id);
+            Log.Logger.Warning("Tentando Editar Registro: {RegistroType} - {ID}", registro.GetType(), registro.Id);
 
             Result resultadoValidacao = ValidarRegistro(registro);
 
@@ -86,7 +86,7 @@ namespace LocadoraVeiculos.Repositorio.shared
             {
                 foreach (var erro in resultadoValidacao.Errors)
                 {
-                    Log.Logger.Warning("Falha ao tentar Editar {RegistroType} - {ID} - {Motivo}", registro.GetType(), registro._id, erro.Message);
+                    Log.Logger.Warning("Falha ao tentar Editar {RegistroType} - {ID} - {Motivo}", registro.GetType(), registro.Id, erro.Message);
                 }
 
                 return Result.Fail(resultadoValidacao.Errors);
@@ -96,7 +96,7 @@ namespace LocadoraVeiculos.Repositorio.shared
             {
                 Repositorio.Editar(registro);
 
-                Log.Logger.Information("Registro {RegistroID} editado com sucesso", registro._id);
+                Log.Logger.Information("Registro {RegistroID} editado com sucesso", registro.Id);
 
                 return Result.Ok(registro);
             }
@@ -104,7 +104,7 @@ namespace LocadoraVeiculos.Repositorio.shared
             {
                 string msgErro = "Falha no sistema ao tentar Editar o Registro";
 
-                Log.Logger.Warning("Falha ao tentar Editar {RegistroType} - {ID} - {Motivo}", registro.GetType(), registro._id, msgErro);
+                Log.Logger.Warning("Falha ao tentar Editar {RegistroType} - {ID} - {Motivo}", registro.GetType(), registro.Id, msgErro);
 
                 return Result.Fail(msgErro);
             }
@@ -140,9 +140,9 @@ namespace LocadoraVeiculos.Repositorio.shared
 
             try
             {
-                Repositorio.Excluir(registro._id);
+                Repositorio.Excluir(registro.Id);
 
-                Log.Logger.Information("Registro {RegistroID} excluído com sucesso", registro._id);
+                Log.Logger.Information("Registro {RegistroID} excluído com sucesso", registro.Id);
 
                 return Result.Ok();
             }
@@ -150,7 +150,7 @@ namespace LocadoraVeiculos.Repositorio.shared
             {
                 string msgErro = "Falha no sistema ao tentar excluir o registro";
                 
-                Log.Logger.Error("Falha ao tentar Excluir {RegistroType} - {ID} - {Motivo}", registro.GetType(), registro._id, msgErro);
+                Log.Logger.Error("Falha ao tentar Excluir {RegistroType} - {ID} - {Motivo}", registro.GetType(), registro.Id, msgErro);
 
                 return Result.Fail(msgErro);
             }

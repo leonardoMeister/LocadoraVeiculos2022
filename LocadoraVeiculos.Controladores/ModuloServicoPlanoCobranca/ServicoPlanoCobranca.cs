@@ -35,7 +35,7 @@ namespace LocadoraVeiculos.Controladores.ModuloServicoPlanoCobranca
                 {
                     listaErros.Add(new Error(erro.ErrorMessage));
                     Log.Logger.Warning("Falha ao tentar Inserir Plano Cobranca {PlanoCobrancaID} - {Motivo}",
-                        registro._id, erro.ErrorMessage);
+                        registro.Id, erro.ErrorMessage);
                 }
                 return Result.Fail(listaErros);
             }
@@ -57,7 +57,7 @@ namespace LocadoraVeiculos.Controladores.ModuloServicoPlanoCobranca
                 {
                     listaErros.Add(new Error(erro.ErrorMessage));
                     Log.Logger.Warning("Falha ao tentar editar Plano Cobraca {PlanoCobrancaID} - {Motivo}",
-                        registro._id, erro.ErrorMessage);
+                        registro.Id, erro.ErrorMessage);
                 }
                 return Result.Fail(listaErros);
 

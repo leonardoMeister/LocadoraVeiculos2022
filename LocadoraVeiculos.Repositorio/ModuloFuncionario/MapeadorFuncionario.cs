@@ -19,7 +19,7 @@ namespace LocadoraVeiculos.RepositorioProject.ModuloFuncionario
             string tipoperfil = Convert.ToString(dataReader[6]);
 
             var funcionario = new Funcionario(nome,login,senha,salario,dataAdmicao,tipoperfil);
-            funcionario._id = id;
+            funcionario.Id = id;
 
             return funcionario;
         }
@@ -28,7 +28,7 @@ namespace LocadoraVeiculos.RepositorioProject.ModuloFuncionario
         {
             var parametros = new Dictionary<string, object>();
 
-            parametros.Add("ID", registro._id);
+            parametros.Add("ID", registro.Id);
             parametros.Add("NOME", registro.Nome);
             parametros.Add("LOGIN", registro.Login);
             parametros.Add("SENHA", registro.Senha);

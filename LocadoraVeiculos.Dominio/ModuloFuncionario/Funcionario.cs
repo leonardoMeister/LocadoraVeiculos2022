@@ -29,7 +29,7 @@ namespace LocadoraVeiculos.Dominio.ModuloFuncionario
         public override bool Equals(object obj)
         {
             return obj is Funcionario funcionario &&
-                   _id == funcionario._id &&
+                   Id == funcionario.Id &&
                    Nome == funcionario.Nome &&
                    Login == funcionario.Login &&
                    Senha == funcionario.Senha &&
@@ -43,7 +43,7 @@ namespace LocadoraVeiculos.Dominio.ModuloFuncionario
         }
         public override int GetHashCode()
         {
-            return HashCode.Combine(_id, Nome, Login, Senha, Salario, DataAdmicao, TipoPerfil);
+            return HashCode.Combine(Id, Nome, Login, Senha, Salario, DataAdmicao, TipoPerfil);
         }
     }
 }

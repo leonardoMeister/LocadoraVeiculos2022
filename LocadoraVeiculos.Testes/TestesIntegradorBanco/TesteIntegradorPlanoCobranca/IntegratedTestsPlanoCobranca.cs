@@ -34,7 +34,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradorPlanoCobr
             PlanoCobranca plano = new PlanoCobranca("Tipo Grupo 1", 100, 0, 10, grupo);
             contro.InserirNovo(plano);
 
-            var planoNovo = contro.SelecionarPorId(plano._id).Value;
+            var planoNovo = contro.SelecionarPorId(plano.Id).Value;
 
             Assert.AreEqual(planoNovo, plano);
         }
@@ -72,7 +72,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradorPlanoCobr
 
             contro.InserirNovo(plano);
 
-            var planoNovo = contro.Existe(plano._id);
+            var planoNovo = contro.Existe(plano.Id);
 
             Assert.IsTrue(planoNovo.Value);
         }
@@ -90,9 +90,9 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradorPlanoCobr
 
             contro.InserirNovo(plano);
 
-            contro.Excluir(contro.SelecionarPorId(plano._id).Value);
+            contro.Excluir(contro.SelecionarPorId(plano.Id).Value);
 
-            var planoNovo = contro.Existe(plano._id).Value;
+            var planoNovo = contro.Existe(plano.Id).Value;
 
             Assert.IsFalse(planoNovo);
         }
@@ -110,10 +110,10 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradorPlanoCobr
             PlanoCobranca plano2 = new PlanoCobranca("Tipo Grupo 2", 10, 100, 16, grupo);
             contro.InserirNovo(plano);
 
-            plano2._id = plano._id;
+            plano2.Id = plano.Id;
             contro.Editar(plano2);
 
-            var planoNovo = contro.SelecionarPorId(plano2._id).Value;
+            var planoNovo = contro.SelecionarPorId(plano2.Id).Value;
 
             Assert.AreEqual(planoNovo , plano2);
         }

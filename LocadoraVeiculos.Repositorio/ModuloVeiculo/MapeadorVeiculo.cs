@@ -32,7 +32,7 @@ namespace LocadoraVeiculos.RepositorioProject.ModuloVeiculo
 
             var planoCobranca = new Veiculo(modelo, placa, marca, cor, tipoCombustivel, capacidadeTanque, ano, quilometragem, foto, grupo)
             {
-                _id = id
+                Id = id
             };
 
             return planoCobranca;
@@ -42,7 +42,7 @@ namespace LocadoraVeiculos.RepositorioProject.ModuloVeiculo
         {
             var parametros = new Dictionary<string, object>();
 
-            parametros.Add("ID", registro._id);
+            parametros.Add("ID", registro.Id);
             parametros.Add("@MODELO", registro.Modelo);
             parametros.Add("@PLACA", registro.Placa);
             parametros.Add("@MARCA", registro.Marca);
@@ -52,7 +52,7 @@ namespace LocadoraVeiculos.RepositorioProject.ModuloVeiculo
             parametros.Add("@ANO", registro.Ano);
             parametros.Add("@QUILOMETRAGEM", registro.Quilometragem);
             parametros.Add("@FOTOCARRO", registro.Foto);
-            parametros.Add("@GRUPOID", registro.GrupoVeiculos._id);
+            parametros.Add("@GRUPOID", registro.GrupoVeiculos.Id);
 
             return parametros;
         }

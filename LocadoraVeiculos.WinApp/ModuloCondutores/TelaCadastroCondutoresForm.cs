@@ -32,7 +32,7 @@ namespace LocadoraVeiculos.WinApp.ModuloCondutores
 
         private void PreencherDadosNaTela()
         {
-            txtId.Text = Convert.ToString(condutor._id);
+            txtId.Text = Convert.ToString(condutor.Id);
             txtNome.Text = condutor.Nome;
             condutor.Telefone = condutor.Telefone.Replace(" ", "-");
             maskedTextBoxTelefone.Text = condutor.Telefone;
@@ -101,7 +101,7 @@ namespace LocadoraVeiculos.WinApp.ModuloCondutores
             condutor = new Condutores(nome, cpf, endereco, email, telefone, cnh, validadecnh);
 
             if (id != Guid.Empty)
-                condutor._id = id;
+                condutor.Id = id;
 
             return true;
         }

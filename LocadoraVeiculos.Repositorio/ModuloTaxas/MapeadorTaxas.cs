@@ -15,7 +15,7 @@ namespace LocadoraVeiculos.RepositorioProject.ModuloTaxas
             decimal valor = Convert.ToDecimal(dataReader[2]);
             string tipo = Convert.ToString(dataReader[3]);
             var taxa = new Taxas(descricao, valor,tipo);
-            taxa._id = id;
+            taxa.Id = id;
 
             return taxa;
         }
@@ -24,7 +24,7 @@ namespace LocadoraVeiculos.RepositorioProject.ModuloTaxas
         {
             var parametros = new Dictionary<string, object>();
 
-            parametros.Add("ID", taxas._id);
+            parametros.Add("ID", taxas.Id);
             parametros.Add("DESCRICAO", taxas.Descricao);
             parametros.Add("VALOR", taxas.Valor);
             parametros.Add("TIPO", taxas.Tipo);

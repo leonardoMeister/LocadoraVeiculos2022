@@ -49,7 +49,7 @@ namespace LocadoraVeiculos.WinApp.ModuloFuncionario
 
             foreach (Funcionario grupoVeiculos in grupo)
             {
-                grid.Rows.Add(grupoVeiculos._id, grupoVeiculos.Nome, grupoVeiculos.Login , grupoVeiculos.Senha, grupoVeiculos.Salario,
+                grid.Rows.Add(grupoVeiculos.Id, grupoVeiculos.Nome, grupoVeiculos.Login , grupoVeiculos.Senha, grupoVeiculos.Salario,
                     grupoVeiculos.DataAdmicao, grupoVeiculos.TipoPerfil);
             }
         }

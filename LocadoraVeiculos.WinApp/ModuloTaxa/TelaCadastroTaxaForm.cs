@@ -18,7 +18,7 @@ namespace LocadoraVeiculos.WinApp.ModuloTaxa
             {
                 taxa = value;
 
-                txtId.Text = Convert.ToString(taxa._id);
+                txtId.Text = Convert.ToString(taxa.Id);
                 txtDescricao.Text = taxa.Descricao;
                 txtValor.Text = Convert.ToString(taxa.Valor);
                 if (taxa.Tipo == EnumTaxa.Fixa.ToString()) radioFixa.Checked = true;
@@ -84,7 +84,7 @@ namespace LocadoraVeiculos.WinApp.ModuloTaxa
             taxa = new Taxas(descricao, valor, tipo);
 
             if (id != Guid.Empty)
-                taxa._id = id;
+                taxa.Id = id;
 
 
             return true;

@@ -40,7 +40,7 @@ namespace LocadoraVeiculos.Dominio.ModuloVeiculo
         public override bool Equals(object obj)
         {
             return obj is Veiculo veiculo &&
-                   _id == veiculo._id &&
+                   Id == veiculo.Id &&
                    Modelo == veiculo.Modelo &&
                    Placa == veiculo.Placa &&
                    Marca == veiculo.Marca &&
@@ -54,7 +54,7 @@ namespace LocadoraVeiculos.Dominio.ModuloVeiculo
         public override int GetHashCode()
         {
             HashCode hash = new HashCode();
-            hash.Add(_id);
+            hash.Add(Id);
             hash.Add(Modelo);
             hash.Add(Placa);
             hash.Add(Marca);

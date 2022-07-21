@@ -40,7 +40,7 @@ namespace LocadoraVeiculos.WinApp.ModuloVeiculo
             {
                 veiculo = value;
                 CarregarFoto();
-                txtId.Text = veiculo._id.ToString();
+                txtId.Text = veiculo.Id.ToString();
                 textBoxModelo.Text = veiculo.Modelo;
                 textBoxPlacas.Text = veiculo.Placa;
                 textBoxMarca.Text = veiculo.Marca;
@@ -96,7 +96,7 @@ namespace LocadoraVeiculos.WinApp.ModuloVeiculo
             veiculo = new Veiculo(modelo, placa, marca, cor, tipoCombustivel, capacidadeTanque, ano, quilometragem, foto, grupo);
 
             if (id != Guid.Empty)
-                veiculo._id = id;
+                veiculo.Id = id;
 
         }
         private void buttonCarregarFoto_Click(object sender, EventArgs e)

@@ -23,7 +23,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoCondutores
 
             repo.InserirNovo(condutor);
 
-            var condutores = repo.SelecionarPorId(condutor._id).Value;
+            var condutores = repo.SelecionarPorId(condutor.Id).Value;
 
             Assert.AreEqual(condutores, condutor);
         }
@@ -54,7 +54,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoCondutores
 
             repo.InserirNovo(tax);
 
-            var exite = repo.Existe(tax._id).Value;
+            var exite = repo.Existe(tax.Id).Value;
 
             Assert.IsTrue(exite);
         }
@@ -68,9 +68,9 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoCondutores
 
             repo.InserirNovo(condutore);
 
-            repo.Excluir(repo.SelecionarPorId(condutore._id).Value);
+            repo.Excluir(repo.SelecionarPorId(condutore.Id).Value);
 
-            var existe = repo.Existe(condutore._id).Value;
+            var existe = repo.Existe(condutore.Id).Value;
 
             Assert.IsFalse(existe);
         }

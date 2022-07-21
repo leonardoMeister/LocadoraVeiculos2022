@@ -25,7 +25,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoFuncionari
 
             repo.InserirNovo(fun);
 
-            var funcionario = repo.SelecionarPorId(fun._id).Value;
+            var funcionario = repo.SelecionarPorId(fun.Id).Value;
 
             Assert.AreEqual(funcionario, fun);
         }
@@ -50,7 +50,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoFuncionari
             var fun = new Funcionario("Leonardo", "leonardo123", "leoJosePedrinho123Senha", 2800, DateTime.Now, "Funcionario");
             repo.InserirNovo(fun);
 
-            var existe = repo.Existe(fun._id).Value;
+            var existe = repo.Existe(fun.Id).Value;
 
             Assert.IsTrue(existe);
         }
@@ -61,9 +61,9 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoFuncionari
             var fun = new Funcionario("Leonardo", "leonardo123", "leoJosePedrinho123Senha", 2800, DateTime.Now, "Funcionario");
             repo.InserirNovo(fun);
             
-            repo.Excluir(repo.SelecionarPorId(fun._id).Value);
+            repo.Excluir(repo.SelecionarPorId(fun.Id).Value);
 
-            var existe = repo.Existe(fun._id).Value;
+            var existe = repo.Existe(fun.Id).Value;
 
             Assert.IsFalse(existe);
         }
@@ -76,10 +76,10 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoFuncionari
             repo.InserirNovo(fun);
 
             var fun2 = new Funcionario("Leonardo2", "leonardo1233", "leoJosePedrinhoSenha", 4000, DateTime.Now, "Funcionario de elite");
-            fun2._id = fun._id;
+            fun2.Id = fun.Id;
             repo.Editar(fun2);
 
-            var funNovo = repo.SelecionarPorId(fun._id).Value;
+            var funNovo = repo.SelecionarPorId(fun.Id).Value;
             Assert.AreEqual(funNovo, fun2);
         }
     }

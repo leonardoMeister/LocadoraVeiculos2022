@@ -34,7 +34,7 @@ namespace LocadoraVeiculos.WinApp.ModuloCliente
             }
             else radioButtonPessoaJuridica.Checked = true;
 
-            txtId.Text = Convert.ToString( cliente._id);
+            txtId.Text = Convert.ToString( cliente.Id);
             txtNome.Text = cliente.Nome;
             cliente.Telefone = cliente.Telefone.Replace(" ", "-");
             maskedTextBoxTelefone.Text = cliente.Telefone;
@@ -92,7 +92,7 @@ namespace LocadoraVeiculos.WinApp.ModuloCliente
             cliente = new Cliente(nome, cpf, endereco, email, telefone, tipo, cnpj);
 
             if (id != Guid.Empty)
-                cliente._id = id;
+                cliente.Id = id;
 
         }
 

@@ -18,7 +18,7 @@ namespace LocadoraVeiculos.WinApp.ModuloPlanoCobranca
             {
                 planoCobranca = value;
 
-                txtId.Text = Convert.ToString(planoCobranca._id);
+                txtId.Text = Convert.ToString(planoCobranca.Id);
                 txtLimiteKM.Text = Convert.ToString(planoCobranca.LimiteKM);
                 txtTipo.Text = Convert.ToString(planoCobranca.TipoPlano);
                 txtValorDia.Text = Convert.ToString(planoCobranca.ValorDia);
@@ -94,7 +94,7 @@ namespace LocadoraVeiculos.WinApp.ModuloPlanoCobranca
             planoCobranca = new PlanoCobranca(tipo, valorDia, limite, valorKm, grupo);
 
             if (id != Guid.Empty)
-                planoCobranca._id = id;
+                planoCobranca.Id = id;
 
             return true;
         }

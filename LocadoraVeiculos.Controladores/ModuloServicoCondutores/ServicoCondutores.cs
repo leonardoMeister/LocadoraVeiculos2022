@@ -37,7 +37,7 @@ namespace LocadoraVeiculos.Controladores.ModuloServicoCondutores
                 {
                     listaErros.Add(new Error(erro.ErrorMessage));
                     Log.Logger.Warning("Falha ao tentar editar Condutor {CondutorId} - {Motivo}",
-                        registro._id, erro.ErrorMessage);
+                        registro.Id, erro.ErrorMessage);
                 }
                 return Result.Fail(listaErros);
 
@@ -59,7 +59,7 @@ namespace LocadoraVeiculos.Controladores.ModuloServicoCondutores
                 {
                     listaErros.Add(new Error(erro.ErrorMessage));
                     Log.Logger.Warning("Falha ao tentar Inserir Condutor {CondutorID} - {Motivo}",
-                        registro._id, erro.ErrorMessage);
+                        registro.Id, erro.ErrorMessage);
                 }
                 return Result.Fail(listaErros);
             }

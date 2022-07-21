@@ -26,7 +26,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoGrupoVeicu
             GrupoVeiculos gveh = new GrupoVeiculos("Grupo 1");
             repo.InserirNovo(gveh);
 
-            var gveiculos = repo.SelecionarPorId(gveh._id).Value;
+            var gveiculos = repo.SelecionarPorId(gveh.Id).Value;
 
             Assert.AreEqual(gveiculos, gveh);
         }
@@ -54,7 +54,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoGrupoVeicu
             GrupoVeiculos gveh = new GrupoVeiculos("Grupo 1");
             repo.InserirNovo(gveh);
 
-            var exite = repo.Existe(gveh._id);
+            var exite = repo.Existe(gveh.Id);
 
             Assert.IsTrue(exite.Value);
         }
@@ -67,10 +67,10 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoGrupoVeicu
             repo.InserirNovo(gveh);
 
             GrupoVeiculos gveh2 = new GrupoVeiculos("Grupo 3");
-            gveh2._id = gveh._id;
+            gveh2.Id = gveh.Id;
             repo.Editar(gveh2);
 
-            var gvehNovo = repo.SelecionarPorId(gveh2._id).Value;
+            var gvehNovo = repo.SelecionarPorId(gveh2.Id).Value;
 
             Assert.AreEqual(gvehNovo, gveh2);
         }
@@ -82,9 +82,9 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoGrupoVeicu
             GrupoVeiculos gveh = new GrupoVeiculos("Grupo 2");
             repo.InserirNovo(gveh);
 
-            repo.Excluir(repo.SelecionarPorId(gveh._id).Value);
+            repo.Excluir(repo.SelecionarPorId(gveh.Id).Value);
 
-            var existe = repo.Existe(gveh._id);
+            var existe = repo.Existe(gveh.Id);
 
             Assert.IsFalse(existe.Value);
         }

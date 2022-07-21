@@ -57,7 +57,7 @@ namespace LocadoraVeiculos.WinApp.ModuloCondutores
 
             foreach (Condutores condutor in condutores)
             {
-                grid.Rows.Add(condutor._id, condutor.Nome, condutor.Cpf,
+                grid.Rows.Add(condutor.Id, condutor.Nome, condutor.Cpf,
                   condutor.Email, condutor.Telefone, condutor.Cnh, condutor.ValidadeCnh, condutor.Endereco);
             }
         }

@@ -56,7 +56,7 @@ namespace LocadoraVeiculos.WinApp.ModuloVeiculo
 
             foreach (Veiculo veiculo in grupo)
             {
-                grid.Rows.Add(veiculo._id, veiculo.Modelo, veiculo.Placa, veiculo.Marca, veiculo.Cor, veiculo.TipoCombustivel,
+                grid.Rows.Add(veiculo.Id, veiculo.Modelo, veiculo.Placa, veiculo.Marca, veiculo.Cor, veiculo.TipoCombustivel,
                     veiculo.Ano.Date);
             }
         }
