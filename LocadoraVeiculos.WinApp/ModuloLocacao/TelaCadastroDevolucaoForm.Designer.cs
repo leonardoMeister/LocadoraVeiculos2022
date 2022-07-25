@@ -110,7 +110,7 @@
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(123, 52);
             this.btnSalvar.TabIndex = 51;
-            this.btnSalvar.Text = "Salvar";
+            this.btnSalvar.Text = "Gravar Devolução";
             this.btnSalvar.UseVisualStyleBackColor = true;
             this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
             // 
