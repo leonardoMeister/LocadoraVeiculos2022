@@ -1,4 +1,5 @@
 using LocadoraVeiculos.Infra.Logging;
+using LocadoraVeiculos.Infra.Orm.Compatilhado;
 using System;
 using System.Windows.Forms;
 
@@ -9,6 +10,7 @@ namespace LocadoraVeiculos.WinApp
         [STAThread]
         static void Main()
         {
+            MigradorBancoDadosLocadoraVeiculos.AtualizarBancoDados();
             ConfiguracaoLogsLocadora.ConfigurarEscritaLogs();
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
