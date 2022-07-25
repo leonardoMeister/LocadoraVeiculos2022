@@ -18,7 +18,7 @@ namespace LocadoraVeiculos.WinApp.ModuloPlanoCobranca
             {
                 planoCobranca = value;
 
-                txtId.Text = Convert.ToString(planoCobranca._id);
+                txtId.Text = Convert.ToString(planoCobranca.Id);
                 txtLimiteKM.Text = Convert.ToString(planoCobranca.LimiteKM);
                 txtTipo.Text = Convert.ToString(planoCobranca.TipoPlano);
                 txtValorDia.Text = Convert.ToString(planoCobranca.ValorDia);
@@ -56,20 +56,25 @@ namespace LocadoraVeiculos.WinApp.ModuloPlanoCobranca
             if (!PegarObjetoTela()) return;
 
 
-            var resultadoValidacao = GravarRegistro(PlanoCobranca);
+            var resultadoValidacao = GravarRegistro(planoCobranca);
 
             if (resultadoValidacao.IsFailed)
             {
                 string erro = resultadoValidacao.Errors[0].Message;
 
-                AtualizarRodape(erro);
+                if (erro.StartsWith("Falha no sistema"))
+                {
+                    MessageBox.Show(erro,
+                    "Inserção Plano de Cobrança", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    AtualizarRodape(erro);
 
-                DialogResult = DialogResult.None;
+                    DialogResult = DialogResult.None;
+                }
             }
-            else
-            {
-                DialogResult = DialogResult.OK;
-            }
+            else this.DialogResult = DialogResult.OK;
         }
 
         private bool PegarObjetoTela()
@@ -94,7 +99,7 @@ namespace LocadoraVeiculos.WinApp.ModuloPlanoCobranca
             planoCobranca = new PlanoCobranca(tipo, valorDia, limite, valorKm, grupo);
 
             if (id != Guid.Empty)
-                planoCobranca._id = id;
+                planoCobranca.Id = id;
 
             return true;
         }

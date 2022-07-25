@@ -20,7 +20,7 @@ namespace LocadoraVeiculos.RepositorioProject.ModuloCondutores
             string validadecnh = Convert.ToString(dataReader[7]);
 
             var condutores = new Condutores(nome, cpf, endereco, email, telefone, cnh, validadecnh);
-            condutores._id = id;
+            condutores.Id = id;
 
             return condutores;
         }
@@ -28,7 +28,7 @@ namespace LocadoraVeiculos.RepositorioProject.ModuloCondutores
         {
             var parametros = new Dictionary<string, object>();
 
-            parametros.Add("ID", registro._id);
+            parametros.Add("ID", registro.Id);
             parametros.Add("NOME", registro.Nome);
             parametros.Add("CPF", registro.Cpf);
             parametros.Add("ENDERECO", registro.Endereco);

@@ -41,7 +41,7 @@ namespace LocadoraVeiculos.WinApp.ModuloTaxa
 
             foreach (Taxas taxa in taxas)
             {
-                grid.Rows.Add(taxa._id, taxa.Descricao, taxa.Valor);
+                grid.Rows.Add(taxa.Id, taxa.Descricao, taxa.Valor);
             }
         }
 

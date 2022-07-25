@@ -47,7 +47,7 @@ namespace LocadoraVeiculos.WinApp.ModuloPlanoCobranca
 
             foreach (PlanoCobranca planoCobranca in plano)
             {
-                grid.Rows.Add(planoCobranca._id, planoCobranca.TipoPlano,planoCobranca.ValorDia,planoCobranca.LimiteKM,planoCobranca.ValorKM,
+                grid.Rows.Add(planoCobranca.Id, planoCobranca.TipoPlano,planoCobranca.ValorDia,planoCobranca.LimiteKM,planoCobranca.ValorKM,
                     planoCobranca.GrupoVeiculos);
             }
         }

@@ -27,7 +27,7 @@ namespace LocadoraVeiculos.RepositorioProject.ModuloPlanoCobranca
             var grupo = mapeadorGrupoVeiculos.ConverterEmRegistro(dataReader);
 
             var planoCobranca = new PlanoCobranca(tipo, valorDia, limite, valorKm, grupo);
-            planoCobranca._id = id;
+            planoCobranca.Id = id;
 
             return planoCobranca;
         }
@@ -36,12 +36,12 @@ namespace LocadoraVeiculos.RepositorioProject.ModuloPlanoCobranca
         {
             var parametros = new Dictionary<string, object>();
 
-            parametros.Add("ID", registro._id);
+            parametros.Add("ID", registro.Id);
             parametros.Add("TIPOPLANO", registro.TipoPlano);
             parametros.Add("VALORPORDIA", registro.ValorDia);
             parametros.Add("LIMITEKM", registro.LimiteKM);
             parametros.Add("VALORKM", registro.ValorKM);
-            parametros.Add("GRUPOVEICULOID", registro.GrupoVeiculos._id);
+            parametros.Add("GRUPOVEICULOID", registro.GrupoVeiculos.Id);
 
             return parametros;
         }

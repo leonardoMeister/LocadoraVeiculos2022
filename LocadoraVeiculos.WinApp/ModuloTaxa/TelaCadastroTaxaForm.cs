@@ -18,7 +18,7 @@ namespace LocadoraVeiculos.WinApp.ModuloTaxa
             {
                 taxa = value;
 
-                txtId.Text = Convert.ToString(taxa._id);
+                txtId.Text = Convert.ToString(taxa.Id);
                 txtDescricao.Text = taxa.Descricao;
                 txtValor.Text = Convert.ToString(taxa.Valor);
                 if (taxa.Tipo == EnumTaxa.Fixa.ToString()) radioFixa.Checked = true;
@@ -47,7 +47,7 @@ namespace LocadoraVeiculos.WinApp.ModuloTaxa
                 if (erro.StartsWith("Falha no sistema"))
                 {
                     MessageBox.Show(erro,
-                    "Inserção de Taxa", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    "Inserção Taxa", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
                 {
@@ -56,6 +56,7 @@ namespace LocadoraVeiculos.WinApp.ModuloTaxa
                     DialogResult = DialogResult.None;
                 }
             }
+            else this.DialogResult = DialogResult.OK;
         }
 
         private void BtnCancelar_Click(object sender, EventArgs e)
@@ -84,7 +85,7 @@ namespace LocadoraVeiculos.WinApp.ModuloTaxa
             taxa = new Taxas(descricao, valor, tipo);
 
             if (id != Guid.Empty)
-                taxa._id = id;
+                taxa.Id = id;
 
 
             return true;

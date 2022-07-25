@@ -57,7 +57,7 @@ namespace LocadoraVeiculos.WinApp.ModuloCliente
 
             foreach (Cliente cliente in clientes)
             {
-                grid.Rows.Add(cliente._id, cliente.Nome, cliente.Cpf,
+                grid.Rows.Add(cliente.Id, cliente.Nome, cliente.Cpf,
                   cliente.Email, cliente.Telefone, cliente.TipoCliente, cliente.Cnpj,cliente.Endereco);
             }
         }

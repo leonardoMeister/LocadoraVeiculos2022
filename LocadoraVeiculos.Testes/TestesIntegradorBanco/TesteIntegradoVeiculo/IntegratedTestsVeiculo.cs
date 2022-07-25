@@ -57,7 +57,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoVeiculo
 
             controlador.InserirNovo(vei);
 
-            var resultado = controlador.SelecionarPorId(vei._id).Value;
+            var resultado = controlador.SelecionarPorId(vei.Id).Value;
 
             Assert.AreEqual(resultado, vei);
             
@@ -77,7 +77,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoVeiculo
 
             controlador.InserirNovo(vei);
 
-            var resultado = controlador.Existe(vei._id).Value;
+            var resultado = controlador.Existe(vei.Id).Value;
 
             Assert.IsTrue(resultado);
         }
@@ -95,9 +95,9 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoVeiculo
             Veiculo vei = new Veiculo("Modelo do Veiculo", "ASD-3021", "Gol", "Rosa", "Gasolina", 10, DateTime.Now, 10, foto, grupo);
 
             controlador.InserirNovo(vei);
-            controlador.Excluir(controlador.SelecionarPorId(vei._id).Value);
+            controlador.Excluir(controlador.SelecionarPorId(vei.Id).Value);
 
-            var resultado = controlador.Existe(vei._id).Value;
+            var resultado = controlador.Existe(vei.Id).Value;
 
             Assert.IsFalse(resultado);
         }
@@ -115,10 +115,10 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoVeiculo
             Veiculo vei = new Veiculo("Modelo do Veiculo", "ASD-3021", "Gol", "Rosa", "Gasolina", 10, DateTime.Now, 10, foto, grupo);
             Veiculo vei2 = new Veiculo("Modelo do Veiculo2", "ASD-3022", "UNO", "Branco", "Gasolina", 10, DateTime.Now, 10, foto, grupo);            
             controlador.InserirNovo(vei);
-            vei2._id = vei._id;
+            vei2.Id = vei.Id;
             controlador.Editar(vei2);
                 
-            var resultado = controlador.SelecionarPorId(vei._id).Value;
+            var resultado = controlador.SelecionarPorId(vei.Id).Value;
 
             Assert.AreEqual(resultado, vei2);
         }

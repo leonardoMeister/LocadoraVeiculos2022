@@ -5,14 +5,14 @@ namespace LocadoraVeiculos.Dominio.ModuloFuncionario
 {
     public class Funcionario : EntidadeBase
     {
-        public Funcionario(string nome, string login, string senha, decimal salario, DateTime dataadmicao, string tipoperfil)
+        public Funcionario(string nome, string login, string senha, decimal salario, DateTime dataAdmicao, string tipoPerfil)
         {
             Nome = nome;
             Login = login;
             Senha = senha;
             Salario = salario;
-            DataAdmicao = dataadmicao;
-            TipoPerfil = tipoperfil;
+            DataAdmicao = dataAdmicao;
+            TipoPerfil = tipoPerfil;
         }
 
         public string Nome { get; set; }
@@ -29,7 +29,7 @@ namespace LocadoraVeiculos.Dominio.ModuloFuncionario
         public override bool Equals(object obj)
         {
             return obj is Funcionario funcionario &&
-                   _id == funcionario._id &&
+                   Id == funcionario.Id &&
                    Nome == funcionario.Nome &&
                    Login == funcionario.Login &&
                    Senha == funcionario.Senha &&
@@ -43,7 +43,7 @@ namespace LocadoraVeiculos.Dominio.ModuloFuncionario
         }
         public override int GetHashCode()
         {
-            return HashCode.Combine(_id, Nome, Login, Senha, Salario, DataAdmicao, TipoPerfil);
+            return HashCode.Combine(Id, Nome, Login, Senha, Salario, DataAdmicao, TipoPerfil);
         }
     }
 }

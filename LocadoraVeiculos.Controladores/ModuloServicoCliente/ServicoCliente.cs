@@ -37,7 +37,7 @@ namespace LocadoraVeiculos.Controladores.ModuloServicoCliente
                 {
                     listaErros.Add(new Error(erro.ErrorMessage));
                     Log.Logger.Warning("Falha ao tentar editar Cliente {ClienteID} - {Motivo}",
-                        registro._id, erro.ErrorMessage);
+                        registro.Id, erro.ErrorMessage);
                 }
                 return Result.Fail(listaErros);
 
@@ -58,7 +58,7 @@ namespace LocadoraVeiculos.Controladores.ModuloServicoCliente
                 {
                     listaErros.Add(new Error(erro.ErrorMessage));
                     Log.Logger.Warning("Falha ao tentar Inserir Cliente {Cliente} - {Motivo}",
-                        registro._id, erro.ErrorMessage);
+                        registro.Id, erro.ErrorMessage);
                 }
                 return Result.Fail(listaErros);
             }
@@ -69,7 +69,7 @@ namespace LocadoraVeiculos.Controladores.ModuloServicoCliente
             ValidationResult valido = new ValidationResult();
 
             var func1 = ((RepositorioCliente)Repositorio).SelecionarPorCpf(registro.Cpf);
-            if (func1 != null && func1._id != registro._id)
+            if (func1 != null && func1.Id != registro.Id)
             {
                 if (func1.Cpf != "   .   .   -")
                 {
@@ -79,7 +79,7 @@ namespace LocadoraVeiculos.Controladores.ModuloServicoCliente
             }
 
             var func2 = ((RepositorioCliente)Repositorio).SelecionarPorCnpj(registro.Cnpj);
-            if (func2 != null && func2._id != registro._id)
+            if (func2 != null && func2.Id != registro.Id)
             {
                 if (func2.Cnpj != "  .   .   /    -")
                 {

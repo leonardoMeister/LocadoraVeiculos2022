@@ -19,7 +19,7 @@ namespace LocadoraVeiculos.WinApp.ModuloGrupoVeiculo
             {
                 grupoVeiculos = value;
 
-                txtId.Text = Convert.ToString(grupoVeiculos._id);
+                txtId.Text = Convert.ToString(grupoVeiculos.Id);
                 txtNome.Text = grupoVeiculos.NomeGrupo;
             }
         }
@@ -54,6 +54,7 @@ namespace LocadoraVeiculos.WinApp.ModuloGrupoVeiculo
                     DialogResult = DialogResult.None;
                 }
             }
+            else this.DialogResult = DialogResult.OK;
         }
 
         private bool PegarObjetoTela()
@@ -74,7 +75,7 @@ namespace LocadoraVeiculos.WinApp.ModuloGrupoVeiculo
             grupoVeiculos = new GrupoVeiculos(nome);
 
             if (id != Guid.Empty)
-                grupoVeiculos._id = id;
+                grupoVeiculos.Id = id;
 
             return true;
         }

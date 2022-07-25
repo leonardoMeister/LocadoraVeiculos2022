@@ -40,7 +40,7 @@ namespace LocadoraVeiculos.WinApp.ModuloVeiculo
             {
                 veiculo = value;
                 CarregarFoto();
-                txtId.Text = veiculo._id.ToString();
+                txtId.Text = veiculo.Id.ToString();
                 textBoxModelo.Text = veiculo.Modelo;
                 textBoxPlacas.Text = veiculo.Placa;
                 textBoxMarca.Text = veiculo.Marca;
@@ -96,7 +96,7 @@ namespace LocadoraVeiculos.WinApp.ModuloVeiculo
             veiculo = new Veiculo(modelo, placa, marca, cor, tipoCombustivel, capacidadeTanque, ano, quilometragem, foto, grupo);
 
             if (id != Guid.Empty)
-                veiculo._id = id;
+                veiculo.Id = id;
 
         }
         private void buttonCarregarFoto_Click(object sender, EventArgs e)
@@ -129,14 +129,19 @@ namespace LocadoraVeiculos.WinApp.ModuloVeiculo
             {
                 string erro = resultadoValidacao.Errors[0].Message;
 
-                AtualizarRodape(erro);
+                if (erro.StartsWith("Falha no sistema"))
+                {
+                    MessageBox.Show(erro,
+                    "Inserção Veiculo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    AtualizarRodape(erro);
 
-                DialogResult = DialogResult.None;
+                    DialogResult = DialogResult.None;
+                }
             }
-            else
-            {
-                DialogResult = DialogResult.OK;
-            }
+            else this.DialogResult = DialogResult.OK;
         }
         private void btnCancelar_Click_1(object sender, EventArgs e)
         {

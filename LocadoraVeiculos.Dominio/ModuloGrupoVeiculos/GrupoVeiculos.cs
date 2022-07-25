@@ -19,7 +19,7 @@ namespace LocadoraVeiculos.Dominio.ModuloGrupoVeiculos
         public override bool Equals(object obj)
         {
             return obj is GrupoVeiculos veiculos &&
-                   _id == veiculos._id &&
+                   Id == veiculos.Id &&
                    NomeGrupo == veiculos.NomeGrupo;
         }
         public override string ToString()
@@ -28,7 +28,7 @@ namespace LocadoraVeiculos.Dominio.ModuloGrupoVeiculos
         }
         public override int GetHashCode()
         {
-            return HashCode.Combine(_id, NomeGrupo);
+            return HashCode.Combine(Id, NomeGrupo);
         }
     }
 }

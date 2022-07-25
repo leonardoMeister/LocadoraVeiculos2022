@@ -20,7 +20,7 @@ namespace LocadoraVeiculos.RepositorioProject.ModuloCliente
             string cnpj = Convert.ToString(dataReader[7]);
 
             var cliente = new Cliente(nome,cpf,endereco,email,telefone,tipoCliente,cnpj);
-            cliente._id = id;
+            cliente.Id = id;
 
             return cliente;
         }
@@ -28,7 +28,7 @@ namespace LocadoraVeiculos.RepositorioProject.ModuloCliente
         {
             var parametros = new Dictionary<string, object>();
 
-            parametros.Add("ID", registro._id);
+            parametros.Add("ID", registro.Id);
             parametros.Add("NOME", registro.Nome);
             parametros.Add("CPF", registro.Cpf);
             parametros.Add("ENDERECO", registro.Endereco);

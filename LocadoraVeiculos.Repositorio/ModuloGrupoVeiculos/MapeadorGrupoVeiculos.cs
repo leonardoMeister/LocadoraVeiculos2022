@@ -14,7 +14,7 @@ namespace LocadoraVeiculos.RepositorioProject.ModuloGrupoVeiculos
             string nomeGrupo = Convert.ToString(dataReader["NOMEGRUPO"]);
 
             var gveiculos = new GrupoVeiculos(nomeGrupo);
-            gveiculos._id = id;
+            gveiculos.Id = id;
 
             return gveiculos;
         }
@@ -23,7 +23,7 @@ namespace LocadoraVeiculos.RepositorioProject.ModuloGrupoVeiculos
         {
             var parametros = new Dictionary<string, object>();
 
-            parametros.Add("ID", grupoVeiculos._id);
+            parametros.Add("ID", grupoVeiculos.Id);
             parametros.Add("NOMEGRUPO", grupoVeiculos.NomeGrupo);
 
             return parametros;

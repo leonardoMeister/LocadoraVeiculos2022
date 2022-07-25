@@ -22,7 +22,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoTaxas
             Taxas tax = new Taxas("Aluguel Onix", 1500, EnumTaxa.Diaria.ToString());
             repo.InserirNovo(tax);
 
-            var taxas = repo.SelecionarPorId(tax._id).Value;
+            var taxas = repo.SelecionarPorId(tax.Id).Value;
 
             Assert.AreEqual(taxas, tax);
         }
@@ -48,7 +48,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoTaxas
             Taxas tax = new Taxas("Aluguel Onix", 1500, EnumTaxa.Diaria.ToString());
             repo.InserirNovo(tax);
 
-            var exite = repo.Existe(tax._id);
+            var exite = repo.Existe(tax.Id);
 
             Assert.IsTrue(exite.Value);
         }
@@ -61,10 +61,10 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoTaxas
             repo.InserirNovo(tax);
 
             Taxas tax2 = new Taxas("Aluguel HB20", 1000, EnumTaxa.Diaria.ToString());
-            tax2._id = tax._id;
+            tax2.Id = tax.Id;
             repo.Editar(tax2);
 
-            var taxNovo = repo.SelecionarPorId(tax2._id).Value;
+            var taxNovo = repo.SelecionarPorId(tax2.Id).Value;
             Assert.AreEqual(taxNovo, tax2);
         }
 
@@ -75,9 +75,9 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoTaxas
             Taxas tax = new Taxas("Aluguel HB20", 1000, EnumTaxa.Diaria.ToString());
             repo.InserirNovo(tax);
 
-            repo.Excluir(repo.SelecionarPorId(tax._id).Value);
+            repo.Excluir(repo.SelecionarPorId(tax.Id).Value);
 
-            var existe = repo.Existe(tax._id);
+            var existe = repo.Existe(tax.Id);
 
             Assert.IsFalse(existe.Value);
         }

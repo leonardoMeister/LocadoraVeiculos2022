@@ -5,7 +5,7 @@ namespace LocadoraVeiculos.Dominio.ModuloCondutores
 {
     public class Condutores:EntidadeBase
     {
-        public Condutores(string nome, string cpf, string endereco, string email, string telefone, string cnh, string validadecnh)
+        public Condutores(string nome, string cpf, string endereco, string email, string telefone, string cnh, string validadeCnh)
         {
             Nome = nome;
             Cpf = cpf;
@@ -13,7 +13,7 @@ namespace LocadoraVeiculos.Dominio.ModuloCondutores
             Email = email;
             Telefone = telefone;
             Cnh = cnh;
-            ValidadeCnh = validadecnh;
+            ValidadeCnh = validadeCnh;
         }
 
         public string Nome { get; set; }
@@ -31,7 +31,7 @@ namespace LocadoraVeiculos.Dominio.ModuloCondutores
         public override bool Equals(object obj)
         {
             return obj is Condutores condutores &&
-                   _id == condutores._id &&
+                   Id == condutores.Id &&
                    Nome == condutores.Nome &&
                    Cpf == condutores.Cpf &&
                    Endereco == condutores.Endereco &&
@@ -46,7 +46,7 @@ namespace LocadoraVeiculos.Dominio.ModuloCondutores
         }
         public override int GetHashCode()
         {
-            return HashCode.Combine(_id, Nome, Cpf, Endereco, Email, Telefone, Cnh, ValidadeCnh);
+            return HashCode.Combine(Id, Nome, Cpf, Endereco, Email, Telefone, Cnh, ValidadeCnh);
         }
     }
 }

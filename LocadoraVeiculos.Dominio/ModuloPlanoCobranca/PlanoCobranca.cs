@@ -32,7 +32,7 @@ namespace LocadoraVeiculos.Dominio.ModuloPlanoCobranca
         public override bool Equals(object obj)
         {
             return obj is PlanoCobranca cobranca &&
-                   _id == cobranca._id &&
+                   Id == cobranca.Id &&
                    TipoPlano == cobranca.TipoPlano &&
                    ValorDia == cobranca.ValorDia &&
                    LimiteKM == cobranca.LimiteKM &&
@@ -41,11 +41,11 @@ namespace LocadoraVeiculos.Dominio.ModuloPlanoCobranca
         }
         public override string ToString()
         {
-            return $"Id: {_id}, Tipo: {TipoPlano}";
+            return $"Id: {Id}, Tipo: {TipoPlano}";
         }
         public override int GetHashCode()
         {
-            return HashCode.Combine(_id, TipoPlano, ValorDia, LimiteKM, ValorKM, GrupoVeiculos);
+            return HashCode.Combine(Id, TipoPlano, ValorDia, LimiteKM, ValorKM, GrupoVeiculos);
         }
     }
 }

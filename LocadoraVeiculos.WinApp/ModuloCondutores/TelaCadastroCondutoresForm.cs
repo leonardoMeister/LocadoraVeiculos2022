@@ -32,7 +32,7 @@ namespace LocadoraVeiculos.WinApp.ModuloCondutores
 
         private void PreencherDadosNaTela()
         {
-            txtId.Text = Convert.ToString(condutor._id);
+            txtId.Text = Convert.ToString(condutor.Id);
             txtNome.Text = condutor.Nome;
             condutor.Telefone = condutor.Telefone.Replace(" ", "-");
             maskedTextBoxTelefone.Text = condutor.Telefone;
@@ -73,14 +73,19 @@ namespace LocadoraVeiculos.WinApp.ModuloCondutores
             {
                 string erro = resultadoValidacao.Errors[0].Message;
 
-                AtualizarRodape(erro);
+                if (erro.StartsWith("Falha no sistema"))
+                {
+                    MessageBox.Show(erro,
+                    "Inserção Condutor", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    AtualizarRodape(erro);
 
-                DialogResult = DialogResult.None;
-
-                return;
+                    DialogResult = DialogResult.None;
+                }
             }
-
-            DialogResult = DialogResult.OK;
+            else this.DialogResult = DialogResult.OK;
         }
 
         private bool PegarObjetoTela()
@@ -101,7 +106,7 @@ namespace LocadoraVeiculos.WinApp.ModuloCondutores
             condutor = new Condutores(nome, cpf, endereco, email, telefone, cnh, validadecnh);
 
             if (id != Guid.Empty)
-                condutor._id = id;
+                condutor.Id = id;
 
             return true;
         }
