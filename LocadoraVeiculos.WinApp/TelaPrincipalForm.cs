@@ -92,7 +92,7 @@ namespace LocadoraVeiculos.WinApp
         #endregion
 
         #region OPCOES DO MENU
-        private void GrupoVeiculosMenuItem_Click(object sender, EventArgs e) //alterar o nome do botão
+        private void GrupoVeiculosMenuItem_Click(object sender, EventArgs e)
         {
             ConfigurarTelaPrincipal(serviceLocatorManual.Get<ControladorGrupoVeiculo>());
         }
