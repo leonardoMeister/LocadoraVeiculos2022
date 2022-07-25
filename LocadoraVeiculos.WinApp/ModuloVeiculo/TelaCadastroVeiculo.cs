@@ -129,14 +129,19 @@ namespace LocadoraVeiculos.WinApp.ModuloVeiculo
             {
                 string erro = resultadoValidacao.Errors[0].Message;
 
-                AtualizarRodape(erro);
+                if (erro.StartsWith("Falha no sistema"))
+                {
+                    MessageBox.Show(erro,
+                    "Inserção Veiculo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    AtualizarRodape(erro);
 
-                DialogResult = DialogResult.None;
+                    DialogResult = DialogResult.None;
+                }
             }
-            else
-            {
-                DialogResult = DialogResult.OK;
-            }
+            else this.DialogResult = DialogResult.OK;
         }
         private void btnCancelar_Click_1(object sender, EventArgs e)
         {

@@ -5,6 +5,7 @@ using LocadoraVeiculos.WinApp.ModuloGrupoVeiculo;
 using LocadoraVeiculos.WinApp.ModuloPlanoCobranca;
 using LocadoraVeiculos.WinApp.ModuloTaxa;
 using LocadoraVeiculos.WinApp.ModuloVeiculo;
+using LocadoraVeiculos.WinApp.ServiceLocator;
 using LocadoraVeiculos.WinApp.shared;
 using System;
 using System.Windows.Forms;
@@ -12,31 +13,19 @@ using System.Windows.Forms;
 namespace LocadoraVeiculos.WinApp
 {
     public partial class TelaPrincipalForm : Form
-    {        
-        public ControladorGrupoVeiculo configuracaoGrupoVeiculos;
-        public ControladorTaxa configuracaoTaxa;
-        public ControladorCliente configuracaoCliente;
-        public ControladorFuncionario configuracaoFuncionario;
-        public ControladorCondutores configuracaoCondutores;
-        public ControladorPlanoCobranca configuracaoPlanoCobranca;
-        public ControladorVeiculo configuracaoVeiculo;
+    {
+
+        ServiceLocatorManual serviceLocatorManual;        
 
         public ICadastravel telaSelecionada;
 
         public TelaPrincipalForm()
         {
             InitializeComponent();
+            serviceLocatorManual = new ServiceLocatorManual(this.AtualizarRodape);
 
             labelRodape.Text = string.Empty;
-            labelTipoCadastro.Text = string.Empty;
-
-            this.configuracaoGrupoVeiculos = new ControladorGrupoVeiculo(this.AtualizarRodape);
-            this.configuracaoTaxa = new ControladorTaxa(this.AtualizarRodape);
-            this.configuracaoCliente = new ControladorCliente(this.AtualizarRodape);
-            this.configuracaoFuncionario = new ControladorFuncionario(this.AtualizarRodape);
-            this.configuracaoCondutores = new ControladorCondutores(this.AtualizarRodape);
-            this.configuracaoPlanoCobranca = new ControladorPlanoCobranca(this.AtualizarRodape);
-            this.configuracaoVeiculo = new(this.AtualizarRodape);
+            labelTipoCadastro.Text = string.Empty;            
         }
 
         public void AtualizarRodape(string mensagem)
@@ -56,9 +45,9 @@ namespace LocadoraVeiculos.WinApp
 
             panelRegistros.Controls.Add(listagemControl);
         }
-        private void ConfigurarToolbox()
-        {
-            ConfiguracaoToolboxBase configuracaoToolBox = telaSelecionada.ObtemConfiguracaoToolbox();
+        private void ConfigurarToolbox(ConfiguracaoBase configuracao)
+        {            
+            ConfiguracaoToolboxBase configuracaoToolBox = ((ICadastravel)configuracao).ObtemConfiguracaoToolbox();
 
             if (configuracaoToolBox != null)
             {
@@ -93,7 +82,9 @@ namespace LocadoraVeiculos.WinApp
         }
         private void ConfigurarTelaPrincipal(ConfiguracaoBase configuracao)
         {
-            ConfigurarToolbox();
+            telaSelecionada = (ICadastravel)configuracao;
+
+            ConfigurarToolbox(configuracao);
 
             ConfigurarListagem(configuracao);
         }
@@ -103,39 +94,32 @@ namespace LocadoraVeiculos.WinApp
         #region OPCOES DO MENU
         private void GrupoVeiculosMenuItem_Click(object sender, EventArgs e) //alterar o nome do botão
         {
-            telaSelecionada = configuracaoGrupoVeiculos;
-            ConfigurarTelaPrincipal(configuracaoGrupoVeiculos);
+            ConfigurarTelaPrincipal(serviceLocatorManual.Get<ControladorGrupoVeiculo>());
         }
         private void TaxasMenuItem_Click(object sender, EventArgs e)
         {
-            telaSelecionada = configuracaoTaxa;
-            ConfigurarTelaPrincipal(configuracaoTaxa);
+            ConfigurarTelaPrincipal(serviceLocatorManual.Get<ControladorTaxa>());
         }
         private void ClienteMenuItem_Click(object sender, EventArgs e)
         {
-            telaSelecionada = configuracaoCliente;
-            ConfigurarTelaPrincipal(configuracaoCliente);
+            ConfigurarTelaPrincipal(serviceLocatorManual.Get<ControladorCliente>());
         }
         private void FuncionarioMenuItem_Click(object sender, EventArgs e)
         {
-            telaSelecionada = configuracaoFuncionario;
-            ConfigurarTelaPrincipal(configuracaoFuncionario);
+            ConfigurarTelaPrincipal(serviceLocatorManual.Get<ControladorFuncionario>());
         }
         private void CondutoresMenuItem_Click(object sender, EventArgs e)
         {
-            telaSelecionada = configuracaoCondutores;
-            ConfigurarTelaPrincipal(configuracaoCondutores);
+            ConfigurarTelaPrincipal(serviceLocatorManual.Get<ControladorCondutores>());
         }
         private void PlanoDeCobrancaMenuItem_Click(object sender, EventArgs e)
         {
-            telaSelecionada = configuracaoPlanoCobranca;
-            ConfigurarTelaPrincipal(configuracaoPlanoCobranca);
+            ConfigurarTelaPrincipal(serviceLocatorManual.Get<ControladorPlanoCobranca>());
 
         }
         private void VeiculoMenuItem_Click(object sender, EventArgs e)
         {
-            telaSelecionada = configuracaoVeiculo;
-            ConfigurarTelaPrincipal(configuracaoVeiculo);
+            ConfigurarTelaPrincipal(serviceLocatorManual.Get<ControladorVeiculo>());
 
         }
         #endregion

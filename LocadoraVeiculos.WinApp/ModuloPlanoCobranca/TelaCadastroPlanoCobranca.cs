@@ -56,20 +56,25 @@ namespace LocadoraVeiculos.WinApp.ModuloPlanoCobranca
             if (!PegarObjetoTela()) return;
 
 
-            var resultadoValidacao = GravarRegistro(PlanoCobranca);
+            var resultadoValidacao = GravarRegistro(planoCobranca);
 
             if (resultadoValidacao.IsFailed)
             {
                 string erro = resultadoValidacao.Errors[0].Message;
 
-                AtualizarRodape(erro);
+                if (erro.StartsWith("Falha no sistema"))
+                {
+                    MessageBox.Show(erro,
+                    "Inserção Plano de Cobrança", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    AtualizarRodape(erro);
 
-                DialogResult = DialogResult.None;
+                    DialogResult = DialogResult.None;
+                }
             }
-            else
-            {
-                DialogResult = DialogResult.OK;
-            }
+            else this.DialogResult = DialogResult.OK;
         }
 
         private bool PegarObjetoTela()

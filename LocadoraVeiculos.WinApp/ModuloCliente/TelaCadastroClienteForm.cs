@@ -55,7 +55,7 @@ namespace LocadoraVeiculos.WinApp.ModuloCliente
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
-            PegarObjetoTela();
+             PegarObjetoTela();
 
 
             var resultadoValidacao = GravarRegistro(cliente);
@@ -64,14 +64,19 @@ namespace LocadoraVeiculos.WinApp.ModuloCliente
             {
                 string erro = resultadoValidacao.Errors[0].Message;
 
-                AtualizarRodape(erro);
+                if (erro.StartsWith("Falha no sistema"))
+                {
+                    MessageBox.Show(erro,
+                    "Inserção Cliente", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    AtualizarRodape(erro);
 
-                DialogResult = DialogResult.None;
-
-                return;
+                    DialogResult = DialogResult.None;
+                }
             }
-
-            DialogResult = DialogResult.OK;
+            else this.DialogResult = DialogResult.OK;
         }
 
         private void PegarObjetoTela()

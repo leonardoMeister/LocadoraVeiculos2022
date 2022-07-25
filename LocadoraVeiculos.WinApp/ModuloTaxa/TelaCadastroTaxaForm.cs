@@ -47,7 +47,7 @@ namespace LocadoraVeiculos.WinApp.ModuloTaxa
                 if (erro.StartsWith("Falha no sistema"))
                 {
                     MessageBox.Show(erro,
-                    "Inserção de Taxa", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    "Inserção Taxa", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
                 {
@@ -56,6 +56,7 @@ namespace LocadoraVeiculos.WinApp.ModuloTaxa
                     DialogResult = DialogResult.None;
                 }
             }
+            else this.DialogResult = DialogResult.OK;
         }
 
         private void BtnCancelar_Click(object sender, EventArgs e)

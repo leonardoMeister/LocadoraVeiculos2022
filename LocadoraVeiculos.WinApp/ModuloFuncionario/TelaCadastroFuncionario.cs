@@ -57,6 +57,10 @@ namespace LocadoraVeiculos.WinApp.ModuloFuncionario
                     DialogResult = DialogResult.None;
                 }
             }
+            else this.DialogResult = DialogResult.OK;
+
+
+
         }
 
         private void PegarObjetoTela()

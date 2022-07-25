@@ -73,14 +73,19 @@ namespace LocadoraVeiculos.WinApp.ModuloCondutores
             {
                 string erro = resultadoValidacao.Errors[0].Message;
 
-                AtualizarRodape(erro);
+                if (erro.StartsWith("Falha no sistema"))
+                {
+                    MessageBox.Show(erro,
+                    "Inserção Condutor", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    AtualizarRodape(erro);
 
-                DialogResult = DialogResult.None;
-
-                return;
+                    DialogResult = DialogResult.None;
+                }
             }
-
-            DialogResult = DialogResult.OK;
+            else this.DialogResult = DialogResult.OK;
         }
 
         private bool PegarObjetoTela()

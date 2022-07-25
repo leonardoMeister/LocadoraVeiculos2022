@@ -54,6 +54,7 @@ namespace LocadoraVeiculos.WinApp.ModuloGrupoVeiculo
                     DialogResult = DialogResult.None;
                 }
             }
+            else this.DialogResult = DialogResult.OK;
         }
 
         private bool PegarObjetoTela()
