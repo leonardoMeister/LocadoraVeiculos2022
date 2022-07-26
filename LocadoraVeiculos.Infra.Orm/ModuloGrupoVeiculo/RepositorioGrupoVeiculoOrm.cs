@@ -37,7 +37,7 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloGrupoVeiculo
 
         public void InserirNovo(GrupoVeiculos registro)
         {
-            throw new NotImplementedException();
+            GrupoVeiculos.Add(registro);
         }
 
         public GrupoVeiculos SelecionarPorId(Guid id)

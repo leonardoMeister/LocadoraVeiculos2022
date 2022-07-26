@@ -20,7 +20,7 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloCliente
             builder.Property(x => x.Endereco).HasColumnType("varchar(100)").IsRequired();
             builder.Property(x => x.Email).HasColumnType("varchar(100)").IsRequired();
             builder.Property(x => x.Telefone).HasColumnType("varchar(100)").IsRequired();
-            builder.Property(x => x.TipoCliente).HasColumnType("varchar(100)").IsRequired();           
+            builder.Property(x => x.TipoCliente).HasColumnType("varchar(100)").IsRequired();
         }
     }
 }
