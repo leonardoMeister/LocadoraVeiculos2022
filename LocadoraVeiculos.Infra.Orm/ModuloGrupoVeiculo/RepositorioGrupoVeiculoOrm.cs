@@ -22,12 +22,12 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloGrupoVeiculo
 
         public void Editar(GrupoVeiculos registro)
         {
-            throw new NotImplementedException();
+            GrupoVeiculos.Update(registro);
         }
 
         public void Excluir(Guid id)
         {
-            throw new NotImplementedException();
+            GrupoVeiculos.Remove(SelecionarPorId(id));
         }
 
         public bool Existe(Guid id)
@@ -41,8 +41,8 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloGrupoVeiculo
         }
 
         public GrupoVeiculos SelecionarPorId(Guid id)
-        {
-            throw new NotImplementedException();
+        {            
+            return GrupoVeiculos.Find(id);
         }
 
         public GrupoVeiculos SelecionarPorParametro(string query, Dictionary<string, object> parameters)

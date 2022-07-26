@@ -15,8 +15,8 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloGrupoVeiculo
         {
 
             builder.ToTable("TB_GRUPOVEICULOS");
-            builder.Property(x => x.Id).ValueGeneratedNever().IsUnicode();
-            builder.Property(x => x.NomeGrupo).HasColumnType("varchar(300)");
+            builder.HasKey(x => x.Id);
+            builder.Property(x => x.NomeGrupo);
         }
     }
 }
