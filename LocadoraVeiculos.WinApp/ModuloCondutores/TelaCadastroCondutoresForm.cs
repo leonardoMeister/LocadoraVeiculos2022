@@ -40,10 +40,10 @@ namespace LocadoraVeiculos.WinApp.ModuloCondutores
             dateTimeCnh.Text = condutor.ValidadeCnh;
         }
 
-        public TelaCadastroCondutoresForm()
+        public TelaCadastroCondutoresForm(ServicoCliente servico)
         {
             InitializeComponent();
-            controladorCliente = new ServicoCliente();
+            controladorCliente = servico;
             CarregarClientes();
         }
 

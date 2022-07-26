@@ -13,7 +13,8 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloGrupoVeiculo
     {
         public void Configure(EntityTypeBuilder<GrupoVeiculos> builder)
         {
-            builder.ToTable("TB_GRUPOVEICULO");
+
+            builder.ToTable("TB_GRUPOVEICULOS");
             builder.Property(x => x.Id).ValueGeneratedNever().IsUnicode();
             builder.Property(x => x.NomeGrupo).HasColumnType("varchar(300)");
         }

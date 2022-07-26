@@ -11,45 +11,64 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloPlanoCobranca
 {
     public class RepositorioPlanoCobrancaOrm : IRepositoryPlanoCobranca
     {
+        private DbSet<PlanoCobranca> cobrancas;
+        private readonly LocadoraVeiculosDbContext dbContext;
 
-        private LocadoraVeiculosDbContext dbContext;
-        DbSet<PlanoCobranca> PlanoCobrancas;
-        public RepositorioPlanoCobrancaOrm(LocadoraVeiculosDbContext db)
+        public RepositorioPlanoCobrancaOrm(LocadoraVeiculosDbContext dbContext)
         {
-            this.dbContext = db;
-            this.PlanoCobrancas = dbContext.Set<PlanoCobranca>();
+            cobrancas = dbContext.Set<PlanoCobranca>();
+            this.dbContext = dbContext;
         }
+
+        public void InserirNovo(PlanoCobranca novoRegistro)
+        {
+            cobrancas.Add(novoRegistro);
+        }
+
         public void Editar(PlanoCobranca registro)
         {
-            throw new NotImplementedException();
+            cobrancas.Update(registro);
         }
 
         public void Excluir(Guid id)
         {
-            throw new NotImplementedException();
-        }
+            PlanoCobranca registro = cobrancas.SingleOrDefault(x => x.Id == id);
 
-        public bool Existe(Guid id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void InserirNovo(PlanoCobranca registro)
-        {
-            throw new NotImplementedException();
+            cobrancas.Remove(registro);
         }
 
         public PlanoCobranca SelecionarPorId(Guid id)
         {
-            throw new NotImplementedException();
+            return cobrancas.SingleOrDefault(x => x.Id == id);
         }
 
-        public PlanoCobranca SelecionarPorParametro(string query, Dictionary<string, object> parameters)
+        public List<PlanoCobranca> SelecionarTodos(bool incluirDisciplinaEhMateria = false)
         {
-            throw new NotImplementedException();
+            if (incluirDisciplinaEhMateria)
+                return cobrancas
+                    .Include(x => x.GrupoVeiculos)
+                    .ToList();
+
+            return cobrancas.ToList();
         }
 
         public List<PlanoCobranca> SelecionarTodos()
+        {
+            return cobrancas.ToList();
+        }
+
+        public bool Existe(Guid id)
+        {
+            var id1 = cobrancas.SingleOrDefault(x => x.Id == id);
+            if (id1 != null)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public PlanoCobranca SelecionarPorParametro(string query, Dictionary<string, object> parameters)
         {
             throw new NotImplementedException();
         }

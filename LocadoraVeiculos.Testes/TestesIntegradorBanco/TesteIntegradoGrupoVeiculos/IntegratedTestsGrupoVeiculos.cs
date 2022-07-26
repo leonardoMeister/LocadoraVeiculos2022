@@ -1,28 +1,41 @@
 ﻿using LocadoraVeiculos.Controladores.ModuloServicoGrupoVeiculos;
 using LocadoraVeiculos.Dominio.ModuloGrupoVeiculos;
+using LocadoraVeiculos.Infra.Orm.Compatilhado;
+using LocadoraVeiculos.Infra.Orm.ModuloGrupoVeiculo;
 using LocadoraVeiculos.RepositorioProject.ModuloGrupoVeiculos;
 using LocadoraVeiculos.RepositorioProject.shared;
+using Microsoft.Extensions.Configuration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.IO;
 
 namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoGrupoVeiculos
 {
     [TestClass]
     public class IntegratedTestsGrupoVeiculos
     {
+        LocadoraVeiculosDbContext dbContext;
         public IntegratedTestsGrupoVeiculos()
         {
-            string query = @"delete from TB_VEICULO;";
-            DataBase.ExecutarComando(query);
-            string query2 = @"delete from TB_PLANOCOBRANCA;";
-            DataBase.ExecutarComando(query2);
-            string query3 = @"delete from TB_GRUPOVEICULOS;";
-            DataBase.ExecutarComando(query3);
+            var configuracao = new ConfigurationBuilder()
+             .SetBasePath(Directory.GetCurrentDirectory())
+             .AddJsonFile("ConfiguracaoAplicacao.json")
+             .Build();
+
+            var connectionString = configuracao.GetConnectionString("SqlServer");
+            dbContext = new LocadoraVeiculosDbContext(connectionString);
+            
+            //string query = @"delete from TB_VEICULO;";
+            //DataBase.ExecutarComando(query);
+            //string query2 = @"delete from TB_PLANOCOBRANCA;";
+            //DataBase.ExecutarComando(query2);
+            //string query3 = @"delete from TB_GRUPOVEICULOS;";
+            //DataBase.ExecutarComando(query3);
         }
 
         [TestMethod]
         public void DeveInserirGrupoVeiculos()
         {
-            ServicoGrupoVeiculos repo = new ServicoGrupoVeiculos();
+            ServicoGrupoVeiculos repo = new ServicoGrupoVeiculos(new RepositorioGrupoVeiculoOrm(dbContext));
             GrupoVeiculos gveh = new GrupoVeiculos("Grupo 1");
             repo.InserirNovo(gveh);
 
@@ -34,7 +47,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoGrupoVeicu
         [TestMethod]
         public void DeveBuscarVariosGrupoVeiculos()
         {
-            ServicoGrupoVeiculos repo = new ServicoGrupoVeiculos();
+            ServicoGrupoVeiculos repo = new ServicoGrupoVeiculos(new RepositorioGrupoVeiculoOrm(dbContext));
             GrupoVeiculos gveh = new GrupoVeiculos("Grupo 1");
             GrupoVeiculos gveh2 = new GrupoVeiculos("Grupo 2");
 
@@ -50,7 +63,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoGrupoVeicu
         [TestMethod]
         public void DeveVerificarExistenciaGrupoVeiculos()
         {
-            ServicoGrupoVeiculos repo = new ServicoGrupoVeiculos();
+            ServicoGrupoVeiculos repo = new ServicoGrupoVeiculos(new RepositorioGrupoVeiculoOrm(dbContext));
             GrupoVeiculos gveh = new GrupoVeiculos("Grupo 1");
             repo.InserirNovo(gveh);
 
@@ -62,7 +75,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoGrupoVeicu
         [TestMethod]
         public void DeveEditarGrupoVeiculos()
         {
-            ServicoGrupoVeiculos repo = new ServicoGrupoVeiculos();
+            ServicoGrupoVeiculos repo = new ServicoGrupoVeiculos(new RepositorioGrupoVeiculoOrm(dbContext));
             GrupoVeiculos gveh = new GrupoVeiculos("Grupo 2");
             repo.InserirNovo(gveh);
 
@@ -78,7 +91,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoGrupoVeicu
         [TestMethod]
         public void DeveDeletarGrupoVeiculos()
         {
-            ServicoGrupoVeiculos repo = new ServicoGrupoVeiculos();
+            ServicoGrupoVeiculos repo = new ServicoGrupoVeiculos(new RepositorioGrupoVeiculoOrm(dbContext));
             GrupoVeiculos gveh = new GrupoVeiculos("Grupo 2");
             repo.InserirNovo(gveh);
 

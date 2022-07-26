@@ -21,7 +21,7 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloCliente
 
         public void Editar(Cliente registro)
         {
-            this.Clientes.Add(registro);
+            throw new NotImplementedException();
         }
 
         public void Excluir(Guid id)
@@ -36,7 +36,8 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloCliente
 
         public void InserirNovo(Cliente registro)
         {
-            throw new NotImplementedException();
+            this.Clientes.Add(registro);
+            
         }
 
         public Cliente SelecionarPorId(Guid id)

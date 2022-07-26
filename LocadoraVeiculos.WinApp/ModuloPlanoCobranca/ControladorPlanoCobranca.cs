@@ -1,4 +1,5 @@
-﻿using LocadoraVeiculos.Controladores.ModuloServicoPlanoCobranca;
+﻿using LocadoraVeiculos.Controladores.ModuloServicoGrupoVeiculos;
+using LocadoraVeiculos.Controladores.ModuloServicoPlanoCobranca;
 using LocadoraVeiculos.Dominio.ModuloPlanoCobranca;
 using LocadoraVeiculos.WinApp.shared;
 using System;
@@ -12,12 +13,13 @@ namespace LocadoraVeiculos.WinApp.ModuloPlanoCobranca
         TabelaPlanoCobranca tabelaPlanoCobranca; 
         ServicoPlanoCobranca servicoPlanoCobranca;
         Action<string> AtualizarRodape;
-
-        public ControladorPlanoCobranca(Action<string> atualizar, ServicoPlanoCobranca servico, TabelaPlanoCobranca tabela)
+        ServicoGrupoVeiculos servicoGrupoVeiculos;
+        public ControladorPlanoCobranca(Action<string> atualizar, ServicoPlanoCobranca servico, TabelaPlanoCobranca tabela, ServicoGrupoVeiculos servicoGrupoVeiculos)
         {
             AtualizarRodape = atualizar;
             tabelaPlanoCobranca = tabela;
             servicoPlanoCobranca = servico;
+            this.servicoGrupoVeiculos = servicoGrupoVeiculos;
         }
 
         public void Editar()
@@ -42,7 +44,7 @@ namespace LocadoraVeiculos.WinApp.ModuloPlanoCobranca
 
             var funcionarioSelecionado = resultado.Value;
 
-            TelaCadastroPlanoCobranca telaCadastroFuncionario = new TelaCadastroPlanoCobranca();
+            TelaCadastroPlanoCobranca telaCadastroFuncionario = new TelaCadastroPlanoCobranca(servicoGrupoVeiculos);
 
             AtualizarRodape("Tela de Edição Funcionário");
             telaCadastroFuncionario.PlanoCobranca = resultado.Value.Clone();
@@ -110,7 +112,7 @@ namespace LocadoraVeiculos.WinApp.ModuloPlanoCobranca
 
         public void Inserir()
         {
-            TelaCadastroPlanoCobranca telaCadastroPlanoCobranca = new TelaCadastroPlanoCobranca();
+            TelaCadastroPlanoCobranca telaCadastroPlanoCobranca = new TelaCadastroPlanoCobranca(servicoGrupoVeiculos);
 
             AtualizarRodape("Tela de Adição Plano de Cobrança");
 
