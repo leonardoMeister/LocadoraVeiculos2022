@@ -17,13 +17,4 @@
     <ProjectReference Include="..\LocadoraVeiculos.Repositorio\LocadoraVeiculos.RepositorioProject.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="ModuloTaxas\" />
-    <Folder Include="ModuloVeiculo\" />
-    <Folder Include="ModuloPlanoCobranca\" />
-    <Folder Include="ModuloGrupoVeiculo\" />
-    <Folder Include="ModuloFuncionario\" />
-    <Folder Include="ModuloCondutores\" />
-  </ItemGroup>
-
 </Project>
