@@ -1,4 +1,5 @@
-﻿using LocadoraVeiculos.Controladores.ModuloServicoVeiculo;
+﻿using LocadoraVeiculos.Controladores.ModuloServicoGrupoVeiculos;
+using LocadoraVeiculos.Controladores.ModuloServicoVeiculo;
 using LocadoraVeiculos.Dominio.ModuloVeiculo;
 using LocadoraVeiculos.WinApp.shared;
 using System;
@@ -12,11 +13,13 @@ namespace LocadoraVeiculos.WinApp.ModuloVeiculo
         TabelaVeiculoControl tabelaVeiculo;
         ServicoVeiculo servicoVeiculo;
         Action<string> AtualizarRodape;
-        public ControladorVeiculo(Action<string> atualizar, ServicoVeiculo servico, TabelaVeiculoControl tabela)
+        ServicoGrupoVeiculos servicoGrupoVeiculos;
+        public ControladorVeiculo(Action<string> atualizar, ServicoVeiculo servico, TabelaVeiculoControl tabela,ServicoGrupoVeiculos servicoGrupoVeiculos)
         {
             AtualizarRodape = atualizar;
             servicoVeiculo = servico;
             tabelaVeiculo = tabela;
+            this.servicoGrupoVeiculos = servicoGrupoVeiculos;
         }
 
         public void Editar()
@@ -41,7 +44,7 @@ namespace LocadoraVeiculos.WinApp.ModuloVeiculo
 
             var funcionarioSelecionado = resultado.Value;
 
-            TelaCadastroVeiculo telaCadastroFuncionario = new TelaCadastroVeiculo();
+            TelaCadastroVeiculo telaCadastroFuncionario = new TelaCadastroVeiculo(servicoGrupoVeiculos);
 
             AtualizarRodape("Tela de Edição Funcionário");
             telaCadastroFuncionario.Veiculo = resultado.Value.Clone();
@@ -110,7 +113,7 @@ namespace LocadoraVeiculos.WinApp.ModuloVeiculo
 
         public void Inserir()
         {
-            TelaCadastroVeiculo telaCadastroVeiculo = new();
+            TelaCadastroVeiculo telaCadastroVeiculo = new(servicoGrupoVeiculos);
 
             AtualizarRodape("Tela de Adição Veiculo");
 
