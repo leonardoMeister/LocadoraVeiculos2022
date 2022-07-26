@@ -28,17 +28,18 @@ namespace LocadoraVeiculos.WinApp.ModuloPlanoCobranca
         }
 
         public Func<PlanoCobranca, FluentResults.Result<PlanoCobranca>> GravarRegistro { get; internal set; }
+        public ServicoGrupoVeiculos Servico { get; }
 
-        public TelaCadastroPlanoCobranca()
+        public TelaCadastroPlanoCobranca(ServicoGrupoVeiculos servico)
         {
             InitializeComponent();
             AtualizarPlanosCobranca();
+            Servico = servico;
         }
 
         private void AtualizarPlanosCobranca()
         {
-            ServicoGrupoVeiculos control = new ServicoGrupoVeiculos();
-            var dados = control.SelecionarTodos().Value;
+            var dados = Servico.SelecionarTodos().Value;
             foreach (var dado in dados)
             {
                 cmbGrupoVeiculo.Items.Add(dado);

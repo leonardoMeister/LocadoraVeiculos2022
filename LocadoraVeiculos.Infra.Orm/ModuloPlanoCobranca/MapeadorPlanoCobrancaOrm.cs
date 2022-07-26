@@ -13,13 +13,14 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloPlanoCobranca
     {
         public void Configure(EntityTypeBuilder<PlanoCobranca> builder)
         {
-            builder.ToTable("TBPlanoCobranca");
-            builder.Property(x => x.Id).ValueGeneratedNever();
-            builder.Property(x => x.TipoPlano).IsRequired();
+
+            builder.ToTable("TB_PLANOCOBRANCA");
+            builder.Property(x => x.Id).ValueGeneratedNever().IsUnicode();
+            builder.Property(x => x.TipoPlano).HasColumnType("varchar(100)").IsRequired();
             builder.Property(x => x.ValorDia).IsRequired();
             builder.Property(x => x.LimiteKM).IsRequired();
             builder.Property(x => x.ValorKM).IsRequired();
-
+            
             builder.HasOne(x => x.GrupoVeiculos)
                 .WithMany();
         }

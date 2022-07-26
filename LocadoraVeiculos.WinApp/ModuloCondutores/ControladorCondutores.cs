@@ -1,4 +1,5 @@
-﻿using LocadoraVeiculos.Controladores.ModuloServicoCondutores;
+﻿using LocadoraVeiculos.Controladores.ModuloServicoCliente;
+using LocadoraVeiculos.Controladores.ModuloServicoCondutores;
 using LocadoraVeiculos.Dominio.ModuloCondutores;
 using LocadoraVeiculos.WinApp.shared;
 using System;
@@ -12,12 +13,13 @@ namespace LocadoraVeiculos.WinApp.ModuloCondutores
         Action<string> AtualizarRodape;
         ServicoCondutores servicoCondutores;
         TabelaCondutoresControl tabelaCondutoresControl;
-
-        public ControladorCondutores(Action<string> atualizar,ServicoCondutores servico, TabelaCondutoresControl tabela)
+        ServicoCliente servicoCliente;
+        public ControladorCondutores(Action<string> atualizar,ServicoCondutores servico, TabelaCondutoresControl tabela, ServicoCliente servicoCliente)
         {
             AtualizarRodape = atualizar;
             tabelaCondutoresControl = tabela;
             servicoCondutores = servico;
+            this.servicoCliente = servicoCliente;
         }
 
 
@@ -43,7 +45,7 @@ namespace LocadoraVeiculos.WinApp.ModuloCondutores
 
             var condutorSelecionado = resultado.Value;
 
-            TelaCadastroCondutoresForm telaCadastroFuncionario = new TelaCadastroCondutoresForm();
+            TelaCadastroCondutoresForm telaCadastroFuncionario = new TelaCadastroCondutoresForm(servicoCliente);
 
             AtualizarRodape("Tela de Edição Condutores");
             telaCadastroFuncionario.Condutores = resultado.Value.Clone();
@@ -111,7 +113,7 @@ namespace LocadoraVeiculos.WinApp.ModuloCondutores
 
         public void Inserir()
         {
-            TelaCadastroCondutoresForm telaCadastroCondutores = new();
+            TelaCadastroCondutoresForm telaCadastroCondutores = new(servicoCliente);
 
             AtualizarRodape("Tela de Adição Condutores");
 

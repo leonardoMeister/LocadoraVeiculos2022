@@ -13,16 +13,16 @@ namespace LocadoraVeiculos.WinApp.ModuloVeiculo
 {
     public partial class TelaCadastroVeiculo : Form
     {
-        public TelaCadastroVeiculo()
+        public TelaCadastroVeiculo(ServicoGrupoVeiculos servico)
         {
             InitializeComponent();
             AtualizarPlanosCobranca();
+            Servico = servico;
         }
 
         private void AtualizarPlanosCobranca()
         {
-            ServicoGrupoVeiculos control = new ServicoGrupoVeiculos();
-            var dados = control.SelecionarTodos().Value;
+            var dados = Servico.SelecionarTodos().Value;
             foreach (var dado in dados)
             {
                 cmbGrupoVeiculo.Items.Add(dado);
@@ -63,6 +63,7 @@ namespace LocadoraVeiculos.WinApp.ModuloVeiculo
         }
 
         public Func<Veiculo, Result<Veiculo>> GravarRegistro { get; internal set; }
+        public ServicoGrupoVeiculos Servico { get; }
 
         private void PegarObjetoTela()
         {

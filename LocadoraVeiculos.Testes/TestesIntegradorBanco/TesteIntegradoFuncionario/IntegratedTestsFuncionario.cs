@@ -1,25 +1,38 @@
 ﻿using LocadoraVeiculos.Controladores.ModuloServicoFuncionario;
 using LocadoraVeiculos.Dominio.ModuloFuncionario;
+using LocadoraVeiculos.Infra.Orm.Compatilhado;
+using LocadoraVeiculos.Infra.Orm.ModuloFuncionario;
 using LocadoraVeiculos.RepositorioProject.shared;
+using Microsoft.Extensions.Configuration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.IO;
 
 namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoFuncionario
 {
     [TestClass]
     public class IntegratedTestsFuncionario
     {
+        private LocadoraVeiculosDbContext dbContext;
+
         public IntegratedTestsFuncionario()
         {
-            string query = @"delete from TB_FUNCIONARIO;";
+            var configuracao = new ConfigurationBuilder()
+             .SetBasePath(Directory.GetCurrentDirectory())
+             .AddJsonFile("ConfiguracaoAplicacao.json")
+             .Build();
 
-            DataBase.ExecutarComando(query);
+            var connectionString = configuracao.GetConnectionString("SqlServer");
+            dbContext = new LocadoraVeiculosDbContext(connectionString);
+            //string query = @"delete from TB_FUNCIONARIO;";
+
+            //DataBase.ExecutarComando(query);
         }
 
         [TestMethod]
         public void DeveInserirFuncionario()
         {
-            ServicoFuncionario repo = new ServicoFuncionario();
+            ServicoFuncionario repo = new ServicoFuncionario(new RepositorioFuncionarioOrm(dbContext));
 
             var fun = new Funcionario("Leonardo", "leonardo123", "leoJosePedrinho123Senha", 2800, DateTime.Now, "Funcionario");
 
@@ -33,7 +46,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoFuncionari
         [TestMethod]
         public void DeveBuscarVariosFuncionarios()
         {
-            ServicoFuncionario repo = new ServicoFuncionario();
+            ServicoFuncionario repo = new ServicoFuncionario(new RepositorioFuncionarioOrm(dbContext));
             var fun = new Funcionario("Leonardo", "leonardo123", "leoJosePedrinho123Senha", 2800, DateTime.Now, "Funcionario");
             var fun2 = new Funcionario("Leonardo2", "leonardo1233", "leoJosePedrinhoSenha", 4000, DateTime.Now, "Funcionario de elite");
 
@@ -46,7 +59,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoFuncionari
         [TestMethod]
         public void DeveVerificarExistenciaFuncionarios()
         {
-            ServicoFuncionario repo = new ServicoFuncionario();
+            ServicoFuncionario repo = new ServicoFuncionario(new RepositorioFuncionarioOrm(dbContext));
             var fun = new Funcionario("Leonardo", "leonardo123", "leoJosePedrinho123Senha", 2800, DateTime.Now, "Funcionario");
             repo.InserirNovo(fun);
 
@@ -57,7 +70,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoFuncionari
         [TestMethod]
         public void DeveVerificarExclusaoFuncionarios()
         {
-            ServicoFuncionario repo = new ServicoFuncionario();
+            ServicoFuncionario repo = new ServicoFuncionario(new RepositorioFuncionarioOrm(dbContext));
             var fun = new Funcionario("Leonardo", "leonardo123", "leoJosePedrinho123Senha", 2800, DateTime.Now, "Funcionario");
             repo.InserirNovo(fun);
             
@@ -71,7 +84,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoFuncionari
         [TestMethod]
         public void DeveEditarFuncionario()
         {
-            ServicoFuncionario repo = new ServicoFuncionario();
+            ServicoFuncionario repo = new ServicoFuncionario(new RepositorioFuncionarioOrm(dbContext));
             var fun = new Funcionario("Leonardo", "leonardo123", "leoJosePedrinho123Senha", 2800, DateTime.Now, "Funcionario");
             repo.InserirNovo(fun);
 

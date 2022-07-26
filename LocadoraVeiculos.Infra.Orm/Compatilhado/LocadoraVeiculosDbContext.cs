@@ -1,4 +1,10 @@
-﻿using LocadoraVeiculos.Dominio.shared;
+﻿using LocadoraVeiculos.Dominio.ModuloCliente;
+using LocadoraVeiculos.Dominio.ModuloCondutores;
+using LocadoraVeiculos.Dominio.ModuloFuncionario;
+using LocadoraVeiculos.Dominio.ModuloGrupoVeiculos;
+using LocadoraVeiculos.Dominio.ModuloPlanoCobranca;
+using LocadoraVeiculos.Dominio.ModuloTaxas;
+using LocadoraVeiculos.Dominio.shared;
 using LocadoraVeiculos.Infra.Orm.ModuloCliente;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -9,7 +15,13 @@ namespace LocadoraVeiculos.Infra.Orm.Compatilhado
     public class LocadoraVeiculosDbContext : DbContext, IContextoPersistencia
     {
         private string connectionString;
-         
+
+        public DbSet<Taxas> Taxas { get; set; }
+        public DbSet<Funcionario> Funcionarios { get; set; }
+        public DbSet<Cliente> Cliente { get; set; }
+        public DbSet<GrupoVeiculos> GrupoVeiculos { get; set; }
+        public DbSet<Condutores> Condutores { get; set; }
+        public DbSet<PlanoCobranca> PlanoCobranca { get; set; }
         public LocadoraVeiculosDbContext(string connectionString)
         {
             this.connectionString = connectionString;
