@@ -8,6 +8,12 @@ using LocadoraVeiculos.Controladores.ModuloServicoTaxas;
 using LocadoraVeiculos.Controladores.ModuloServicoVeiculo;
 using LocadoraVeiculos.Infra.Orm.Compatilhado;
 using LocadoraVeiculos.Infra.Orm.ModuloCliente;
+using LocadoraVeiculos.Infra.Orm.ModuloCondutores;
+using LocadoraVeiculos.Infra.Orm.ModuloFuncionario;
+using LocadoraVeiculos.Infra.Orm.ModuloGrupoVeiculo;
+using LocadoraVeiculos.Infra.Orm.ModuloPlanoCobranca;
+using LocadoraVeiculos.Infra.Orm.ModuloTaxas;
+using LocadoraVeiculos.Infra.Orm.ModuloVeiculo;
 using LocadoraVeiculos.WinApp.ModuloCliente;
 using LocadoraVeiculos.WinApp.ModuloCondutores;
 using LocadoraVeiculos.WinApp.ModuloFuncionario;
@@ -40,26 +46,32 @@ namespace LocadoraVeiculos.WinApp.ServiceLocator
             builder.RegisterType<TabelaClienteControl>().AsSelf();
             builder.RegisterType<ControladorCliente>().AsSelf();
 
+            builder.RegisterType<RepositorioCondutorOrm>().AsSelf();
             builder.RegisterType<ServicoCondutores>().AsSelf();
             builder.RegisterType<TabelaCondutoresControl>().AsSelf();
             builder.RegisterType<ControladorCondutores>().AsSelf();
 
+            builder.RegisterType<RepositorioFuncionarioOrm>().AsSelf();
             builder.RegisterType<ServicoFuncionario>().AsSelf();
             builder.RegisterType<TabelaFuncionarioControl>().AsSelf();
             builder.RegisterType<ControladorFuncionario>().AsSelf();
 
+            builder.RegisterType<RepositorioGrupoVeiculoOrm>().AsSelf();
             builder.RegisterType<ServicoGrupoVeiculos>().AsSelf();
             builder.RegisterType<TabelaGrupoVeiculoControl>().AsSelf();
             builder.RegisterType<ControladorGrupoVeiculo>().AsSelf();
 
+            builder.RegisterType<RepositorioPlanoCobrancaOrm>().AsSelf();
             builder.RegisterType<ServicoPlanoCobranca>().AsSelf();
             builder.RegisterType<TabelaPlanoCobranca>().AsSelf();
             builder.RegisterType<ControladorPlanoCobranca>().AsSelf();
 
+            builder.RegisterType<RepositorioTaxaOrm>().AsSelf();
             builder.RegisterType<ServicoTaxas>().AsSelf();
             builder.RegisterType<TabelaTaxaControl>().AsSelf();
             builder.RegisterType<ControladorTaxa>().AsSelf();
 
+            builder.RegisterType<RepositorioVeiculoOrm>().AsSelf();
             builder.RegisterType<ServicoVeiculo>().AsSelf();
             builder.RegisterType<TabelaVeiculoControl>().AsSelf();
             builder.RegisterType<ControladorVeiculo>().AsSelf();
