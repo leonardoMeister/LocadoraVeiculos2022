@@ -1,24 +1,37 @@
 ﻿using LocadoraVeiculos.Controladores.ModuloServicoCliente;
 using LocadoraVeiculos.Dominio.ModuloCliente;
+using LocadoraVeiculos.Infra.Orm.Compatilhado;
+using LocadoraVeiculos.Infra.Orm.ModuloCliente;
 using LocadoraVeiculos.RepositorioProject.ModuloCliente;
 using LocadoraVeiculos.RepositorioProject.shared;
+using Microsoft.Extensions.Configuration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.IO;
 
 namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoCliente
 {
     [TestClass]
     public class IntegratedTestsCliente
     {
+        private LocadoraVeiculosDbContext dbContext;
+
         public IntegratedTestsCliente()
         {
-            string query = @"delete from TB_CLIENTE;";
-            DataBase.ExecutarComando(query);
+            var configuracao = new ConfigurationBuilder()
+             .SetBasePath(Directory.GetCurrentDirectory())
+             .AddJsonFile("ConfiguracaoAplicacao.json")
+             .Build();
+
+            var connectionString = configuracao.GetConnectionString("SqlServer");
+            dbContext = new LocadoraVeiculosDbContext(connectionString);
+            //string query = @"delete from TB_CLIENTE;";
+            //DataBase.ExecutarComando(query);
         }
 
         [TestMethod]
         public void DeveInserirCliente()
         {
-            ServicoCliente repo = new ServicoCliente();
+            ServicoCliente repo = new ServicoCliente(new RepositorioClienteOrm(dbContext));
 
             Cliente cli = new Cliente("Lonardo", "193.432.943.99", "estrada noeva", "leonrado@gmail.com", "47 99232-3433",
                 EnumCliente.PessoaFisica.ToString(), "");
@@ -36,7 +49,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoCliente
         [TestMethod]
         public void DeveBuscarVariosClientes()
         {
-            ServicoCliente repo = new ServicoCliente();
+            ServicoCliente repo = new ServicoCliente(new RepositorioClienteOrm(dbContext));
 
             Cliente cli = new Cliente("Lonardo", "193.432.943.99", "estrada noeva", "leonrado@gmail.com", "47 99232-3433",
                 EnumCliente.PessoaFisica.ToString(), "");
@@ -54,7 +67,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoCliente
         [TestMethod]
         public void DeveVerificarExistenciaCliente()
         {
-            ServicoCliente repo = new ServicoCliente();
+            ServicoCliente repo = new ServicoCliente(new RepositorioClienteOrm(dbContext));
 
             Cliente cli = new Cliente("Lonardo", "193.432.943.99", "estrada noeva", "leonrado@gmail.com", "47 99232-3433",
                            EnumCliente.PessoaFisica.ToString(), "");
@@ -69,7 +82,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoCliente
         [TestMethod]
         public void DeveEditarCliente()
         {
-            ServicoCliente repo = new ServicoCliente();
+            ServicoCliente repo = new ServicoCliente(new RepositorioClienteOrm(dbContext));
 
             Cliente cli = new Cliente("Lonardo", "193.432.943.99", "estrada noeva", "leonrado@gmail.com", "47 99232-3433",
                            EnumCliente.PessoaFisica.ToString(), "");
@@ -89,7 +102,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoCliente
         [TestMethod]
         public void DeveDeletarCliente()
         {
-            ServicoCliente repo = new ServicoCliente();
+            ServicoCliente repo = new ServicoCliente(new RepositorioClienteOrm(dbContext));
 
             Cliente cli = new Cliente("Lonardo", "193.432.943.99", "estrada noeva", "leonrado@gmail.com", "47 99232-3433",
                                        EnumCliente.PessoaFisica.ToString(), "");
