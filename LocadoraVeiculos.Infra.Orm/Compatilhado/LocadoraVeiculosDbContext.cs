@@ -15,13 +15,7 @@ namespace LocadoraVeiculos.Infra.Orm.Compatilhado
     public class LocadoraVeiculosDbContext : DbContext, IContextoPersistencia
     {
         private string connectionString;
-
-        public DbSet<Taxas> Taxas { get; set; }
-        public DbSet<Funcionario> Funcionarios { get; set; }
-        public DbSet<Cliente> Cliente { get; set; }
-        public DbSet<GrupoVeiculos> GrupoVeiculos { get; set; }
-        public DbSet<Condutores> Condutores { get; set; }
-        public DbSet<PlanoCobranca> PlanoCobranca { get; set; }
+       
         public LocadoraVeiculosDbContext(string connectionString)
         {
             this.connectionString = connectionString;

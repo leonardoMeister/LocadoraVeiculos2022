@@ -20,6 +20,10 @@ namespace LocadoraVeiculos.Dominio.ModuloVeiculo
         public GrupoVeiculos GrupoVeiculos { get; set; }
         public Guid GrupoVeiculosId { get; set; }
 
+        public Veiculo()
+        {
+
+        }
 
         public Veiculo(string modelo, string placa, string marca, string cor, string tipoCombustivel, 
             decimal capacidadeTanque, DateTime ano, decimal quilometragem, byte[] foto, GrupoVeiculos grupoVeiculos)

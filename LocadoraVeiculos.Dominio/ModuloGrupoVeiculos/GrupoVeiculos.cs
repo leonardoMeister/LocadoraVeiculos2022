@@ -1,5 +1,7 @@
-﻿using LocadoraVeiculos.Dominio.shared;
+﻿using LocadoraVeiculos.Dominio.ModuloPlanoCobranca;
+using LocadoraVeiculos.Dominio.shared;
 using System;
+using System.Collections.Generic;
 
 namespace LocadoraVeiculos.Dominio.ModuloGrupoVeiculos
 {
@@ -11,6 +13,7 @@ namespace LocadoraVeiculos.Dominio.ModuloGrupoVeiculos
         }
 
         public string NomeGrupo { get; set; }
+        //public List<PlanoCobranca>PlanoCobranca { get; set; }
 
         public GrupoVeiculos Clone()
         {
