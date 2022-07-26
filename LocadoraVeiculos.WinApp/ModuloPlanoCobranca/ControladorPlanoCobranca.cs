@@ -13,11 +13,11 @@ namespace LocadoraVeiculos.WinApp.ModuloPlanoCobranca
         ServicoPlanoCobranca servicoPlanoCobranca;
         Action<string> AtualizarRodape;
 
-        public ControladorPlanoCobranca(Action<string> atualizar)
+        public ControladorPlanoCobranca(Action<string> atualizar, ServicoPlanoCobranca servico, TabelaPlanoCobranca tabela)
         {
             AtualizarRodape = atualizar;
-            tabelaPlanoCobranca = new TabelaPlanoCobranca();
-            servicoPlanoCobranca = new ServicoPlanoCobranca();
+            tabelaPlanoCobranca = tabela;
+            servicoPlanoCobranca = servico;
         }
 
         public void Editar()

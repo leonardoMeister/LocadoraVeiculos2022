@@ -1,4 +1,5 @@
 using LocadoraVeiculos.Infra.Logging;
+using LocadoraVeiculos.WinApp.ServiceLocator;
 using LocadoraVeiculos.Infra.Orm.Compatilhado;
 using System;
 using System.Windows.Forms;
@@ -15,6 +16,7 @@ namespace LocadoraVeiculos.WinApp
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
             Application.Run(new TelaPrincipalForm());
         }
     }

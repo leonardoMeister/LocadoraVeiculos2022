@@ -12,11 +12,11 @@ namespace LocadoraVeiculos.WinApp.ModuloVeiculo
         TabelaVeiculoControl tabelaVeiculo;
         ServicoVeiculo servicoVeiculo;
         Action<string> AtualizarRodape;
-        public ControladorVeiculo(Action<string> atualizar)
+        public ControladorVeiculo(Action<string> atualizar, ServicoVeiculo servico, TabelaVeiculoControl tabela)
         {
             AtualizarRodape = atualizar;
-            servicoVeiculo = new();
-            tabelaVeiculo = new();
+            servicoVeiculo = servico;
+            tabelaVeiculo = tabela;
         }
 
         public void Editar()

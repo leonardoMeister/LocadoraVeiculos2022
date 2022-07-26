@@ -13,11 +13,11 @@ namespace LocadoraVeiculos.WinApp.ModuloFuncionario
         ServicoFuncionario servicoFuncionario;
         Action<string> AtualizarRodape;
 
-        public ControladorFuncionario(Action<string> atualizar)
+        public ControladorFuncionario(Action<string> atualizar, ServicoFuncionario servico, TabelaFuncionarioControl tabela)
         {
             AtualizarRodape = atualizar;
-            tabelaFuncionario = new TabelaFuncionarioControl();
-            servicoFuncionario = new ServicoFuncionario();
+            tabelaFuncionario = tabela;
+            servicoFuncionario = servico;
         }
 
         public void Editar()

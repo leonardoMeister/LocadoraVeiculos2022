@@ -9,13 +9,13 @@ namespace LocadoraVeiculos.WinApp.ModuloGrupoVeiculo
 {
     public class ControladorGrupoVeiculo : ConfiguracaoBase, ICadastravel
     {
-        TabelaGrupoVeiculo tabelaGrupoVeiculos;
+        TabelaGrupoVeiculoControl tabelaGrupoVeiculos;
         ServicoGrupoVeiculos servicoGrupoVeiculos;
         Action<string> AtualizarRodape;
-        public ControladorGrupoVeiculo(Action<string> atualizar)
+        public ControladorGrupoVeiculo(Action<string> atualizar, ServicoGrupoVeiculos servico, TabelaGrupoVeiculoControl tabela)
         {
-            tabelaGrupoVeiculos = new TabelaGrupoVeiculo();
-            servicoGrupoVeiculos = new ServicoGrupoVeiculos();
+            tabelaGrupoVeiculos = tabela;
+            servicoGrupoVeiculos = servico;
             AtualizarRodape = atualizar;
         }
 
