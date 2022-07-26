@@ -11,9 +11,9 @@ namespace LocadoraVeiculos.Controladores.ModuloServicoCondutores
 {
     public class ServicoCondutores : ServicoBase<Condutores>
     {
-        protected override IRepository<Condutores> PegarRepositorio()
+        public ServicoCondutores(IRepository<Condutores> repo) : base(repo)
         {
-            return new RepositorioCondutores(new MapeadorCondutores());
+
         }
 
         protected override AbstractValidator<Condutores> PegarValidador()

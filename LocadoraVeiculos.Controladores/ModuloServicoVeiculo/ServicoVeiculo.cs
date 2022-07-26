@@ -12,9 +12,9 @@ namespace LocadoraVeiculos.Controladores.ModuloServicoVeiculo
 {
     public class ServicoVeiculo : ServicoBase<Veiculo>
     {
-        protected override IRepository<Veiculo> PegarRepositorio() 
+        public ServicoVeiculo(IRepository<Veiculo> repo) : base(repo)
         {
-            return new RepositorioVeiculo(new MapeadorVeiculo());
+
         }
 
         protected override AbstractValidator<Veiculo> PegarValidador()

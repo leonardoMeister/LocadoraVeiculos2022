@@ -25,6 +25,8 @@ namespace LocadoraVeiculos.Dominio.ModuloPlanoCobranca
         public decimal ValorKM { get; set; }
 
         public GrupoVeiculos GrupoVeiculos { get; set; }
+        public Guid GrupoVeiculosId { get; set; }
+
         public PlanoCobranca Clone()
         {
             return MemberwiseClone() as PlanoCobranca;

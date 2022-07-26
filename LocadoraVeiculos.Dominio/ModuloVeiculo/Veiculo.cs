@@ -7,17 +7,19 @@ namespace LocadoraVeiculos.Dominio.ModuloVeiculo
 {
     public class Veiculo : EntidadeBase
     {
-        public string Modelo;
-        public string Placa;
-        public string Marca;
-        public string Cor;
-        public string TipoCombustivel;
-        public decimal CapacidadeTanque;
-        public DateTime Ano;
-        public decimal Quilometragem;
-        public byte[] Foto;
+        public string Modelo { get; set; }
+        public string Placa { get; set; }
+        public string Marca { get; set; }
+        public string Cor { get; set; }
+        public string TipoCombustivel { get; set; }
+        public decimal CapacidadeTanque { get; set; }
+        public DateTime Ano { get; set; }
+        public decimal Quilometragem { get; set; }
+        public byte[] Foto { get; set; }
 
-        public GrupoVeiculos GrupoVeiculos;
+        public GrupoVeiculos GrupoVeiculos { get; set; }
+        public Guid GrupoVeiculosId { get; set; }
+
 
         public Veiculo(string modelo, string placa, string marca, string cor, string tipoCombustivel, 
             decimal capacidadeTanque, DateTime ano, decimal quilometragem, byte[] foto, GrupoVeiculos grupoVeiculos)

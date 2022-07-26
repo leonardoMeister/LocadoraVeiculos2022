@@ -11,10 +11,11 @@ namespace LocadoraVeiculos.Controladores.ModuloServicoTaxas
 {
     public class ServicoTaxas : ServicoBase<Taxas>
     {
-        protected override IRepository<Taxas> PegarRepositorio()
+        public ServicoTaxas(IRepository<Taxas> repo) : base(repo)
         {
-            return new RepositorioTaxas(new MapeadorTaxas());
+
         }
+        
         protected override AbstractValidator<Taxas> PegarValidador()
         {
             return new ValidadorTaxas();

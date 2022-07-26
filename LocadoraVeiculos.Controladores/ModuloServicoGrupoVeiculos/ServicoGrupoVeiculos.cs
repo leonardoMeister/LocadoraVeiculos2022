@@ -11,10 +11,10 @@ namespace LocadoraVeiculos.Controladores.ModuloServicoGrupoVeiculos
 {
     public class ServicoGrupoVeiculos : ServicoBase<GrupoVeiculos>
     {
-        protected override IRepository<GrupoVeiculos> PegarRepositorio()
+        public ServicoGrupoVeiculos(IRepository<GrupoVeiculos> repo) : base(repo)
         {
-            return new RepositorioGrupoVeiculos(new MapeadorGrupoVeiculos());
-        }
+
+        }        
 
         protected override AbstractValidator<GrupoVeiculos> PegarValidador()
         {

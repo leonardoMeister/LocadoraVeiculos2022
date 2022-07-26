@@ -15,14 +15,12 @@ namespace LocadoraVeiculos.Repositorio.shared
 
         protected AbstractValidator<T> Validator;
 
-        public ServicoBase()
+        public ServicoBase(IRepository<T> repo)
         {
             Validator = PegarValidador();
-            Repositorio = PegarRepositorio();
+            Repositorio = repo;
             
         }
-
-        protected abstract IRepository<T> PegarRepositorio(); 
 
         protected abstract AbstractValidator<T> PegarValidador();
 

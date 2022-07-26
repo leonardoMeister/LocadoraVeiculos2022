@@ -12,10 +12,11 @@ namespace LocadoraVeiculos.Controladores.ModuloServicoFuncionario
 {
     public class ServicoFuncionario : ServicoBase<Funcionario> 
     {
-        protected override IRepository<Funcionario> PegarRepositorio()
+        public ServicoFuncionario(IRepository<Funcionario> repo) : base(repo)
         {
-            return new RepositorioFuncionario(new MapeadorFuncionario());
+
         }
+        
         protected override AbstractValidator<Funcionario> PegarValidador()
         {
             return new ValidadorFuncionario();

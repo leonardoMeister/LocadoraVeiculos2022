@@ -11,10 +11,10 @@ namespace LocadoraVeiculos.Controladores.ModuloServicoPlanoCobranca
 {
     public class ServicoPlanoCobranca : ServicoBase<PlanoCobranca>
     {
-        protected override IRepository<PlanoCobranca> PegarRepositorio()
+        public ServicoPlanoCobranca(IRepository<PlanoCobranca> repo) : base(repo)
         {
-            return new RepositorioPlanoCobranca(new MapeadorPlanoCobranca());
-        }
+
+        }        
 
         protected override AbstractValidator<PlanoCobranca> PegarValidador()
         {

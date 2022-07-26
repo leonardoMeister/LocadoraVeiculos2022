@@ -11,6 +11,10 @@ namespace LocadoraVeiculos.Controladores.ModuloServicoCliente
 { 
     public class ServicoCliente : ServicoBase<Cliente> 
     {
+        public ServicoCliente(IRepository<Cliente> repo) : base(repo)
+        {
+
+        }
 
         protected override IRepository<Cliente> PegarRepositorio()
         {

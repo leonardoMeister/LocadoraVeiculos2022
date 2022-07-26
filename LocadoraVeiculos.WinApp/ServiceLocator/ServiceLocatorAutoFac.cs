@@ -6,6 +6,8 @@ using LocadoraVeiculos.Controladores.ModuloServicoGrupoVeiculos;
 using LocadoraVeiculos.Controladores.ModuloServicoPlanoCobranca;
 using LocadoraVeiculos.Controladores.ModuloServicoTaxas;
 using LocadoraVeiculos.Controladores.ModuloServicoVeiculo;
+using LocadoraVeiculos.Infra.Orm.Compatilhado;
+using LocadoraVeiculos.Infra.Orm.ModuloCliente;
 using LocadoraVeiculos.WinApp.ModuloCliente;
 using LocadoraVeiculos.WinApp.ModuloCondutores;
 using LocadoraVeiculos.WinApp.ModuloFuncionario;
@@ -31,7 +33,9 @@ namespace LocadoraVeiculos.WinApp.ServiceLocator
             var builder = new ContainerBuilder();
 
             builder.Register(x => atualizarRodape).AsSelf();
+            builder.RegisterType<LocadoraVeiculosDbContext>().AsSelf();
 
+            builder.RegisterType<RepositorioClienteOrm>().AsSelf();
             builder.RegisterType<ServicoCliente>().AsSelf();     
             builder.RegisterType<TabelaClienteControl>().AsSelf();
             builder.RegisterType<ControladorCliente>().AsSelf();

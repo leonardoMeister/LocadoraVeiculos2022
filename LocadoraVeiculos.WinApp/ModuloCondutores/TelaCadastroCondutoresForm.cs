@@ -15,16 +15,13 @@ namespace LocadoraVeiculos.WinApp.ModuloCondutores
 
         public ServicoCliente controladorCliente;
 
-
         public Condutores Condutores
         {
             get { return Condutores; }
             set
             {
                 condutor = value;
-
                 PreencherDadosNaTela();
-
             }
         } 
 
@@ -41,8 +38,6 @@ namespace LocadoraVeiculos.WinApp.ModuloCondutores
             txtEndereco.Text = condutor.Endereco;
             txtCnh.Text = condutor.Cnh;
             dateTimeCnh.Text = condutor.ValidadeCnh;
-
-
         }
 
         public TelaCadastroCondutoresForm()
