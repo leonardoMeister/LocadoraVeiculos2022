@@ -12,10 +12,10 @@ namespace LocadoraVeiculos.WinApp.ModuloTaxa
         TabelaTaxaControl tabelaTaxa;
         ServicoTaxas servicoTaxas;
         Action<string> AtualizarRodape;
-        public ControladorTaxa(Action<string> atualizar)
+        public ControladorTaxa(Action<string> atualizar, ServicoTaxas servico,TabelaTaxaControl tabela)
         {
-            tabelaTaxa = new TabelaTaxaControl();
-            servicoTaxas = new ServicoTaxas();
+            tabelaTaxa = tabela;
+            servicoTaxas = servico;
             AtualizarRodape = atualizar;
         }
 

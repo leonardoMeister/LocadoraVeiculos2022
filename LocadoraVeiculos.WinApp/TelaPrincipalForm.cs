@@ -15,14 +15,16 @@ namespace LocadoraVeiculos.WinApp
     public partial class TelaPrincipalForm : Form
     {
 
-        ServiceLocatorManual serviceLocatorManual;        
+        IServiceLocator serviceLocator;        
 
         public ICadastravel telaSelecionada;
 
         public TelaPrincipalForm()
         {
             InitializeComponent();
-            serviceLocatorManual = new ServiceLocatorManual(this.AtualizarRodape);
+
+            this.serviceLocator = new ServiceLocatorAutoFac(this.AtualizarRodape);
+            ;
 
             labelRodape.Text = string.Empty;
             labelTipoCadastro.Text = string.Empty;            
@@ -94,32 +96,32 @@ namespace LocadoraVeiculos.WinApp
         #region OPCOES DO MENU
         private void GrupoVeiculosMenuItem_Click(object sender, EventArgs e)
         {
-            ConfigurarTelaPrincipal(serviceLocatorManual.Get<ControladorGrupoVeiculo>());
+            ConfigurarTelaPrincipal(serviceLocator.Get<ControladorGrupoVeiculo>());
         }
         private void TaxasMenuItem_Click(object sender, EventArgs e)
         {
-            ConfigurarTelaPrincipal(serviceLocatorManual.Get<ControladorTaxa>());
+            ConfigurarTelaPrincipal(serviceLocator.Get<ControladorTaxa>());
         }
         private void ClienteMenuItem_Click(object sender, EventArgs e)
         {
-            ConfigurarTelaPrincipal(serviceLocatorManual.Get<ControladorCliente>());
+            ConfigurarTelaPrincipal(serviceLocator.Get<ControladorCliente>());
         }
         private void FuncionarioMenuItem_Click(object sender, EventArgs e)
         {
-            ConfigurarTelaPrincipal(serviceLocatorManual.Get<ControladorFuncionario>());
+            ConfigurarTelaPrincipal(serviceLocator.Get<ControladorFuncionario>());
         }
         private void CondutoresMenuItem_Click(object sender, EventArgs e)
         {
-            ConfigurarTelaPrincipal(serviceLocatorManual.Get<ControladorCondutores>());
+            ConfigurarTelaPrincipal(serviceLocator.Get<ControladorCondutores>());
         }
         private void PlanoDeCobrancaMenuItem_Click(object sender, EventArgs e)
         {
-            ConfigurarTelaPrincipal(serviceLocatorManual.Get<ControladorPlanoCobranca>());
+            ConfigurarTelaPrincipal(serviceLocator.Get<ControladorPlanoCobranca>());
 
         }
         private void VeiculoMenuItem_Click(object sender, EventArgs e)
         {
-            ConfigurarTelaPrincipal(serviceLocatorManual.Get<ControladorVeiculo>());
+            ConfigurarTelaPrincipal(serviceLocator.Get<ControladorVeiculo>());
 
         }
         #endregion

@@ -9,15 +9,15 @@ namespace LocadoraVeiculos.WinApp.ModuloCliente
 {
     public class ControladorCliente : ConfiguracaoBase, ICadastravel
     {
-        Action<string> AtualizarRodape;
+        Action<string> atualizarRodape;
         ServicoCliente servicoCliente;
         TabelaClienteControl tabelaClienteControl;
 
-        public ControladorCliente(Action<string> atualizar)
+        public ControladorCliente(Action<string> atualizar, ServicoCliente servico, TabelaClienteControl tabela)
         {
-            AtualizarRodape = atualizar;
-            tabelaClienteControl = new TabelaClienteControl();
-            servicoCliente = new ServicoCliente();
+            atualizarRodape = atualizar;            
+            servicoCliente = servico;
+            tabelaClienteControl = tabela;
         }
 
 
@@ -45,14 +45,14 @@ namespace LocadoraVeiculos.WinApp.ModuloCliente
 
             TelaCadastroClienteForm telaCadastroFuncionario = new TelaCadastroClienteForm();
 
-            AtualizarRodape("Tela de Edição Funcionário");
+            atualizarRodape("Tela de Edição Funcionário");
             telaCadastroFuncionario.Cliente = resultado.Value.Clone();
 
             telaCadastroFuncionario.GravarRegistro = servicoCliente.Editar;
-            telaCadastroFuncionario.AtualizarRodape = AtualizarRodape;
+            telaCadastroFuncionario.AtualizarRodape = atualizarRodape;
             telaCadastroFuncionario.ShowDialog();
 
-            if (telaCadastroFuncionario.DialogResult == DialogResult.OK) AtualizarRodape("Edição Funcionário Realizado Com Sucesso");
+            if (telaCadastroFuncionario.DialogResult == DialogResult.OK) atualizarRodape("Edição Funcionário Realizado Com Sucesso");
         }
 
         public void Excluir()
@@ -100,7 +100,7 @@ namespace LocadoraVeiculos.WinApp.ModuloCliente
 
                 tabelaClienteControl.AtualizarRegistros(funcionarios);
 
-                AtualizarRodape($"Visualizando {funcionarios.Count} Cliente(s)");
+                atualizarRodape($"Visualizando {funcionarios.Count} Cliente(s)");
             }
             else
             {
@@ -113,13 +113,13 @@ namespace LocadoraVeiculos.WinApp.ModuloCliente
         {
             TelaCadastroClienteForm telaCadastroCliente = new();
 
-            AtualizarRodape("Tela de Adição Cliente");
+            atualizarRodape("Tela de Adição Cliente");
 
             telaCadastroCliente.GravarRegistro = servicoCliente.InserirNovo;
-            telaCadastroCliente.AtualizarRodape = AtualizarRodape;
+            telaCadastroCliente.AtualizarRodape = atualizarRodape;
             telaCadastroCliente.ShowDialog();
 
-            if (telaCadastroCliente.DialogResult == DialogResult.OK) AtualizarRodape("Cadastro Cliente Realizado Com Sucesso");
+            if (telaCadastroCliente.DialogResult == DialogResult.OK) atualizarRodape("Cadastro Cliente Realizado Com Sucesso");
         }
 
         public ConfiguracaoToolboxBase ObtemConfiguracaoToolbox()

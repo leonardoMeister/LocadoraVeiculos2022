@@ -1,6 +1,6 @@
 ﻿namespace LocadoraVeiculos.WinApp.ModuloGrupoVeiculo
 {
-    partial class TabelaGrupoVeiculo
+    partial class TabelaGrupoVeiculoControl
     {
         /// <summary> 
         /// Required designer variable.

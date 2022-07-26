@@ -13,11 +13,11 @@ namespace LocadoraVeiculos.WinApp.ModuloCondutores
         ServicoCondutores servicoCondutores;
         TabelaCondutoresControl tabelaCondutoresControl;
 
-        public ControladorCondutores(Action<string> atualizar)
+        public ControladorCondutores(Action<string> atualizar,ServicoCondutores servico, TabelaCondutoresControl tabela)
         {
             AtualizarRodape = atualizar;
-            tabelaCondutoresControl = new TabelaCondutoresControl();
-            servicoCondutores = new ServicoCondutores();
+            tabelaCondutoresControl = tabela;
+            servicoCondutores = servico;
         }
 
 
