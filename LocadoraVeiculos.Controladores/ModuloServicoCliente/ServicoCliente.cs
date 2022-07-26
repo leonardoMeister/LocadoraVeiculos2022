@@ -16,11 +16,6 @@ namespace LocadoraVeiculos.Controladores.ModuloServicoCliente
 
         }
 
-        protected override IRepository<Cliente> PegarRepositorio()
-        {
-            return new RepositorioCliente(new MapeadorCliente());
-        }
-
         protected override AbstractValidator<Cliente> PegarValidador()
         {
             return new ValidadorCliente();
