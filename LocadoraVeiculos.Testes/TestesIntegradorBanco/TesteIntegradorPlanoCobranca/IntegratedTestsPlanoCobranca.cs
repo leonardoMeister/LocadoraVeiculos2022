@@ -20,11 +20,14 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradorPlanoCobr
         public IntegratedTestsPlanoCobranca()
         {
             var configuracao = new ConfigurationBuilder()
-             .SetBasePath(Directory.GetCurrentDirectory())
-             .AddJsonFile("ConfiguracaoAplicacao.json")
-             .Build();
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("ConfiguracaoAplicacao.json")
+                .Build();
 
-            var connectionString = configuracao.GetConnectionString("SqlServer");
+            var connectionString = configuracao
+                .GetSection("ConnectionStrings")
+                .GetSection("SqlServer")
+                .Value;
             dbContext = new LocadoraVeiculosDbContext(connectionString);
 
             //string query = @"delete from TB_VEICULO;";
@@ -40,8 +43,8 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradorPlanoCobr
         [TestMethod]
         public void DeveInserirPlanoCobranca()
         {
-            ServicoPlanoCobranca contro = new ServicoPlanoCobranca(new RepositorioPlanoCobrancaOrm(dbContext));
-            ServicoGrupoVeiculos controGrupo = new ServicoGrupoVeiculos(new RepositorioGrupoVeiculoOrm(dbContext));
+            ServicoPlanoCobranca contro = new ServicoPlanoCobranca(new RepositorioPlanoCobrancaOrm(dbContext), dbContext);
+            ServicoGrupoVeiculos controGrupo = new ServicoGrupoVeiculos(new RepositorioGrupoVeiculoOrm(dbContext), dbContext);
 
             GrupoVeiculos grupo = new GrupoVeiculos("Nome grupo Veiculos 1");
             controGrupo.InserirNovo(grupo);
@@ -57,8 +60,8 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradorPlanoCobr
         [TestMethod]
         public void DeveBuscarVariosPlanos()
         {
-            ServicoPlanoCobranca contro = new ServicoPlanoCobranca(new RepositorioPlanoCobrancaOrm(dbContext));
-            ServicoGrupoVeiculos controGrupo = new ServicoGrupoVeiculos(new RepositorioGrupoVeiculoOrm(dbContext));
+            ServicoPlanoCobranca contro = new ServicoPlanoCobranca(new RepositorioPlanoCobrancaOrm(dbContext), dbContext);
+            ServicoGrupoVeiculos controGrupo = new ServicoGrupoVeiculos(new RepositorioGrupoVeiculoOrm(dbContext), dbContext);
 
             GrupoVeiculos grupo = new GrupoVeiculos("Nome grupo Veiculos 1");
             controGrupo.InserirNovo(grupo);
@@ -77,8 +80,8 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradorPlanoCobr
         [TestMethod]
         public void DeveVerificarExistenciaPlano()
         {
-            ServicoPlanoCobranca contro = new ServicoPlanoCobranca(new RepositorioPlanoCobrancaOrm(dbContext));
-            ServicoGrupoVeiculos controGrupo = new ServicoGrupoVeiculos(new RepositorioGrupoVeiculoOrm(dbContext));
+            ServicoPlanoCobranca contro = new ServicoPlanoCobranca(new RepositorioPlanoCobrancaOrm(dbContext), dbContext);
+            ServicoGrupoVeiculos controGrupo = new ServicoGrupoVeiculos(new RepositorioGrupoVeiculoOrm(dbContext), dbContext);
 
             GrupoVeiculos grupo = new GrupoVeiculos("Nome grupo Veiculos 1");
             controGrupo.InserirNovo(grupo);
@@ -95,8 +98,8 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradorPlanoCobr
         [TestMethod]
         public void DeveDeletarPlano()
         {
-            ServicoPlanoCobranca contro = new ServicoPlanoCobranca(new RepositorioPlanoCobrancaOrm(dbContext));
-            ServicoGrupoVeiculos controGrupo = new ServicoGrupoVeiculos(new RepositorioGrupoVeiculoOrm(dbContext));
+            ServicoPlanoCobranca contro = new ServicoPlanoCobranca(new RepositorioPlanoCobrancaOrm(dbContext), dbContext);
+            ServicoGrupoVeiculos controGrupo = new ServicoGrupoVeiculos(new RepositorioGrupoVeiculoOrm(dbContext), dbContext);
 
             GrupoVeiculos grupo = new GrupoVeiculos("Nome grupo Veiculos 1");
             controGrupo.InserirNovo(grupo);
@@ -115,8 +118,8 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradorPlanoCobr
         [TestMethod]
         public void DeveEditarPlano()
         {
-            ServicoPlanoCobranca contro = new ServicoPlanoCobranca(new RepositorioPlanoCobrancaOrm(dbContext));
-            ServicoGrupoVeiculos controGrupo = new ServicoGrupoVeiculos(new RepositorioGrupoVeiculoOrm(dbContext));
+            ServicoPlanoCobranca contro = new ServicoPlanoCobranca(new RepositorioPlanoCobrancaOrm(dbContext), dbContext);
+            ServicoGrupoVeiculos controGrupo = new ServicoGrupoVeiculos(new RepositorioGrupoVeiculoOrm(dbContext), dbContext);
 
             GrupoVeiculos grupo = new GrupoVeiculos("Nome grupo Veiculos 1");
             controGrupo.InserirNovo(grupo);

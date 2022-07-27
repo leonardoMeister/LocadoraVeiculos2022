@@ -17,11 +17,14 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoCondutores
         public IntegratedTestsCondutores()
         {
             var configuracao = new ConfigurationBuilder()
-             .SetBasePath(Directory.GetCurrentDirectory())
-             .AddJsonFile("ConfiguracaoAplicacao.json")
-             .Build();
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("ConfiguracaoAplicacao.json")
+                .Build();
 
-            var connectionString = configuracao.GetConnectionString("SqlServer");
+            var connectionString = configuracao
+                .GetSection("ConnectionStrings")
+                .GetSection("SqlServer")
+                .Value;
             dbContext = new LocadoraVeiculosDbContext(connectionString);
 
             //string query = @"delete from TB_CONDUTORES;";
@@ -31,7 +34,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoCondutores
         [TestMethod] 
         public void DeveInserirCondutores()
         {
-            ServicoCondutores repo = new ServicoCondutores(new RepositorioCondutorOrm(dbContext));
+            ServicoCondutores repo = new ServicoCondutores(new RepositorioCondutorOrm(dbContext), dbContext);
 
             Condutores condutor = new Condutores("Gustavo Paes", "023.599.199.94", "Andre Gargioni", "emailteste@gmail.com", "99-99999-9999", "12323432193", "segunda - feira, 4 de julho de 2022");
 
@@ -45,7 +48,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoCondutores
         [TestMethod]
         public void DeveBuscarVariosCondutores()
         {
-            ServicoCondutores repo = new ServicoCondutores(new RepositorioCondutorOrm(dbContext));
+            ServicoCondutores repo = new ServicoCondutores(new RepositorioCondutorOrm(dbContext), dbContext);
 
             Condutores tax = new Condutores("Gustavo Paes1", "023.599.199.93", "Andre Gargioni1", "emailteste1@gmail.com", "99-99999-9991", "12323432191", "segunda - feira, 4 de julho de 2022");
             Condutores tax2 = new Condutores("Gustavo Paes2", "023.599.199.95", "Andre Gargioni2", "emailteste2@gmail.com", "99-99999-9992", "12323432192", "segunda - feira, 4 de julho de 2022");
@@ -62,7 +65,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoCondutores
         [TestMethod]
         public void DeveVerificarExistenciaCondutores()
         {
-            ServicoCondutores repo = new ServicoCondutores(new RepositorioCondutorOrm(dbContext));
+            ServicoCondutores repo = new ServicoCondutores(new RepositorioCondutorOrm(dbContext), dbContext);
 
             Condutores tax = new Condutores("Gustavo Paes", "023.599.199.94", "Andre Gargioni", "emailteste@gmail.com", "99-99999-9999", "12323432193", "segunda - feira, 4 de julho de 2022");
 
@@ -76,7 +79,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoCondutores
         [TestMethod]
         public void DeveDeletarCondutores()
         {
-            ServicoCondutores repo = new ServicoCondutores(new RepositorioCondutorOrm(dbContext));
+            ServicoCondutores repo = new ServicoCondutores(new RepositorioCondutorOrm(dbContext), dbContext);
 
             Condutores condutore = new Condutores("Gustavo Paes", "023.599.199.94", "Andre Gargioni", "emailteste@gmail.com", "99-99999-9999", "12323432193", "segunda - feira, 4 de julho de 2022");
 

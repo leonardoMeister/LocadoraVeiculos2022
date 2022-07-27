@@ -17,11 +17,14 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoGrupoVeicu
         public IntegratedTestsGrupoVeiculos()
         {
             var configuracao = new ConfigurationBuilder()
-             .SetBasePath(Directory.GetCurrentDirectory())
-             .AddJsonFile("ConfiguracaoAplicacao.json")
-             .Build();
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("ConfiguracaoAplicacao.json")
+                .Build();
 
-            var connectionString = configuracao.GetConnectionString("SqlServer");
+            var connectionString = configuracao
+                .GetSection("ConnectionStrings")
+                .GetSection("SqlServer")
+                .Value;
             dbContext = new LocadoraVeiculosDbContext(connectionString);
             
             //string query = @"delete from TB_VEICULO;";
@@ -35,7 +38,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoGrupoVeicu
         [TestMethod]
         public void DeveInserirGrupoVeiculos()
         {
-            ServicoGrupoVeiculos repo = new ServicoGrupoVeiculos(new RepositorioGrupoVeiculoOrm(dbContext));
+            ServicoGrupoVeiculos repo = new ServicoGrupoVeiculos(new RepositorioGrupoVeiculoOrm(dbContext), dbContext);
             GrupoVeiculos gveh = new GrupoVeiculos("Grupo 1");
             repo.InserirNovo(gveh);
 
@@ -47,7 +50,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoGrupoVeicu
         [TestMethod]
         public void DeveBuscarVariosGrupoVeiculos()
         {
-            ServicoGrupoVeiculos repo = new ServicoGrupoVeiculos(new RepositorioGrupoVeiculoOrm(dbContext));
+            ServicoGrupoVeiculos repo = new ServicoGrupoVeiculos(new RepositorioGrupoVeiculoOrm(dbContext), dbContext);
             GrupoVeiculos gveh = new GrupoVeiculos("Grupo 1");
             GrupoVeiculos gveh2 = new GrupoVeiculos("Grupo 2");
 
@@ -63,7 +66,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoGrupoVeicu
         [TestMethod]
         public void DeveVerificarExistenciaGrupoVeiculos()
         {
-            ServicoGrupoVeiculos repo = new ServicoGrupoVeiculos(new RepositorioGrupoVeiculoOrm(dbContext));
+            ServicoGrupoVeiculos repo = new ServicoGrupoVeiculos(new RepositorioGrupoVeiculoOrm(dbContext), dbContext);
             GrupoVeiculos gveh = new GrupoVeiculos("Grupo 1");
             repo.InserirNovo(gveh);
 
@@ -75,7 +78,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoGrupoVeicu
         [TestMethod]
         public void DeveEditarGrupoVeiculos()
         {
-            ServicoGrupoVeiculos repo = new ServicoGrupoVeiculos(new RepositorioGrupoVeiculoOrm(dbContext));
+            ServicoGrupoVeiculos repo = new ServicoGrupoVeiculos(new RepositorioGrupoVeiculoOrm(dbContext), dbContext);
             GrupoVeiculos gveh = new GrupoVeiculos("Grupo 2");
             repo.InserirNovo(gveh);
 
@@ -91,7 +94,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoGrupoVeicu
         [TestMethod]
         public void DeveDeletarGrupoVeiculos()
         {
-            ServicoGrupoVeiculos repo = new ServicoGrupoVeiculos(new RepositorioGrupoVeiculoOrm(dbContext));
+            ServicoGrupoVeiculos repo = new ServicoGrupoVeiculos(new RepositorioGrupoVeiculoOrm(dbContext), dbContext);
             GrupoVeiculos gveh = new GrupoVeiculos("Grupo 2");
             repo.InserirNovo(gveh);
 
