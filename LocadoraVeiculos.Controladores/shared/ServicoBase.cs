@@ -13,13 +13,16 @@ namespace LocadoraVeiculos.Repositorio.shared
     {
         protected IRepository<T> Repositorio;
 
+        protected IContextoPersistencia ContextoPersistencia;
+
         protected AbstractValidator<T> Validator;
 
-        public ServicoBase(IRepository<T> repo)
+        public ServicoBase(IRepository<T> repo, IContextoPersistencia ContextoPersistencia)
         {
             Validator = PegarValidador();
             Repositorio = repo;
-            
+            this.ContextoPersistencia = ContextoPersistencia;
+
         }
 
         protected abstract AbstractValidator<T> PegarValidador();
@@ -59,7 +62,7 @@ namespace LocadoraVeiculos.Repositorio.shared
             try
             {
                 Repositorio.InserirNovo(registro);
-
+                ContextoPersistencia.GravarDados();
                 Log.Logger.Information("Registro {RegistroID} inserido com sucesso", registro.Id);
 
                 return Result.Ok(registro);
@@ -93,6 +96,7 @@ namespace LocadoraVeiculos.Repositorio.shared
             try
             {
                 Repositorio.Editar(registro);
+                ContextoPersistencia.GravarDados();
 
                 Log.Logger.Information("Registro {RegistroID} editado com sucesso", registro.Id);
 
@@ -139,6 +143,7 @@ namespace LocadoraVeiculos.Repositorio.shared
             try
             {
                 Repositorio.Excluir(registro.Id);
+                ContextoPersistencia.GravarDados();
 
                 Log.Logger.Information("Registro {RegistroID} excluído com sucesso", registro.Id);
 

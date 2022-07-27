@@ -2,6 +2,8 @@
 using FluentValidation;
 using FluentValidation.Results;
 using LocadoraVeiculos.Dominio.ModuloCondutores;
+using LocadoraVeiculos.Dominio.shared;
+using LocadoraVeiculos.Infra.Orm.ModuloCondutores;
 using LocadoraVeiculos.Repositorio.shared;
 using LocadoraVeiculos.RepositorioProject.ModuloCondutores;
 using Serilog;
@@ -11,7 +13,7 @@ namespace LocadoraVeiculos.Controladores.ModuloServicoCondutores
 {
     public class ServicoCondutores : ServicoBase<Condutores>
     {
-        public ServicoCondutores(IRepository<Condutores> repo) : base(repo)
+        public ServicoCondutores(RepositorioCondutorOrm repo, IContextoPersistencia contexto) : base(repo,contexto)
         {
 
         }

@@ -2,6 +2,8 @@
 using FluentValidation;
 using FluentValidation.Results;
 using LocadoraVeiculos.Dominio.ModuloPlanoCobranca;
+using LocadoraVeiculos.Dominio.shared;
+using LocadoraVeiculos.Infra.Orm.ModuloPlanoCobranca;
 using LocadoraVeiculos.Repositorio.shared;
 using LocadoraVeiculos.RepositorioProject.ModuloPlanoCobranca;
 using Serilog;
@@ -11,7 +13,7 @@ namespace LocadoraVeiculos.Controladores.ModuloServicoPlanoCobranca
 {
     public class ServicoPlanoCobranca : ServicoBase<PlanoCobranca>
     {
-        public ServicoPlanoCobranca(IRepository<PlanoCobranca> repo) : base(repo)
+        public ServicoPlanoCobranca(RepositorioPlanoCobrancaOrm repo, IContextoPersistencia contexto) : base(repo, contexto)
         {
 
         }        

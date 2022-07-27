@@ -26,7 +26,7 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloVeiculo
             builder.Property(x => x.Foto).IsRequired();
 
             builder.HasOne(x => x.GrupoVeiculos)
-                .WithMany();
+                .WithOne().OnDelete(DeleteBehavior.Cascade);
         }
     }
 }
