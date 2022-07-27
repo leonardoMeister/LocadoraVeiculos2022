@@ -19,17 +19,25 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloCliente
 
         public void Editar(Cliente registro)
         {
-            throw new NotImplementedException();
+            Clientes.Update(registro);
         }
 
         public void Excluir(Guid id)
         {
-            throw new NotImplementedException();
+            var registro = Clientes.SingleOrDefault(x => x.Id == id);
+
+            Clientes.Remove(registro);
         }
 
         public bool Existe(Guid id)
         {
-            throw new NotImplementedException();
+            var id1 = Clientes.SingleOrDefault(x => x.Id == id);
+            if (id1 != null)
+            {
+                return true;
+            }
+
+            return false;
         }
 
         public void InserirNovo(Cliente registro)
@@ -40,7 +48,7 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloCliente
 
         public Cliente SelecionarPorId(Guid id)
         {
-            throw new NotImplementedException();
+            return Clientes.SingleOrDefault(x => x.Id == id);
         }
 
         public Cliente SelecionarPorParametro(string query, Dictionary<string, object> parameters)

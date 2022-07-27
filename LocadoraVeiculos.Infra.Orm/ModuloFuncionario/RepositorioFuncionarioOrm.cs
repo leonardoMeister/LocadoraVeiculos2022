@@ -20,27 +20,35 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloFuncionario
         }
         public void Editar(Funcionario registro)
         {
-            throw new NotImplementedException();
+            Funcionarios.Update(registro);
         }
 
         public void Excluir(Guid id)
         {
-            throw new NotImplementedException();
+            var registro = Funcionarios.SingleOrDefault(x => x.Id == id);
+
+            Funcionarios.Remove(registro);
         }
 
         public bool Existe(Guid id)
         {
-            throw new NotImplementedException();
+            var id1 = Funcionarios.SingleOrDefault(x => x.Id == id);
+            if (id1 != null)
+            {
+                return true;
+            }
+
+            return false;
         }
 
         public void InserirNovo(Funcionario registro)
         {
-            throw new NotImplementedException();
+            Funcionarios.Add(registro);
         }
 
         public Funcionario SelecionarPorId(Guid id)
         {
-            throw new NotImplementedException();
+            return Funcionarios.SingleOrDefault(x => x.Id == id);
         }
 
         public Funcionario SelecionarPorParametro(string query, Dictionary<string, object> parameters)
@@ -50,7 +58,7 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloFuncionario
 
         public List<Funcionario> SelecionarTodos()
         {
-            throw new NotImplementedException();
+            return Funcionarios.ToList();
         }
     }
 }
