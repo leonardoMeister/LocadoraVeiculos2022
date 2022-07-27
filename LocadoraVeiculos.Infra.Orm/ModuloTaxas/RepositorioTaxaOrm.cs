@@ -60,5 +60,10 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloTaxas
         {
             return Taxas.ToList();
         }
+
+        public Taxas SelecionarPorDescricao(string descricao)
+        {
+            return Taxas.SingleOrDefault(x => x.Descricao == descricao);
+        }
     }
 }

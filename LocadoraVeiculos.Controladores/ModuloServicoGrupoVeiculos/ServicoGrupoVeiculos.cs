@@ -71,7 +71,7 @@ namespace LocadoraVeiculos.Controladores.ModuloServicoGrupoVeiculos
         {
             ValidationResult valido = new ValidationResult();
 
-            var func1 = ((RepositorioGrupoVeiculos)Repositorio).SelecionarPorNome(registro.NomeGrupo);
+            GrupoVeiculos func1 = ((RepositorioGrupoVeiculoOrm)Repositorio).SelecionarPorNome(registro.NomeGrupo);
             if (func1 != null && func1.Id != registro.Id) valido.Errors.Add(new ValidationFailure("Nome", "Nao pode ter nome repetido"));
 
             return valido;
@@ -80,7 +80,7 @@ namespace LocadoraVeiculos.Controladores.ModuloServicoGrupoVeiculos
         {
             ValidationResult valido = new ValidationResult();
 
-            var func1 = ((RepositorioGrupoVeiculos)Repositorio).SelecionarPorNome(registro.NomeGrupo);
+            GrupoVeiculos func1 = ((RepositorioGrupoVeiculoOrm)Repositorio).SelecionarPorNome(registro.NomeGrupo);
             if (func1 != null) valido.Errors.Add(new ValidationFailure("Nome", "Nao pode ter nome repetido"));
 
             return valido;

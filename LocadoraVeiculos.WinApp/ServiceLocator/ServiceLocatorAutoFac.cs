@@ -61,9 +61,6 @@ namespace LocadoraVeiculos.WinApp.ServiceLocator
             IContextoPersistencia contexto = db;
             builder.Register(x => contexto).AsSelf();
 
-
-            //builder.RegisterType<LocadoraVeiculosDbContext>().AsSelf();
-
             builder.RegisterType<RepositorioClienteOrm>().AsSelf();
             builder.RegisterType<ServicoCliente>().AsSelf();
             builder.RegisterType<TabelaClienteControl>().AsSelf();

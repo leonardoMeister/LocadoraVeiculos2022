@@ -47,8 +47,9 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloGrupoVeiculo
         }
 
         public GrupoVeiculos SelecionarPorId(Guid id)
-        {            
-            return GrupoVeiculos.Find(id);
+        {
+            return GrupoVeiculos.SingleOrDefault(x => x.Id == id);
+
         }
 
         public GrupoVeiculos SelecionarPorParametro(string query, Dictionary<string, object> parameters)
@@ -59,6 +60,11 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloGrupoVeiculo
         public List<GrupoVeiculos> SelecionarTodos()
         {
             return GrupoVeiculos.ToList();
+        }
+
+        public GrupoVeiculos SelecionarPorNome(string nomeGrupo)
+        {
+            return GrupoVeiculos.SingleOrDefault(x => x.NomeGrupo == nomeGrupo);
         }
     }
 }

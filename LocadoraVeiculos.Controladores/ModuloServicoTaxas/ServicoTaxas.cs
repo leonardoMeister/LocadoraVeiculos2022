@@ -71,8 +71,8 @@ namespace LocadoraVeiculos.Controladores.ModuloServicoTaxas
         {
             ValidationResult valido = new ValidationResult();
 
-            //var func1 = ((RepositorioTaxas)Repositorio).SelecionarPorDescricao(registro.Descricao);
-            //if (func1 != null && func1.Id != registro.Id) valido.Errors.Add(new ValidationFailure("Descricao", "Nao pode ter Descrição repetida"));
+            Taxas func1 = ((RepositorioTaxaOrm)Repositorio).SelecionarPorDescricao(registro.Descricao);
+            if (func1 != null && func1.Id != registro.Id) valido.Errors.Add(new ValidationFailure("Descricao", "Nao pode ter Descrição repetida"));
 
             return valido;
         }
@@ -80,8 +80,8 @@ namespace LocadoraVeiculos.Controladores.ModuloServicoTaxas
         {
             ValidationResult valido = new ValidationResult();
 
-            //var func1 = ((RepositorioTaxas)Repositorio).SelecionarPorDescricao(registro.Descricao);
-            //if (func1 != null) valido.Errors.Add(new ValidationFailure("Descricao", "Nao pode ter Descrição repetida"));
+            Taxas func1 = ((RepositorioTaxaOrm)Repositorio).SelecionarPorDescricao(registro.Descricao);
+            if (func1 != null) valido.Errors.Add(new ValidationFailure("Descricao", "Nao pode ter Descrição repetida"));
 
             return valido;
 

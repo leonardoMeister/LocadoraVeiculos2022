@@ -60,5 +60,15 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloFuncionario
         {
             return Funcionarios.ToList();
         }
+
+        public Funcionario SelecionarPorNome(string nome)
+        {
+            return Funcionarios.SingleOrDefault(x => x.Nome == nome);
+        }
+
+        public Funcionario SelecionarPorUsuario(string login)
+        {
+            return Funcionarios.SingleOrDefault(x => x.Login == login);
+        }
     }
 }

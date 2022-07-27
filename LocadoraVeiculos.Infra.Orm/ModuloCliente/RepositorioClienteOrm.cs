@@ -60,5 +60,15 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloCliente
         {
             return this.Clientes.ToList();
         }
+
+        public Cliente SelecionarPorCpf(string cpf)
+        {
+            return this.Clientes.SingleOrDefault(x => x.Cpf == cpf);
+        }
+
+        public Cliente SelecionarPorCnpj(string cnpj)
+        {
+            return this.Clientes.SingleOrDefault(x => x.Cnpj == cnpj);
+        }
     }
 }
