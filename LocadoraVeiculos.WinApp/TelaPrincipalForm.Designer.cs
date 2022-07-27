@@ -31,7 +31,7 @@
             this.labelRodape = new System.Windows.Forms.ToolStripStatusLabel();
             this.labelTipoCadastro = new System.Windows.Forms.ToolStripLabel();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.btnAgrupar = new System.Windows.Forms.ToolStripButton();
+            this.btnPDF = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.btnFiltrar = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -49,10 +49,12 @@
             this.cadastrosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.condutoresMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.planoCobrançaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.veículoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.locaçãoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.devoluçãoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panelRegistros = new System.Windows.Forms.Panel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.menu = new System.Windows.Forms.MenuStrip();
-            this.veículoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolbox.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.menu.SuspendLayout();
@@ -76,16 +78,15 @@
             this.toolStripSeparator4.Name = "toolStripSeparator4";
             this.toolStripSeparator4.Size = new System.Drawing.Size(6, 41);
             // 
-            // btnAgrupar
+            // btnPDF
             // 
-            this.btnAgrupar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnAgrupar.Image = global::LocadoraVeiculos.WinApp.Properties.Resources.outline_table_rows_black_24dp;
-            this.btnAgrupar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.btnAgrupar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnAgrupar.Name = "btnAgrupar";
-            this.btnAgrupar.Padding = new System.Windows.Forms.Padding(5);
-            this.btnAgrupar.Size = new System.Drawing.Size(38, 38);
-            this.btnAgrupar.Click += new System.EventHandler(this.BtnAgrupar_Click);
+            this.btnPDF.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnPDF.Image = global::LocadoraVeiculos.WinApp.Properties.Resources.pdf;
+            this.btnPDF.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnPDF.Name = "btnPDF";
+            this.btnPDF.Padding = new System.Windows.Forms.Padding(5);
+            this.btnPDF.Size = new System.Drawing.Size(34, 38);
+            this.btnPDF.Click += new System.EventHandler(this.BtnPDF_Click);
             // 
             // toolStripSeparator3
             // 
@@ -185,7 +186,7 @@
             this.toolStripSeparator1,
             this.btnFiltrar,
             this.toolStripSeparator3,
-            this.btnAgrupar,
+            this.btnPDF,
             this.toolStripSeparator4,
             this.labelTipoCadastro});
             this.toolbox.Location = new System.Drawing.Point(0, 30);
@@ -235,7 +236,9 @@
             this.despesasMenuItem,
             this.condutoresMenuItem,
             this.planoCobrançaToolStripMenuItem,
-            this.veículoToolStripMenuItem});
+            this.veículoToolStripMenuItem,
+            this.locaçãoToolStripMenuItem,
+            this.devoluçãoToolStripMenuItem});
             this.cadastrosToolStripMenuItem.Name = "cadastrosToolStripMenuItem";
             this.cadastrosToolStripMenuItem.Size = new System.Drawing.Size(88, 24);
             this.cadastrosToolStripMenuItem.Text = "Cadastros";
@@ -255,6 +258,30 @@
             this.planoCobrançaToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.planoCobrançaToolStripMenuItem.Text = "Plano Cobrança";
             this.planoCobrançaToolStripMenuItem.Click += new System.EventHandler(this.PlanoDeCobrancaMenuItem_Click);
+            // 
+            // veículoToolStripMenuItem
+            // 
+            this.veículoToolStripMenuItem.Name = "veículoToolStripMenuItem";
+            this.veículoToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F7;
+            this.veículoToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.veículoToolStripMenuItem.Text = "Veículo";
+            this.veículoToolStripMenuItem.Click += new System.EventHandler(this.VeiculoMenuItem_Click);
+            // 
+            // locaçãoToolStripMenuItem
+            // 
+            this.locaçãoToolStripMenuItem.Name = "locaçãoToolStripMenuItem";
+            this.locaçãoToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F8;
+            this.locaçãoToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.locaçãoToolStripMenuItem.Text = "Locação";
+            this.locaçãoToolStripMenuItem.Click += new System.EventHandler(this.LocaçãoToolStripMenuItem_Click);
+            // 
+            // devoluçãoToolStripMenuItem
+            // 
+            this.devoluçãoToolStripMenuItem.Name = "devoluçãoToolStripMenuItem";
+            this.devoluçãoToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F9;
+            this.devoluçãoToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.devoluçãoToolStripMenuItem.Text = "Devolução";
+            this.devoluçãoToolStripMenuItem.Click += new System.EventHandler(this.DevoluçãoToolStripMenuItem_Click);
             // 
             // panelRegistros
             // 
@@ -289,14 +316,6 @@
             this.menu.TabIndex = 4;
             this.menu.Text = "menuStrip1";
             // 
-            // veículoToolStripMenuItem
-            // 
-            this.veículoToolStripMenuItem.Name = "veículoToolStripMenuItem";
-            this.veículoToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F7;
-            this.veículoToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.veículoToolStripMenuItem.Text = "Veículo";
-            this.veículoToolStripMenuItem.Click += new System.EventHandler(this.VeiculoMenuItem_Click);
-            // 
             // TelaPrincipalForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -329,7 +348,7 @@
         private System.Windows.Forms.ToolStripStatusLabel labelRodape;
         private System.Windows.Forms.ToolStripLabel labelTipoCadastro;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
-        private System.Windows.Forms.ToolStripButton btnAgrupar;
+        private System.Windows.Forms.ToolStripButton btnPDF;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripButton btnFiltrar;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
@@ -351,5 +370,7 @@
         private System.Windows.Forms.ToolStripMenuItem condutoresMenuItem;
         private System.Windows.Forms.ToolStripMenuItem planoCobrançaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem veículoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem locaçãoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem devoluçãoToolStripMenuItem;
     }
 }

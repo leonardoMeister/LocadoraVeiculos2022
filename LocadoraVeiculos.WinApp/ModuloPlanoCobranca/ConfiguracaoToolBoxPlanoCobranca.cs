@@ -18,6 +18,6 @@ namespace LocadoraVeiculos.WinApp.ModuloPlanoCobranca
 
         public override string TooltipFiltrar => "Filtrar Plano de Cobrança";
 
-        public override string TooltipAgrupar => "Agrupar Plano de Cobrança";
+        public override string TooltipPDF => "Agrupar Plano de Cobrança";
     }
 }

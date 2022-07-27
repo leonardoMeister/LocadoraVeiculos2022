@@ -18,6 +18,6 @@ namespace LocadoraVeiculos.WinApp.ModuloGrupoVeiculo
 
         public override string TooltipFiltrar => "Filtrar Grupo Veiculos";
 
-        public override string TooltipAgrupar => "Agrupar Grupo Veiculos";
+        public override string TooltipPDF => "Agrupar Grupo Veiculos";
     }
 }

@@ -1,7 +1,9 @@
 ﻿using LocadoraVeiculos.WinApp.ModuloCliente;
 using LocadoraVeiculos.WinApp.ModuloCondutores;
+using LocadoraVeiculos.WinApp.ModuloDevolucao;
 using LocadoraVeiculos.WinApp.ModuloFuncionario;
 using LocadoraVeiculos.WinApp.ModuloGrupoVeiculo;
+using LocadoraVeiculos.WinApp.ModuloLocacao;
 using LocadoraVeiculos.WinApp.ModuloPlanoCobranca;
 using LocadoraVeiculos.WinApp.ModuloTaxa;
 using LocadoraVeiculos.WinApp.ModuloVeiculo;
@@ -70,7 +72,7 @@ namespace LocadoraVeiculos.WinApp
             btnAdicionarItens.Enabled = configuracao.AdicionarItensHabilitado;
             btnAtualizarItens.Enabled = configuracao.AtualizarItensHabilitado;
             btnFiltrar.Enabled = configuracao.FiltrarHabilitado;
-            btnAgrupar.Enabled = configuracao.AgruparHabilitado;
+            btnPDF.Enabled = configuracao.AgruparHabilitado;
         }
         private void ConfigurarTooltips(ConfiguracaoToolboxBase configuracao)
         {
@@ -80,7 +82,7 @@ namespace LocadoraVeiculos.WinApp
             btnAdicionarItens.ToolTipText = configuracao.TooltipAdicionarItens;
             btnAtualizarItens.ToolTipText = configuracao.TooltipAtualizarItens;
             btnFiltrar.ToolTipText = configuracao.TooltipFiltrar;
-            btnAgrupar.ToolTipText = configuracao.TooltipAgrupar;
+            btnPDF.ToolTipText = configuracao.TooltipPDF;
         }
         private void ConfigurarTelaPrincipal(ConfiguracaoBase configuracao)
         {
@@ -97,6 +99,17 @@ namespace LocadoraVeiculos.WinApp
         private void GrupoVeiculosMenuItem_Click(object sender, EventArgs e)
         {
             ConfigurarTelaPrincipal(serviceLocator.Get<ControladorGrupoVeiculo>());
+        }
+        private void LocaçãoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigurarTelaPrincipal(serviceLocator.Get<ControladorLocacao>());
+
+        }
+
+        private void DevoluçãoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigurarTelaPrincipal(serviceLocator.Get<ControladorDevolucao>());
+
         }
         private void TaxasMenuItem_Click(object sender, EventArgs e)
         {
@@ -182,17 +195,18 @@ namespace LocadoraVeiculos.WinApp
                 ConfigurarListagem((ConfiguracaoBase)telaSelecionada);
             }
         }
-        private void BtnAgrupar_Click(object sender, EventArgs e)
+        private void BtnPDF_Click(object sender, EventArgs e)
         {
             if (telaSelecionada != null)
             {
-                telaSelecionada.Agrupar();
+                telaSelecionada.PDF();
 
                 ConfigurarListagem((ConfiguracaoBase)telaSelecionada);
             }
         }
 
         #endregion
+
         
     }
 }
