@@ -27,9 +27,10 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoFuncionari
                 .GetSection("SqlServer")
                 .Value;
             dbContext = new LocadoraVeiculosDbContext(connectionString);
-            //string query = @"delete from TB_FUNCIONARIO;";
 
-            //DataBase.ExecutarComando(query);
+            var funcionario = dbContext.Set<Funcionario>();
+            funcionario.RemoveRange(funcionario);
+            dbContext.SaveChanges();
         }
 
         [TestMethod]
@@ -91,12 +92,11 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoFuncionari
             var fun = new Funcionario("Leonardo", "leonardo123", "leoJosePedrinho123Senha", 2800, DateTime.Now, "Funcionario");
             repo.InserirNovo(fun);
 
-            var fun2 = new Funcionario("Leonardo2", "leonardo1233", "leoJosePedrinhoSenha", 4000, DateTime.Now, "Funcionario de elite");
-            fun2.Id = fun.Id;
-            repo.Editar(fun2);
+            fun.Nome = "Novo nome para funcionario";
+            var le = repo.Editar(fun);
 
             var funNovo = repo.SelecionarPorId(fun.Id).Value;
-            Assert.AreEqual(funNovo, fun2);
+            Assert.AreEqual(funNovo, fun);
         }
     }
 }

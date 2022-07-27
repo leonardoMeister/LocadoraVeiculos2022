@@ -25,8 +25,10 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoTaxas
                 .GetSection("SqlServer")
                 .Value;
             dbContext = new LocadoraVeiculosDbContext(connectionString);
-            //string query = @"delete from TB_TAXAS;";
-            //DataBase.ExecutarComando(query);
+
+            var taxas = dbContext.Set<Taxas>();
+            taxas.RemoveRange(taxas);
+            dbContext.SaveChanges();
         }
 
         [TestMethod]
@@ -74,12 +76,11 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoTaxas
             Taxas tax = new Taxas("Aluguel Onix", 1500, EnumTaxa.Diaria.ToString());
             repo.InserirNovo(tax);
 
-            Taxas tax2 = new Taxas("Aluguel HB20", 1000, EnumTaxa.Diaria.ToString());
-            tax2.Id = tax.Id;
-            repo.Editar(tax2);
+            tax.Descricao = "NOVA DESCRICAO PARA TAXA";
+            repo.Editar(tax);
 
-            var taxNovo = repo.SelecionarPorId(tax2.Id).Value;
-            Assert.AreEqual(taxNovo, tax2);
+            var taxNovo = repo.SelecionarPorId(tax.Id).Value;
+            Assert.AreEqual(taxNovo, tax);
         }
 
         [TestMethod]

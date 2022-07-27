@@ -30,14 +30,9 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradorPlanoCobr
                 .Value;
             dbContext = new LocadoraVeiculosDbContext(connectionString);
 
-            //string query = @"delete from TB_VEICULO;";
-            //DataBase.ExecutarComando(query);
-
-            //string query2 = @"delete from TB_PLANOCOBRANCA;";
-            //DataBase.ExecutarComando(query2);
-
-            //string query3 = @"delete from TB_GRUPOVEICULOS;";
-            //DataBase.ExecutarComando(query3);
+            var planoCobrancas = dbContext.Set<PlanoCobranca>();
+            planoCobrancas.RemoveRange(planoCobrancas);
+            dbContext.SaveChanges();
         }
 
         [TestMethod]
@@ -64,13 +59,15 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradorPlanoCobr
             ServicoGrupoVeiculos controGrupo = new ServicoGrupoVeiculos(new RepositorioGrupoVeiculoOrm(dbContext), dbContext);
 
             GrupoVeiculos grupo = new GrupoVeiculos("Nome grupo Veiculos 1");
-            controGrupo.InserirNovo(grupo);
+
+            var ne = controGrupo.InserirNovo(grupo);
+
 
             PlanoCobranca plano = new PlanoCobranca("Tipo Grupo 1", 100, 0, 10, grupo);
             PlanoCobranca plano2 = new PlanoCobranca("Tipo Grupo 2", 10, 100, 16, grupo);
 
-            contro.InserirNovo(plano);
-            contro.InserirNovo(plano2);
+            var le = contro.InserirNovo(plano);
+            var le2 = contro.InserirNovo(plano2);
 
             var planosNovos = contro.SelecionarTodos().Value;
 
@@ -84,11 +81,11 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradorPlanoCobr
             ServicoGrupoVeiculos controGrupo = new ServicoGrupoVeiculos(new RepositorioGrupoVeiculoOrm(dbContext), dbContext);
 
             GrupoVeiculos grupo = new GrupoVeiculos("Nome grupo Veiculos 1");
-            controGrupo.InserirNovo(grupo);
+            var le1 = controGrupo.InserirNovo(grupo);
 
             PlanoCobranca plano = new PlanoCobranca("Tipo Grupo 1", 100, 0, 10, grupo);
 
-            contro.InserirNovo(plano);
+            var le = contro.InserirNovo(plano);
 
             var planoNovo = contro.Existe(plano.Id);
 
@@ -125,15 +122,15 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradorPlanoCobr
             controGrupo.InserirNovo(grupo);
 
             PlanoCobranca plano = new PlanoCobranca("Tipo Grupo 1", 100, 0, 10, grupo);
-            PlanoCobranca plano2 = new PlanoCobranca("Tipo Grupo 2", 10, 100, 16, grupo);
+
             contro.InserirNovo(plano);
+            plano.TipoPlano = "Novo Tipo do plano";
 
-            plano2.Id = plano.Id;
-            contro.Editar(plano2);
+            contro.Editar(plano);
 
-            var planoNovo = contro.SelecionarPorId(plano2.Id).Value;
+            var planoNovo = contro.SelecionarPorId(plano.Id).Value;
 
-            Assert.AreEqual(planoNovo , plano2);
+            Assert.AreEqual(planoNovo, plano);
         }
     }
 }

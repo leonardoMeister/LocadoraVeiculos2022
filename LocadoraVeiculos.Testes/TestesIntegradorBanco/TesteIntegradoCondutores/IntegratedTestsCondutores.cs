@@ -1,5 +1,6 @@
 ﻿using LocadoraVeiculos.Controladores.ModuloServicoCondutores;
 using LocadoraVeiculos.Dominio.ModuloCondutores;
+using LocadoraVeiculos.Dominio.ModuloVeiculo;
 using LocadoraVeiculos.Infra.Orm.Compatilhado;
 using LocadoraVeiculos.Infra.Orm.ModuloCondutores;
 using LocadoraVeiculos.RepositorioProject.shared;
@@ -27,8 +28,9 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoCondutores
                 .Value;
             dbContext = new LocadoraVeiculosDbContext(connectionString);
 
-            //string query = @"delete from TB_CONDUTORES;";
-            //DataBase.ExecutarComando(query);
+            var veiculos = dbContext.Set<Condutores>();
+            veiculos.RemoveRange(veiculos);
+            dbContext.SaveChanges();
         }
 
         [TestMethod] 
@@ -53,12 +55,30 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoCondutores
             Condutores tax = new Condutores("Gustavo Paes1", "023.599.199.93", "Andre Gargioni1", "emailteste1@gmail.com", "99-99999-9991", "12323432191", "segunda - feira, 4 de julho de 2022");
             Condutores tax2 = new Condutores("Gustavo Paes2", "023.599.199.95", "Andre Gargioni2", "emailteste2@gmail.com", "99-99999-9992", "12323432192", "segunda - feira, 4 de julho de 2022");
 
-            repo.InserirNovo(tax);
-            repo.InserirNovo(tax2);
+            var le =repo.InserirNovo(tax);
+            var lo = repo.InserirNovo(tax2);
 
             var dados = repo.SelecionarTodos().Value;
 
             Assert.AreEqual(2, dados.Count);
+
+        }
+        [TestMethod]
+        public void DeveBuscarEditarCondutore() 
+        {
+            ServicoCondutores repo = new ServicoCondutores(new RepositorioCondutorOrm(dbContext), dbContext);
+
+            Condutores tax = new Condutores("Gustavo Paes1", "023.599.199.93", "Andre Gargioni1", "emailteste1@gmail.com", "99-99999-9991", "12323432191", "segunda - feira, 4 de julho de 2022");
+
+            var le = repo.InserirNovo(tax);
+
+            tax.Nome = "Novo nome de Condutor";
+
+            repo.Editar(tax);
+
+            var dados = repo.SelecionarPorId(tax.Id).Value;
+
+            Assert.AreEqual(tax, dados);
 
         }
 

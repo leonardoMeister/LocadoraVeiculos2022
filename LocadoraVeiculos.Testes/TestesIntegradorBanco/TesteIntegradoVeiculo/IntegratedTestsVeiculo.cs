@@ -35,12 +35,10 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoVeiculo
                 .GetSection("SqlServer")
                 .Value;
             dbContext = new LocadoraVeiculosDbContext(connectionString);
-            //string query = @"delete from TB_VEICULO;";
-            //DataBase.ExecutarComando(query);
-            //string query2 = @"delete from TB_PLANOCOBRANCA;";
-            //DataBase.ExecutarComando(query2);
-            //string query3 = @"delete from TB_GRUPOVEICULOS;";
-            //DataBase.ExecutarComando(query3);
+
+            var veiculos = dbContext.Set<Veiculo>();
+            veiculos.RemoveRange(veiculos);
+            dbContext.SaveChanges();
         }
 
         [TestMethod]
@@ -127,14 +125,14 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoVeiculo
             controladorGrupoVeiculos.InserirNovo(grupo);
             byte[] foto = new byte[] { };
             Veiculo vei = new Veiculo("Modelo do Veiculo", "ASD-3021", "Gol", "Rosa", "Gasolina", 10, DateTime.Now, 10, foto, grupo);
-            Veiculo vei2 = new Veiculo("Modelo do Veiculo2", "ASD-3022", "UNO", "Branco", "Gasolina", 10, DateTime.Now, 10, foto, grupo);            
+
             controlador.InserirNovo(vei);
-            vei2.Id = vei.Id;
-            controlador.Editar(vei2);
+            vei.Modelo = "NOVO MODELO DE VEICULO EDICAO";
+            controlador.Editar(vei);
                 
             var resultado = controlador.SelecionarPorId(vei.Id).Value;
 
-            Assert.AreEqual(resultado, vei2);
+            Assert.AreEqual(resultado, vei);
         }
 
     }

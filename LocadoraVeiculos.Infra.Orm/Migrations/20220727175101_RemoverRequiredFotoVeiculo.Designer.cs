@@ -4,14 +4,16 @@ using LocadoraVeiculos.Infra.Orm.Compatilhado;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LocadoraVeiculos.Infra.Orm.Migrations
 {
     [DbContext(typeof(LocadoraVeiculosDbContext))]
-    partial class LocadoraVeiculosDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220727175101_RemoverRequiredFotoVeiculo")]
+    partial class RemoverRequiredFotoVeiculo
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -165,7 +167,8 @@ namespace LocadoraVeiculos.Infra.Orm.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("GrupoVeiculosId");
+                    b.HasIndex("GrupoVeiculosId")
+                        .IsUnique();
 
                     b.ToTable("TB_PLANOCOBRANCA");
                 });
@@ -235,7 +238,8 @@ namespace LocadoraVeiculos.Infra.Orm.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("GrupoVeiculosId");
+                    b.HasIndex("GrupoVeiculosId")
+                        .IsUnique();
 
                     b.ToTable("TB_VEICULO");
                 });
@@ -243,8 +247,8 @@ namespace LocadoraVeiculos.Infra.Orm.Migrations
             modelBuilder.Entity("LocadoraVeiculos.Dominio.ModuloPlanoCobranca.PlanoCobranca", b =>
                 {
                     b.HasOne("LocadoraVeiculos.Dominio.ModuloGrupoVeiculos.GrupoVeiculos", "GrupoVeiculos")
-                        .WithMany()
-                        .HasForeignKey("GrupoVeiculosId")
+                        .WithOne()
+                        .HasForeignKey("LocadoraVeiculos.Dominio.ModuloPlanoCobranca.PlanoCobranca", "GrupoVeiculosId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -254,8 +258,8 @@ namespace LocadoraVeiculos.Infra.Orm.Migrations
             modelBuilder.Entity("LocadoraVeiculos.Dominio.ModuloVeiculo.Veiculo", b =>
                 {
                     b.HasOne("LocadoraVeiculos.Dominio.ModuloGrupoVeiculos.GrupoVeiculos", "GrupoVeiculos")
-                        .WithMany()
-                        .HasForeignKey("GrupoVeiculosId")
+                        .WithOne()
+                        .HasForeignKey("LocadoraVeiculos.Dominio.ModuloVeiculo.Veiculo", "GrupoVeiculosId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
