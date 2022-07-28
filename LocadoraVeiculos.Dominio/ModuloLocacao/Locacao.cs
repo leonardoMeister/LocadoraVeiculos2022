@@ -40,10 +40,21 @@ namespace LocadoraVeiculos.Dominio.ModuloLocacao
         }
 
         public Veiculo Veiculo { get; set; }
+        public Guid VeiculoId { get; set; }
+         
         public Condutores Condutores { get; set; }
+        public Guid CondutoresId { get; set; }
+
         public Cliente Cliente { get; set; }
+        public Guid ClienteId { get; set; }
+
         public GrupoVeiculos GrupoVeiculos { get; set; }
+        public Guid GrupoVeiculosId { get; set; }
+
         public PlanoCobranca PlanoCobranca { get; set; }
+        public Guid PlanoCobrancaId { get; set; }
+
+
         public DateTime DataLocacao { get; set; }
         public DateTime DataEstimadaDevolucao { get; set; }
         public decimal QuilometragemInicial { get; set; }
@@ -51,12 +62,8 @@ namespace LocadoraVeiculos.Dominio.ModuloLocacao
 
         List<Taxas> ListaTaxas { get; set; }
 
-        public Guid ConductorId { get; set; }
 
 
-        public Guid ClienteId { get; set; }
-        public Guid GrupoVeiculosId { get; set; }
-        public Guid PlanoCobrancaId { get; set; }
         public bool StatusDevolucao { get; set; }
         public decimal QuilometragemFinal { get; set; }
         public DateTime DataRealDaDevolucao { get; set; }
