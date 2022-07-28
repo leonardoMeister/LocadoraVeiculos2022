@@ -3,7 +3,6 @@ using LocadoraVeiculos.Dominio.ModuloCondutores;
 using LocadoraVeiculos.Dominio.ModuloVeiculo;
 using LocadoraVeiculos.Infra.Orm.Compatilhado;
 using LocadoraVeiculos.Infra.Orm.ModuloCondutores;
-using LocadoraVeiculos.RepositorioProject.shared;
 using Microsoft.Extensions.Configuration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;

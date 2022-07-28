@@ -12,7 +12,7 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloLocacao
             builder.Property(x => x.Id).ValueGeneratedNever().IsUnicode();
 
             builder.HasOne(x => x.Veiculo).WithMany().OnDelete(DeleteBehavior.Cascade);
-            builder.HasOne(x => x.Conductor).WithMany().OnDelete(DeleteBehavior.Cascade);
+            builder.HasOne(x => x.Condutores).WithMany().OnDelete(DeleteBehavior.Cascade);
             builder.HasOne(x => x.Cliente).WithMany().OnDelete(DeleteBehavior.Cascade);
             builder.HasOne(x => x.GrupoVeiculos).WithMany().OnDelete(DeleteBehavior.Cascade);
             builder.HasOne(x => x.PlanoCobranca).WithMany().OnDelete(DeleteBehavior.Cascade);

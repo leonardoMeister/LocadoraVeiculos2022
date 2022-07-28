@@ -5,7 +5,6 @@ using LocadoraVeiculos.Dominio.ModuloPlanoCobranca;
 using LocadoraVeiculos.Dominio.shared;
 using LocadoraVeiculos.Infra.Orm.ModuloPlanoCobranca;
 using LocadoraVeiculos.Repositorio.shared;
-using LocadoraVeiculos.RepositorioProject.ModuloPlanoCobranca;
 using Serilog;
 using System.Collections.Generic;
 

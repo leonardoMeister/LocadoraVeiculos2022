@@ -3,7 +3,6 @@ using LocadoraVeiculos.Dominio.ModuloGrupoVeiculos;
 using LocadoraVeiculos.Infra.Orm.Compatilhado;
 using LocadoraVeiculos.Infra.Orm.ModuloGrupoVeiculo;
 using LocadoraVeiculos.RepositorioProject.ModuloGrupoVeiculos;
-using LocadoraVeiculos.RepositorioProject.shared;
 using Microsoft.Extensions.Configuration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;

@@ -5,7 +5,6 @@ using LocadoraVeiculos.Dominio.ModuloVeiculo;
 using LocadoraVeiculos.Dominio.shared;
 using LocadoraVeiculos.Infra.Orm.ModuloVeiculo;
 using LocadoraVeiculos.Repositorio.shared;
-using LocadoraVeiculos.RepositorioProject.ModuloVeiculo;
 using Serilog;
 using System;
 using System.Collections.Generic;

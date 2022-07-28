@@ -5,7 +5,6 @@ using LocadoraVeiculos.Dominio.ModuloTaxas;
 using LocadoraVeiculos.Dominio.shared;
 using LocadoraVeiculos.Infra.Orm.ModuloTaxas;
 using LocadoraVeiculos.Repositorio.shared;
-using LocadoraVeiculos.RepositorioProject.ModuloTaxas;
 using Serilog;
 using System.Collections.Generic;
 
