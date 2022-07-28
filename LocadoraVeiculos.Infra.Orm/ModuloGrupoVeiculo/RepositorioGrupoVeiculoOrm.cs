@@ -45,14 +45,14 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloGrupoVeiculo
             return GrupoVeiculos.Find(id);
         }
 
-        public GrupoVeiculos SelecionarPorParametro(string query, Dictionary<string, object> parameters)
+        public GrupoVeiculos SelecionarPorParametro(GrupoVeiculos registro)
         {
-            throw new NotImplementedException();
+            return GrupoVeiculos.Find(registro.NomeGrupo);
         }
 
         public List<GrupoVeiculos> SelecionarTodos()
         {
-            throw new NotImplementedException();
+            return GrupoVeiculos.ToList();
         }
     }
 }

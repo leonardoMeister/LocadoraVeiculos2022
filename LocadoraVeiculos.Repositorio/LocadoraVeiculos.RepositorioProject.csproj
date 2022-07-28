@@ -15,4 +15,8 @@
     <ProjectReference Include="..\LocadoraVeiculos.Dominio\LocadoraVeiculos.Dominio.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ModuloGrupoVeiculos\" />
+  </ItemGroup>
+
 </Project>

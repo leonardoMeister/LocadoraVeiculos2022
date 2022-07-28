@@ -2,6 +2,7 @@
 using FluentValidation;
 using FluentValidation.Results;
 using LocadoraVeiculos.Dominio.ModuloGrupoVeiculos;
+using LocadoraVeiculos.Infra.Orm.ModuloGrupoVeiculo;
 using LocadoraVeiculos.Repositorio.shared;
 using LocadoraVeiculos.RepositorioProject.ModuloGrupoVeiculos;
 using Serilog;
@@ -69,7 +70,7 @@ namespace LocadoraVeiculos.Controladores.ModuloServicoGrupoVeiculos
         {
             ValidationResult valido = new ValidationResult();
 
-            var func1 = ((RepositorioGrupoVeiculos)Repositorio).SelecionarPorNome(registro.NomeGrupo);
+            var func1 = ((RepositorioGrupoVeiculoOrm)Repositorio).SelecionarPorParametro(registro);
             if (func1 != null && func1.Id != registro.Id) valido.Errors.Add(new ValidationFailure("Nome", "Nao pode ter nome repetido"));
 
             return valido;
@@ -78,7 +79,7 @@ namespace LocadoraVeiculos.Controladores.ModuloServicoGrupoVeiculos
         {
             ValidationResult valido = new ValidationResult();
 
-            var func1 = ((RepositorioGrupoVeiculos)Repositorio).SelecionarPorNome(registro.NomeGrupo);
+            var func1 = ((RepositorioGrupoVeiculoOrm)Repositorio).SelecionarPorParametro(registro);
             if (func1 != null) valido.Errors.Add(new ValidationFailure("Nome", "Nao pode ter nome repetido"));
 
             return valido;

@@ -14,7 +14,7 @@ namespace LocadoraVeiculos.Repositorio.shared
 
         public void Excluir(Guid id);
 
-        public T SelecionarPorParametro(string query, Dictionary<string, object> parameters);
+        public T SelecionarPorParametro(T registro);
 
         public List<T> SelecionarTodos();
 
