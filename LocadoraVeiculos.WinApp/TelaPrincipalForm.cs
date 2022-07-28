@@ -103,13 +103,11 @@ namespace LocadoraVeiculos.WinApp
         private void LocaçãoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ConfigurarTelaPrincipal(serviceLocator.Get<ControladorLocacao>());
-
         }
 
         private void DevoluçãoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ConfigurarTelaPrincipal(serviceLocator.Get<ControladorDevolucao>());
-
         }
         private void TaxasMenuItem_Click(object sender, EventArgs e)
         {
