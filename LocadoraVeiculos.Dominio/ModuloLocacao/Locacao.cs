@@ -25,6 +25,37 @@ namespace LocadoraVeiculos.Dominio.ModuloLocacao
         public DateTime DataEstimadaDevolucao { get; set; }
         public decimal QuilometragemInicial { get; set; }
         public NivelTanqueEnum NivelTanqueEnumInicio { get; set; }
+        public Locacao(
+            Veiculo veiculo, Conductor conductor, Cliente cliente, GrupoVeiculos grupoVeiculos, PlanoCobranca planoCobranca,
+            DateTime dataLocacao, DateTime dataEstimadaDevolucao, decimal quilometragemInicial, NivelTanqueEnum nivelTanqueEnumInicio,
+            List<Taxas> listaTaxas, bool statusDevolucao, decimal quilometragemFinal, DateTime dataRealDaDevolucao, 
+            NivelTanqueEnum nivelTanqueEnumDevolucao)
+        {
+            Veiculo = veiculo;
+            Conductor = conductor;
+            Cliente = cliente;
+            GrupoVeiculos = grupoVeiculos;
+            PlanoCobranca = planoCobranca;
+            DataLocacao = dataLocacao;
+            DataEstimadaDevolucao = dataEstimadaDevolucao;
+            QuilometragemInicial = quilometragemInicial;
+            NivelTanqueEnumInicio = nivelTanqueEnumInicio;
+            ListaTaxas = listaTaxas;
+            StatusDevolucao = statusDevolucao;
+            QuilometragemFinal = quilometragemFinal;
+            DataRealDaDevolucao = dataRealDaDevolucao;
+            NivelTanqueEnumDevolucao = nivelTanqueEnumDevolucao;
+        }
+
+        Veiculo Veiculo { get; set; }
+        Conductor Conductor { get; set; }
+        Cliente Cliente { get; set; }
+        GrupoVeiculos GrupoVeiculos { get; set; }
+        PlanoCobranca PlanoCobranca { get; set; }
+        DateTime DataLocacao { get; set; }
+        DateTime DataEstimadaDevolucao { get; set; }
+        decimal QuilometragemInicial { get; set; }
+        NivelTanqueEnum NivelTanqueEnumInicio { get; set; }
 
 
         public List<Taxas> ListaTaxas { get; set; }
@@ -75,8 +106,6 @@ namespace LocadoraVeiculos.Dominio.ModuloLocacao
             hash.Add(DataRealDaDevolucao);
             hash.Add(NivelTanqueEnumDevolucao);
             return hash.ToHashCode();
-        }
-
-       
+        }       
     }
 }
