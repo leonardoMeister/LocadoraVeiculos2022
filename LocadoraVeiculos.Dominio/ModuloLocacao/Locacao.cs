@@ -18,7 +18,7 @@ namespace LocadoraVeiculos.Dominio.ModuloLocacao
 
 
         public Locacao(
-            Veiculo veiculo, Condutores conductor, Cliente cliente, GrupoVeiculos grupoVeiculos, PlanoCobranca planoCobranca,
+            Veiculo veiculo, Condutores condutor, Cliente cliente, GrupoVeiculos grupoVeiculos, PlanoCobranca planoCobranca,
             DateTime dataLocacao, DateTime dataEstimadaDevolucao, decimal quilometragemInicial, NivelTanqueEnum nivelTanqueEnumInicio,
             List<Taxas> listaTaxas, bool statusDevolucao, decimal quilometragemFinal, DateTime dataRealDaDevolucao,
             NivelTanqueEnum nivelTanqueEnumDevolucao)
@@ -39,12 +39,15 @@ namespace LocadoraVeiculos.Dominio.ModuloLocacao
             this.NivelTanqueEnumDevolucao = nivelTanqueEnumDevolucao;
         }
 
-
-
-        public List<Taxas> ListaTaxas { get; set; }
-
-        public Veiculo Veiculo { get; set; }
-        public Guid VeiculoId { get; set; }
+        Veiculo Veiculo { get; set; }
+        Condutores Condutores { get; set; }
+        Cliente Cliente { get; set; }
+        GrupoVeiculos GrupoVeiculos { get; set; }
+        PlanoCobranca PlanoCobranca { get; set; }
+        DateTime DataLocacao { get; set; }
+        DateTime DataEstimadaDevolucao { get; set; }
+        decimal QuilometragemInicial { get; set; }
+        NivelTanqueEnum NivelTanqueEnumInicio { get; set; }
 
         public Condutores Condutores { get; set; }
         public Guid ConductorId { get; set; }
@@ -66,6 +69,45 @@ namespace LocadoraVeiculos.Dominio.ModuloLocacao
 
         public NivelTanqueEnum NivelTanqueEnumDevolucao { get; set; }
 
+        public override bool Equals(object obj)
+        {
+            return obj is Locacao locacao &&
+                   Id.Equals(locacao.Id) &&
+                   EqualityComparer<Veiculo>.Default.Equals(Veiculo, locacao.Veiculo) &&
+                   EqualityComparer<Condutores>.Default.Equals(Condutores, locacao.Condutores) &&
+                   EqualityComparer<Cliente>.Default.Equals(Cliente, locacao.Cliente) &&
+                   EqualityComparer<GrupoVeiculos>.Default.Equals(GrupoVeiculos, locacao.GrupoVeiculos) &&
+                   EqualityComparer<PlanoCobranca>.Default.Equals(PlanoCobranca, locacao.PlanoCobranca) &&
+                   DataLocacao == locacao.DataLocacao &&
+                   DataEstimadaDevolucao == locacao.DataEstimadaDevolucao &&
+                   QuilometragemInicial == locacao.QuilometragemInicial &&
+                   NivelTanqueEnumInicio == locacao.NivelTanqueEnumInicio &&
+                   EqualityComparer<List<Taxas>>.Default.Equals(ListaTaxas, locacao.ListaTaxas) &&
+                   StatusDevolucao == locacao.StatusDevolucao &&
+                   QuilometragemFinal == locacao.QuilometragemFinal &&
+                   DataRealDaDevolucao == locacao.DataRealDaDevolucao &&
+                   NivelTanqueEnumDevolucao == locacao.NivelTanqueEnumDevolucao;
+        }
 
+        public override int GetHashCode()
+        {
+            HashCode hash = new HashCode();
+            hash.Add(Id);
+            hash.Add(Veiculo);
+            hash.Add(Condutores);
+            hash.Add(Cliente);
+            hash.Add(GrupoVeiculos);
+            hash.Add(PlanoCobranca);
+            hash.Add(DataLocacao);
+            hash.Add(DataEstimadaDevolucao);
+            hash.Add(QuilometragemInicial);
+            hash.Add(NivelTanqueEnumInicio);
+            hash.Add(ListaTaxas);
+            hash.Add(StatusDevolucao);
+            hash.Add(QuilometragemFinal);
+            hash.Add(DataRealDaDevolucao);
+            hash.Add(NivelTanqueEnumDevolucao);
+            return hash.ToHashCode();
+        }       
     }
 }
