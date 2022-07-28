@@ -360,7 +360,7 @@
             this.checkedListBox1.FormattingEnabled = true;
             this.checkedListBox1.Location = new System.Drawing.Point(16, 285);
             this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(150, 114);
+            this.checkedListBox1.Size = new System.Drawing.Size(415, 180);
             this.checkedListBox1.TabIndex = 77;
             // 
             // TelaCadastroDevolucaoForm
