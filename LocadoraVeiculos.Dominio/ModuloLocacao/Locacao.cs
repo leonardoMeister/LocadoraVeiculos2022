@@ -1,5 +1,6 @@
 ﻿using DocumentFormat.OpenXml.Bibliography;
 using LocadoraVeiculos.Dominio.ModuloCliente;
+using LocadoraVeiculos.Dominio.ModuloCondutores;
 using LocadoraVeiculos.Dominio.ModuloGrupoVeiculos;
 using LocadoraVeiculos.Dominio.ModuloPlanoCobranca;
 using LocadoraVeiculos.Dominio.ModuloTaxas;
@@ -17,13 +18,13 @@ namespace LocadoraVeiculos.Dominio.ModuloLocacao
         }
 
         public Locacao(
-            Veiculo veiculo, Conductor conductor, Cliente cliente, GrupoVeiculos grupoVeiculos, PlanoCobranca planoCobranca,
+            Veiculo veiculo, Condutores condutor, Cliente cliente, GrupoVeiculos grupoVeiculos, PlanoCobranca planoCobranca,
             DateTime dataLocacao, DateTime dataEstimadaDevolucao, decimal quilometragemInicial, NivelTanqueEnum nivelTanqueEnumInicio,
             List<Taxas> listaTaxas, bool statusDevolucao, decimal quilometragemFinal, DateTime dataRealDaDevolucao, 
             NivelTanqueEnum nivelTanqueEnumDevolucao)
         {
             Veiculo = veiculo;
-            Conductor = conductor;
+            Condutores = condutor;
             Cliente = cliente;
             GrupoVeiculos = grupoVeiculos;
             PlanoCobranca = planoCobranca;
@@ -39,7 +40,7 @@ namespace LocadoraVeiculos.Dominio.ModuloLocacao
         }
 
         Veiculo Veiculo { get; set; }
-        Conductor Conductor { get; set; }
+        Condutores Condutores { get; set; }
         Cliente Cliente { get; set; }
         GrupoVeiculos GrupoVeiculos { get; set; }
         PlanoCobranca PlanoCobranca { get; set; }
