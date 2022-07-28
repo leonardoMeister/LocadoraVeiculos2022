@@ -16,6 +16,28 @@ namespace LocadoraVeiculos.Dominio.ModuloLocacao
         {
         }
 
+        public Locacao(
+            Veiculo veiculo, Conductor conductor, Cliente cliente, GrupoVeiculos grupoVeiculos, PlanoCobranca planoCobranca,
+            DateTime dataLocacao, DateTime dataEstimadaDevolucao, decimal quilometragemInicial, NivelTanqueEnum nivelTanqueEnumInicio,
+            List<Taxas> listaTaxas, bool statusDevolucao, decimal quilometragemFinal, DateTime dataRealDaDevolucao, 
+            NivelTanqueEnum nivelTanqueEnumDevolucao)
+        {
+            Veiculo = veiculo;
+            Conductor = conductor;
+            Cliente = cliente;
+            GrupoVeiculos = grupoVeiculos;
+            PlanoCobranca = planoCobranca;
+            DataLocacao = dataLocacao;
+            DataEstimadaDevolucao = dataEstimadaDevolucao;
+            QuilometragemInicial = quilometragemInicial;
+            NivelTanqueEnumInicio = nivelTanqueEnumInicio;
+            ListaTaxas = listaTaxas;
+            StatusDevolucao = statusDevolucao;
+            QuilometragemFinal = quilometragemFinal;
+            DataRealDaDevolucao = dataRealDaDevolucao;
+            NivelTanqueEnumDevolucao = nivelTanqueEnumDevolucao;
+        }
+
         Veiculo Veiculo { get; set; }
         Conductor Conductor { get; set; }
         Cliente Cliente { get; set; }
@@ -32,8 +54,7 @@ namespace LocadoraVeiculos.Dominio.ModuloLocacao
 
         bool StatusDevolucao { get; set;}
         decimal QuilometragemFinal { get; set; }
-        DateTime DataRealDaDevolucao { get; set; }
-        
+        DateTime DataRealDaDevolucao { get; set; }        
         NivelTanqueEnum NivelTanqueEnumDevolucao { get; set; }
 
         public override bool Equals(object obj)
@@ -75,8 +96,6 @@ namespace LocadoraVeiculos.Dominio.ModuloLocacao
             hash.Add(DataRealDaDevolucao);
             hash.Add(NivelTanqueEnumDevolucao);
             return hash.ToHashCode();
-        }
-
-       
+        }       
     }
 }
