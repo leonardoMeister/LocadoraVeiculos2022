@@ -44,12 +44,12 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnSalvar = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
-            this.listaTaxasLocacao = new System.Windows.Forms.ListBox();
             this.dataDevolucao = new System.Windows.Forms.DateTimePicker();
             this.dataLocacao = new System.Windows.Forms.DateTimePicker();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFoto)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -206,15 +206,6 @@
             this.label5.TabIndex = 52;
             this.label5.Text = "Taxas da Locação";
             // 
-            // listaTaxasLocacao
-            // 
-            this.listaTaxasLocacao.FormattingEnabled = true;
-            this.listaTaxasLocacao.ItemHeight = 20;
-            this.listaTaxasLocacao.Location = new System.Drawing.Point(27, 509);
-            this.listaTaxasLocacao.Name = "listaTaxasLocacao";
-            this.listaTaxasLocacao.Size = new System.Drawing.Size(531, 104);
-            this.listaTaxasLocacao.TabIndex = 48;
-            // 
             // dataDevolucao
             // 
             this.dataDevolucao.Format = System.Windows.Forms.DateTimePickerFormat.Short;
@@ -258,11 +249,20 @@
             this.label8.TabIndex = 57;
             this.label8.Text = "Valor Total Estimado: ";
             // 
+            // checkedListBox1
+            // 
+            this.checkedListBox1.FormattingEnabled = true;
+            this.checkedListBox1.Location = new System.Drawing.Point(37, 509);
+            this.checkedListBox1.Name = "checkedListBox1";
+            this.checkedListBox1.Size = new System.Drawing.Size(150, 114);
+            this.checkedListBox1.TabIndex = 58;
+            // 
             // TelaCadastroLocacaoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(569, 733);
+            this.Controls.Add(this.checkedListBox1);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
@@ -271,7 +271,6 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnSalvar);
-            this.Controls.Add(this.listaTaxasLocacao);
             this.Controls.Add(this.cmbGrupoVeiculo);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.cmbPlanoCobranca);
@@ -314,11 +313,11 @@
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnSalvar;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ListBox listaTaxasLocacao;
         private System.Windows.Forms.DateTimePicker dataDevolucao;
         private System.Windows.Forms.DateTimePicker dataLocacao;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.CheckedListBox checkedListBox1;
     }
 }
