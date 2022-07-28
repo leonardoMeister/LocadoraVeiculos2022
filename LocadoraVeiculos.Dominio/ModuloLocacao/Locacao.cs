@@ -63,7 +63,7 @@ namespace LocadoraVeiculos.Dominio.ModuloLocacao
             return obj is Locacao locacao &&
                    Id.Equals(locacao.Id) &&
                    EqualityComparer<Veiculo>.Default.Equals(Veiculo, locacao.Veiculo) &&
-                   EqualityComparer<Conductor>.Default.Equals(Conductor, locacao.Conductor) &&
+                   EqualityComparer<Condutores>.Default.Equals(Condutores, locacao.Condutores) &&
                    EqualityComparer<Cliente>.Default.Equals(Cliente, locacao.Cliente) &&
                    EqualityComparer<GrupoVeiculos>.Default.Equals(GrupoVeiculos, locacao.GrupoVeiculos) &&
                    EqualityComparer<PlanoCobranca>.Default.Equals(PlanoCobranca, locacao.PlanoCobranca) &&
@@ -83,7 +83,7 @@ namespace LocadoraVeiculos.Dominio.ModuloLocacao
             HashCode hash = new HashCode();
             hash.Add(Id);
             hash.Add(Veiculo);
-            hash.Add(Conductor);
+            hash.Add(Condutores);
             hash.Add(Cliente);
             hash.Add(GrupoVeiculos);
             hash.Add(PlanoCobranca);
