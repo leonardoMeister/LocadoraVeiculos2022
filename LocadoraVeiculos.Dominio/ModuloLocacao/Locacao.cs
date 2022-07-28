@@ -24,7 +24,7 @@ namespace LocadoraVeiculos.Dominio.ModuloLocacao
             NivelTanqueEnum nivelTanqueEnumDevolucao)
         {
             this.Veiculo = veiculo;
-            this.Condutores = conductor;
+            this.Condutores = condutor;
             this.Cliente = cliente;
             this.GrupoVeiculos = grupoVeiculos;
             this.PlanoCobranca = planoCobranca;
@@ -39,30 +39,24 @@ namespace LocadoraVeiculos.Dominio.ModuloLocacao
             this.NivelTanqueEnumDevolucao = nivelTanqueEnumDevolucao;
         }
 
-        Veiculo Veiculo { get; set; }
-        Condutores Condutores { get; set; }
-        Cliente Cliente { get; set; }
-        GrupoVeiculos GrupoVeiculos { get; set; }
-        PlanoCobranca PlanoCobranca { get; set; }
-        DateTime DataLocacao { get; set; }
-        DateTime DataEstimadaDevolucao { get; set; }
-        decimal QuilometragemInicial { get; set; }
-        NivelTanqueEnum NivelTanqueEnumInicio { get; set; }
-
+        public Veiculo Veiculo { get; set; }
         public Condutores Condutores { get; set; }
-        public Guid ConductorId { get; set; }
-
-
         public Cliente Cliente { get; set; }
-        public Guid ClienteId { get; set; }
         public GrupoVeiculos GrupoVeiculos { get; set; }
-        public Guid GrupoVeiculosId { get; set; }
         public PlanoCobranca PlanoCobranca { get; set; }
-        public Guid PlanoCobrancaId { get; set; }
         public DateTime DataLocacao { get; set; }
         public DateTime DataEstimadaDevolucao { get; set; }
         public decimal QuilometragemInicial { get; set; }
         public NivelTanqueEnum NivelTanqueEnumInicio { get; set; }
+
+        List<Taxas> ListaTaxas { get; set; }
+
+        public Guid ConductorId { get; set; }
+
+
+        public Guid ClienteId { get; set; }
+        public Guid GrupoVeiculosId { get; set; }
+        public Guid PlanoCobrancaId { get; set; }
         public bool StatusDevolucao { get; set; }
         public decimal QuilometragemFinal { get; set; }
         public DateTime DataRealDaDevolucao { get; set; }
