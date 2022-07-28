@@ -10,6 +10,8 @@ namespace LocadoraVeiculos.Dominio.ModuloDevolucao
             Nome = nome;
         }
 
+
+
         public string Nome { get; set; }
 
         public Devolucao Clone()
