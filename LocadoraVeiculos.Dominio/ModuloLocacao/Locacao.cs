@@ -16,25 +16,25 @@ namespace LocadoraVeiculos.Dominio.ModuloLocacao
         {
         }
 
-        Veiculo Veiculo { get; set; }
-        Conductor Conductor { get; set; }
-        Cliente Cliente { get; set; }
-        GrupoVeiculos GrupoVeiculos { get; set; }
-        PlanoCobranca PlanoCobranca { get; set; }
-        DateTime DataLocacao { get; set; }
-        DateTime DataEstimadaDevolucao { get; set; }
-        decimal QuilometragemInicial { get; set; }
-        NivelTanqueEnum NivelTanqueEnumInicio { get; set; }
-
-         
-        List<Taxas> ListaTaxas { get; set; }
+        public  Veiculo Veiculo { get; set; }
+        public Conductor Conductor { get; set; }
+        public Cliente Cliente { get; set; }
+        public GrupoVeiculos GrupoVeiculos { get; set; }
+        public PlanoCobranca PlanoCobranca { get; set; }
+        public DateTime DataLocacao { get; set; }
+        public DateTime DataEstimadaDevolucao { get; set; }
+        public decimal QuilometragemInicial { get; set; }
+        public NivelTanqueEnum NivelTanqueEnumInicio { get; set; }
 
 
-        bool StatusDevolucao { get; set;}
-        decimal QuilometragemFinal { get; set; }
-        DateTime DataRealDaDevolucao { get; set; }
-        
-        NivelTanqueEnum NivelTanqueEnumDevolucao { get; set; }
+        public List<Taxas> ListaTaxas { get; set; }
+
+
+        public bool StatusDevolucao { get; set;}
+        public decimal QuilometragemFinal { get; set; }
+        public DateTime DataRealDaDevolucao { get; set; }
+
+        public NivelTanqueEnum NivelTanqueEnumDevolucao { get; set; }
 
         public override bool Equals(object obj)
         {

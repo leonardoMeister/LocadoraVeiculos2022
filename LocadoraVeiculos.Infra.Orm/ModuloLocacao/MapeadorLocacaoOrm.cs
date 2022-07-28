@@ -10,7 +10,14 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloLocacao
         {
             builder.ToTable("TB_LOCACAO");
             builder.Property(x => x.Id).ValueGeneratedNever().IsUnicode();
-            builder.Property(x => x.Nome).HasColumnType("varchar(100)").IsRequired();
+
+            builder.HasOne(x => x.Veiculo).WithMany().OnDelete(DeleteBehavior.Cascade);
+            builder.HasOne(x => x.Conductor).WithMany().OnDelete(DeleteBehavior.Cascade);
+            builder.HasOne(x => x.Cliente).WithMany().OnDelete(DeleteBehavior.Cascade);
+            builder.HasOne(x => x.GrupoVeiculos).WithMany().OnDelete(DeleteBehavior.Cascade);
+            builder.HasOne(x => x.PlanoCobranca).WithMany().OnDelete(DeleteBehavior.Cascade);
+
+            //Lista de taxas como faz;
         }
     }
 }
