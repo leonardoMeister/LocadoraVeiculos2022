@@ -1,13 +1,7 @@
-﻿using LocadoraVeiculos.Dominio.ModuloVeiculo;
+﻿using LocadoraVeiculos.Dominio.ModuloLocacao;
 using LocadoraVeiculos.WinApp.shared;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LocadoraVeiculos.WinApp.ModuloLocacao
@@ -44,19 +38,18 @@ namespace LocadoraVeiculos.WinApp.ModuloLocacao
 
             return colunas;
         }
-        public Guid ObtemNumeroVeiculoSelecionado()
+        public Guid ObtemNumeroLocacaoSelecionada()
         {
             return grid.SelecionarNumero<Guid>();
         }
 
-        public void AtualizarRegistros(List<Veiculo> grupo)
+        public void AtualizarRegistros(List<Locacao> grupo)
         {
             grid.Rows.Clear();
 
-            foreach (Veiculo veiculo in grupo)
+            foreach (Locacao locacao in grupo)
             {
-                grid.Rows.Add(veiculo.Id, veiculo.Modelo, veiculo.Placa, veiculo.Marca, veiculo.Cor, veiculo.TipoCombustivel,
-                    veiculo.Ano.Date);
+                grid.Rows.Add(locacao.Id);
             }
         }
     }

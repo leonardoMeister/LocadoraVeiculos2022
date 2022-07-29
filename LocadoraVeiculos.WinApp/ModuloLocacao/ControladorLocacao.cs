@@ -5,6 +5,7 @@ using LocadoraVeiculos.Controladores.ModuloServicoGrupoVeiculos;
 using LocadoraVeiculos.Controladores.ModuloServicoPlanoCobranca;
 using LocadoraVeiculos.Controladores.ModuloServicoTaxas;
 using LocadoraVeiculos.Controladores.ModuloServicoVeiculo;
+using LocadoraVeiculos.Dominio.ModuloLocacao;
 using LocadoraVeiculos.WinApp.ModuloVeiculo;
 using LocadoraVeiculos.WinApp.shared;
 using System;
@@ -28,10 +29,9 @@ namespace LocadoraVeiculos.WinApp.ModuloLocacao
         ServicoTaxas servicoTaxas;
         Action<string> AtualizarRodape;
 
-
         public void Editar()
         {
-            var id = tabelaLocacao.ObtemNumeroVeiculoSelecionado();
+            var id = tabelaLocacao.ObtemNumeroLocacaoSelecionada();
 
             if (id == Guid.Empty)
             {
@@ -66,22 +66,84 @@ namespace LocadoraVeiculos.WinApp.ModuloLocacao
 
         public void Excluir()
         {
-            throw new NotImplementedException();
+            var id = tabelaLocacao.ObtemNumeroLocacaoSelecionada();
+
+            if (id == Guid.Empty)
+            {
+                MessageBox.Show("Selecione uma Locação primeiro",
+                    "Exclusão de Locação", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            var resultadoSelecao = servicoVeiculo.SelecionarPorId(id);
+
+            if (resultadoSelecao.IsFailed)
+            {
+                MessageBox.Show(resultadoSelecao.Errors[0].Message,
+                    "Exclusão de Locação", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            var veiculoSelecionado = resultadoSelecao.Value;
+
+            if (MessageBox.Show("Deseja realmente excluir a Locação?", "Exclusão de Locação",
+                 MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+            {
+                var resultadoExclusao = servicoVeiculo.Excluir(veiculoSelecionado);
+
+                if (resultadoExclusao.IsSuccess)
+                    CarregarLocacoes();
+                else
+                    MessageBox.Show(resultadoExclusao.Errors[0].Message,
+                        "Exclusão de Locação", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void CarregarLocacoes()
+        {
+            var resultado = servicoVeiculo.SelecionarTodos();
+
+            if (resultado.IsSuccess)
+            {
+                List<Locacao> locacoes = resultado.Value;
+
+                tabelaLocacao.AtualizarRegistros(locacoes);
+
+                AtualizarRodape($"Visualizando {locacoes.Count} Locações(s)");
+            }
+            else
+            {
+                MessageBox.Show(resultado.Errors[0].Message, "Exclusão de Locação",
+                 MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         public void Inserir()
         {
-            throw new NotImplementedException();
+            TelaCadastroLocacaoForm telaCadastroVeiculo = new(servicoVeiculo, servicoCondutores, servicoGrupoVeiculos, servicoPlanoCobranca,
+                                                              servicoTaxas, servicoCliente);
+
+            AtualizarRodape("Tela Adição de Locação");
+
+            telaCadastroVeiculo.GravarRegistro = servicoLocacao.InserirNovo;
+            telaCadastroVeiculo.AtualizarRodape = AtualizarRodape;
+            telaCadastroVeiculo.ShowDialog();
+
+            if (telaCadastroVeiculo.DialogResult == DialogResult.OK) AtualizarRodape("Cadastro Locação Realizada Com Sucesso");
         }
 
         public ConfiguracaoToolboxBase ObtemConfiguracaoToolbox()
         {
-            throw new NotImplementedException();
+            return new ConfiguracaoToolBoxLocacao();
         }
 
         public override UserControl ObtemListagem()
         {
-            throw new NotImplementedException();
+            List<Locacao> veiculos = servicoLocacao.SelecionarTodos().Value;
+
+            tabelaLocacao.AtualizarRegistros(veiculos);
+
+            return tabelaLocacao;
         }
     }
 }
