@@ -4,14 +4,16 @@ using LocadoraVeiculos.Infra.Orm.Compatilhado;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LocadoraVeiculos.Infra.Orm.Migrations
 {
     [DbContext(typeof(LocadoraVeiculosDbContext))]
-    partial class LocadoraVeiculosDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220729172219_RemovendoDeleteOnCascade")]
+    partial class RemovendoDeleteOnCascade
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -180,13 +182,11 @@ namespace LocadoraVeiculos.Infra.Orm.Migrations
                     b.Property<Guid>("GrupoVeiculosId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("NivelTanqueEnumDevolucao")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("NivelTanqueEnumDevolucao")
+                        .HasColumnType("int");
 
-                    b.Property<string>("NivelTanqueEnumInicio")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("NivelTanqueEnumInicio")
+                        .HasColumnType("int");
 
                     b.Property<Guid>("PlanoCobrancaId")
                         .HasColumnType("uniqueidentifier");

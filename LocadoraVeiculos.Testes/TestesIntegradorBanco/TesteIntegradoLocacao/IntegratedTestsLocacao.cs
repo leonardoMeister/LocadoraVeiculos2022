@@ -110,15 +110,15 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoLocacao
             ServicoTaxas controladorTaxas = new ServicoTaxas(new RepositorioTaxaOrm(dbContext), dbContext);
 
             GrupoVeiculos grupo = new GrupoVeiculos("Nome do grupo de teste");
-            controladorGrupoVeiculos.InserirNovo(grupo);
+            var gru =controladorGrupoVeiculos.InserirNovo(grupo);
 
             byte[] foto = new byte[] { };
 
             Veiculo vei = new Veiculo("Modelo do Veiculo", "ASD-3021", "Gol", "Rosa", "Gasolina", 10, DateTime.Now, 10, foto, grupo);
-            controladorVeiculo.InserirNovo(vei);
+            var ve =controladorVeiculo.InserirNovo(vei);
 
             PlanoCobranca plano = new PlanoCobranca("Tipo Grupo 1", 100, 0, 10, grupo);
-            controladorPlanoCobranca.InserirNovo(plano);
+            var pla = controladorPlanoCobranca.InserirNovo(plano);
 
             Condutores condutor = new Condutores("Gustavo Paes", "023.599.199.94", "Andre Gargioni", "emailteste@gmail.com", "99-99999-9999", "12323432193", "segunda - feira, 4 de julho de 2022");
             controladorCondutores.InserirNovo(condutor);
@@ -137,7 +137,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoLocacao
 
 
             Locacao loc = new Locacao(vei, condutor, cli, grupo, plano, DateTime.Now, DateTime.Now, 10, NivelTanqueEnum.medio, tax, false, 100, DateTime.Now, NivelTanqueEnum.alto);
-            controlador.InserirNovo(loc);
+            var locacao = controlador.InserirNovo(loc);
 
             var resultado = controlador.SelecionarPorId(loc.Id).Value;
 

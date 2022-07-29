@@ -11,18 +11,20 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloLocacao
             builder.ToTable("TB_LOCACAO");
             builder.Property(x => x.Id).ValueGeneratedNever().IsUnicode();
 
+            builder.HasOne(x => x.Veiculo).WithMany().OnDelete(DeleteBehavior.NoAction);
+            builder.HasOne(x => x.Condutores).WithMany().OnDelete(DeleteBehavior.NoAction);
+            builder.HasOne(x => x.Cliente).WithMany().OnDelete(DeleteBehavior.NoAction);
+            builder.HasOne(x => x.GrupoVeiculos).WithMany().OnDelete(DeleteBehavior.NoAction);
+            builder.HasOne(x => x.PlanoCobranca).WithMany().OnDelete(DeleteBehavior.NoAction);
 
-            builder.HasOne(x => x.Veiculo).WithMany().OnDelete(DeleteBehavior.Cascade);
-            builder.HasOne(x => x.Condutores).WithMany().OnDelete(DeleteBehavior.Cascade);
-            builder.HasOne(x => x.Cliente).WithMany().OnDelete(DeleteBehavior.Cascade);
-            builder.HasOne(x => x.GrupoVeiculos).WithMany().OnDelete(DeleteBehavior.Cascade);
-            builder.HasOne(x => x.PlanoCobranca).WithMany().OnDelete(DeleteBehavior.Cascade);
-
-            //builder.HasOne(x => x.ListaTaxas).WithMany( c => c.   ).OnDelete(DeleteBehavior.Cascade);
-            //builder.HasMany(x => x.ListaTaxas).WithOne(c => c).
-
-
-            //Lista de taxas como faz;
+            builder.Property(x => x.DataLocacao);
+            builder.Property(x => x.DataEstimadaDevolucao);
+            builder.Property(x => x.DataRealDaDevolucao);
+            builder.Property(x => x.QuilometragemInicial);
+            builder.Property(x => x.QuilometragemFinal);
+            builder.Property(x => x.StatusDevolucao).IsRequired();
+            builder.Property(x => x.NivelTanqueEnumInicio).HasConversion<string>();
+            builder.Property(x => x.NivelTanqueEnumDevolucao).HasConversion<string>();
         }
     }
 }
