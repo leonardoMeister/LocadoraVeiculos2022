@@ -56,9 +56,12 @@ namespace LocadoraVeiculos.Dominio.ModuloLocacao
 
 
         public DateTime DataLocacao { get; set; }
+        public DateTime DataRealDaDevolucao { get; set; }
         public DateTime DataEstimadaDevolucao { get; set; }
+
         public decimal QuilometragemInicial { get; set; }
         public NivelTanqueEnum NivelTanqueEnumInicio { get; set; }
+        public NivelTanqueEnum NivelTanqueEnumDevolucao { get; set; }
 
         public List<Taxas> ListaTaxas { get; set; }
       
@@ -67,9 +70,7 @@ namespace LocadoraVeiculos.Dominio.ModuloLocacao
 
         public bool StatusDevolucao { get; set; }
         public decimal QuilometragemFinal { get; set; }
-        public DateTime DataRealDaDevolucao { get; set; }
 
-        public NivelTanqueEnum NivelTanqueEnumDevolucao { get; set; }
 
         public override bool Equals(object obj)
         {
