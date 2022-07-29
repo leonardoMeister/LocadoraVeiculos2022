@@ -101,7 +101,7 @@ namespace LocadoraVeiculos.WinApp.ModuloLocacao
 
         private void CarregarLocacoes()
         {
-            var resultado = servicoVeiculo.SelecionarTodos();
+            var resultado = servicoLocacao.SelecionarTodos();
 
             if (resultado.IsSuccess)
             {

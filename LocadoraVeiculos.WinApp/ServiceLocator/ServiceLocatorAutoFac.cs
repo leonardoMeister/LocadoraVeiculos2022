@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using LocadoraVeiculos.Aplicacao.ModuloLocacao;
 using LocadoraVeiculos.Controladores.ModuloServicoCliente;
 using LocadoraVeiculos.Controladores.ModuloServicoCondutores;
 using LocadoraVeiculos.Controladores.ModuloServicoFuncionario;
@@ -12,6 +13,7 @@ using LocadoraVeiculos.Infra.Orm.ModuloCliente;
 using LocadoraVeiculos.Infra.Orm.ModuloCondutores;
 using LocadoraVeiculos.Infra.Orm.ModuloFuncionario;
 using LocadoraVeiculos.Infra.Orm.ModuloGrupoVeiculo;
+using LocadoraVeiculos.Infra.Orm.ModuloLocacao;
 using LocadoraVeiculos.Infra.Orm.ModuloPlanoCobranca;
 using LocadoraVeiculos.Infra.Orm.ModuloTaxas;
 using LocadoraVeiculos.Infra.Orm.ModuloVeiculo;
@@ -19,6 +21,7 @@ using LocadoraVeiculos.WinApp.ModuloCliente;
 using LocadoraVeiculos.WinApp.ModuloCondutores;
 using LocadoraVeiculos.WinApp.ModuloFuncionario;
 using LocadoraVeiculos.WinApp.ModuloGrupoVeiculo;
+using LocadoraVeiculos.WinApp.ModuloLocacao;
 using LocadoraVeiculos.WinApp.ModuloPlanoCobranca;
 using LocadoraVeiculos.WinApp.ModuloTaxa;
 using LocadoraVeiculos.WinApp.ModuloVeiculo;
@@ -93,8 +96,13 @@ namespace LocadoraVeiculos.WinApp.ServiceLocator
 
             builder.RegisterType<RepositorioVeiculoOrm>().AsSelf();
             builder.RegisterType<ServicoVeiculo>().AsSelf();
-            builder.RegisterType<TabelaLocacaoControl>().AsSelf();
+            builder.RegisterType<TabelaVeiculoControl>().AsSelf();
             builder.RegisterType<ControladorVeiculo>().AsSelf();
+
+            builder.RegisterType<RepositorioLocacaoOrm>().AsSelf();
+            builder.RegisterType<ServicoLocacao>().AsSelf();
+            builder.RegisterType<TabelaLocacaoControl>().AsSelf();
+            builder.RegisterType<ControladorLocacao>().AsSelf();
 
             IContainer container = builder.Build();
             return container.Resolve<T>();
