@@ -93,7 +93,7 @@ namespace LocadoraVeiculos.WinApp.ServiceLocator
 
             builder.RegisterType<RepositorioVeiculoOrm>().AsSelf();
             builder.RegisterType<ServicoVeiculo>().AsSelf();
-            builder.RegisterType<TabelaVeiculoControl>().AsSelf();
+            builder.RegisterType<TabelaLocacaoControl>().AsSelf();
             builder.RegisterType<ControladorVeiculo>().AsSelf();
 
             IContainer container = builder.Build();

@@ -14,8 +14,8 @@ namespace LocadoraVeiculos.Dominio.ModuloLocacao
     {
         public Locacao()
         {
-        }
 
+        }
 
         public Locacao(
             Veiculo veiculo, Condutores condutor, Cliente cliente, GrupoVeiculos grupoVeiculos, PlanoCobranca planoCobranca,

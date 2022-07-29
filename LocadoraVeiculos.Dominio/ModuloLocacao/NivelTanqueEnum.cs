@@ -8,6 +8,6 @@ namespace LocadoraVeiculos.Dominio.ModuloLocacao
 {
     public enum NivelTanqueEnum
     {
-        zerado,baixo,medio,alto,cheio
+        naoInformado,zerado,baixo,medio,alto,cheio
     }
 }
