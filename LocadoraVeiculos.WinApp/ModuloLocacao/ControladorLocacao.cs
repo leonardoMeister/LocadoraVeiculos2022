@@ -1,4 +1,12 @@
-﻿using LocadoraVeiculos.WinApp.shared;
+﻿using LocadoraVeiculos.Aplicacao.ModuloLocacao;
+using LocadoraVeiculos.Controladores.ModuloServicoCliente;
+using LocadoraVeiculos.Controladores.ModuloServicoCondutores;
+using LocadoraVeiculos.Controladores.ModuloServicoGrupoVeiculos;
+using LocadoraVeiculos.Controladores.ModuloServicoPlanoCobranca;
+using LocadoraVeiculos.Controladores.ModuloServicoTaxas;
+using LocadoraVeiculos.Controladores.ModuloServicoVeiculo;
+using LocadoraVeiculos.WinApp.ModuloVeiculo;
+using LocadoraVeiculos.WinApp.shared;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +18,49 @@ namespace LocadoraVeiculos.WinApp.ModuloLocacao
 {
     public class ControladorLocacao : ConfiguracaoBase, ICadastravel
     {
+        TabelaLocacaoControl tabelaLocacao;
+        ServicoLocacao servicoLocacao;
+        ServicoVeiculo servicoVeiculo;
+        ServicoCondutores servicoCondutores;
+        ServicoCliente servicoCliente;
+        ServicoGrupoVeiculos servicoGrupoVeiculos;
+        ServicoPlanoCobranca servicoPlanoCobranca;
+        ServicoTaxas servicoTaxas;
+        Action<string> AtualizarRodape;
+
+
         public void Editar()
         {
-            throw new NotImplementedException();
+            var id = tabelaLocacao.ObtemNumeroVeiculoSelecionado();
+
+            if (id == Guid.Empty)
+            {
+                MessageBox.Show("Selecione uma Locação primeiro",
+                    "Edição de Locação", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            var resultado = servicoLocacao.SelecionarPorId(id);
+
+            if (resultado.IsFailed)
+            {
+                MessageBox.Show(resultado.Errors[0].Message,
+                    "Edição de Funcionário", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            var funcionarioSelecionado = resultado.Value;
+
+            TelaCadastroLocacaoForm telaCadastroLocacao = new TelaCadastroLocacaoForm(servicoGrupoVeiculos);
+
+            AtualizarRodape("Tela de Edição de Locação");
+            telaCadastroLocacao.Veiculo = resultado.Value.Clone();
+
+            telaCadastroLocacao.GravarRegistro = servicoLocacao.Editar;
+            telaCadastroLocacao.AtualizarRodape = AtualizarRodape;
+            telaCadastroLocacao.ShowDialog();
+
+            if (telaCadastroLocacao.DialogResult == DialogResult.OK) AtualizarRodape("Edição de Locação Realizada Com Sucesso");
         }
 
         public void Excluir()
