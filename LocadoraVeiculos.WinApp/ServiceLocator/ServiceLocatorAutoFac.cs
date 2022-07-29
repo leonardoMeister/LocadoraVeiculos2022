@@ -6,6 +6,7 @@ using LocadoraVeiculos.Controladores.ModuloServicoGrupoVeiculos;
 using LocadoraVeiculos.Controladores.ModuloServicoPlanoCobranca;
 using LocadoraVeiculos.Controladores.ModuloServicoTaxas;
 using LocadoraVeiculos.Controladores.ModuloServicoVeiculo;
+using LocadoraVeiculos.Dominio.shared;
 using LocadoraVeiculos.Infra.Orm.Compatilhado;
 using LocadoraVeiculos.Infra.Orm.ModuloCliente;
 using LocadoraVeiculos.Infra.Orm.ModuloCondutores;
@@ -22,27 +23,46 @@ using LocadoraVeiculos.WinApp.ModuloPlanoCobranca;
 using LocadoraVeiculos.WinApp.ModuloTaxa;
 using LocadoraVeiculos.WinApp.ModuloVeiculo;
 using LocadoraVeiculos.WinApp.shared;
+using Microsoft.Extensions.Configuration;
 using System;
+using System.IO;
 
 namespace LocadoraVeiculos.WinApp.ServiceLocator
 {
     public class ServiceLocatorAutoFac : IServiceLocator
     {
         Action<string> atualizarRodape;
+        private string connectionString;
         public ServiceLocatorAutoFac(Action<string> atualizarRodape)
         {
             this.atualizarRodape = atualizarRodape;
+
+            var configuracao = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("ConfiguracaoAplicacao.json")
+                .Build();
+
+            connectionString = configuracao
+                .GetSection("ConnectionStrings")
+                .GetSection("SqlServer")
+                .Value;
         }
 
         public T Get<T>() where T : ConfiguracaoBase
         {
             var builder = new ContainerBuilder();
-
             builder.Register(x => atualizarRodape).AsSelf();
-            builder.RegisterType<LocadoraVeiculosDbContext>().AsSelf();
+            builder.Register(x => connectionString).AsSelf();
+
+            
+            LocadoraVeiculosDbContext db = new LocadoraVeiculosDbContext(connectionString);
+            builder.Register(x => db).AsSelf();
+
+            IContextoPersistencia contexto = db;
+            builder.Register(x => contexto).AsSelf();
 
             builder.RegisterType<RepositorioClienteOrm>().AsSelf();
-            builder.RegisterType<ServicoCliente>().AsSelf();     
+            builder.RegisterType<ServicoCliente>().AsSelf();
             builder.RegisterType<TabelaClienteControl>().AsSelf();
             builder.RegisterType<ControladorCliente>().AsSelf();
 

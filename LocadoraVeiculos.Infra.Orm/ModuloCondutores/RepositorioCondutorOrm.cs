@@ -20,27 +20,35 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloCondutores
         }
         public void Editar(Condutores registro)
         {
-            throw new NotImplementedException();
+            Condutores.Update(registro);
         }
 
         public void Excluir(Guid id)
         {
-            throw new NotImplementedException();
+            var registro = Condutores.SingleOrDefault(x => x.Id == id);
+
+            Condutores.Remove(registro);
         }
 
         public bool Existe(Guid id)
         {
-            throw new NotImplementedException();
+            var id1 = Condutores.SingleOrDefault(x => x.Id == id);
+            if (id1 != null)
+            {
+                return true;
+            }
+
+            return false;
         }
 
         public void InserirNovo(Condutores registro)
         {
-            throw new NotImplementedException();
+            Condutores.Add(registro);
         }
 
         public Condutores SelecionarPorId(Guid id)
         {
-            throw new NotImplementedException();
+            return Condutores.SingleOrDefault(x => x.Id == id);
         }
 
         public Condutores SelecionarPorParametro(string query, Dictionary<string, object> parameters)
@@ -50,7 +58,7 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloCondutores
 
         public List<Condutores> SelecionarTodos()
         {
-            throw new NotImplementedException();
+            return Condutores.ToList();
         }
     }
 }

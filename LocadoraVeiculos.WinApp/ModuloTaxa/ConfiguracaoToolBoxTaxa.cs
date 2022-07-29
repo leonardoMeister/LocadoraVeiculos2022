@@ -18,6 +18,6 @@ namespace LocadoraVeiculos.WinApp.ModuloTaxa
 
         public override string TooltipFiltrar => "Filtrar Taxa";
 
-        public override string TooltipAgrupar => "Agrupar Taxa";
+        public override string TooltipPDF => "Agrupar Taxa";
     }
 }

@@ -2,8 +2,6 @@
 using LocadoraVeiculos.Dominio.ModuloCliente;
 using LocadoraVeiculos.Infra.Orm.Compatilhado;
 using LocadoraVeiculos.Infra.Orm.ModuloCliente;
-using LocadoraVeiculos.RepositorioProject.ModuloCliente;
-using LocadoraVeiculos.RepositorioProject.shared;
 using Microsoft.Extensions.Configuration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
@@ -18,20 +16,26 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoCliente
         public IntegratedTestsCliente()
         {
             var configuracao = new ConfigurationBuilder()
-             .SetBasePath(Directory.GetCurrentDirectory())
-             .AddJsonFile("ConfiguracaoAplicacao.json")
-             .Build();
+                 .SetBasePath(Directory.GetCurrentDirectory())
+                 .AddJsonFile("ConfiguracaoAplicacao.json")
+                 .Build();
 
-            var connectionString = configuracao.GetConnectionString("SqlServer");
+            var connectionString = configuracao
+                .GetSection("ConnectionStrings")
+                .GetSection("SqlServer")
+                .Value;
+
             dbContext = new LocadoraVeiculosDbContext(connectionString);
-            //string query = @"delete from TB_CLIENTE;";
-            //DataBase.ExecutarComando(query);
+            
+            var clientes = dbContext.Set<Cliente>();            
+            clientes.RemoveRange(clientes);
+            dbContext.SaveChanges();
         }
 
         [TestMethod]
         public void DeveInserirCliente()
         {
-            ServicoCliente repo = new ServicoCliente(new RepositorioClienteOrm(dbContext));
+            ServicoCliente repo = new ServicoCliente(new RepositorioClienteOrm(dbContext), dbContext);
 
             Cliente cli = new Cliente("Lonardo", "193.432.943.99", "estrada noeva", "leonrado@gmail.com", "47 99232-3433",
                 EnumCliente.PessoaFisica.ToString(), "");
@@ -49,15 +53,15 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoCliente
         [TestMethod]
         public void DeveBuscarVariosClientes()
         {
-            ServicoCliente repo = new ServicoCliente(new RepositorioClienteOrm(dbContext));
+            ServicoCliente repo = new ServicoCliente(new RepositorioClienteOrm(dbContext), dbContext);
 
             Cliente cli = new Cliente("Lonardo", "193.432.943.99", "estrada noeva", "leonrado@gmail.com", "47 99232-3433",
                 EnumCliente.PessoaFisica.ToString(), "");
             Cliente cli2 = new Cliente("LonardoMeister", "193.432.943.93", "estrada noevaEdiutada", "leonrado@gmail.com", "47 99232-3433",
                 EnumCliente.PessoaFisica.ToString(), "");
 
-            repo.InserirNovo(cli);
-            repo.InserirNovo(cli2);
+            var no =repo.InserirNovo(cli);
+            var ne = repo.InserirNovo(cli2);
 
             var dados = repo.SelecionarTodos().Value;
 
@@ -67,7 +71,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoCliente
         [TestMethod]
         public void DeveVerificarExistenciaCliente()
         {
-            ServicoCliente repo = new ServicoCliente(new RepositorioClienteOrm(dbContext));
+            ServicoCliente repo = new ServicoCliente(new RepositorioClienteOrm(dbContext), dbContext);
 
             Cliente cli = new Cliente("Lonardo", "193.432.943.99", "estrada noeva", "leonrado@gmail.com", "47 99232-3433",
                            EnumCliente.PessoaFisica.ToString(), "");
@@ -82,27 +86,24 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoCliente
         [TestMethod]
         public void DeveEditarCliente()
         {
-            ServicoCliente repo = new ServicoCliente(new RepositorioClienteOrm(dbContext));
+            ServicoCliente repo = new ServicoCliente(new RepositorioClienteOrm(dbContext), dbContext);
 
             Cliente cli = new Cliente("Lonardo", "193.432.943.99", "estrada noeva", "leonrado@gmail.com", "47 99232-3433",
                            EnumCliente.PessoaFisica.ToString(), "");
             repo.InserirNovo(cli);
 
-            Cliente cli2 = new Cliente("LonardoEDITADO", "193.432.943.97", "estrada noevaEDITADO", "leonradoEDITADO@gmail.com", "48 99232-3433",
-                           EnumCliente.PessoaFisica.ToString(), "");
+            cli.Nome = "Leonardo NOVO NOMOE Editado";           
+            repo.Editar(cli);
 
-            cli2.Id = cli.Id;
-            repo.Editar(cli2);
+            var clienteBanco = repo.SelecionarPorId(cli.Id).Value;
 
-            var clienteBanco = repo.SelecionarPorId(cli2.Id).Value;
-
-            Assert.AreEqual(cli2, clienteBanco);
+            Assert.AreEqual(cli, clienteBanco);
         }
 
         [TestMethod]
         public void DeveDeletarCliente()
         {
-            ServicoCliente repo = new ServicoCliente(new RepositorioClienteOrm(dbContext));
+            ServicoCliente repo = new ServicoCliente(new RepositorioClienteOrm(dbContext), dbContext);
 
             Cliente cli = new Cliente("Lonardo", "193.432.943.99", "estrada noeva", "leonrado@gmail.com", "47 99232-3433",
                                        EnumCliente.PessoaFisica.ToString(), "");

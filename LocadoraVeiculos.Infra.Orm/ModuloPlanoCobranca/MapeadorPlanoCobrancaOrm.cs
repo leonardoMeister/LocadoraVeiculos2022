@@ -21,7 +21,7 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloPlanoCobranca
             builder.Property(x => x.LimiteKM).IsRequired();
             builder.Property(x => x.ValorKM).IsRequired();
 
-            builder.HasOne(x => x.GrupoVeiculos);                
+            builder.HasOne(x => x.GrupoVeiculos).WithMany().OnDelete(DeleteBehavior.NoAction);                
         }
     }
 }

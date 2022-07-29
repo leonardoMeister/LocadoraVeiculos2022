@@ -16,20 +16,25 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoTaxas
         public IntegratedTestsTaxas()
         {
             var configuracao = new ConfigurationBuilder()
-             .SetBasePath(Directory.GetCurrentDirectory())
-             .AddJsonFile("ConfiguracaoAplicacao.json")
-             .Build();
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("ConfiguracaoAplicacao.json")
+                .Build();
 
-            var connectionString = configuracao.GetConnectionString("SqlServer");
+            var connectionString = configuracao
+                .GetSection("ConnectionStrings")
+                .GetSection("SqlServer")
+                .Value;
             dbContext = new LocadoraVeiculosDbContext(connectionString);
-            //string query = @"delete from TB_TAXAS;";
-            //DataBase.ExecutarComando(query);
+
+            var taxas = dbContext.Set<Taxas>();
+            taxas.RemoveRange(taxas);
+            dbContext.SaveChanges();
         }
 
         [TestMethod]
         public void DeveInserirTaxas()
         {
-            ServicoTaxas repo = new ServicoTaxas(new RepositorioTaxaOrm(dbContext));
+            ServicoTaxas repo = new ServicoTaxas(new RepositorioTaxaOrm(dbContext), dbContext);
             Taxas tax = new Taxas("Aluguel Onix", 1500, EnumTaxa.Diaria.ToString());
             repo.InserirNovo(tax);
 
@@ -41,7 +46,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoTaxas
         [TestMethod]
         public void DeveBuscarVariosTaxas()
         {
-            ServicoTaxas repo = new ServicoTaxas(new RepositorioTaxaOrm(dbContext));
+            ServicoTaxas repo = new ServicoTaxas(new RepositorioTaxaOrm(dbContext), dbContext);
             Taxas tax = new Taxas("Aluguel Onix", 1500, EnumTaxa.Diaria.ToString());
             Taxas tax2 = new Taxas("Aluguel HB20", 1000, EnumTaxa.Diaria.ToString());
 
@@ -55,7 +60,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoTaxas
         [TestMethod]
         public void DeveVerificarExistenciaTaxas()
         {
-            ServicoTaxas repo = new ServicoTaxas(new RepositorioTaxaOrm(dbContext));
+            ServicoTaxas repo = new ServicoTaxas(new RepositorioTaxaOrm(dbContext), dbContext);
             Taxas tax = new Taxas("Aluguel Onix", 1500, EnumTaxa.Diaria.ToString());
             repo.InserirNovo(tax);
 
@@ -67,22 +72,21 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoTaxas
         [TestMethod]
         public void DeveEditarTaxas()
         {
-            ServicoTaxas repo = new ServicoTaxas(new RepositorioTaxaOrm(dbContext));
+            ServicoTaxas repo = new ServicoTaxas(new RepositorioTaxaOrm(dbContext), dbContext);
             Taxas tax = new Taxas("Aluguel Onix", 1500, EnumTaxa.Diaria.ToString());
             repo.InserirNovo(tax);
 
-            Taxas tax2 = new Taxas("Aluguel HB20", 1000, EnumTaxa.Diaria.ToString());
-            tax2.Id = tax.Id;
-            repo.Editar(tax2);
+            tax.Descricao = "NOVA DESCRICAO PARA TAXA";
+            repo.Editar(tax);
 
-            var taxNovo = repo.SelecionarPorId(tax2.Id).Value;
-            Assert.AreEqual(taxNovo, tax2);
+            var taxNovo = repo.SelecionarPorId(tax.Id).Value;
+            Assert.AreEqual(taxNovo, tax);
         }
 
         [TestMethod]
         public void DeveDeletarTaxas()
         {
-            ServicoTaxas repo = new ServicoTaxas(new RepositorioTaxaOrm(dbContext));
+            ServicoTaxas repo = new ServicoTaxas(new RepositorioTaxaOrm(dbContext), dbContext);
             Taxas tax = new Taxas("Aluguel HB20", 1000, EnumTaxa.Diaria.ToString());
             repo.InserirNovo(tax);
 

@@ -23,10 +23,10 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloVeiculo
             builder.Property(x => x.CapacidadeTanque).IsRequired();
             builder.Property(x => x.Ano).IsRequired();
             builder.Property(x => x.Quilometragem).IsRequired();
-            builder.Property(x => x.Foto).IsRequired();
+            builder.Property(x => x.Foto);
 
             builder.HasOne(x => x.GrupoVeiculos)
-                .WithMany();
+                .WithMany().OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

@@ -1,5 +1,7 @@
-﻿using LocadoraVeiculos.Dominio.shared;
+﻿using LocadoraVeiculos.Dominio.ModuloLocacao;
+using LocadoraVeiculos.Dominio.shared;
 using System;
+using System.Collections.Generic;
 
 namespace LocadoraVeiculos.Dominio.ModuloTaxas
 {
@@ -9,12 +11,13 @@ namespace LocadoraVeiculos.Dominio.ModuloTaxas
         {
             Descricao = descricao;
             Valor = valor;
-            Tipo = tipo;    
+            Tipo = tipo;
         }
 
         public string Tipo { get; set; }
         public string Descricao { get; set; }
         public decimal Valor { get; set; }
+        public List<Locacao> Locacoes { get; set; }
 
         public Taxas Clone()
         {

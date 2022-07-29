@@ -16,7 +16,7 @@
 
         public abstract string TooltipFiltrar { get; }
 
-        public abstract string TooltipAgrupar { get; }
+        public abstract string TooltipPDF { get; }
 
 
         public virtual bool InserirHabilitado { get { return true; } }

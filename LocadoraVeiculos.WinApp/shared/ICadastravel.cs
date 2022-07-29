@@ -14,7 +14,7 @@ namespace LocadoraVeiculos.WinApp.shared
 
         public virtual void Filtrar() { }
 
-        public virtual void Agrupar() { }
+        public virtual void PDF() { }
 
         public abstract UserControl ObtemListagem();
 

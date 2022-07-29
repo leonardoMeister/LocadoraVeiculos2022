@@ -18,6 +18,7 @@ namespace LocadoraVeiculos.Infra.Orm.Compatilhado
        
         public LocadoraVeiculosDbContext(string connectionString)
         {
+            //this.connectionString = "Data Source=(LOCALDB)\\MSSQLLOCALDB;Initial Catalog=LocadoraVeiculosTeste;Integrated Security = True;Pooling = false;";
             this.connectionString = connectionString;
         }
 

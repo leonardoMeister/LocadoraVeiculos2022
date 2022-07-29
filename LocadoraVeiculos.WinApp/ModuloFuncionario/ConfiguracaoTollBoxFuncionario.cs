@@ -18,6 +18,6 @@ namespace LocadoraVeiculos.WinApp.ModuloFuncionario
 
         public override string TooltipFiltrar => "Filtrar Funcionário";
 
-        public override string TooltipAgrupar => "Agrupar Funcionário";
+        public override string TooltipPDF => "Agrupar Funcionário";
     }
 }

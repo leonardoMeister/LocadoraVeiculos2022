@@ -32,7 +32,13 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloGrupoVeiculo
 
         public bool Existe(Guid id)
         {
-            throw new NotImplementedException();
+            var id1 = GrupoVeiculos.SingleOrDefault(x => x.Id == id);
+            if (id1 != null)
+            {
+                return true;
+            }
+
+            return false;
         }
 
         public void InserirNovo(GrupoVeiculos registro)
@@ -41,8 +47,9 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloGrupoVeiculo
         }
 
         public GrupoVeiculos SelecionarPorId(Guid id)
-        {            
-            return GrupoVeiculos.Find(id);
+        {
+            return GrupoVeiculos.SingleOrDefault(x => x.Id == id);
+
         }
 
         public GrupoVeiculos SelecionarPorParametro(GrupoVeiculos registro)

@@ -20,27 +20,35 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloTaxas
         }
         public void Editar(Taxas registro)
         {
-            throw new NotImplementedException();
+            Taxas.Update(registro);
         }
 
         public void Excluir(Guid id)
         {
-            throw new NotImplementedException();
+            var registro = Taxas.SingleOrDefault(x => x.Id == id);
+
+            Taxas.Remove(registro);
         }
 
         public bool Existe(Guid id)
         {
-            throw new NotImplementedException();
+            var id1 = Taxas.SingleOrDefault(x => x.Id == id);
+            if (id1 != null)
+            {
+                return true;
+            }
+
+            return false;
         }
 
         public void InserirNovo(Taxas registro)
         {
-            throw new NotImplementedException();
+            Taxas.Add(registro);
         }
 
         public Taxas SelecionarPorId(Guid id)
         {
-            throw new NotImplementedException();
+            return Taxas.SingleOrDefault(x => x.Id == id);
         }
 
         public Taxas SelecionarPorParametro(string query, Dictionary<string, object> parameters)
@@ -50,7 +58,12 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloTaxas
 
         public List<Taxas> SelecionarTodos()
         {
-            throw new NotImplementedException();
+            return Taxas.ToList();
+        }
+
+        public Taxas SelecionarPorDescricao(string descricao)
+        {
+            return Taxas.SingleOrDefault(x => x.Descricao == descricao);
         }
     }
 }

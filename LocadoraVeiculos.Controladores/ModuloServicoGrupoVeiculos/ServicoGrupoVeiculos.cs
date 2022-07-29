@@ -2,6 +2,7 @@
 using FluentValidation;
 using FluentValidation.Results;
 using LocadoraVeiculos.Dominio.ModuloGrupoVeiculos;
+using LocadoraVeiculos.Dominio.shared;
 using LocadoraVeiculos.Infra.Orm.ModuloGrupoVeiculo;
 using LocadoraVeiculos.Repositorio.shared;
 using LocadoraVeiculos.RepositorioProject.ModuloGrupoVeiculos;
@@ -12,7 +13,7 @@ namespace LocadoraVeiculos.Controladores.ModuloServicoGrupoVeiculos
 {
     public class ServicoGrupoVeiculos : ServicoBase<GrupoVeiculos>
     {
-        public ServicoGrupoVeiculos(IRepository<GrupoVeiculos> repo) : base(repo)
+        public ServicoGrupoVeiculos(RepositorioGrupoVeiculoOrm repo, IContextoPersistencia contexto) : base(repo, contexto)
         {
 
         }        

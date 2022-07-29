@@ -20,27 +20,35 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloVeiculo
         }
         public void Editar(Veiculo registro)
         {
-            throw new NotImplementedException();
+            Veiculo.Update(registro);
         }
 
         public void Excluir(Guid id)
         {
-            throw new NotImplementedException();
+            var registro = Veiculo.SingleOrDefault(x => x.Id == id);
+
+            Veiculo.Remove(registro);
         }
 
         public bool Existe(Guid id)
         {
-            throw new NotImplementedException();
+            var id1 = Veiculo.SingleOrDefault(x => x.Id == id);
+            if (id1 != null)
+            {
+                return true;
+            }
+
+            return false;
         }
 
         public void InserirNovo(Veiculo registro)
         {
-            throw new NotImplementedException();
+            Veiculo.Add(registro);
         }
 
         public Veiculo SelecionarPorId(Guid id)
         {
-            throw new NotImplementedException();
+            return Veiculo.SingleOrDefault(x => x.Id == id);
         }
 
         public Veiculo SelecionarPorParametro(string query, Dictionary<string, object> parameters)
@@ -50,7 +58,7 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloVeiculo
 
         public List<Veiculo> SelecionarTodos()
         {
-            throw new NotImplementedException();
+            return Veiculo.ToList();
         }
     }
 }

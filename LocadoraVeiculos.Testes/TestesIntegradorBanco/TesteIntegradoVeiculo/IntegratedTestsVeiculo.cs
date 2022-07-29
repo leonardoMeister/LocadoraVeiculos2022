@@ -5,16 +5,10 @@ using LocadoraVeiculos.Dominio.ModuloVeiculo;
 using LocadoraVeiculos.Infra.Orm.Compatilhado;
 using LocadoraVeiculos.Infra.Orm.ModuloGrupoVeiculo;
 using LocadoraVeiculos.Infra.Orm.ModuloVeiculo;
-using LocadoraVeiculos.RepositorioProject.ModuloVeiculo;
-using LocadoraVeiculos.RepositorioProject.shared;
 using Microsoft.Extensions.Configuration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoVeiculo
 {
@@ -26,25 +20,26 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoVeiculo
         public IntegratedTestsVeiculo()
         {
             var configuracao = new ConfigurationBuilder()
-             .SetBasePath(Directory.GetCurrentDirectory())
-             .AddJsonFile("ConfiguracaoAplicacao.json")
-             .Build();
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("ConfiguracaoAplicacao.json")
+                .Build();
 
-            var connectionString = configuracao.GetConnectionString("SqlServer");
+            var connectionString = configuracao
+                .GetSection("ConnectionStrings")
+                .GetSection("SqlServer")
+                .Value;
             dbContext = new LocadoraVeiculosDbContext(connectionString);
-            //string query = @"delete from TB_VEICULO;";
-            //DataBase.ExecutarComando(query);
-            //string query2 = @"delete from TB_PLANOCOBRANCA;";
-            //DataBase.ExecutarComando(query2);
-            //string query3 = @"delete from TB_GRUPOVEICULOS;";
-            //DataBase.ExecutarComando(query3);
+
+            var veiculos = dbContext.Set<Veiculo>();
+            veiculos.RemoveRange(veiculos);
+            dbContext.SaveChanges();
         }
 
         [TestMethod]
         public void DeveInserirVeiculo()
         {
-            ServicoVeiculo controlador = new ServicoVeiculo(new RepositorioVeiculoOrm(dbContext));
-            ServicoGrupoVeiculos controladorGrupoVeiculos = new ServicoGrupoVeiculos(new RepositorioGrupoVeiculoOrm(dbContext));
+            ServicoVeiculo controlador = new ServicoVeiculo(new RepositorioVeiculoOrm(dbContext), dbContext);
+            ServicoGrupoVeiculos controladorGrupoVeiculos = new ServicoGrupoVeiculos(new RepositorioGrupoVeiculoOrm(dbContext), dbContext);
 
             GrupoVeiculos grupo = new GrupoVeiculos("Nome do grupo de teste");
             controladorGrupoVeiculos.InserirNovo(grupo);
@@ -61,8 +56,8 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoVeiculo
         [TestMethod]
         public void DeveBuscarVeiculo()
         {
-            ServicoVeiculo controlador = new ServicoVeiculo(new RepositorioVeiculoOrm(dbContext));
-            ServicoGrupoVeiculos controladorGrupoVeiculos = new ServicoGrupoVeiculos(new RepositorioGrupoVeiculoOrm(dbContext));
+            ServicoVeiculo controlador = new ServicoVeiculo(new RepositorioVeiculoOrm(dbContext), dbContext);
+            ServicoGrupoVeiculos controladorGrupoVeiculos = new ServicoGrupoVeiculos(new RepositorioGrupoVeiculoOrm(dbContext), dbContext);
 
             GrupoVeiculos grupo = new GrupoVeiculos("Nome do grupo de teste");
             controladorGrupoVeiculos.InserirNovo(grupo);
@@ -80,8 +75,8 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoVeiculo
         [TestMethod]
         public void DeveVerificarExistenciaVeiculo()
         {
-            ServicoVeiculo controlador = new ServicoVeiculo(new RepositorioVeiculoOrm(dbContext));
-            ServicoGrupoVeiculos controladorGrupoVeiculos = new ServicoGrupoVeiculos(new RepositorioGrupoVeiculoOrm(dbContext));
+            ServicoVeiculo controlador = new ServicoVeiculo(new RepositorioVeiculoOrm(dbContext), dbContext);
+            ServicoGrupoVeiculos controladorGrupoVeiculos = new ServicoGrupoVeiculos(new RepositorioGrupoVeiculoOrm(dbContext), dbContext);
 
             GrupoVeiculos grupo = new GrupoVeiculos("Nome do grupo de teste");
             controladorGrupoVeiculos.InserirNovo(grupo);
@@ -98,8 +93,8 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoVeiculo
         [TestMethod]
         public void DeveDeletarVeiculo()
         {
-            ServicoVeiculo controlador = new ServicoVeiculo(new RepositorioVeiculoOrm(dbContext));
-            ServicoGrupoVeiculos controladorGrupoVeiculos = new ServicoGrupoVeiculos(new RepositorioGrupoVeiculoOrm(dbContext));
+            ServicoVeiculo controlador = new ServicoVeiculo(new RepositorioVeiculoOrm(dbContext), dbContext);
+            ServicoGrupoVeiculos controladorGrupoVeiculos = new ServicoGrupoVeiculos(new RepositorioGrupoVeiculoOrm(dbContext), dbContext);
 
             GrupoVeiculos grupo = new GrupoVeiculos("Nome do grupo de teste");
             controladorGrupoVeiculos.InserirNovo(grupo);
@@ -117,21 +112,21 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoVeiculo
         [TestMethod]
         public void DeveEditarVeiculo()
         {
-            ServicoVeiculo controlador = new ServicoVeiculo(new RepositorioVeiculoOrm(dbContext));
-            ServicoGrupoVeiculos controladorGrupoVeiculos = new ServicoGrupoVeiculos(new RepositorioGrupoVeiculoOrm(dbContext));
+            ServicoVeiculo controlador = new ServicoVeiculo(new RepositorioVeiculoOrm(dbContext), dbContext);
+            ServicoGrupoVeiculos controladorGrupoVeiculos = new ServicoGrupoVeiculos(new RepositorioGrupoVeiculoOrm(dbContext), dbContext);
 
             GrupoVeiculos grupo = new GrupoVeiculos("Nome do grupo de teste");
             controladorGrupoVeiculos.InserirNovo(grupo);
             byte[] foto = new byte[] { };
             Veiculo vei = new Veiculo("Modelo do Veiculo", "ASD-3021", "Gol", "Rosa", "Gasolina", 10, DateTime.Now, 10, foto, grupo);
-            Veiculo vei2 = new Veiculo("Modelo do Veiculo2", "ASD-3022", "UNO", "Branco", "Gasolina", 10, DateTime.Now, 10, foto, grupo);            
+
             controlador.InserirNovo(vei);
-            vei2.Id = vei.Id;
-            controlador.Editar(vei2);
+            vei.Modelo = "NOVO MODELO DE VEICULO EDICAO";
+            controlador.Editar(vei);
                 
             var resultado = controlador.SelecionarPorId(vei.Id).Value;
 
-            Assert.AreEqual(resultado, vei2);
+            Assert.AreEqual(resultado, vei);
         }
 
     }

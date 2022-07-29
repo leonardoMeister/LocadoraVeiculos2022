@@ -17,19 +17,33 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloCliente
             this.Clientes = dbContext.Set<Cliente>();            
         }
 
-        public void Editar(Cliente registro)
-        {
-            throw new NotImplementedException();
+        public void Editar(Cliente cli)
+        {            
+
+            //var cliente = Clientes.SingleOrDefault(x => x.Id == cli.Id);
+
+            Clientes.Update(cli);
+
+            var cliente2 = Clientes.SingleOrDefault(x => x.Id == cli.Id);
+
         }
 
         public void Excluir(Guid id)
         {
-            throw new NotImplementedException();
+            var registro = Clientes.SingleOrDefault(x => x.Id == id);
+
+            Clientes.Remove(registro);
         }
 
         public bool Existe(Guid id)
         {
-            throw new NotImplementedException();
+            var id1 = Clientes.SingleOrDefault(x => x.Id == id);
+            if (id1 != null)
+            {
+                return true;
+            }
+
+            return false;
         }
 
         public void InserirNovo(Cliente registro)
@@ -40,7 +54,7 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloCliente
 
         public Cliente SelecionarPorId(Guid id)
         {
-            throw new NotImplementedException();
+            return Clientes.SingleOrDefault(x => x.Id == id);
         }
 
         public Cliente SelecionarPorParametro(string query, Dictionary<string, object> parameters)
@@ -51,6 +65,16 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloCliente
         public List<Cliente> SelecionarTodos()
         {
             return this.Clientes.ToList();
+        }
+
+        public Cliente SelecionarPorCpf(string cpf)
+        {
+            return this.Clientes.SingleOrDefault(x => x.Cpf == cpf);
+        }
+
+        public Cliente SelecionarPorCnpj(string cnpj)
+        {
+            return this.Clientes.SingleOrDefault(x => x.Cnpj == cnpj);
         }
     }
 }

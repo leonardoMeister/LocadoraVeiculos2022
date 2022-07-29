@@ -2,8 +2,9 @@
 using FluentValidation;
 using FluentValidation.Results;
 using LocadoraVeiculos.Dominio.ModuloTaxas;
+using LocadoraVeiculos.Dominio.shared;
+using LocadoraVeiculos.Infra.Orm.ModuloTaxas;
 using LocadoraVeiculos.Repositorio.shared;
-using LocadoraVeiculos.RepositorioProject.ModuloTaxas;
 using Serilog;
 using System.Collections.Generic;
 
@@ -11,7 +12,7 @@ namespace LocadoraVeiculos.Controladores.ModuloServicoTaxas
 {
     public class ServicoTaxas : ServicoBase<Taxas>
     {
-        public ServicoTaxas(IRepository<Taxas> repo) : base(repo)
+        public ServicoTaxas(RepositorioTaxaOrm repo, IContextoPersistencia contexto) : base(repo, contexto)
         {
 
         }
@@ -69,7 +70,7 @@ namespace LocadoraVeiculos.Controladores.ModuloServicoTaxas
         {
             ValidationResult valido = new ValidationResult();
 
-            var func1 = ((RepositorioTaxas)Repositorio).SelecionarPorDescricao(registro.Descricao);
+            Taxas func1 = ((RepositorioTaxaOrm)Repositorio).SelecionarPorDescricao(registro.Descricao);
             if (func1 != null && func1.Id != registro.Id) valido.Errors.Add(new ValidationFailure("Descricao", "Nao pode ter Descrição repetida"));
 
             return valido;
@@ -78,7 +79,7 @@ namespace LocadoraVeiculos.Controladores.ModuloServicoTaxas
         {
             ValidationResult valido = new ValidationResult();
 
-            var func1 = ((RepositorioTaxas)Repositorio).SelecionarPorDescricao(registro.Descricao);
+            Taxas func1 = ((RepositorioTaxaOrm)Repositorio).SelecionarPorDescricao(registro.Descricao);
             if (func1 != null) valido.Errors.Add(new ValidationFailure("Descricao", "Nao pode ter Descrição repetida"));
 
             return valido;

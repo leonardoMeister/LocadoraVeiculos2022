@@ -2,7 +2,6 @@
 using LocadoraVeiculos.Controladores.ModuloServicoCliente;
 using LocadoraVeiculos.Dominio.ModuloCliente;
 using LocadoraVeiculos.Dominio.ModuloCondutores;
-using LocadoraVeiculos.RepositorioProject.ModuloCliente;
 using System;
 using System.Windows.Forms;
 
