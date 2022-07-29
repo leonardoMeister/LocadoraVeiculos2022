@@ -18,13 +18,14 @@ using LocadoraVeiculos.Controladores.ModuloServicoTaxas;
 using LocadoraVeiculos.Controladores.ModuloServicoPlanoCobranca;
 using LocadoraVeiculos.Controladores.ModuloServicoCondutores;
 using LocadoraVeiculos.Controladores.ModuloServicoVeiculo;
+using LocadoraVeiculos.Controladores.ModuloServicoCliente;
 
 namespace LocadoraVeiculos.WinApp.ModuloLocacao
 {
     public partial class TelaCadastroLocacaoForm : Form
     {
         public TelaCadastroLocacaoForm(ServicoVeiculo servicoVeiculo, ServicoCondutores servicoCondutores, ServicoGrupoVeiculos servicoGrupoVeh,
-                                       ServicoPlanoCobranca servicoPlanoCobranca, ServicoTaxas servicoTaxas)
+                                       ServicoPlanoCobranca servicoPlanoCobranca, ServicoTaxas servicoTaxas, ServicoCliente servicoCliente)
         {
             InitializeComponent();
             AtualizarVeiculo();
@@ -37,6 +38,8 @@ namespace LocadoraVeiculos.WinApp.ModuloLocacao
             ServicoPlanoCobranca = servicoPlanoCobranca;
             AtualizarTaxas();
             ServicoTaxas = servicoTaxas;
+            AtualizarCliente();
+            ServicoCliente = servicoCliente;
         }
 
         private void AtualizarVeiculo()
@@ -54,6 +57,15 @@ namespace LocadoraVeiculos.WinApp.ModuloLocacao
             foreach (var dado in dados)
             {
                 cmbCondutores.Items.Add(dado);
+            }
+        }
+
+        private void AtualizarCliente()
+        {
+            var dados = ServicoCliente.SelecionarTodos().Value;
+            foreach (var dado in dados)
+            {
+                cmbCliente.Items.Add(dado);
             }
         }
 
@@ -96,13 +108,8 @@ namespace LocadoraVeiculos.WinApp.ModuloLocacao
                 locacao = value;
                 CarregarFotoVeiculo();
                 txtId.Text = locacao.Id.ToString();
-                textBoxModelo.Text = locacao.Modelo;
-                textBoxPlacas.Text = locacao.Placa;
-                textBoxMarca.Text = locacao.Marca;
-                data.Value = locacao.Ano;
-                textCor.Text = locacao.Cor;
-                textBoxCapacidadeTanque.Text = locacao.CapacidadeTanque.ToString();
-                textBoxQuilometragem.Text = locacao.Quilometragem.ToString();
+                EnumTanqueInicio.Text = locacao.NivelTanqueEnumInicio;
+                textBoxQuilometragemInicial.Text = locacao.QuilometragemInicial.ToString();
                 cmbVeiculo.SelectedItem = locacao.Veiculo;
                 cmbCondutores.SelectedItem = locacao.Condutores;
                 cmbGrupoVeiculo.SelectedItem = locacao.GrupoVeiculos;
@@ -123,6 +130,7 @@ namespace LocadoraVeiculos.WinApp.ModuloLocacao
         public Func<Locacao, Result<Locacao>> GravarRegistro { get; internal set; }
         public ServicoVeiculo ServicoVeiculo { get; }
         public ServicoCondutores ServicoCondutores { get; }
+        public ServicoCondutores ServicoCliente { get; }
         public ServicoGrupoVeiculos ServicoGrupoVeh { get; }
         public ServicoPlanoCobranca ServicoPlanoCobranca { get; }
         public ServicoTaxas ServicoTaxas { get; }

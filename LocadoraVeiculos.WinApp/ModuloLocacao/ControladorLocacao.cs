@@ -51,10 +51,11 @@ namespace LocadoraVeiculos.WinApp.ModuloLocacao
 
             var funcionarioSelecionado = resultado.Value;
 
-            TelaCadastroLocacaoForm telaCadastroLocacao = new TelaCadastroLocacaoForm(servicoGrupoVeiculos);
+            TelaCadastroLocacaoForm telaCadastroLocacao = new TelaCadastroLocacaoForm(servicoVeiculo, servicoCondutores, servicoGrupoVeiculos,
+                                                                                      servicoPlanoCobranca, servicoTaxas, servicoCliente);
 
             AtualizarRodape("Tela de Edição de Locação");
-            telaCadastroLocacao.Veiculo = resultado.Value.Clone();
+            telaCadastroLocacao.Locacao = resultado.Value.Clone();
 
             telaCadastroLocacao.GravarRegistro = servicoLocacao.Editar;
             telaCadastroLocacao.AtualizarRodape = AtualizarRodape;

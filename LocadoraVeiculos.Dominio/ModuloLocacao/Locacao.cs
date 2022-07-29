@@ -71,6 +71,10 @@ namespace LocadoraVeiculos.Dominio.ModuloLocacao
         public bool StatusDevolucao { get; set; }
         public decimal QuilometragemFinal { get; set; }
 
+        public Locacao Clone()
+        {
+            return MemberwiseClone() as Locacao;
+        }
 
         public override bool Equals(object obj)
         {
@@ -112,5 +116,7 @@ namespace LocadoraVeiculos.Dominio.ModuloLocacao
             hash.Add(NivelTanqueEnumDevolucao);
             return hash.ToHashCode();
         }       
+
+
     }
 }
