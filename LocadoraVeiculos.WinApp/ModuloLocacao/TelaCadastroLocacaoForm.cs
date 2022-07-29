@@ -36,8 +36,15 @@ namespace LocadoraVeiculos.WinApp.ModuloLocacao
             AtualizarCondutores();
             AtualizarCliente();
             AtualizarGrupoVeh();
-            AtualizarTaxas();                       
+            AtualizarTaxas();
+            AtualizarNivelTanque();
         }
+
+        private void AtualizarNivelTanque()
+        {
+            throw new NotImplementedException();
+        }
+
         private void SelecionarUmGrupoDeVeiculosNaTela(object sender, EventArgs e)
         {
 
@@ -110,12 +117,12 @@ namespace LocadoraVeiculos.WinApp.ModuloLocacao
             get { return locacao; }
             set
             {
-                locacao = value;                   
+                locacao = value;
+                txtId.Text = locacao.Id.ToString();
                 cmbCondutor.SelectedItem = locacao.Condutores;
                 cmbCliente.SelectedItem = locacao.Cliente;
                 cmbGrupoVeiculo.SelectedItem = locacao.GrupoVeiculos;
                 cmbVeiculo.SelectedItem = locacao.Veiculo;
-                dataLocacao.Value = locacao.DataLocacao;
                 dataDevolucao.Value = locacao.DataEstimadaDevolucao;
                 CarregarFotoVeiculo(locacao.Veiculo);
                 cmbPlanoCobranca.SelectedItem = locacao.PlanoCobranca;
@@ -125,6 +132,11 @@ namespace LocadoraVeiculos.WinApp.ModuloLocacao
         }
 
         private void AtualizarValorEstimadoLocacao()
+        {
+            throw new NotImplementedException();
+        }
+
+        private NivelTanqueEnum PegarNivelTanque()
         {
             throw new NotImplementedException();
         }
@@ -153,41 +165,34 @@ namespace LocadoraVeiculos.WinApp.ModuloLocacao
 
         private void PegarObjetoTela()
         {
-            Guid id = new Guid();
 
-            if (txtId.Text != "")
-                id = new Guid(txtId.Text);
+            NivelTanqueEnum NivelTanqueEnumInicio = PegarNivelTanque();
+            DateTime dataEstimadaDevolucao = this.dataDevolucao.Value;
 
-
-            NivelTanqueEnum NivelTanqueEnumInicio = EnumTanqueInicio.Text;
-            DateTime dataEstimadaDevolucao = data.Value;
-
-            decimal quilometragemInicial = (textBoxQuilometragemInicial.Text == "") ? 0 : Convert.ToDecimal(textBoxQuilometragemInicial.Text);
+            decimal quilometragemInicial = (txtKmInicial.Text == "")? 0: Convert.ToDecimal(txtKmInicial.Text);
 
 
             Veiculo veh = null;
             if (cmbVeiculo.SelectedIndex != -1) veh = (Veiculo)cmbVeiculo.SelectedItem;
             Condutores cond = null;
-            if (cmbCondutores.SelectedIndex != -1) cond = (Condutores)cmbCondutores.SelectedItem;
+            if (cmbCondutor.SelectedIndex != -1) cond = (Condutores)cmbCondutor.SelectedItem;
             Cliente cli = null;
             if (cmbCliente.SelectedIndex != -1) cli = (Cliente)cmbCliente.SelectedItem;
             GrupoVeiculos grupo = null;
             if (cmbGrupoVeiculo.SelectedIndex != -1) grupo = (GrupoVeiculos)cmbGrupoVeiculo.SelectedItem;
             PlanoCobranca pcobranca = null;
             if (cmbPlanoCobranca.SelectedIndex != -1) pcobranca = (PlanoCobranca)cmbPlanoCobranca.SelectedItem;
-            Taxas tax = null;
-            if (cmbTaxas.SelectedIndex != -1) tax = (Taxas)cmbTaxas.SelectedItem;
-
-            List<Taxas> taxa = new List<Taxas>();
-            taxa.Add(tax);
+            
+            List<Taxas> taxas = new List<Taxas>();
+            
+            foreach(Taxas tax in listaTaxas.Items)
+            {
+                taxas.Add(tax);
+            }
 
             locacao = new Locacao(veh, cond, cli, grupo, pcobranca, DateTime.Now, dataEstimadaDevolucao, quilometragemInicial, NivelTanqueEnumInicio,
-                                  taxa, true, 0, DateTime.MinValue, NivelTanqueEnum.naoInformado);
-
-            if (id != Guid.Empty)
-            locacao.Id = id;
+                                  taxas, true, 0, DateTime.MinValue, NivelTanqueEnum.naoInformado);            
         }
-
         private void btnSalvar_Click(object sender, EventArgs e)
         {
             PegarObjetoTela();
@@ -226,5 +231,6 @@ namespace LocadoraVeiculos.WinApp.ModuloLocacao
 
             CarregarFotoVeiculo(vei);
         }
+        
     }
 }
