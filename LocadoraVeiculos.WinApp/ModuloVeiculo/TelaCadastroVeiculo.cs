@@ -1,6 +1,5 @@
 ﻿using LocadoraVeiculos.Dominio.ModuloVeiculo;
 using System;
-using FluentValidation.Results;
 using System.Windows.Forms;
 using System.Drawing;
 using System.IO;

@@ -54,6 +54,8 @@ namespace LocadoraVeiculos.Dominio.ModuloLocacao
         public PlanoCobranca PlanoCobranca { get; set; }
         public Guid PlanoCobrancaId { get; set; }
 
+        public List<Taxas> ListaTaxas { get; set; }
+
 
         public DateTime DataLocacao { get; set; }
         public DateTime DataRealDaDevolucao { get; set; }
@@ -62,11 +64,6 @@ namespace LocadoraVeiculos.Dominio.ModuloLocacao
         public decimal QuilometragemInicial { get; set; }
         public NivelTanqueEnum NivelTanqueEnumInicio { get; set; }
         public NivelTanqueEnum NivelTanqueEnumDevolucao { get; set; }
-
-        public List<Taxas> ListaTaxas { get; set; }
-      
-
-
 
         public bool StatusDevolucao { get; set; }
         public decimal QuilometragemFinal { get; set; }

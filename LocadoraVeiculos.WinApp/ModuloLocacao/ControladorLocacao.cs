@@ -139,9 +139,9 @@ namespace LocadoraVeiculos.WinApp.ModuloLocacao
 
         public override UserControl ObtemListagem()
         {
-            List<Locacao> veiculos = servicoLocacao.SelecionarTodos().Value;
+            List<Locacao> locacoes = servicoLocacao.SelecionarTodos().Value;
 
-            tabelaLocacao.AtualizarRegistros(veiculos);
+            tabelaLocacao.AtualizarRegistros(locacoes);
 
             return tabelaLocacao;
         }
