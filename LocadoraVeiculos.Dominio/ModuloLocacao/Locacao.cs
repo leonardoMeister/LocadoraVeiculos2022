@@ -38,7 +38,7 @@ namespace LocadoraVeiculos.Dominio.ModuloLocacao
             this.DataRealDaDevolucao = dataRealDaDevolucao;
             this.NivelTanqueEnumDevolucao = nivelTanqueEnumDevolucao;
         }
-
+         
         public Veiculo Veiculo { get; set; }
         public Guid VeiculoId { get; set; }
          
@@ -60,7 +60,9 @@ namespace LocadoraVeiculos.Dominio.ModuloLocacao
         public decimal QuilometragemInicial { get; set; }
         public NivelTanqueEnum NivelTanqueEnumInicio { get; set; }
 
-        List<Taxas> ListaTaxas { get; set; }
+        public List<Taxas> ListaTaxas { get; set; }
+        public Guid TaxasId { get; set; }
+        public Guid ListaTaxasId { get; set; }
 
 
 
