@@ -1,11 +1,13 @@
 ﻿using FluentResults;
 using FluentValidation;
 using FluentValidation.Results;
+using LocadoraVeiculos.Dominio.ModuloGrupoVeiculos;
 using LocadoraVeiculos.Dominio.ModuloPlanoCobranca;
 using LocadoraVeiculos.Dominio.shared;
 using LocadoraVeiculos.Infra.Orm.ModuloPlanoCobranca;
 using LocadoraVeiculos.Repositorio.shared;
 using Serilog;
+using System;
 using System.Collections.Generic;
 
 namespace LocadoraVeiculos.Controladores.ModuloServicoPlanoCobranca
@@ -75,6 +77,11 @@ namespace LocadoraVeiculos.Controladores.ModuloServicoPlanoCobranca
             ValidationResult valido = new ValidationResult();
 
             return valido;
+        }
+
+        public Result<List<PlanoCobranca>> SelecionarPlanoCobrancaPorGrupoVeiculo(GrupoVeiculos grupoVeiculo)
+        {
+            throw new NotImplementedException();
         }
     }
 }
