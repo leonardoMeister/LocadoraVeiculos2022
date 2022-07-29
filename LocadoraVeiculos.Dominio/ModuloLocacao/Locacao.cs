@@ -61,8 +61,7 @@ namespace LocadoraVeiculos.Dominio.ModuloLocacao
         public NivelTanqueEnum NivelTanqueEnumInicio { get; set; }
 
         public List<Taxas> ListaTaxas { get; set; }
-        public Guid TaxasId { get; set; }
-        public Guid ListaTaxasId { get; set; }
+      
 
 
 
