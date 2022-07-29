@@ -1,10 +1,8 @@
 ﻿using LocadoraVeiculos.Dominio.ModuloVeiculo;
 using System;
-using FluentValidation.Results;
 using System.Windows.Forms;
 using System.Drawing;
 using System.IO;
-using System.Drawing.Imaging;
 using LocadoraVeiculos.Controladores.ModuloServicoGrupoVeiculos;
 using LocadoraVeiculos.Dominio.ModuloGrupoVeiculos;
 using FluentResults;
@@ -28,38 +26,46 @@ namespace LocadoraVeiculos.WinApp.ModuloLocacao
                                        ServicoPlanoCobranca servicoPlanoCobranca, ServicoTaxas servicoTaxas, ServicoCliente servicoCliente)
         {
             InitializeComponent();
-            AtualizarVeiculo();
-            ServicoVeiculo = servicoVeiculo;
-            AtualizarCondutores();
-            ServicoCondutores = servicoCondutores;
-            AtualizarGrupoVeh();
-            ServicoGrupoVeh = servicoGrupoVeh;
-            AtualizarPlanoCobranca();
-            ServicoPlanoCobranca = servicoPlanoCobranca;
-            AtualizarTaxas();
             ServicoTaxas = servicoTaxas;
-            AtualizarCliente();
             ServicoCliente = servicoCliente;
-        }
+            ServicoVeiculo = servicoVeiculo;
+            ServicoCondutores = servicoCondutores;
+            ServicoGrupoVeh = servicoGrupoVeh;
+            ServicoPlanoCobranca = servicoPlanoCobranca;
 
-        private void AtualizarVeiculo()
+            AtualizarCondutores();
+            AtualizarCliente();
+            AtualizarGrupoVeh();
+            AtualizarTaxas();                       
+        }
+        private void SelecionarUmGrupoDeVeiculosNaTela(object sender, EventArgs e)
         {
-            var dados = ServicoVeiculo.SelecionarTodos().Value;
+
+            if (cmbGrupoVeiculo.SelectedItem == null) return;
+
+            GrupoVeiculos grupoVeiculo = (GrupoVeiculos)cmbGrupoVeiculo.SelectedItem;
+
+
+            AtualizarVeiculo(grupoVeiculo);
+
+            AtualizarPlanoCobranca(grupoVeiculo);
+        }
+        private void AtualizarVeiculo(GrupoVeiculos grupoVeiculo)
+        {
+            var dados = ServicoVeiculo.SelecionarVeiculosPorGrupoVeiculos(grupoVeiculo).Value;
             foreach (var dado in dados)
             {
                 cmbVeiculo.Items.Add(dado);
             }
         }
-
         private void AtualizarCondutores()
         {
             var dados = ServicoCondutores.SelecionarTodos().Value;
             foreach (var dado in dados)
             {
-                cmbCondutores.Items.Add(dado);
+                cmbCondutor.Items.Add(dado);
             }
         }
-
         private void AtualizarCliente()
         {
             var dados = ServicoCliente.SelecionarTodos().Value;
@@ -68,7 +74,6 @@ namespace LocadoraVeiculos.WinApp.ModuloLocacao
                 cmbCliente.Items.Add(dado);
             }
         }
-
         private void AtualizarGrupoVeh()
         {
             var dados = ServicoGrupoVeh.SelecionarTodos().Value;
@@ -77,24 +82,24 @@ namespace LocadoraVeiculos.WinApp.ModuloLocacao
                 cmbGrupoVeiculo.Items.Add(dado);
             }
         }
-
-        private void AtualizarPlanoCobranca()
+        private void AtualizarPlanoCobranca(GrupoVeiculos grupoVeiculo)
         {
-            var dados = ServicoPlanoCobranca.SelecionarTodos().Value;
+            var dados = ServicoPlanoCobranca.SelecionarPlanoCobrancaPorGrupoVeiculo(grupoVeiculo).Value;
             foreach (var dado in dados)
             {
                 cmbPlanoCobranca.Items.Add(dado);
             }
         }
-
         private void AtualizarTaxas()
         {
             var dados = ServicoTaxas.SelecionarTodos().Value;
             foreach (var dado in dados)
             {
-                cmbTaxas.Items.Add(dado);
+                listaTaxas.Items.Add(dado);
             }
         }
+
+       
 
         private Bitmap bmp;
         public Action<string> AtualizarRodape { get; set; }
@@ -105,22 +110,33 @@ namespace LocadoraVeiculos.WinApp.ModuloLocacao
             get { return locacao; }
             set
             {
-                locacao = value;
-                CarregarFotoVeiculo();
-                txtId.Text = locacao.Id.ToString();
-                EnumTanqueInicio.Text = locacao.NivelTanqueEnumInicio;
-                textBoxQuilometragemInicial.Text = locacao.QuilometragemInicial.ToString();
-                cmbVeiculo.SelectedItem = locacao.Veiculo;
-                cmbCondutores.SelectedItem = locacao.Condutores;
+                locacao = value;                   
+                cmbCondutor.SelectedItem = locacao.Condutores;
+                cmbCliente.SelectedItem = locacao.Cliente;
                 cmbGrupoVeiculo.SelectedItem = locacao.GrupoVeiculos;
+                cmbVeiculo.SelectedItem = locacao.Veiculo;
+                dataLocacao.Value = locacao.DataLocacao;
+                dataDevolucao.Value = locacao.DataEstimadaDevolucao;
+                CarregarFotoVeiculo(locacao.Veiculo);
                 cmbPlanoCobranca.SelectedItem = locacao.PlanoCobranca;
-                cmbTaxas.SelectedItem = locacao.ListaTaxas;
+                CarregarTaxasSelecionadas();
+                AtualizarValorEstimadoLocacao();
             }
         }
 
-        private void CarregarFotoVeiculo()
+        private void AtualizarValorEstimadoLocacao()
         {
-            MemoryStream memory = new MemoryStream(veiculo.Foto);
+            throw new NotImplementedException();
+        }
+
+        private void CarregarTaxasSelecionadas()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void CarregarFotoVeiculo(Veiculo vei)
+        {
+            MemoryStream memory = new MemoryStream(vei.Foto);
 
             pictureBoxFoto.Image = Image.FromStream(memory);
 
@@ -130,7 +146,7 @@ namespace LocadoraVeiculos.WinApp.ModuloLocacao
         public Func<Locacao, Result<Locacao>> GravarRegistro { get; internal set; }
         public ServicoVeiculo ServicoVeiculo { get; }
         public ServicoCondutores ServicoCondutores { get; }
-        public ServicoCondutores ServicoCliente { get; }
+        public ServicoCliente ServicoCliente { get; }
         public ServicoGrupoVeiculos ServicoGrupoVeh { get; }
         public ServicoPlanoCobranca ServicoPlanoCobranca { get; }
         public ServicoTaxas ServicoTaxas { get; }
@@ -176,13 +192,6 @@ namespace LocadoraVeiculos.WinApp.ModuloLocacao
         {
             PegarObjetoTela();
 
-            if (locacao.Foto is null)
-            {
-                AtualizarRodape("Foto deve ser selecionada");
-
-                DialogResult = DialogResult.None;
-                return;
-            }
 
             var resultadoValidacao = GravarRegistro(locacao);
 
@@ -204,11 +213,18 @@ namespace LocadoraVeiculos.WinApp.ModuloLocacao
             }
             else this.DialogResult = DialogResult.OK;
         }
-
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             AtualizarRodape("Inserção Cancelada.");
             this.DialogResult = DialogResult.Cancel;
+        }
+        private void cmbVeiculo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbVeiculo.SelectedItem == null) return;
+
+            Veiculo vei = (Veiculo)cmbVeiculo.SelectedItem ;
+
+            CarregarFotoVeiculo(vei);
         }
     }
 }

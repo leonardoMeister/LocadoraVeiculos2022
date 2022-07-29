@@ -49,7 +49,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
+            this.listaTaxas = new System.Windows.Forms.CheckedListBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFoto)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -107,6 +107,7 @@
             this.cmbVeiculo.Name = "cmbVeiculo";
             this.cmbVeiculo.Size = new System.Drawing.Size(368, 28);
             this.cmbVeiculo.TabIndex = 35;
+            this.cmbVeiculo.SelectedIndexChanged += new System.EventHandler(this.cmbVeiculo_SelectedIndexChanged);
             // 
             // pictureBoxFoto
             // 
@@ -176,6 +177,7 @@
             this.cmbGrupoVeiculo.Name = "cmbGrupoVeiculo";
             this.cmbGrupoVeiculo.Size = new System.Drawing.Size(414, 28);
             this.cmbGrupoVeiculo.TabIndex = 45;
+            this.cmbGrupoVeiculo.SelectedIndexChanged += new System.EventHandler(this.SelecionarUmGrupoDeVeiculosNaTela);
             // 
             // btnCancelar
             // 
@@ -249,20 +251,20 @@
             this.label8.TabIndex = 57;
             this.label8.Text = "Valor Total Estimado: ";
             // 
-            // checkedListBox1
+            // listaTaxas
             // 
-            this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Location = new System.Drawing.Point(37, 509);
-            this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(150, 114);
-            this.checkedListBox1.TabIndex = 58;
+            this.listaTaxas.FormattingEnabled = true;
+            this.listaTaxas.Location = new System.Drawing.Point(37, 509);
+            this.listaTaxas.Name = "listaTaxas";
+            this.listaTaxas.Size = new System.Drawing.Size(522, 114);
+            this.listaTaxas.TabIndex = 58;
             // 
             // TelaCadastroLocacaoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(569, 733);
-            this.Controls.Add(this.checkedListBox1);
+            this.Controls.Add(this.listaTaxas);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
@@ -318,6 +320,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.CheckedListBox checkedListBox1;
+        private System.Windows.Forms.CheckedListBox listaTaxas;
     }
 }

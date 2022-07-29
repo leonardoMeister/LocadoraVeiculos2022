@@ -1,6 +1,7 @@
 ﻿using FluentResults;
 using FluentValidation;
 using FluentValidation.Results;
+using LocadoraVeiculos.Dominio.ModuloGrupoVeiculos;
 using LocadoraVeiculos.Dominio.ModuloVeiculo;
 using LocadoraVeiculos.Dominio.shared;
 using LocadoraVeiculos.Infra.Orm.ModuloVeiculo;
@@ -66,6 +67,12 @@ namespace LocadoraVeiculos.Controladores.ModuloServicoVeiculo
                 return Result.Fail(listaErros);
             }
         }
+
+        public Result<List<Veiculo>> SelecionarVeiculosPorGrupoVeiculos(GrupoVeiculos grupoVeiculo)
+        {
+            throw new NotImplementedException();
+        }
+
         private ValidationResult VeiculoForValidoParaEditar(Veiculo registro)
         {
             ValidationResult valido = new ValidationResult();
