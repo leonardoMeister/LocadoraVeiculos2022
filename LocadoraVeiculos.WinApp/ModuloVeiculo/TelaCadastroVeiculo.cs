@@ -15,8 +15,8 @@ namespace LocadoraVeiculos.WinApp.ModuloVeiculo
         public TelaCadastroVeiculo(ServicoGrupoVeiculos servico)
         {
             InitializeComponent();
-            AtualizarPlanosCobranca();
             Servico = servico;
+            AtualizarPlanosCobranca();            
         }
 
         private void AtualizarPlanosCobranca()

@@ -1,4 +1,5 @@
-﻿using LocadoraVeiculos.Dominio.ModuloPlanoCobranca;
+﻿using LocadoraVeiculos.Dominio.ModuloGrupoVeiculos;
+using LocadoraVeiculos.Dominio.ModuloPlanoCobranca;
 using LocadoraVeiculos.Infra.Orm.Compatilhado;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -71,6 +72,11 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloPlanoCobranca
         public PlanoCobranca SelecionarPorParametro(string query, Dictionary<string, object> parameters)
         {
             throw new NotImplementedException();
+        }
+
+        public List<PlanoCobranca> SelecionarPlanoCobrancaPorGrupoVeiculo(GrupoVeiculos grupoVeiculo)
+        {
+            return cobrancas.Where(x => x.GrupoVeiculos.Id == grupoVeiculo.Id).ToList();
         }
     }
 }

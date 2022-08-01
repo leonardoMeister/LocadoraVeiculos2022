@@ -1,4 +1,6 @@
-﻿using LocadoraVeiculos.Dominio.shared;
+﻿using LocadoraVeiculos.Dominio.ModuloGrupoVeiculos;
+using LocadoraVeiculos.Dominio.ModuloVeiculo;
+using LocadoraVeiculos.Dominio.shared;
 using System;
 using System.Collections.Generic;
 

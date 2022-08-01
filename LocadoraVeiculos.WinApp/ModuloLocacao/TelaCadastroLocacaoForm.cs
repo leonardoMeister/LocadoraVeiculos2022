@@ -42,7 +42,13 @@ namespace LocadoraVeiculos.WinApp.ModuloLocacao
 
         private void AtualizarNivelTanque()
         {
-            throw new NotImplementedException();
+            cmbNivelTanque.Items.Clear();
+
+            foreach (NivelTanqueEnum tanque in Enum.GetValues(typeof(NivelTanqueEnum)))
+            {
+                cmbNivelTanque.Items.Add(tanque.ToString());
+            }
+            
         }
 
         private void SelecionarUmGrupoDeVeiculosNaTela(object sender, EventArgs e)
@@ -124,8 +130,9 @@ namespace LocadoraVeiculos.WinApp.ModuloLocacao
                 cmbGrupoVeiculo.SelectedItem = locacao.GrupoVeiculos;
                 cmbVeiculo.SelectedItem = locacao.Veiculo;
                 dataDevolucao.Value = locacao.DataEstimadaDevolucao;
-                CarregarFotoVeiculo(locacao.Veiculo);
                 cmbPlanoCobranca.SelectedItem = locacao.PlanoCobranca;
+                
+                CarregarFotoVeiculo(locacao.Veiculo);
                 CarregarTaxasSelecionadas();
                 AtualizarValorEstimadoLocacao();
             }
@@ -138,12 +145,27 @@ namespace LocadoraVeiculos.WinApp.ModuloLocacao
 
         private NivelTanqueEnum PegarNivelTanque()
         {
-            throw new NotImplementedException();
+            if (cmbNivelTanque.SelectedIndex == -1) return NivelTanqueEnum.naoInformado;
+
+            var nivel = cmbNivelTanque.SelectedItem.ToString();
+
+            NivelTanqueEnum nivelFinal =  (NivelTanqueEnum) Enum.Parse( typeof(NivelTanqueEnum), nivel);
+
+            return nivelFinal;
         }
 
         private void CarregarTaxasSelecionadas()
         {
-            throw new NotImplementedException();
+            listaTaxas.Items.Clear();
+
+            foreach(Taxas tax in ServicoTaxas.SelecionarTodos().Value)
+            {                
+                bool marcar = locacao.ListaTaxas.Contains(tax);
+               
+                if(marcar) listaTaxas.Items.Add(tax, CheckState.Checked);
+                listaTaxas.Items.Add(tax, CheckState.Unchecked);
+            }
+           
         }
 
         private void CarregarFotoVeiculo(Veiculo vei)
@@ -185,7 +207,7 @@ namespace LocadoraVeiculos.WinApp.ModuloLocacao
             
             List<Taxas> taxas = new List<Taxas>();
             
-            foreach(Taxas tax in listaTaxas.Items)
+            foreach(Taxas tax in listaTaxas.CheckedItems)
             {
                 taxas.Add(tax);
             }
@@ -196,7 +218,7 @@ namespace LocadoraVeiculos.WinApp.ModuloLocacao
         private void btnSalvar_Click(object sender, EventArgs e)
         {
             PegarObjetoTela();
-
+            
 
             var resultadoValidacao = GravarRegistro(locacao);
 

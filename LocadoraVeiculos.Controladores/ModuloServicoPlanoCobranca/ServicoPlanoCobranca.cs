@@ -81,7 +81,7 @@ namespace LocadoraVeiculos.Controladores.ModuloServicoPlanoCobranca
 
         public Result<List<PlanoCobranca>> SelecionarPlanoCobrancaPorGrupoVeiculo(GrupoVeiculos grupoVeiculo)
         {
-            throw new NotImplementedException();
+            return Result.Ok(((RepositorioPlanoCobrancaOrm)Repositorio).SelecionarPlanoCobrancaPorGrupoVeiculo(grupoVeiculo));
         }
     }
 }

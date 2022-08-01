@@ -10,7 +10,7 @@ using Serilog;
 using System;
 using System.Collections.Generic;
 
-namespace LocadoraVeiculos.Controladores.ModuloServicoVeiculo 
+namespace LocadoraVeiculos.Controladores.ModuloServicoVeiculo
 {
     public class ServicoVeiculo : ServicoBase<Veiculo>
     {
@@ -70,7 +70,7 @@ namespace LocadoraVeiculos.Controladores.ModuloServicoVeiculo
 
         public Result<List<Veiculo>> SelecionarVeiculosPorGrupoVeiculos(GrupoVeiculos grupoVeiculo)
         {
-            throw new NotImplementedException();
+            return Result.Ok(((RepositorioVeiculoOrm)Repositorio).SelecionarVeiculosPorGrupoVeiculos(grupoVeiculo));
         }
 
         private ValidationResult VeiculoForValidoParaEditar(Veiculo registro)

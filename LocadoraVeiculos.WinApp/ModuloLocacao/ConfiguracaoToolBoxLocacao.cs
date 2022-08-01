@@ -24,5 +24,6 @@ namespace LocadoraVeiculos.WinApp.ModuloLocacao
         public override string TooltipFiltrar => "Filtrar Locações";
 
         public override string TooltipPDF => "Gerar PDF Locações";
+        public override bool EditarHabilitado => false;
     }
 }

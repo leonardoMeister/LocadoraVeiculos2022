@@ -29,6 +29,19 @@ namespace LocadoraVeiculos.WinApp.ModuloLocacao
         ServicoTaxas servicoTaxas;
         Action<string> AtualizarRodape;
 
+        public ControladorLocacao(TabelaLocacaoControl tabelaLocacao, ServicoLocacao servicoLocacao, ServicoVeiculo servicoVeiculo, ServicoCondutores servicoCondutores, ServicoCliente servicoCliente, ServicoGrupoVeiculos servicoGrupoVeiculos, ServicoPlanoCobranca servicoPlanoCobranca, ServicoTaxas servicoTaxas, Action<string> atualizarRodape)
+        {
+            this.tabelaLocacao = tabelaLocacao;
+            this.servicoLocacao = servicoLocacao;
+            this.servicoVeiculo = servicoVeiculo;
+            this.servicoCondutores = servicoCondutores;
+            this.servicoCliente = servicoCliente;
+            this.servicoGrupoVeiculos = servicoGrupoVeiculos;
+            this.servicoPlanoCobranca = servicoPlanoCobranca;
+            this.servicoTaxas = servicoTaxas;
+            AtualizarRodape = atualizarRodape;
+        }
+
         public void Editar()
         {
             var id = tabelaLocacao.ObtemNumeroLocacaoSelecionada();

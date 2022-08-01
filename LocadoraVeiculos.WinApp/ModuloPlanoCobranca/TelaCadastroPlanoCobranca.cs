@@ -33,13 +33,14 @@ namespace LocadoraVeiculos.WinApp.ModuloPlanoCobranca
         public TelaCadastroPlanoCobranca(ServicoGrupoVeiculos servico)
         {
             InitializeComponent();
-            AtualizarPlanosCobranca();
             Servico = servico;
+            AtualizarPlanosCobranca();
+
         }
 
         private void AtualizarPlanosCobranca()
         {
-            var dados = Servico.SelecionarTodos().Value;
+            var dados = Servico.SelecionarTodos().Value; 
             foreach (var dado in dados)
             {
                 cmbGrupoVeiculo.Items.Add(dado);

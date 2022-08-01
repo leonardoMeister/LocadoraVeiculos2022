@@ -37,6 +37,8 @@
             this.pictureBoxFoto = new System.Windows.Forms.PictureBox();
             this.labelFoto = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtKmInicial = new System.Windows.Forms.MaskedTextBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.cmbPlanoCobranca = new System.Windows.Forms.ComboBox();
@@ -52,8 +54,6 @@
             this.txtId = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.cmbNivelTanque = new System.Windows.Forms.ComboBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.txtKmInicial = new System.Windows.Forms.MaskedTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFoto)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -147,6 +147,22 @@
             this.groupBox1.TabIndex = 39;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Dados Veiculo";
+            // 
+            // txtKmInicial
+            // 
+            this.txtKmInicial.Location = new System.Drawing.Point(282, 69);
+            this.txtKmInicial.Name = "txtKmInicial";
+            this.txtKmInicial.Size = new System.Drawing.Size(203, 27);
+            this.txtKmInicial.TabIndex = 40;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(54, 72);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(133, 20);
+            this.label10.TabIndex = 39;
+            this.label10.Text = "Km Inicial Locação";
             // 
             // label3
             // 
@@ -242,6 +258,7 @@
             // 
             // listaTaxas
             // 
+            this.listaTaxas.CheckOnClick = true;
             this.listaTaxas.FormattingEnabled = true;
             this.listaTaxas.Location = new System.Drawing.Point(37, 548);
             this.listaTaxas.Name = "listaTaxas";
@@ -282,22 +299,6 @@
             this.cmbNivelTanque.Name = "cmbNivelTanque";
             this.cmbNivelTanque.Size = new System.Drawing.Size(165, 28);
             this.cmbNivelTanque.TabIndex = 61;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(54, 72);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(133, 20);
-            this.label10.TabIndex = 39;
-            this.label10.Text = "Km Inicial Locação";
-            // 
-            // txtKmInicial
-            // 
-            this.txtKmInicial.Location = new System.Drawing.Point(282, 69);
-            this.txtKmInicial.Name = "txtKmInicial";
-            this.txtKmInicial.Size = new System.Drawing.Size(203, 27);
-            this.txtKmInicial.TabIndex = 40;
             // 
             // TelaCadastroLocacaoForm
             // 

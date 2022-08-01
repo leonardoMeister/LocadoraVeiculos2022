@@ -1,4 +1,5 @@
-﻿using LocadoraVeiculos.Dominio.ModuloVeiculo;
+﻿using LocadoraVeiculos.Dominio.ModuloGrupoVeiculos;
+using LocadoraVeiculos.Dominio.ModuloVeiculo;
 using LocadoraVeiculos.Infra.Orm.Compatilhado;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -28,6 +29,10 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloVeiculo
             var registro = Veiculo.SingleOrDefault(x => x.Id == id);
 
             Veiculo.Remove(registro);
+        }
+        public List<Veiculo> SelecionarVeiculosPorGrupoVeiculos(GrupoVeiculos grupoVeiculo)
+        {
+            return Veiculo.Where(x => x.GrupoVeiculos.Id == grupoVeiculo.Id).ToList();
         }
 
         public bool Existe(Guid id)
