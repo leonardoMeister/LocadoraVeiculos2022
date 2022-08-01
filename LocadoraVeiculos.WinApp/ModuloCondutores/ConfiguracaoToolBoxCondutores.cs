@@ -18,7 +18,6 @@ namespace LocadoraVeiculos.WinApp.ModuloCondutores
 
         public override string TooltipFiltrar => "Filtrar Condutores";
 
-        public override string TooltipPDF => "Agrupar Condutores";
-        
+        public override string TooltipPDF => "Agrupar Condutores";        
     }
 }

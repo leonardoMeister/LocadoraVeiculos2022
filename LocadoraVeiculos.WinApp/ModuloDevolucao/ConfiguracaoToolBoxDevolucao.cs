@@ -9,20 +9,25 @@ namespace LocadoraVeiculos.WinApp.ModuloDevolucao
 {
     public class ConfiguracaoToolBoxDevolucao : ConfiguracaoToolboxBase
     {
-        public override string TipoCadastro => throw new NotImplementedException();
+        public override string TipoCadastro => "Devolução";
 
-        public override string TooltipInserir => throw new NotImplementedException();
+        public override string TooltipInserir => "";
 
-        public override string TooltipEditar => throw new NotImplementedException();
+        public override string TooltipEditar => "Cadastrar Devolução";
 
-        public override string TooltipExcluir => throw new NotImplementedException();
+        public override string TooltipExcluir => "Remover Devolução";
 
-        public override string TooltipAdicionarItens => throw new NotImplementedException();
+        public override string TooltipAdicionarItens => "";
 
-        public override string TooltipAtualizarItens => throw new NotImplementedException();
+        public override string TooltipAtualizarItens => "";
 
-        public override string TooltipFiltrar => throw new NotImplementedException();
+        public override string TooltipFiltrar => "Filtrar devoluções";
 
-        public override string TooltipPDF => throw new NotImplementedException();
+        public override string TooltipPDF => "Gerar PDF";
+        public override bool EditarHabilitado => true;
+        public override bool InserirHabilitado => false;
+        public override bool ExcluirHabilitado => false;
+
+
     }
 }

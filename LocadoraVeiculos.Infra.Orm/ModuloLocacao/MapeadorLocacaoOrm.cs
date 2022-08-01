@@ -25,6 +25,8 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloLocacao
             builder.Property(x => x.StatusDevolucao).IsRequired();
             builder.Property(x => x.NivelTanqueEnumInicio).HasConversion<string>();
             builder.Property(x => x.NivelTanqueEnumDevolucao).HasConversion<string>();
+            
+
         }
     }
 }

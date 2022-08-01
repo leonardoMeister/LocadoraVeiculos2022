@@ -7,11 +7,16 @@ namespace LocadoraVeiculos.Dominio.ModuloTaxas
 {
     public class Taxas : EntidadeBase
     {
+
         public Taxas(string descricao, decimal valor, string tipo)
         {
             Descricao = descricao;
             Valor = valor;
             Tipo = tipo;
+        }
+
+        public Taxas()
+        {
         }
 
         public string Tipo { get; set; }
@@ -34,7 +39,7 @@ namespace LocadoraVeiculos.Dominio.ModuloTaxas
 
         public override string ToString()
         {
-            return $"Id: {Id}, Tipo: {Tipo}";
+            return Descricao;
         }
         public override int GetHashCode()
         {

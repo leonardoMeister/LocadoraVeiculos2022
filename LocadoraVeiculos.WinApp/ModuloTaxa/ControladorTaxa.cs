@@ -21,15 +21,16 @@ namespace LocadoraVeiculos.WinApp.ModuloTaxa
 
         public void Inserir()
         {
-            TelaCadastroTaxaForm telaCadastroGrupoVeiculo = new TelaCadastroTaxaForm();
+            TelaCadastroTaxaForm telaCadastrotaxa = new TelaCadastroTaxaForm();
 
             AtualizarRodape("Tela de Adição Taxa");
+            telaCadastrotaxa.taxa = new Taxas();
 
-            telaCadastroGrupoVeiculo.GravarRegistro = servicoTaxas.InserirNovo;
-            telaCadastroGrupoVeiculo.AtualizarRodape = AtualizarRodape;
-            telaCadastroGrupoVeiculo.ShowDialog();
+            telaCadastrotaxa.GravarRegistro = servicoTaxas.InserirNovo;
+            telaCadastrotaxa.AtualizarRodape = AtualizarRodape;
+            telaCadastrotaxa.ShowDialog();
 
-            if (telaCadastroGrupoVeiculo.DialogResult == DialogResult.OK) AtualizarRodape("Cadastro Taxa Realizado Com Sucesso");
+            if (telaCadastrotaxa.DialogResult == DialogResult.OK) AtualizarRodape("Cadastro Taxa Realizado Com Sucesso");
         }
 
         public void Editar()
@@ -57,7 +58,7 @@ namespace LocadoraVeiculos.WinApp.ModuloTaxa
             TelaCadastroTaxaForm telaCadastroTaxa = new TelaCadastroTaxaForm();
 
             AtualizarRodape("Tela de Edição Taxa");
-            telaCadastroTaxa.Taxa = resultado.Value.Clone();
+            telaCadastroTaxa.Taxa = resultado.Value;
 
             telaCadastroTaxa.GravarRegistro = servicoTaxas.Editar;
             telaCadastroTaxa.AtualizarRodape = AtualizarRodape;

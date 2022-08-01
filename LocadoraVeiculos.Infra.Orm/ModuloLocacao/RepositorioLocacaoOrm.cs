@@ -46,7 +46,15 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloLocacao
 
         public Locacao SelecionarPorId(Guid id)
         {
-            return Locacao.SingleOrDefault(x => x.Id == id);
+            var lo = Locacao
+                .Include(x => x.PlanoCobranca)
+                .Include(x => x.Cliente)
+                .Include(x => x.Condutores)
+                .Include(x => x.GrupoVeiculos)
+                .Include(x => x.ListaTaxas)
+                .Include(x => x.Veiculo)
+                .SingleOrDefault(x => x.Id == id);
+            return lo;
         }
 
         public Locacao SelecionarPorParametro(string query, Dictionary<string, object> parameters)

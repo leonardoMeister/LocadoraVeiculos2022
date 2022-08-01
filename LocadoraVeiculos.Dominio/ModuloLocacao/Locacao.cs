@@ -67,6 +67,12 @@ namespace LocadoraVeiculos.Dominio.ModuloLocacao
 
         public bool StatusDevolucao { get; set; }
         public decimal QuilometragemFinal { get; set; }
+        public decimal ValorLocacao { get; set; }
+
+        public void GerarValorLocacao()
+        {
+
+        }
 
         public Locacao Clone()
         {

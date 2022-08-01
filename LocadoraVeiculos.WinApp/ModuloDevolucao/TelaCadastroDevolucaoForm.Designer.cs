@@ -36,17 +36,17 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnSalvar = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label20 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.maskedTextBox2 = new System.Windows.Forms.MaskedTextBox();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.laCliente = new System.Windows.Forms.Label();
+            this.laCondutor = new System.Windows.Forms.Label();
+            this.laGrupoVeiculo = new System.Windows.Forms.Label();
+            this.laVeiculo = new System.Windows.Forms.Label();
+            this.laPlano = new System.Windows.Forms.Label();
+            this.laDataLocacao = new System.Windows.Forms.Label();
+            this.laDataDevolucao = new System.Windows.Forms.Label();
+            this.laValorTotal = new System.Windows.Forms.Label();
+            this.cmbNivelTanque = new System.Windows.Forms.ComboBox();
+            this.txtQuilometragemFinal = new System.Windows.Forms.MaskedTextBox();
+            this.dataRealDevolucao = new System.Windows.Forms.DateTimePicker();
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -58,7 +58,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
+            this.listaTaxas = new System.Windows.Forms.CheckedListBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFoto)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -131,17 +131,17 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.label20);
-            this.groupBox1.Controls.Add(this.label19);
-            this.groupBox1.Controls.Add(this.label18);
-            this.groupBox1.Controls.Add(this.label17);
-            this.groupBox1.Controls.Add(this.label16);
-            this.groupBox1.Controls.Add(this.label15);
-            this.groupBox1.Controls.Add(this.label14);
-            this.groupBox1.Controls.Add(this.label13);
-            this.groupBox1.Controls.Add(this.comboBox1);
-            this.groupBox1.Controls.Add(this.maskedTextBox2);
-            this.groupBox1.Controls.Add(this.dateTimePicker1);
+            this.groupBox1.Controls.Add(this.laCliente);
+            this.groupBox1.Controls.Add(this.laCondutor);
+            this.groupBox1.Controls.Add(this.laGrupoVeiculo);
+            this.groupBox1.Controls.Add(this.laVeiculo);
+            this.groupBox1.Controls.Add(this.laPlano);
+            this.groupBox1.Controls.Add(this.laDataLocacao);
+            this.groupBox1.Controls.Add(this.laDataDevolucao);
+            this.groupBox1.Controls.Add(this.laValorTotal);
+            this.groupBox1.Controls.Add(this.cmbNivelTanque);
+            this.groupBox1.Controls.Add(this.txtQuilometragemFinal);
+            this.groupBox1.Controls.Add(this.dataRealDevolucao);
             this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Controls.Add(this.label11);
             this.groupBox1.Controls.Add(this.label10);
@@ -161,100 +161,100 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Dados Da Locação";
             // 
-            // label20
+            // laCliente
             // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(200, 46);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(107, 20);
-            this.label20.TabIndex = 76;
-            this.label20.Text = "Texto exemplo";
+            this.laCliente.AutoSize = true;
+            this.laCliente.Location = new System.Drawing.Point(200, 46);
+            this.laCliente.Name = "laCliente";
+            this.laCliente.Size = new System.Drawing.Size(107, 20);
+            this.laCliente.TabIndex = 76;
+            this.laCliente.Text = "Texto exemplo";
             // 
-            // label19
+            // laCondutor
             // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(200, 88);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(107, 20);
-            this.label19.TabIndex = 75;
-            this.label19.Text = "Texto exemplo";
+            this.laCondutor.AutoSize = true;
+            this.laCondutor.Location = new System.Drawing.Point(200, 88);
+            this.laCondutor.Name = "laCondutor";
+            this.laCondutor.Size = new System.Drawing.Size(107, 20);
+            this.laCondutor.TabIndex = 75;
+            this.laCondutor.Text = "Texto exemplo";
             // 
-            // label18
+            // laGrupoVeiculo
             // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(200, 130);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(107, 20);
-            this.label18.TabIndex = 74;
-            this.label18.Text = "Texto exemplo";
+            this.laGrupoVeiculo.AutoSize = true;
+            this.laGrupoVeiculo.Location = new System.Drawing.Point(200, 130);
+            this.laGrupoVeiculo.Name = "laGrupoVeiculo";
+            this.laGrupoVeiculo.Size = new System.Drawing.Size(107, 20);
+            this.laGrupoVeiculo.TabIndex = 74;
+            this.laGrupoVeiculo.Text = "Texto exemplo";
             // 
-            // label17
+            // laVeiculo
             // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(200, 172);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(107, 20);
-            this.label17.TabIndex = 73;
-            this.label17.Text = "Texto exemplo";
+            this.laVeiculo.AutoSize = true;
+            this.laVeiculo.Location = new System.Drawing.Point(200, 172);
+            this.laVeiculo.Name = "laVeiculo";
+            this.laVeiculo.Size = new System.Drawing.Size(107, 20);
+            this.laVeiculo.TabIndex = 73;
+            this.laVeiculo.Text = "Texto exemplo";
             // 
-            // label16
+            // laPlano
             // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(200, 217);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(107, 20);
-            this.label16.TabIndex = 72;
-            this.label16.Text = "Texto exemplo";
+            this.laPlano.AutoSize = true;
+            this.laPlano.Location = new System.Drawing.Point(200, 217);
+            this.laPlano.Name = "laPlano";
+            this.laPlano.Size = new System.Drawing.Size(107, 20);
+            this.laPlano.TabIndex = 72;
+            this.laPlano.Text = "Texto exemplo";
             // 
-            // label15
+            // laDataLocacao
             // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(200, 263);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(107, 20);
-            this.label15.TabIndex = 71;
-            this.label15.Text = "Texto exemplo";
+            this.laDataLocacao.AutoSize = true;
+            this.laDataLocacao.Location = new System.Drawing.Point(200, 263);
+            this.laDataLocacao.Name = "laDataLocacao";
+            this.laDataLocacao.Size = new System.Drawing.Size(107, 20);
+            this.laDataLocacao.TabIndex = 71;
+            this.laDataLocacao.Text = "Texto exemplo";
             // 
-            // label14
+            // laDataDevolucao
             // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(200, 303);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(107, 20);
-            this.label14.TabIndex = 70;
-            this.label14.Text = "Texto exemplo";
+            this.laDataDevolucao.AutoSize = true;
+            this.laDataDevolucao.Location = new System.Drawing.Point(200, 303);
+            this.laDataDevolucao.Name = "laDataDevolucao";
+            this.laDataDevolucao.Size = new System.Drawing.Size(107, 20);
+            this.laDataDevolucao.TabIndex = 70;
+            this.laDataDevolucao.Text = "Texto exemplo";
             // 
-            // label13
+            // laValorTotal
             // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(200, 349);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(107, 20);
-            this.label13.TabIndex = 69;
-            this.label13.Text = "Texto exemplo";
+            this.laValorTotal.AutoSize = true;
+            this.laValorTotal.Location = new System.Drawing.Point(200, 349);
+            this.laValorTotal.Name = "laValorTotal";
+            this.laValorTotal.Size = new System.Drawing.Size(107, 20);
+            this.laValorTotal.TabIndex = 69;
+            this.laValorTotal.Text = "Texto exemplo";
             // 
-            // comboBox1
+            // cmbNivelTanque
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(200, 479);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(199, 28);
-            this.comboBox1.TabIndex = 68;
+            this.cmbNivelTanque.FormattingEnabled = true;
+            this.cmbNivelTanque.Location = new System.Drawing.Point(200, 479);
+            this.cmbNivelTanque.Name = "cmbNivelTanque";
+            this.cmbNivelTanque.Size = new System.Drawing.Size(199, 28);
+            this.cmbNivelTanque.TabIndex = 68;
             // 
-            // maskedTextBox2
+            // txtQuilometragemFinal
             // 
-            this.maskedTextBox2.Location = new System.Drawing.Point(200, 391);
-            this.maskedTextBox2.Name = "maskedTextBox2";
-            this.maskedTextBox2.Size = new System.Drawing.Size(199, 27);
-            this.maskedTextBox2.TabIndex = 67;
+            this.txtQuilometragemFinal.Location = new System.Drawing.Point(200, 391);
+            this.txtQuilometragemFinal.Name = "txtQuilometragemFinal";
+            this.txtQuilometragemFinal.Size = new System.Drawing.Size(199, 27);
+            this.txtQuilometragemFinal.TabIndex = 67;
             // 
-            // dateTimePicker1
+            // dataRealDevolucao
             // 
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(200, 438);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(199, 27);
-            this.dateTimePicker1.TabIndex = 66;
+            this.dataRealDevolucao.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dataRealDevolucao.Location = new System.Drawing.Point(200, 438);
+            this.dataRealDevolucao.Name = "dataRealDevolucao";
+            this.dataRealDevolucao.Size = new System.Drawing.Size(199, 27);
+            this.dataRealDevolucao.TabIndex = 66;
             // 
             // label12
             // 
@@ -355,20 +355,20 @@
             this.label2.TabIndex = 54;
             this.label2.Text = "Cliente:";
             // 
-            // checkedListBox1
+            // listaTaxas
             // 
-            this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Location = new System.Drawing.Point(16, 285);
-            this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(415, 180);
-            this.checkedListBox1.TabIndex = 77;
+            this.listaTaxas.FormattingEnabled = true;
+            this.listaTaxas.Location = new System.Drawing.Point(16, 285);
+            this.listaTaxas.Name = "listaTaxas";
+            this.listaTaxas.Size = new System.Drawing.Size(415, 180);
+            this.listaTaxas.TabIndex = 77;
             // 
             // TelaCadastroDevolucaoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(863, 538);
-            this.Controls.Add(this.checkedListBox1);
+            this.Controls.Add(this.listaTaxas);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnSalvar);
@@ -402,17 +402,17 @@
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnSalvar;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Label laCliente;
+        private System.Windows.Forms.Label laCondutor;
+        private System.Windows.Forms.Label laGrupoVeiculo;
+        private System.Windows.Forms.Label laVeiculo;
+        private System.Windows.Forms.Label laPlano;
+        private System.Windows.Forms.Label laDataLocacao;
+        private System.Windows.Forms.Label laDataDevolucao;
+        private System.Windows.Forms.Label laValorTotal;
+        private System.Windows.Forms.ComboBox cmbNivelTanque;
+        private System.Windows.Forms.MaskedTextBox txtQuilometragemFinal;
+        private System.Windows.Forms.DateTimePicker dataRealDevolucao;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
@@ -424,6 +424,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.CheckedListBox checkedListBox1;
+        private System.Windows.Forms.CheckedListBox listaTaxas;
     }
 }

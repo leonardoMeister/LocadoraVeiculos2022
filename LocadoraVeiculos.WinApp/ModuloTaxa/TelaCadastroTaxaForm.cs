@@ -8,7 +8,7 @@ namespace LocadoraVeiculos.WinApp.ModuloTaxa
 {
     public partial class TelaCadastroTaxaForm : Form
     {
-        private Taxas taxa;
+        public Taxas taxa;
         public Action<string> AtualizarRodape { get; set; }
 
         public Taxas Taxa
@@ -68,10 +68,6 @@ namespace LocadoraVeiculos.WinApp.ModuloTaxa
 
         private bool PegarObjetoTela()
         {
-            Guid id = new Guid();
-
-            if (txtId.Text != "")
-                id = new Guid(txtId.Text);
 
             if (txtDescricao.Text == "" || txtValor.Text == "")
             {
@@ -79,15 +75,10 @@ namespace LocadoraVeiculos.WinApp.ModuloTaxa
                 return false;
             }                
 
-            string descricao = txtDescricao.Text;
-            decimal valor = Convert.ToDecimal(txtValor.Text);
-            string tipo = (radioDiaria.Checked) ? EnumTaxa.Diaria.ToString() : EnumTaxa.Fixa.ToString();
-            taxa = new Taxas(descricao, valor, tipo);
-
-            if (id != Guid.Empty)
-                taxa.Id = id;
-
-
+            taxa.Descricao = txtDescricao.Text;
+            taxa.Valor = Convert.ToDecimal(txtValor.Text);
+            taxa.Tipo = (radioDiaria.Checked) ? EnumTaxa.Diaria.ToString() : EnumTaxa.Fixa.ToString();
+            
             return true;
         }
 

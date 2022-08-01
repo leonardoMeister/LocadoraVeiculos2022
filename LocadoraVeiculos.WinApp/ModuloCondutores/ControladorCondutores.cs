@@ -48,7 +48,7 @@ namespace LocadoraVeiculos.WinApp.ModuloCondutores
             TelaCadastroCondutoresForm telaCadastroFuncionario = new TelaCadastroCondutoresForm(servicoCliente);
 
             AtualizarRodape("Tela de Edição Condutores");
-            telaCadastroFuncionario.Condutores = resultado.Value.Clone();
+            telaCadastroFuncionario.Condutores = resultado.Value;
 
             telaCadastroFuncionario.GravarRegistro = servicoCondutores.Editar;
             telaCadastroFuncionario.AtualizarRodape = AtualizarRodape;

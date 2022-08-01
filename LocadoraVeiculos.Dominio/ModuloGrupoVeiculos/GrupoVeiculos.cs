@@ -27,7 +27,7 @@ namespace LocadoraVeiculos.Dominio.ModuloGrupoVeiculos
         }
         public override string ToString()
         {
-            return $"Nome:{NomeGrupo}.";
+            return NomeGrupo;
         }
         public override int GetHashCode()
         {

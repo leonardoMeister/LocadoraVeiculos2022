@@ -48,7 +48,7 @@ namespace LocadoraVeiculos.Dominio.ModuloPlanoCobranca
         }
         public override string ToString()
         {
-            return $"Id: {Id}, Tipo: {TipoPlano}";
+            return TipoPlano;
         }
         public override int GetHashCode()
         {

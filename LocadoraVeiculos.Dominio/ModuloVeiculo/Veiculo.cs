@@ -24,7 +24,10 @@ namespace LocadoraVeiculos.Dominio.ModuloVeiculo
         {
 
         }
-
+        public override string ToString()
+        {
+            return $"Placa: {Placa}";
+        }
         public Veiculo(string modelo, string placa, string marca, string cor, string tipoCombustivel, 
             decimal capacidadeTanque, DateTime ano, decimal quilometragem, byte[] foto, GrupoVeiculos grupoVeiculos)
         {

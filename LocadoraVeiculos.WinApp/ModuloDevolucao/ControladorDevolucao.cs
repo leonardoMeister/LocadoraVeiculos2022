@@ -1,34 +1,81 @@
-﻿using LocadoraVeiculos.WinApp.shared;
+﻿using LocadoraVeiculos.Aplicacao.ModuloLocacao;
+using LocadoraVeiculos.Dominio.ModuloLocacao;
+using LocadoraVeiculos.WinApp.ModuloLocacao;
+using LocadoraVeiculos.WinApp.shared;
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace LocadoraVeiculos.WinApp.ModuloDevolucao
 {
     public class ControladorDevolucao : ConfiguracaoBase, ICadastravel
     {
+        TabelaLocacaoControl tabelaLocacao;
+        ServicoLocacao servicoLocacao;
+        Action<string> AtualizarRodape;
+
+        public ControladorDevolucao(TabelaLocacaoControl tabelaLocacao, ServicoLocacao servicoLocacao, Action<string> atualizarRodape)
+        {
+            this.tabelaLocacao = tabelaLocacao;
+            this.servicoLocacao = servicoLocacao;
+            AtualizarRodape = atualizarRodape;
+        }
+
         public void Editar()
         {
-            throw new NotImplementedException();
+            var id = tabelaLocacao.ObtemNumeroLocacaoSelecionada();
+
+            if (id == Guid.Empty)
+            {
+                MessageBox.Show("Selecione uma Locação primeiro",
+                    "Cadastro Devolução", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            var resultado = servicoLocacao.SelecionarPorId(id);
+
+            if (resultado.IsFailed)
+            {
+                MessageBox.Show(resultado.Errors[0].Message,
+                    "Cadastro Devolução", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            var funcionarioSelecionado = resultado.Value;
+
+            TelaCadastroDevolucaoForm telaCadastroDevolucao = new TelaCadastroDevolucaoForm();
+
+            AtualizarRodape("Tela de Cadastro de Devolução");
+            telaCadastroDevolucao.Locacao = resultado.Value;
+
+            telaCadastroDevolucao.GravarRegistro = servicoLocacao.Editar;
+            telaCadastroDevolucao.AtualizarRodape = AtualizarRodape;
+            telaCadastroDevolucao.ShowDialog();
+
+            if (telaCadastroDevolucao.DialogResult == DialogResult.OK) AtualizarRodape("Cadastro de Devolução Realizada Com Sucesso");
         }
 
         public void Excluir()
-        {
-            throw new NotImplementedException();
+        {            
         }
 
         public void Inserir()
         {
-            throw new NotImplementedException();
+            
         }
 
         public ConfiguracaoToolboxBase ObtemConfiguracaoToolbox()
         {
-            throw new NotImplementedException();
+            return new ConfiguracaoToolBoxDevolucao();
         }
 
         public override UserControl ObtemListagem()
         {
-            throw new NotImplementedException();
+            List<Locacao> locacoes = servicoLocacao.SelecionarTodos().Value;
+
+            tabelaLocacao.AtualizarRegistros(locacoes);
+
+            return tabelaLocacao;
         }
     }
 }
