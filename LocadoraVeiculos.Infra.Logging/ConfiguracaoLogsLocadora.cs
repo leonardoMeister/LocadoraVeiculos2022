@@ -1,6 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using LocadoraVeiculos.Infra.Configuracao;
 using Serilog;
-using System.IO;
 
 namespace LocadoraVeiculos.Infra.Logging
 {
@@ -8,26 +7,15 @@ namespace LocadoraVeiculos.Infra.Logging
     {
         public static void ConfigurarEscritaLogs()
         {
-            var configuracao = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("ConfiguracaoAplicacao.json")
-                .Build();
-
-            var configuracaoLogsNaWeb = new LoggerConfiguration()
-                .MinimumLevel.Debug()
-                .WriteTo.Seq("http://localhost:5341");
-
-            var diretorioSaida = configuracao
-                .GetSection("ConfiguracaoLogs")
-                .GetSection("DiretorioSaida")
-                .Value;
+            var config = new ConfiguracaoAplicacao();
 
             Log.Logger = new LoggerConfiguration()
-                .MinimumLevel.Debug()
-                .WriteTo.File(diretorioSaida + "/log.txt",
-                rollingInterval: RollingInterval.Day,
-                outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level:u3}] {Message:lj}{NewLine}{Exception}")
-                .CreateLogger();
+                    .MinimumLevel.Debug()
+                    .WriteTo.Seq("http://localhost:5341")                    
+                    .WriteTo.File(config.configuracaoLogs.DiretorioSaida + "/log.txt",
+                    rollingInterval: RollingInterval.Day,
+                    outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level:u3}] {Message:lj}{NewLine}{Exception}")
+                    .CreateLogger();
         }
     }
 }

@@ -1,6 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Design;
-using Microsoft.Extensions.Configuration;
-using System.IO;
+﻿using LocadoraVeiculos.Infra.Configuracao;
+using Microsoft.EntityFrameworkCore.Design;
 
 namespace LocadoraVeiculos.Infra.Orm.Compatilhado
 {
@@ -8,14 +7,9 @@ namespace LocadoraVeiculos.Infra.Orm.Compatilhado
     {
         public LocadoraVeiculosDbContext CreateDbContext(string[] args)
         {
-            var configuracao = new ConfigurationBuilder()
-             .SetBasePath(Directory.GetCurrentDirectory())
-             .AddJsonFile("ConfiguracaoAplicacao.json")
-             .Build();
-
-            var connectionString = configuracao.GetConnectionString("SqlServer");
-
-            return new LocadoraVeiculosDbContext(connectionString);
+            var config = new ConfiguracaoAplicacao();           
+            
+            return new LocadoraVeiculosDbContext(config.connectionStrings.SqlServer);
         }
     }
 }

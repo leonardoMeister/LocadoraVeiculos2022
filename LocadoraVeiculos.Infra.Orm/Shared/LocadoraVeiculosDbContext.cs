@@ -9,6 +9,7 @@ using LocadoraVeiculos.Infra.Orm.ModuloCliente;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Serilog;
+using System.Linq;
 
 namespace LocadoraVeiculos.Infra.Orm.Compatilhado
 {
@@ -26,7 +27,34 @@ namespace LocadoraVeiculos.Infra.Orm.Compatilhado
         {
             SaveChanges();
         }
+        public void DesfazerAlteracoes()
+        {
+            var registrosAlterados = ChangeTracker.Entries()
+                .Where(e => e.State != EntityState.Unchanged)
+                .ToList();
 
+            foreach (var registro in registrosAlterados)
+            {
+                switch (registro.State)
+                {
+                    case EntityState.Added:
+                        registro.State = EntityState.Detached;
+                        break;
+
+                    case EntityState.Deleted:
+                        registro.State = EntityState.Unchanged;
+                        break;
+
+                    case EntityState.Modified:
+                        registro.State = EntityState.Unchanged;
+                        registro.CurrentValues.SetValues(registro.OriginalValues);
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+        }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(connectionString);

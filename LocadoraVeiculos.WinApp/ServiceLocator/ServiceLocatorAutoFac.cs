@@ -8,6 +8,7 @@ using LocadoraVeiculos.Controladores.ModuloServicoPlanoCobranca;
 using LocadoraVeiculos.Controladores.ModuloServicoTaxas;
 using LocadoraVeiculos.Controladores.ModuloServicoVeiculo;
 using LocadoraVeiculos.Dominio.shared;
+using LocadoraVeiculos.Infra.Configuracao;
 using LocadoraVeiculos.Infra.Orm.Compatilhado;
 using LocadoraVeiculos.Infra.Orm.ModuloCliente;
 using LocadoraVeiculos.Infra.Orm.ModuloCondutores;
@@ -27,9 +28,7 @@ using LocadoraVeiculos.WinApp.ModuloPlanoCobranca;
 using LocadoraVeiculos.WinApp.ModuloTaxa;
 using LocadoraVeiculos.WinApp.ModuloVeiculo;
 using LocadoraVeiculos.WinApp.shared;
-using Microsoft.Extensions.Configuration;
 using System;
-using System.IO;
 
 namespace LocadoraVeiculos.WinApp.ServiceLocator
 {
@@ -40,16 +39,9 @@ namespace LocadoraVeiculos.WinApp.ServiceLocator
         public ServiceLocatorAutoFac(Action<string> atualizarRodape)
         {
             this.atualizarRodape = atualizarRodape;
-
-            var configuracao = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("ConfiguracaoAplicacao.json")
-                .Build();
-
-            connectionString = configuracao
-                .GetSection("ConnectionStrings")
-                .GetSection("SqlServer")
-                .Value;
+            var config = new ConfiguracaoAplicacao();
+          
+            connectionString = config.connectionStrings.SqlServer;
         }
 
         public T Get<T>() where T : ConfiguracaoBase

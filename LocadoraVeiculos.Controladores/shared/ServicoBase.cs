@@ -91,6 +91,7 @@ namespace LocadoraVeiculos.Repositorio.shared
             }
             catch (Exception ex)
             {
+                ContextoPersistencia.DesfazerAlteracoes();
                 string msgErro = "Falha no sistema ao tentar excluir o registro";
 
                 Log.Logger.Error("Falha ao tentar Excluir {RegistroType} - {ID} - {Motivo}", registro.GetType(), registro.Id, msgErro);
@@ -198,6 +199,7 @@ namespace LocadoraVeiculos.Repositorio.shared
             }
             catch (Exception ex)
             {
+                ContextoPersistencia.DesfazerAlteracoes();
                 string msgErro = "Falha no sistema ao tentar Editar o Registro";
 
                 Log.Logger.Warning("Falha ao tentar Editar {RegistroType} - {ID} - {Motivo}", registro.GetType(), registro.Id, msgErro);
@@ -242,6 +244,7 @@ namespace LocadoraVeiculos.Repositorio.shared
             }
             catch (Exception ex)
             {
+                ContextoPersistencia.DesfazerAlteracoes();
                 string msgErro = "Falha no sistema ao tentar inserir o Registro";
                 Log.Logger.Error("Falha ao tentar inserir {RegistroType} - {ID} - {Motivo}", registro.GetType(), registro.Id, msgErro);
 

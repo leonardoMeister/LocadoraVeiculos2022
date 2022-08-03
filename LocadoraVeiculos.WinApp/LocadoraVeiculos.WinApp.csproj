@@ -42,6 +42,7 @@
   <ItemGroup>
     <ProjectReference Include="..\LocadoraVeiculos.Dominio\LocadoraVeiculos.Dominio.csproj" />
     <ProjectReference Include="..\LocadoraVeiculos.Controladores\LocadoraVeiculos.Aplicacao.csproj" />
+    <ProjectReference Include="..\LocadoraVeiculos.Infra.Configuracao\LocadoraVeiculos.Infra.Configuracao.csproj" />
     <ProjectReference Include="..\LocadoraVeiculos.Infra.Logging\LocadoraVeiculos.Infra.Logging.csproj" />
     <ProjectReference Include="..\LocadoraVeiculos.Infra.Orm\LocadoraVeiculos.Infra.Orm.csproj" />
   </ItemGroup>
