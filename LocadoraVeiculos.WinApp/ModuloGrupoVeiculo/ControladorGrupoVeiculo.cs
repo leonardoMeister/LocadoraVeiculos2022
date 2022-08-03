@@ -25,6 +25,7 @@ namespace LocadoraVeiculos.WinApp.ModuloGrupoVeiculo
 
             AtualizarRodape("Tela de Adição Grupo de Veiculos");
 
+            telaCadastroGrupoVeiculo.grupoVeiculos = new GrupoVeiculos();
             telaCadastroGrupoVeiculo.GravarRegistro = servicoGrupoVeiculos.InserirNovo;
             telaCadastroGrupoVeiculo.AtualizarRodape = AtualizarRodape;
             telaCadastroGrupoVeiculo.ShowDialog();
@@ -52,12 +53,11 @@ namespace LocadoraVeiculos.WinApp.ModuloGrupoVeiculo
                 return;
             }
 
-            var funcionarioSelecionado = resultado.Value;
 
             TelaCadastroGrupoVeiculo telaCadastroGrupoVeiculo = new TelaCadastroGrupoVeiculo();
 
             AtualizarRodape("Tela de Edição Grupo de Veiculos");
-            telaCadastroGrupoVeiculo.GrupoVeiculos = resultado.Value.Clone();
+            telaCadastroGrupoVeiculo.GrupoVeiculos = resultado.Value;
 
             telaCadastroGrupoVeiculo.GravarRegistro = servicoGrupoVeiculos.Editar;
             telaCadastroGrupoVeiculo.AtualizarRodape = AtualizarRodape;

@@ -8,7 +8,7 @@ namespace LocadoraVeiculos.WinApp.ModuloFuncionario
 {
     public partial class TelaCadastroFuncionario : Form
     {
-        private Funcionario funcionario;
+        public Funcionario funcionario;
         public Action<string> AtualizarRodape { get; set; }
 
         public Funcionario Funcionario
@@ -59,29 +59,16 @@ namespace LocadoraVeiculos.WinApp.ModuloFuncionario
             }
             else this.DialogResult = DialogResult.OK;
 
-
-
         }
 
         private void PegarObjetoTela()
-        {
-            Guid id = new Guid();           
-
-            if (txtId.Text != "")
-                id = new Guid(txtId.Text);
-
-            string nome = txtNome.Text;
-            string login = txtLogin.Text;
-            string senha = txtSenha.Text;
-            decimal salario =(txtSalario.Text =="")?0: Convert.ToDecimal(txtSalario.Text);
-            DateTime dataAdmicao = txtData.Value;
-            string tipoPerfil = cmbTipoPerfil.Text;
-
-            funcionario = new Funcionario(nome, login, senha, salario, dataAdmicao, tipoPerfil);
-
-            if(id !=Guid.Empty)
-                funcionario.Id = id;
-             
+        {           
+            funcionario.Nome = txtNome.Text;
+            funcionario.Login = txtLogin.Text;
+            funcionario.Senha = txtSenha.Text;
+            funcionario.Salario = (txtSalario.Text =="")?0: Convert.ToDecimal(txtSalario.Text);
+            funcionario.DataAdmicao = txtData.Value;
+            funcionario.TipoPerfil = cmbTipoPerfil.Text;
         }
 
         private void BtnCancelar_Click(object sender, EventArgs e)

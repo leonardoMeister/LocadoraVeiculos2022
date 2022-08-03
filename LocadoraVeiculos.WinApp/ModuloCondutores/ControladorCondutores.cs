@@ -41,9 +41,7 @@ namespace LocadoraVeiculos.WinApp.ModuloCondutores
                 MessageBox.Show(resultado.Errors[0].Message,
                     "Edição de Condutor", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
-            }
-
-            var condutorSelecionado = resultado.Value;
+            }            
 
             TelaCadastroCondutoresForm telaCadastroFuncionario = new TelaCadastroCondutoresForm(servicoCliente);
 
@@ -117,6 +115,7 @@ namespace LocadoraVeiculos.WinApp.ModuloCondutores
 
             AtualizarRodape("Tela de Adição Condutores");
 
+            telaCadastroCondutores.condutor = new Condutores();
             telaCadastroCondutores.GravarRegistro = servicoCondutores.InserirNovo;
             telaCadastroCondutores.AtualizarRodape = AtualizarRodape;
             telaCadastroCondutores.ShowDialog();

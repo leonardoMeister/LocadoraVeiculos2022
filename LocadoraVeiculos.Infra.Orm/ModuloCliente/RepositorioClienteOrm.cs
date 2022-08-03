@@ -19,9 +19,6 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloCliente
 
         public void Editar(Cliente cli)
         {            
-
-            //var cliente = Clientes.SingleOrDefault(x => x.Id == cli.Id);
-
             Clientes.Update(cli);
 
             var cliente2 = Clientes.SingleOrDefault(x => x.Id == cli.Id);

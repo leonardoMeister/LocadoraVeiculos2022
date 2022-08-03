@@ -5,6 +5,9 @@ namespace LocadoraVeiculos.Dominio.ModuloCliente
 {
     public class Cliente : EntidadeBase
     {
+        public Cliente()
+        {
+        }
 
         public Cliente(string nome, string cpf, string endereco, string email, string telefone, string tipoCliente, string cnpj)
         {
@@ -23,11 +26,7 @@ namespace LocadoraVeiculos.Dominio.ModuloCliente
         public string Endereco { get; set; }
         public string Email { get; set; }
         public string Telefone { get; set; }
-        public string TipoCliente { get; set; }
-        public Cliente Clone()
-        {
-            return MemberwiseClone() as Cliente;
-        }
+        public string TipoCliente { get; set; }       
         public override bool Equals(object obj)
         {
             return obj is Cliente cliente &&

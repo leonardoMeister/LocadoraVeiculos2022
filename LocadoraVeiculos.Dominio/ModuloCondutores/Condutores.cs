@@ -5,6 +5,7 @@ namespace LocadoraVeiculos.Dominio.ModuloCondutores
 {
     public class Condutores:EntidadeBase
     {
+
         public Condutores(string nome, string cpf, string endereco, string email, string telefone, string cnh, string validadeCnh)
         {
             Nome = nome;
@@ -16,6 +17,10 @@ namespace LocadoraVeiculos.Dominio.ModuloCondutores
             ValidadeCnh = validadeCnh;
         }
 
+        public Condutores()
+        {
+        }
+
         public string Nome { get; set; }
         public string Cpf { get; set; }
         public string Endereco { get; set; }
@@ -24,10 +29,6 @@ namespace LocadoraVeiculos.Dominio.ModuloCondutores
         public string Cnh { get; set; }
         public string ValidadeCnh { get; set; }
 
-        public Condutores Clone()
-        {
-            return MemberwiseClone() as Condutores;
-        }
         public override bool Equals(object obj)
         {
             return obj is Condutores condutores &&

@@ -7,18 +7,17 @@ namespace LocadoraVeiculos.Dominio.ModuloGrupoVeiculos
 {
     public class GrupoVeiculos : EntidadeBase
     {
+
         public GrupoVeiculos(string nomeGrupo)
         {
             NomeGrupo = nomeGrupo;
         }
 
-        public string NomeGrupo { get; set; }
-        //public List<PlanoCobranca>PlanoCobranca { get; set; }
-
-        public GrupoVeiculos Clone()
+        public GrupoVeiculos()
         {
-            return MemberwiseClone() as GrupoVeiculos;
         }
+
+        public string NomeGrupo { get; set; }
         public override bool Equals(object obj)
         {
             return obj is GrupoVeiculos veiculos &&

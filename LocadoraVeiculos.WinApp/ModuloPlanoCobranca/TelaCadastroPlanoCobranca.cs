@@ -9,7 +9,7 @@ namespace LocadoraVeiculos.WinApp.ModuloPlanoCobranca
 {
     public partial class TelaCadastroPlanoCobranca : Form
     {
-        private PlanoCobranca planoCobranca;
+        public PlanoCobranca planoCobranca;
         public Action<string> AtualizarRodape { get; set; }
         public PlanoCobranca PlanoCobranca
         {
@@ -55,7 +55,7 @@ namespace LocadoraVeiculos.WinApp.ModuloPlanoCobranca
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
-            if (!PegarObjetoTela()) return;
+            PegarObjetoTela();
 
 
             var resultadoValidacao = GravarRegistro(planoCobranca);
@@ -79,31 +79,23 @@ namespace LocadoraVeiculos.WinApp.ModuloPlanoCobranca
             else this.DialogResult = DialogResult.OK;
         }
 
-        private bool PegarObjetoTela()
+        private void PegarObjetoTela()
         {
-            Guid id = new Guid();
-
-            if (txtId.Text != "")
-                id = new Guid(txtId.Text);
-
-            string tipo = txtTipo.Text;
+            planoCobranca.TipoPlano = txtTipo.Text;
             decimal valorDia = 0;
             decimal limite = 0;
             decimal valorKm = 0;
             if (txtValorDia.Text != "") valorDia = Convert.ToDecimal(txtValorDia.Text);
             if (txtLimiteKM.Text != "") limite = Convert.ToDecimal(txtLimiteKM.Text);
             if (txtValorKM.Text != "") valorKm = Convert.ToDecimal(txtValorKM.Text);
+            planoCobranca.ValorDia = valorDia;
+            planoCobranca.LimiteKM = limite;
+            planoCobranca.ValorKM = valorKm;
 
-            GrupoVeiculos grupo = null;
-
-            if (cmbGrupoVeiculo.SelectedIndex != -1) grupo = (GrupoVeiculos)cmbGrupoVeiculo.SelectedItem;
-
-            planoCobranca = new PlanoCobranca(tipo, valorDia, limite, valorKm, grupo);
-
-            if (id != Guid.Empty)
-                planoCobranca.Id = id;
-
-            return true;
+            if (cmbGrupoVeiculo.SelectedIndex != -1)
+                planoCobranca.GrupoVeiculos = (GrupoVeiculos)cmbGrupoVeiculo.SelectedItem;
+            else planoCobranca.GrupoVeiculos = null;
+            
         }
     }
 }

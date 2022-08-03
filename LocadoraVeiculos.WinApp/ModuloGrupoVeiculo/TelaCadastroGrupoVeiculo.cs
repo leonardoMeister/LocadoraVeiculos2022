@@ -8,7 +8,7 @@ namespace LocadoraVeiculos.WinApp.ModuloGrupoVeiculo
 {
     public partial class TelaCadastroGrupoVeiculo : Form
     {
-        private GrupoVeiculos grupoVeiculos;
+        public GrupoVeiculos grupoVeiculos;
 
         public Action<string> AtualizarRodape { get; set; }
 
@@ -33,8 +33,7 @@ namespace LocadoraVeiculos.WinApp.ModuloGrupoVeiculo
 
         private void BtnSalvar_Click(object sender, EventArgs e)
         {
-            if (!PegarObjetoTela()) return;
-
+            PegarObjetoTela();
 
             var resultadoValidacao = GravarRegistro(GrupoVeiculos);
 
@@ -57,27 +56,9 @@ namespace LocadoraVeiculos.WinApp.ModuloGrupoVeiculo
             else this.DialogResult = DialogResult.OK;
         }
 
-        private bool PegarObjetoTela()
-        {
-            Guid id = new Guid();
-
-            if (txtId.Text != "")
-                id = new Guid(txtId.Text);
-
-            if (txtNome.Text == "")
-            {
-                AtualizarRodape("Favor Preencher todos os campos.");
-                return false;
-            }
-                
-            string nome = txtNome.Text;
-
-            grupoVeiculos = new GrupoVeiculos(nome);
-
-            if (id != Guid.Empty)
-                grupoVeiculos.Id = id;
-
-            return true;
+        private void PegarObjetoTela()
+        {                           
+            grupoVeiculos.NomeGrupo = txtNome.Text;
         }
 
         private void BtnCancelar_Click(object sender, EventArgs e)

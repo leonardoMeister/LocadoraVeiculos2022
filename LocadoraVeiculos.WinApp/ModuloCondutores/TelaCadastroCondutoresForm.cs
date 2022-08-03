@@ -9,7 +9,7 @@ namespace LocadoraVeiculos.WinApp.ModuloCondutores
 {
     public partial class TelaCadastroCondutoresForm : Form
     {
-        private Condutores condutor;
+        public Condutores condutor;
         public Action<string> AtualizarRodape { get; set; }
 
         public ServicoCliente controladorCliente;
@@ -20,7 +20,7 @@ namespace LocadoraVeiculos.WinApp.ModuloCondutores
             set
             {
                 condutor = value;
-                PreencherDadosNaTela();
+                PreencherDadosNaTela();                
             }
         } 
 
@@ -58,7 +58,7 @@ namespace LocadoraVeiculos.WinApp.ModuloCondutores
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
-            if (!PegarObjetoTela()) return;
+            PegarObjetoTela();
 
 
             var resultadoValidacao = GravarRegistro(condutor);
@@ -82,27 +82,15 @@ namespace LocadoraVeiculos.WinApp.ModuloCondutores
             else this.DialogResult = DialogResult.OK;
         }
 
-        private bool PegarObjetoTela()
-        {
-            Guid id = new Guid();
-
-            if (txtId.Text != "")
-                id = new Guid(txtId.Text);
-
-            string nome = txtNome.Text;
-            string endereco = txtEndereco.Text;
-            string email = txtEmail.Text;
-            string telefone = PegarTelefone();           
-            string cpf = txtCPF.Text;
-            string cnh = txtCnh.Text;
-            string validadecnh = dateTimeCnh.Text;
-
-            condutor = new Condutores(nome, cpf, endereco, email, telefone, cnh, validadecnh);
-
-            if (id != Guid.Empty)
-                condutor.Id = id;
-
-            return true;
+        private void PegarObjetoTela()
+        {          
+            condutor.Nome = txtNome.Text;
+            condutor.Endereco = txtEndereco.Text;
+            condutor.Email= txtEmail.Text;
+            condutor.Telefone = PegarTelefone();           
+            condutor.Cpf= txtCPF.Text;
+            condutor.Cnh = txtCnh.Text;
+            condutor.ValidadeCnh= dateTimeCnh.Text;            
         }
 
         private string PegarTelefone()
@@ -135,7 +123,6 @@ namespace LocadoraVeiculos.WinApp.ModuloCondutores
                 txtEndereco.Text = cliente.Endereco;
             }
         }
-
 
     }
 }

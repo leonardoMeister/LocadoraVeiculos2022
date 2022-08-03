@@ -40,14 +40,12 @@ namespace LocadoraVeiculos.WinApp.ModuloPlanoCobranca
                 MessageBox.Show(resultado.Errors[0].Message,
                     "Edição de plano cobranca", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
-            }
-
-            var funcionarioSelecionado = resultado.Value;
+            }            
 
             TelaCadastroPlanoCobranca telaCadastroFuncionario = new TelaCadastroPlanoCobranca(servicoGrupoVeiculos);
 
             AtualizarRodape("Tela de Edição Funcionário");
-            telaCadastroFuncionario.PlanoCobranca = resultado.Value.Clone();
+            telaCadastroFuncionario.PlanoCobranca = resultado.Value;
 
             telaCadastroFuncionario.GravarRegistro = servicoPlanoCobranca.Editar;
             telaCadastroFuncionario.AtualizarRodape = AtualizarRodape;
@@ -116,6 +114,7 @@ namespace LocadoraVeiculos.WinApp.ModuloPlanoCobranca
 
             AtualizarRodape("Tela de Adição Plano de Cobrança");
 
+            telaCadastroPlanoCobranca.planoCobranca = new PlanoCobranca();
             telaCadastroPlanoCobranca.GravarRegistro = servicoPlanoCobranca.InserirNovo;
             telaCadastroPlanoCobranca.AtualizarRodape = AtualizarRodape;
             telaCadastroPlanoCobranca.ShowDialog();

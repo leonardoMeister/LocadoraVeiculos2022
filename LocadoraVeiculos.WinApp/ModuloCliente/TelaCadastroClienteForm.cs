@@ -7,7 +7,7 @@ namespace LocadoraVeiculos.WinApp.ModuloCliente
 {
     public partial class TelaCadastroClienteForm : Form
     {
-        private Cliente cliente;
+        public Cliente cliente;
         public Action<string> AtualizarRodape { get; set; }
 
 
@@ -80,25 +80,14 @@ namespace LocadoraVeiculos.WinApp.ModuloCliente
         }
 
         private void PegarObjetoTela()
-        {
-            Guid id = new Guid();
-
-            if (txtId.Text != "")
-                id = new Guid(txtId.Text);
-
-            string nome = txtNome.Text;
-            string endereco = txtEndereco.Text;
-            string email = txtEmail.Text;
-            string telefone = PegarTelefone();
-            string tipo = radioButtonPessoaFisica.Checked ? "PessoaFisica" : "PessoaJuridica";            
-            string cpf = txtCPF.Text;
-            string cnpj = maskedTextBoxCNPJ.Text;
-
-            cliente = new Cliente(nome, cpf, endereco, email, telefone, tipo, cnpj);
-
-            if (id != Guid.Empty)
-                cliente.Id = id;
-
+        {            
+            cliente.Nome = txtNome.Text;
+            cliente.Endereco = txtEndereco.Text;
+            cliente.Email = txtEmail.Text;
+            cliente.Telefone = PegarTelefone();
+            cliente.TipoCliente = radioButtonPessoaFisica.Checked ? "PessoaFisica" : "PessoaJuridica";            
+            cliente.Cpf = txtCPF.Text;
+            cliente.Cnpj = maskedTextBoxCNPJ.Text;            
         }
 
         private string PegarTelefone()

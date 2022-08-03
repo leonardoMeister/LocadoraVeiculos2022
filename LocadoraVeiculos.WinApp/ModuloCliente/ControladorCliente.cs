@@ -20,7 +20,19 @@ namespace LocadoraVeiculos.WinApp.ModuloCliente
             tabelaClienteControl = tabela;
         }
 
+        public void Inserir()
+        {
+            TelaCadastroClienteForm telaCadastroCliente = new();
 
+            atualizarRodape("Tela de Adição Cliente");
+
+            telaCadastroCliente.cliente = new Cliente();
+            telaCadastroCliente.GravarRegistro = servicoCliente.InserirNovo;
+            telaCadastroCliente.AtualizarRodape = atualizarRodape;
+            telaCadastroCliente.ShowDialog();
+
+            if (telaCadastroCliente.DialogResult == DialogResult.OK) atualizarRodape("Cadastro Cliente Realizado Com Sucesso");
+        }
         public void Editar()
         {
             var id = tabelaClienteControl.ObtemNumeroClienteSelecionado();
@@ -39,14 +51,12 @@ namespace LocadoraVeiculos.WinApp.ModuloCliente
                 MessageBox.Show(resultado.Errors[0].Message,
                     "Edição de Cliente", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
-            }
-
-            var clienteSelecionado = resultado.Value;
+            }            
 
             TelaCadastroClienteForm telaCadastroFuncionario = new TelaCadastroClienteForm();
 
             atualizarRodape("Tela de Edição Funcionário");
-            telaCadastroFuncionario.Cliente = resultado.Value.Clone();
+            telaCadastroFuncionario.Cliente = resultado.Value;
 
             telaCadastroFuncionario.GravarRegistro = servicoCliente.Editar;
             telaCadastroFuncionario.AtualizarRodape = atualizarRodape;
@@ -109,18 +119,7 @@ namespace LocadoraVeiculos.WinApp.ModuloCliente
             }
         }
 
-        public void Inserir()
-        {
-            TelaCadastroClienteForm telaCadastroCliente = new();
-
-            atualizarRodape("Tela de Adição Cliente");
-
-            telaCadastroCliente.GravarRegistro = servicoCliente.InserirNovo;
-            telaCadastroCliente.AtualizarRodape = atualizarRodape;
-            telaCadastroCliente.ShowDialog();
-
-            if (telaCadastroCliente.DialogResult == DialogResult.OK) atualizarRodape("Cadastro Cliente Realizado Com Sucesso");
-        }
+   
 
         public ConfiguracaoToolboxBase ObtemConfiguracaoToolbox()
         {

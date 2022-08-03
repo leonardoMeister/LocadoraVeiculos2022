@@ -23,11 +23,6 @@ namespace LocadoraVeiculos.Dominio.ModuloTaxas
         public string Descricao { get; set; }
         public decimal Valor { get; set; }
         public List<Locacao> Locacoes { get; set; }
-
-        public Taxas Clone()
-        {
-            return MemberwiseClone() as Taxas;
-        }
         public override bool Equals(object obj)
         {
             return obj is Taxas taxas &&

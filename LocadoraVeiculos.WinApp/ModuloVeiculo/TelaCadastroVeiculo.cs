@@ -52,7 +52,7 @@ namespace LocadoraVeiculos.WinApp.ModuloVeiculo
         private Bitmap bmp;
         public Action<string> AtualizarRodape { get; set; }
 
-        Veiculo veiculo;
+        public Veiculo veiculo;
         public Veiculo Veiculo
         {
             get { return veiculo; }
@@ -86,13 +86,9 @@ namespace LocadoraVeiculos.WinApp.ModuloVeiculo
         public ServicoGrupoVeiculos Servico { get; }
 
         private void PegarObjetoTela()
-        {
-            Guid id = new Guid();
-
-            if (txtId.Text != "")
-                id = new Guid(txtId.Text);
-
+        {           
             MemoryStream memory = new MemoryStream();
+
             byte[] foto = null;
             if (bmp != null)
             {
@@ -100,25 +96,18 @@ namespace LocadoraVeiculos.WinApp.ModuloVeiculo
                 foto = memory.ToArray();
             }
 
-            string modelo = textBoxModelo.Text;
-            string placa = textBoxPlacas.Text;
-            string marca = textBoxMarca.Text;
-            string cor = textCor.Text;
-            var tipoCombustivel = PegarTipoCombustivel();
-            DateTime ano = data.Value;
+            veiculo.Foto = foto;
+            veiculo.Modelo = textBoxModelo.Text;
+            veiculo.Placa = textBoxPlacas.Text;
+            veiculo.Marca = textBoxMarca.Text;
+            veiculo.Cor = textCor.Text;
+            veiculo.TipoCombustivel = PegarTipoCombustivel();
+            veiculo.Ano = data.Value;
             
-            decimal capacidadeTanque =  (textBoxCapacidadeTanque.Text == "")? 0:  Convert.ToDecimal(textBoxCapacidadeTanque.Text);
-            decimal quilometragem =  (textBoxQuilometragem.Text == "")? 0: Convert.ToDecimal(textBoxQuilometragem.Text);
-
-
-            GrupoVeiculos grupo = null;
-            if (cmbGrupoVeiculo.SelectedIndex != -1) grupo = (GrupoVeiculos)cmbGrupoVeiculo.SelectedItem;
-
-            veiculo = new Veiculo(modelo, placa, marca, cor, tipoCombustivel, capacidadeTanque, ano, quilometragem, foto, grupo);
-
-            if (id != Guid.Empty)
-                veiculo.Id = id;
-
+            veiculo.CapacidadeTanque =  (textBoxCapacidadeTanque.Text == "")? 0:  Convert.ToDecimal(textBoxCapacidadeTanque.Text);
+            veiculo.Quilometragem =  (textBoxQuilometragem.Text == "")? 0: Convert.ToDecimal(textBoxQuilometragem.Text);
+            veiculo.GrupoVeiculos = null;            
+            if (cmbGrupoVeiculo.SelectedIndex != -1) veiculo.GrupoVeiculos = (GrupoVeiculos)cmbGrupoVeiculo.SelectedItem;
         }
         private void buttonCarregarFoto_Click(object sender, EventArgs e)
         {

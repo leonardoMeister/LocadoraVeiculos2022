@@ -31,11 +31,6 @@ namespace LocadoraVeiculos.Dominio.ModuloPlanoCobranca
 
         public GrupoVeiculos GrupoVeiculos { get; set; }
         public Guid GrupoVeiculosId { get; set; }
-
-        public PlanoCobranca Clone()
-        {
-            return MemberwiseClone() as PlanoCobranca;
-        }
         public override bool Equals(object obj)
         {
             return obj is PlanoCobranca cobranca &&
