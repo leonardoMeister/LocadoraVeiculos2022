@@ -1,10 +1,9 @@
 ﻿using LocadoraVeiculos.Controladores.ModuloServicoTaxas;
 using LocadoraVeiculos.Dominio.ModuloTaxas;
+using LocadoraVeiculos.Infra.Configuracao;
 using LocadoraVeiculos.Infra.Orm.Compatilhado;
 using LocadoraVeiculos.Infra.Orm.ModuloTaxas;
-using Microsoft.Extensions.Configuration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.IO;
 
 namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoTaxas
 {
@@ -15,16 +14,10 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoTaxas
 
         public IntegratedTestsTaxas()
         {
-            var configuracao = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("ConfiguracaoAplicacao.json")
-                .Build();
+            var config = new ConfiguracaoAplicacao();
 
-            var connectionString = configuracao
-                .GetSection("ConnectionStrings")
-                .GetSection("SqlServer")
-                .Value;
-            dbContext = new LocadoraVeiculosDbContext(connectionString);
+            dbContext = new LocadoraVeiculosDbContext(config.connectionStrings.SqlServer);
+
 
             var taxas = dbContext.Set<Taxas>();
             taxas.RemoveRange(taxas);

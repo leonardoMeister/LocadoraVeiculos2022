@@ -1,11 +1,9 @@
 ﻿using LocadoraVeiculos.Controladores.ModuloServicoCondutores;
 using LocadoraVeiculos.Dominio.ModuloCondutores;
-using LocadoraVeiculos.Dominio.ModuloVeiculo;
+using LocadoraVeiculos.Infra.Configuracao;
 using LocadoraVeiculos.Infra.Orm.Compatilhado;
 using LocadoraVeiculos.Infra.Orm.ModuloCondutores;
-using Microsoft.Extensions.Configuration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.IO;
 
 namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoCondutores
 {
@@ -16,16 +14,9 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoCondutores
 
         public IntegratedTestsCondutores()
         {
-            var configuracao = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("ConfiguracaoAplicacao.json")
-                .Build();
-
-            var connectionString = configuracao
-                .GetSection("ConnectionStrings")
-                .GetSection("SqlServer")
-                .Value;
-            dbContext = new LocadoraVeiculosDbContext(connectionString);
+            var config = new ConfiguracaoAplicacao();
+           
+            dbContext = new LocadoraVeiculosDbContext(config.connectionStrings.SqlServer);
 
             var veiculos = dbContext.Set<Condutores>();
             veiculos.RemoveRange(veiculos);

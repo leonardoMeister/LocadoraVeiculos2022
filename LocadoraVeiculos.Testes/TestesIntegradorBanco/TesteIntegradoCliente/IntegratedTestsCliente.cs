@@ -1,10 +1,9 @@
 ﻿using LocadoraVeiculos.Controladores.ModuloServicoCliente;
 using LocadoraVeiculos.Dominio.ModuloCliente;
+using LocadoraVeiculos.Infra.Configuracao;
 using LocadoraVeiculos.Infra.Orm.Compatilhado;
 using LocadoraVeiculos.Infra.Orm.ModuloCliente;
-using Microsoft.Extensions.Configuration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.IO;
 
 namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoCliente
 {
@@ -15,17 +14,9 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoCliente
 
         public IntegratedTestsCliente()
         {
-            var configuracao = new ConfigurationBuilder()
-                 .SetBasePath(Directory.GetCurrentDirectory())
-                 .AddJsonFile("ConfiguracaoAplicacao.json")
-                 .Build();
-
-            var connectionString = configuracao
-                .GetSection("ConnectionStrings")
-                .GetSection("SqlServer")
-                .Value;
-
-            dbContext = new LocadoraVeiculosDbContext(connectionString);
+            var config = new ConfiguracaoAplicacao();
+            
+            dbContext = new LocadoraVeiculosDbContext(config.connectionStrings.SqlServer);
             
             var clientes = dbContext.Set<Cliente>();            
             clientes.RemoveRange(clientes);

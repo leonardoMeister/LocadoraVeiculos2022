@@ -1,11 +1,10 @@
 ﻿using LocadoraVeiculos.Controladores.ModuloServicoFuncionario;
 using LocadoraVeiculos.Dominio.ModuloFuncionario;
+using LocadoraVeiculos.Infra.Configuracao;
 using LocadoraVeiculos.Infra.Orm.Compatilhado;
 using LocadoraVeiculos.Infra.Orm.ModuloFuncionario;
-using Microsoft.Extensions.Configuration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.IO;
 
 namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoFuncionario
 {
@@ -16,16 +15,9 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoFuncionari
 
         public IntegratedTestsFuncionario()
         {
-            var configuracao = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("ConfiguracaoAplicacao.json")
-                .Build();
+            var config = new ConfiguracaoAplicacao();
 
-            var connectionString = configuracao
-                .GetSection("ConnectionStrings")
-                .GetSection("SqlServer")
-                .Value;
-            dbContext = new LocadoraVeiculosDbContext(connectionString);
+            dbContext = new LocadoraVeiculosDbContext(config.connectionStrings.SqlServer);
 
             var funcionario = dbContext.Set<Funcionario>();
             funcionario.RemoveRange(funcionario);

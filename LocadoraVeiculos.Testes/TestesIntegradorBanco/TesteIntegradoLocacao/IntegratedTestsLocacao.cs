@@ -12,6 +12,7 @@ using LocadoraVeiculos.Dominio.ModuloLocacao;
 using LocadoraVeiculos.Dominio.ModuloPlanoCobranca;
 using LocadoraVeiculos.Dominio.ModuloTaxas;
 using LocadoraVeiculos.Dominio.ModuloVeiculo;
+using LocadoraVeiculos.Infra.Configuracao;
 using LocadoraVeiculos.Infra.Orm.Compatilhado;
 using LocadoraVeiculos.Infra.Orm.ModuloCliente;
 using LocadoraVeiculos.Infra.Orm.ModuloCondutores;
@@ -20,11 +21,9 @@ using LocadoraVeiculos.Infra.Orm.ModuloLocacao;
 using LocadoraVeiculos.Infra.Orm.ModuloPlanoCobranca;
 using LocadoraVeiculos.Infra.Orm.ModuloTaxas;
 using LocadoraVeiculos.Infra.Orm.ModuloVeiculo;
-using Microsoft.Extensions.Configuration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
-using System.IO;
 
 namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoLocacao
 {
@@ -35,16 +34,10 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoLocacao
 
         public IntegratedTestsLocacao()
         {
-            var configuracao = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("ConfiguracaoAplicacao.json")
-                .Build();
+            var config = new ConfiguracaoAplicacao();
 
-            var connectionString = configuracao
-                .GetSection("ConnectionStrings")
-                .GetSection("SqlServer")
-                .Value;
-            dbContext = new LocadoraVeiculosDbContext(connectionString);
+            dbContext = new LocadoraVeiculosDbContext(config.connectionStrings.SqlServer);
+
 
             var locacoes = dbContext.Set<Locacao>();
             locacoes.RemoveRange(locacoes);
