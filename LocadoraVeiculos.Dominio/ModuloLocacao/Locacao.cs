@@ -70,8 +70,31 @@ namespace LocadoraVeiculos.Dominio.ModuloLocacao
         public decimal ValorLocacao { get; set; }
 
         public void GerarValorLocacao()
-        {
+        {            
+            decimal valorDia = PegarValorPorDia();
 
+
+
+
+            decimal valorDistancia = PegarValorDistancia();
+        }
+
+        private decimal PegarValorDistancia()
+        {
+            decimal qilometragemPercorrida = QuilometragemFinal - QuilometragemInicial;
+
+            return qilometragemPercorrida * PlanoCobranca.ValorKM;
+        }
+
+        private decimal PegarValorPorDia()
+        {
+            var valorDia = PlanoCobranca.ValorDia;
+
+            var data = DataLocacao - DataEstimadaDevolucao;
+
+            int dias = data.Days;
+
+            return valorDia * dias;
         }
 
         public Locacao Clone()

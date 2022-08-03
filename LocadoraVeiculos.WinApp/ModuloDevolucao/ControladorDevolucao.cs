@@ -1,4 +1,5 @@
 ﻿using LocadoraVeiculos.Aplicacao.ModuloLocacao;
+using LocadoraVeiculos.Controladores.ModuloServicoTaxas;
 using LocadoraVeiculos.Dominio.ModuloLocacao;
 using LocadoraVeiculos.WinApp.ModuloLocacao;
 using LocadoraVeiculos.WinApp.shared;
@@ -13,12 +14,13 @@ namespace LocadoraVeiculos.WinApp.ModuloDevolucao
         TabelaLocacaoControl tabelaLocacao;
         ServicoLocacao servicoLocacao;
         Action<string> AtualizarRodape;
-
-        public ControladorDevolucao(TabelaLocacaoControl tabelaLocacao, ServicoLocacao servicoLocacao, Action<string> atualizarRodape)
+        ServicoTaxas servicoTaxas;
+        public ControladorDevolucao(TabelaLocacaoControl tabelaLocacao, ServicoLocacao servicoLocacao, Action<string> atualizarRodape,ServicoTaxas servicoTaxas)
         {
             this.tabelaLocacao = tabelaLocacao;
             this.servicoLocacao = servicoLocacao;
             AtualizarRodape = atualizarRodape;
+            this.servicoTaxas = servicoTaxas;
         }
 
         public void Editar()
@@ -43,7 +45,7 @@ namespace LocadoraVeiculos.WinApp.ModuloDevolucao
 
             var funcionarioSelecionado = resultado.Value;
 
-            TelaCadastroDevolucaoForm telaCadastroDevolucao = new TelaCadastroDevolucaoForm();
+            TelaCadastroDevolucaoForm telaCadastroDevolucao = new TelaCadastroDevolucaoForm(servicoTaxas);
 
             AtualizarRodape("Tela de Cadastro de Devolução");
             telaCadastroDevolucao.Locacao = resultado.Value;

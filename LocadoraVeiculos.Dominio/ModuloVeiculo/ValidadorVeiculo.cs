@@ -29,7 +29,7 @@ namespace LocadoraVeiculos.Dominio.ModuloVeiculo
                 .NotEmpty().WithMessage("Cor Deve ser informado.")
                 .MinimumLength(3).WithMessage("Cor deve ter no minimo 3 letras.");
 
-            RuleFor(x => x.TipoCombustivel)
+            RuleFor(x => x.TipoCombustivel.ToString())
                 .NotEmpty().WithMessage("Tipo do combustivel Deve ser informado.")
                 .MinimumLength(8).WithMessage("Tipo do combustivel deve ter no minimo 8 letras.");
 

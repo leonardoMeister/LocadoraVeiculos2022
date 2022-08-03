@@ -19,39 +19,37 @@ namespace LocadoraVeiculos.Testes.TestesUnitarios.TestesUnitarioVeiculo
             ValidadorVeiculo validador = new ValidadorVeiculo();
             GrupoVeiculos grupo = new GrupoVeiculos("Nome do grupo de teste");
 
-            Veiculo vei = new Veiculo("Mo", "ASD-3021", "Gol", "Rosa", "Gasolina", 10, DateTime.Now, 10, null, grupo);
+            Veiculo vei = new Veiculo("Mo", "ASD-3021", "Gol", "Rosa", TipoCombustivelEnum.Gasolina, 10, DateTime.Now, 10, null, grupo);
             var validacao = validador.Validate(vei);
             Assert.IsFalse(validacao.IsValid);
 
-            vei = new Veiculo("Modelo do Veiculo", "ASD3021", "Gol", "Rosa", "Gasolina", 10, DateTime.Now, 10, null, grupo);
+            vei = new Veiculo("Modelo do Veiculo", "ASD3021", "Gol", "Rosa", TipoCombustivelEnum.Gasolina, 10, DateTime.Now, 10, null, grupo);
             validacao = validador.Validate(vei);
             Assert.IsFalse(validacao.IsValid);
 
-            vei = new Veiculo("Modelo do Veiculo", "ASD-3021", "Go", "Rosa", "Gasolina", 10, DateTime.Now, 10, null, grupo);
+            vei = new Veiculo("Modelo do Veiculo", "ASD-3021", "Go", "Rosa", TipoCombustivelEnum.Gasolina, 10, DateTime.Now, 10, null, grupo);
             validacao = validador.Validate(vei);
             Assert.IsFalse(validacao.IsValid);
 
-            vei = new Veiculo("Modelo do Veiculo", "ASD-3021", "Gol", "Ro", "Gasolina", 10, DateTime.Now, 10, null, grupo);
+            vei = new Veiculo("Modelo do Veiculo", "ASD-3021", "Gol", "Ro", TipoCombustivelEnum.Gasolina, 10, DateTime.Now, 10, null, grupo);
             validacao = validador.Validate(vei);
             Assert.IsFalse(validacao.IsValid);
 
-            vei = new Veiculo("Modelo do Veiculo", "ASD-3021", "Gol", "Rosa", "Ga", 10, DateTime.Now, 10, null, grupo);
+            
+
+            vei = new Veiculo("Modelo do Veiculo", "ASD-3021", "Gol", "Rosa", TipoCombustivelEnum.Gasolina, 0, DateTime.Now, 10, null, grupo);
             validacao = validador.Validate(vei);
             Assert.IsFalse(validacao.IsValid);
 
-            vei = new Veiculo("Modelo do Veiculo", "ASD-3021", "Gol", "Rosa", "Gasolina", 0, DateTime.Now, 10, null, grupo);
+            vei = new Veiculo("Modelo do Veiculo", "ASD-3021", "Gol", "Rosa", TipoCombustivelEnum.Gasolina, 10, DateTime.Now, 0, null, grupo);
             validacao = validador.Validate(vei);
             Assert.IsFalse(validacao.IsValid);
 
-            vei = new Veiculo("Modelo do Veiculo", "ASD-3021", "Gol", "Rosa", "Gasolina", 10, DateTime.Now, 0, null, grupo);
+            vei = new Veiculo("Modelo do Veiculo", "ASD-3021", "Gol", "Rosa", TipoCombustivelEnum.Gasolina, 10, DateTime.MinValue, 10, null, grupo);
             validacao = validador.Validate(vei);
             Assert.IsFalse(validacao.IsValid);
 
-            vei = new Veiculo("Modelo do Veiculo", "ASD-3021", "Gol", "Rosa", "Gasolina", 10, DateTime.MinValue, 10, null, grupo);
-            validacao = validador.Validate(vei);
-            Assert.IsFalse(validacao.IsValid);
-
-            vei = new Veiculo("Modelo do Veiculo", "ASD-3021", "Gol", "Rosa", "Gasolina", 10, DateTime.Now, 10, null, null);
+            vei = new Veiculo("Modelo do Veiculo", "ASD-3021", "Gol", "Rosa", TipoCombustivelEnum.Gasolina, 10, DateTime.Now, 10, null, null);
             validacao = validador.Validate(vei);
             Assert.IsFalse(validacao.IsValid);
         }
@@ -61,7 +59,7 @@ namespace LocadoraVeiculos.Testes.TestesUnitarios.TestesUnitarioVeiculo
         {
             ValidadorVeiculo validador = new ValidadorVeiculo();
             GrupoVeiculos grupo = new GrupoVeiculos("Nome do grupo de teste");
-            Veiculo vei = new Veiculo("Modelo do Veiculo", "ASD-3021", "Gol", "Rosa", "Gasolina", 10, DateTime.Now, 10, null, grupo);
+            Veiculo vei = new Veiculo("Modelo do Veiculo", "ASD-3021", "Gol", "Rosa", TipoCombustivelEnum.Gasolina, 10, DateTime.Now, 10, null, grupo);
 
             var validacao = validador.Validate(vei);
 

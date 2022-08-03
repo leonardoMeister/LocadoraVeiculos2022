@@ -1,6 +1,7 @@
 ﻿using LocadoraVeiculos.Controladores.ModuloServicoGrupoVeiculos;
 using LocadoraVeiculos.Controladores.ModuloServicoVeiculo;
 using LocadoraVeiculos.Dominio.ModuloGrupoVeiculos;
+using LocadoraVeiculos.Dominio.ModuloLocacao;
 using LocadoraVeiculos.Dominio.ModuloVeiculo;
 using LocadoraVeiculos.Infra.Orm.Compatilhado;
 using LocadoraVeiculos.Infra.Orm.ModuloGrupoVeiculo;
@@ -30,8 +31,12 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoVeiculo
                 .Value;
             dbContext = new LocadoraVeiculosDbContext(connectionString);
 
+            var locacao = dbContext.Set<Locacao>();
+            locacao.RemoveRange(locacao);
+
             var veiculos = dbContext.Set<Veiculo>();
             veiculos.RemoveRange(veiculos);
+
             dbContext.SaveChanges();
         }
 
@@ -46,7 +51,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoVeiculo
 
             byte[] foto = new byte[] { };
 
-            Veiculo vei = new Veiculo("Modelo do Veiculo", "ASD-3021", "Gol", "Rosa", "Gasolina", 10, DateTime.Now, 10, foto, grupo);
+            Veiculo vei = new Veiculo("Modelo do Veiculo", "ASD-3021", "Gol", "Rosa", TipoCombustivelEnum.Gasolina, 10, DateTime.Now, 10, foto, grupo);
 
             var resultado = controlador.InserirNovo(vei);
 
@@ -62,7 +67,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoVeiculo
             GrupoVeiculos grupo = new GrupoVeiculos("Nome do grupo de teste");
             controladorGrupoVeiculos.InserirNovo(grupo);
             byte[] foto = new byte[] { };
-            Veiculo vei = new Veiculo("Modelo do Veiculo", "ASD-3021", "Gol", "Rosa", "Gasolina", 10, DateTime.Now, 10, foto, grupo);
+            Veiculo vei = new Veiculo("Modelo do Veiculo", "ASD-3021", "Gol", "Rosa", TipoCombustivelEnum.Gasolina, 10, DateTime.Now, 10, foto, grupo);
 
             controlador.InserirNovo(vei);
 
@@ -81,7 +86,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoVeiculo
             GrupoVeiculos grupo = new GrupoVeiculos("Nome do grupo de teste");
             controladorGrupoVeiculos.InserirNovo(grupo);
             byte[] foto = new byte[] { };
-            Veiculo vei = new Veiculo("Modelo do Veiculo", "ASD-3021", "Gol", "Rosa", "Gasolina", 10, DateTime.Now, 10, foto, grupo);
+            Veiculo vei = new Veiculo("Modelo do Veiculo", "ASD-3021", "Gol", "Rosa", TipoCombustivelEnum.Gasolina, 10, DateTime.Now, 10, foto, grupo);
 
             controlador.InserirNovo(vei);
 
@@ -99,7 +104,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoVeiculo
             GrupoVeiculos grupo = new GrupoVeiculos("Nome do grupo de teste");
             controladorGrupoVeiculos.InserirNovo(grupo);
             byte[] foto = new byte[] { };
-            Veiculo vei = new Veiculo("Modelo do Veiculo", "ASD-3021", "Gol", "Rosa", "Gasolina", 10, DateTime.Now, 10, foto, grupo);
+            Veiculo vei = new Veiculo("Modelo do Veiculo", "ASD-3021", "Gol", "Rosa", TipoCombustivelEnum.Gasolina, 10, DateTime.Now, 10, foto, grupo);
 
             controlador.InserirNovo(vei);
             controlador.Excluir(controlador.SelecionarPorId(vei.Id).Value);
@@ -118,7 +123,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoVeiculo
             GrupoVeiculos grupo = new GrupoVeiculos("Nome do grupo de teste");
             controladorGrupoVeiculos.InserirNovo(grupo);
             byte[] foto = new byte[] { };
-            Veiculo vei = new Veiculo("Modelo do Veiculo", "ASD-3021", "Gol", "Rosa", "Gasolina", 10, DateTime.Now, 10, foto, grupo);
+            Veiculo vei = new Veiculo("Modelo do Veiculo", "ASD-3021", "Gol", "Rosa", TipoCombustivelEnum.Gasolina, 10, DateTime.Now, 10, foto, grupo);
 
             controlador.InserirNovo(vei);
             vei.Modelo = "NOVO MODELO DE VEICULO EDICAO";

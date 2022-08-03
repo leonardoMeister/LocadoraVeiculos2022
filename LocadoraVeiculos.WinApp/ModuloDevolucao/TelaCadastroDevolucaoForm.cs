@@ -1,5 +1,7 @@
 ﻿using FluentResults;
+using LocadoraVeiculos.Controladores.ModuloServicoTaxas;
 using LocadoraVeiculos.Dominio.ModuloLocacao;
+using LocadoraVeiculos.Dominio.ModuloTaxas;
 using LocadoraVeiculos.Dominio.ModuloVeiculo;
 using System;
 using System.Collections.Generic;
@@ -19,7 +21,8 @@ namespace LocadoraVeiculos.WinApp.ModuloLocacao
         public Locacao Locacao
         {
             get { return locacao; }
-            set { 
+            set
+            {
                 locacao = value;
                 txtId.Text = locacao.Id.ToString();
                 CarregarFotoVeiculo(locacao.Veiculo);
@@ -51,20 +54,37 @@ namespace LocadoraVeiculos.WinApp.ModuloLocacao
             laDataLocacao.Text = locacao.DataLocacao.Date.ToString();
             laValorTotal.Text = locacao.ValorLocacao.ToString();
         }
+        private NivelTanqueEnum PegarNivelTanque()
+        {
+            if (cmbNivelTanque.SelectedIndex == -1) return NivelTanqueEnum.naoInformado;
 
+            var nivel = cmbNivelTanque.SelectedItem.ToString();
+
+            NivelTanqueEnum nivelFinal = (NivelTanqueEnum)Enum.Parse(typeof(NivelTanqueEnum), nivel);
+
+            return nivelFinal;
+        }
         private void CarregarTaxas()
         {
-            throw new NotImplementedException();
+            foreach (Taxas tax in servicoTaxas.SelecionarTodos().Value)
+            {
+                bool deveAdd = locacao.ListaTaxas.Contains(tax);
+
+                if (deveAdd) listaTaxas.Items.Add(tax, CheckState.Checked);
+                else listaTaxas.Items.Add(tax, CheckState.Unchecked);
+            }
         }
 
         private Bitmap bmp;
         private Locacao locacao;
         public Func<Locacao, Result<Locacao>> GravarRegistro { get; internal set; }
         public Action<string> AtualizarRodape { get; internal set; }
+        ServicoTaxas servicoTaxas;
 
-        public TelaCadastroDevolucaoForm()
+        public TelaCadastroDevolucaoForm(ServicoTaxas servicoTaxas)
         {
             InitializeComponent();
+            this.servicoTaxas = servicoTaxas;
         }
         private void CarregarFotoVeiculo(Veiculo vei)
         {
@@ -102,7 +122,22 @@ namespace LocadoraVeiculos.WinApp.ModuloLocacao
 
         private void PegarObjetoTela()
         {
-            throw new NotImplementedException();
+            List<Taxas> taxas = new List<Taxas>();
+
+            foreach (Taxas tax in listaTaxas.CheckedItems)
+            {
+                taxas.Add(tax);
+            }
+
+            locacao.ListaTaxas = taxas;
+
+            locacao.QuilometragemFinal = (txtQuilometragemFinal.Text != "")? Convert.ToDecimal(txtQuilometragemFinal.Text): 0;
+
+            locacao.DataRealDaDevolucao = dataRealDevolucao.Value.Date;
+
+            locacao.NivelTanqueEnumDevolucao = PegarNivelTanque();
+
+            locacao.StatusDevolucao = true;
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)

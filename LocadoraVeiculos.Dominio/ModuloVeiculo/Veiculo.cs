@@ -11,7 +11,7 @@ namespace LocadoraVeiculos.Dominio.ModuloVeiculo
         public string Placa { get; set; }
         public string Marca { get; set; }
         public string Cor { get; set; }
-        public string TipoCombustivel { get; set; }
+        public TipoCombustivelEnum TipoCombustivel { get; set; }
         public decimal CapacidadeTanque { get; set; }
         public DateTime Ano { get; set; }
         public decimal Quilometragem { get; set; }
@@ -28,7 +28,7 @@ namespace LocadoraVeiculos.Dominio.ModuloVeiculo
         {
             return $"Placa: {Placa}";
         }
-        public Veiculo(string modelo, string placa, string marca, string cor, string tipoCombustivel, 
+        public Veiculo(string modelo, string placa, string marca, string cor, TipoCombustivelEnum tipoCombustivel, 
             decimal capacidadeTanque, DateTime ano, decimal quilometragem, byte[] foto, GrupoVeiculos grupoVeiculos)
         {
             Modelo = modelo;

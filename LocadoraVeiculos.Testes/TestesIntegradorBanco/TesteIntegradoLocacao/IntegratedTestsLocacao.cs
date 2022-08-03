@@ -86,7 +86,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoLocacao
 
             byte[] foto = new byte[] { };
 
-            Veiculo vei = new Veiculo("Modelo do Veiculo", "ASD-3021", "Gol", "Rosa", "Gasolina", 10, DateTime.Now, 10, foto, grupo);
+            Veiculo vei = new Veiculo("Modelo do Veiculo", "ASD-3021", "Gol", "Rosa", TipoCombustivelEnum.Gasolina, 10, DateTime.Now, 10, foto, grupo);
             var ve = controladorVeiculo.InserirNovo(vei);
 
             PlanoCobranca plano = new PlanoCobranca("Tipo Grupo 1", 100, 0, 10, grupo);
@@ -130,7 +130,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoLocacao
 
             byte[] foto = new byte[] { };
 
-            Veiculo vei = new Veiculo("Modelo do Veiculo", "ASD-3021", "Gol", "Rosa", "Gasolina", 10, DateTime.Now, 10, foto, grupo);
+            Veiculo vei = new Veiculo("Modelo do Veiculo", "ASD-3021", "Gol", "Rosa", TipoCombustivelEnum.Gasolina, 10, DateTime.Now, 10, foto, grupo);
             var ve =controladorVeiculo.InserirNovo(vei);
 
             PlanoCobranca plano = new PlanoCobranca("Tipo Grupo 1", 100, 0, 10, grupo);
@@ -177,7 +177,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoLocacao
 
             byte[] foto = new byte[] { };
 
-            Veiculo vei = new Veiculo("Modelo do Veiculo", "ASD-3021", "Gol", "Rosa", "Gasolina", 10, DateTime.Now, 10, foto, grupo);
+            Veiculo vei = new Veiculo("Modelo do Veiculo", "ASD-3021", "Gol", "Rosa", TipoCombustivelEnum.Gasolina, 10, DateTime.Now, 10, foto, grupo);
             var ve = controladorVeiculo.InserirNovo(vei);
 
             PlanoCobranca plano = new PlanoCobranca("Tipo Grupo 1", 100, 0, 10, grupo);
@@ -223,7 +223,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoLocacao
 
             byte[] foto = new byte[] { };
 
-            Veiculo vei = new Veiculo("Modelo do Veiculo", "ASD-3021", "Gol", "Rosa", "Gasolina", 10, DateTime.Now, 10, foto, grupo);
+            Veiculo vei = new Veiculo("Modelo do Veiculo", "ASD-3021", "Gol", "Rosa", TipoCombustivelEnum.Gasolina, 10, DateTime.Now, 10, foto, grupo);
             var ve = controladorVeiculo.InserirNovo(vei);
 
             PlanoCobranca plano = new PlanoCobranca("Tipo Grupo 1", 100, 0, 10, grupo);
@@ -271,7 +271,7 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoLocacao
 
             byte[] foto = new byte[] { };
 
-            Veiculo vei = new Veiculo("Modelo do Veiculo", "ASD-3021", "Gol", "Rosa", "Gasolina", 10, DateTime.Now, 10, foto, grupo);
+            Veiculo vei = new Veiculo("Modelo do Veiculo", "ASD-3021", "Gol", "Rosa", TipoCombustivelEnum.Gasolina, 10, DateTime.Now, 10, foto, grupo);
             var ve = controladorVeiculo.InserirNovo(vei);
 
             PlanoCobranca plano = new PlanoCobranca("Tipo Grupo 1", 100, 0, 10, grupo);

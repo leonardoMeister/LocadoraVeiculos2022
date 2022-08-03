@@ -16,7 +16,28 @@ namespace LocadoraVeiculos.WinApp.ModuloVeiculo
         {
             InitializeComponent();
             Servico = servico;
-            AtualizarPlanosCobranca();            
+            AtualizarPlanosCobranca();
+            CarregarTipoCombustivel();
+        }
+        private TipoCombustivelEnum PegarTipoCombustivel()
+        {
+            if (cmbTipoCombustivel.SelectedIndex == -1) return TipoCombustivelEnum.Gasolina;
+
+            var nivel = cmbTipoCombustivel.SelectedItem.ToString();
+
+            TipoCombustivelEnum nivelFinal = (TipoCombustivelEnum)Enum.Parse(typeof(TipoCombustivelEnum), nivel);
+
+            return nivelFinal;
+        }
+        private void CarregarTipoCombustivel()
+        {
+
+            cmbTipoCombustivel.Items.Clear();
+
+            foreach (TipoCombustivelEnum tanque in Enum.GetValues(typeof(TipoCombustivelEnum)))
+            {
+                cmbTipoCombustivel.Items.Add(tanque.ToString());
+            }
         }
 
         private void AtualizarPlanosCobranca()
@@ -48,7 +69,7 @@ namespace LocadoraVeiculos.WinApp.ModuloVeiculo
                 textBoxCapacidadeTanque.Text =  veiculo.CapacidadeTanque.ToString();
                 textBoxQuilometragem.Text = veiculo.Quilometragem.ToString();
                 cmbGrupoVeiculo.SelectedItem = veiculo.GrupoVeiculos;
-                comboBoxTipoCombustivel.SelectedItem = veiculo.TipoCombustivel;
+                cmbTipoCombustivel.SelectedItem = veiculo.TipoCombustivel;
             }
         }
 
@@ -83,7 +104,7 @@ namespace LocadoraVeiculos.WinApp.ModuloVeiculo
             string placa = textBoxPlacas.Text;
             string marca = textBoxMarca.Text;
             string cor = textCor.Text;
-            string tipoCombustivel = comboBoxTipoCombustivel.Text;            
+            var tipoCombustivel = PegarTipoCombustivel();
             DateTime ano = data.Value;
             
             decimal capacidadeTanque =  (textBoxCapacidadeTanque.Text == "")? 0:  Convert.ToDecimal(textBoxCapacidadeTanque.Text);

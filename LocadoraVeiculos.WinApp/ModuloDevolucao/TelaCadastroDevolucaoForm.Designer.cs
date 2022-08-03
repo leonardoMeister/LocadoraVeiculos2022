@@ -244,6 +244,7 @@
             // txtQuilometragemFinal
             // 
             this.txtQuilometragemFinal.Location = new System.Drawing.Point(200, 391);
+            this.txtQuilometragemFinal.Mask = "00000000";
             this.txtQuilometragemFinal.Name = "txtQuilometragemFinal";
             this.txtQuilometragemFinal.Size = new System.Drawing.Size(199, 27);
             this.txtQuilometragemFinal.TabIndex = 67;

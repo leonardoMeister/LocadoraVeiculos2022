@@ -36,7 +36,7 @@
             this.textCor = new System.Windows.Forms.TextBox();
             this.labelCor = new System.Windows.Forms.Label();
             this.labelTipoCombustivel = new System.Windows.Forms.Label();
-            this.comboBoxTipoCombustivel = new System.Windows.Forms.ComboBox();
+            this.cmbTipoCombustivel = new System.Windows.Forms.ComboBox();
             this.labelCapacidadeTanque = new System.Windows.Forms.Label();
             this.labelAno = new System.Windows.Forms.Label();
             this.labelQuilometragem = new System.Windows.Forms.Label();
@@ -126,21 +126,16 @@
             this.labelTipoCombustivel.TabIndex = 0;
             this.labelTipoCombustivel.Text = "Combustível:";
             // 
-            // comboBoxTipoCombustivel
+            // cmbTipoCombustivel
             // 
-            this.comboBoxTipoCombustivel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxTipoCombustivel.FormattingEnabled = true;
-            this.comboBoxTipoCombustivel.ItemHeight = 20;
-            this.comboBoxTipoCombustivel.Items.AddRange(new object[] {
-            "Gasolina",
-            "Diesel",
-            "Etanol",
-            "GNV"});
-            this.comboBoxTipoCombustivel.Location = new System.Drawing.Point(132, 158);
-            this.comboBoxTipoCombustivel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.comboBoxTipoCombustivel.Name = "comboBoxTipoCombustivel";
-            this.comboBoxTipoCombustivel.Size = new System.Drawing.Size(144, 28);
-            this.comboBoxTipoCombustivel.TabIndex = 4;
+            this.cmbTipoCombustivel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbTipoCombustivel.FormattingEnabled = true;
+            this.cmbTipoCombustivel.ItemHeight = 20;
+            this.cmbTipoCombustivel.Location = new System.Drawing.Point(132, 158);
+            this.cmbTipoCombustivel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cmbTipoCombustivel.Name = "cmbTipoCombustivel";
+            this.cmbTipoCombustivel.Size = new System.Drawing.Size(144, 28);
+            this.cmbTipoCombustivel.TabIndex = 4;
             // 
             // labelCapacidadeTanque
             // 
@@ -311,7 +306,7 @@
             this.Controls.Add(this.cmbGrupoVeiculo);
             this.Controls.Add(this.buttonCarregarFoto);
             this.Controls.Add(this.pictureBoxFoto);
-            this.Controls.Add(this.comboBoxTipoCombustivel);
+            this.Controls.Add(this.cmbTipoCombustivel);
             this.Controls.Add(this.textCor);
             this.Controls.Add(this.textBoxMarca);
             this.Controls.Add(this.textBoxModelo);
@@ -348,7 +343,7 @@
         private System.Windows.Forms.TextBox textCor;
         private System.Windows.Forms.Label labelCor;
         private System.Windows.Forms.Label labelTipoCombustivel;
-        private System.Windows.Forms.ComboBox comboBoxTipoCombustivel;
+        private System.Windows.Forms.ComboBox cmbTipoCombustivel;
         private System.Windows.Forms.Label labelCapacidadeTanque;
         private System.Windows.Forms.Label labelAno;
         private System.Windows.Forms.Label labelQuilometragem;

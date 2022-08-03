@@ -19,7 +19,8 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloVeiculo
             builder.Property(x => x.Placa).HasColumnType("varchar(100)").IsRequired();
             builder.Property(x => x.Marca).HasColumnType("varchar(100)").IsRequired();
             builder.Property(x => x.Cor).HasColumnType("varchar(100)").IsRequired();
-            builder.Property(x => x.TipoCombustivel).HasColumnType("varchar(100)").IsRequired();
+            builder.Property(x => x.TipoCombustivel).HasConversion<string>().IsRequired();
+
             builder.Property(x => x.CapacidadeTanque).IsRequired();
             builder.Property(x => x.Ano).IsRequired();
             builder.Property(x => x.Quilometragem).IsRequired();

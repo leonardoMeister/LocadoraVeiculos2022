@@ -1,6 +1,7 @@
 ﻿using LocadoraVeiculos.Controladores.ModuloServicoGrupoVeiculos;
 using LocadoraVeiculos.Controladores.ModuloServicoPlanoCobranca;
 using LocadoraVeiculos.Dominio.ModuloGrupoVeiculos;
+using LocadoraVeiculos.Dominio.ModuloLocacao;
 using LocadoraVeiculos.Dominio.ModuloPlanoCobranca;
 using LocadoraVeiculos.Infra.Orm.Compatilhado;
 using LocadoraVeiculos.Infra.Orm.ModuloGrupoVeiculo;
@@ -28,6 +29,9 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradorPlanoCobr
                 .GetSection("SqlServer")
                 .Value;
             dbContext = new LocadoraVeiculosDbContext(connectionString);
+            
+            var locacao = dbContext.Set<Locacao>();
+            locacao.RemoveRange(locacao);
 
             var planoCobrancas = dbContext.Set<PlanoCobranca>();
             planoCobrancas.RemoveRange(planoCobrancas);

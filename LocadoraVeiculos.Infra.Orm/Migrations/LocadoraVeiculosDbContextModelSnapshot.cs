@@ -311,7 +311,7 @@ namespace LocadoraVeiculos.Infra.Orm.Migrations
 
                     b.Property<string>("TipoCombustivel")
                         .IsRequired()
-                        .HasColumnType("varchar(100)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
