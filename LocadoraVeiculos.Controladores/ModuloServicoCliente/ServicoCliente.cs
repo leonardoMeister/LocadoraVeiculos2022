@@ -16,55 +16,11 @@ namespace LocadoraVeiculos.Controladores.ModuloServicoCliente
         {
 
         }
-
         protected override AbstractValidator<Cliente> PegarValidador()
         {
             return new ValidadorCliente();
         }
-        public override Result<Cliente> Editar(Cliente registro)
-        {
-            var validacaoBanco = ClienteForValidoParaEditar(registro);  //VALIDACAO DE BANCO
-
-            if (validacaoBanco.IsValid)
-            {
-                return base.Editar(registro);                              //VALIDACAO DE DOMINIO
-            }
-            else
-            {
-                List<Error> listaErros = new List<Error>();
-
-                foreach (var erro in validacaoBanco.Errors)
-                {
-                    listaErros.Add(new Error(erro.ErrorMessage));
-                    Log.Logger.Warning("Falha ao tentar editar Cliente {ClienteID} - {Motivo}",
-                        registro.Id, erro.ErrorMessage);
-                }
-                return Result.Fail(listaErros);
-
-            }
-        }
-        public override Result<Cliente> InserirNovo(Cliente registro)
-        {
-            var validacaoBanco = ClienteForValidoParaInserir(registro);         //VALIDACAO DO BANCO
-            if (validacaoBanco.IsValid)
-            {
-                return base.InserirNovo(registro);                                  //VALIDACAO DO DOMINIO
-            }
-            else
-            {
-                List<Error> listaErros = new List<Error>();
-
-                foreach (var erro in validacaoBanco.Errors)
-                {
-                    listaErros.Add(new Error(erro.ErrorMessage));
-                    Log.Logger.Warning("Falha ao tentar Inserir Cliente {Cliente} - {Motivo}",
-                        registro.Id, erro.ErrorMessage);
-                }
-                return Result.Fail(listaErros);
-            }
-        }        
-
-        private ValidationResult ClienteForValidoParaEditar(Cliente registro)
+        protected override ValidationResult RegistroForValidoParaEditarBanco(Cliente registro)
         {
             ValidationResult valido = new ValidationResult();
 
@@ -90,7 +46,8 @@ namespace LocadoraVeiculos.Controladores.ModuloServicoCliente
 
             return valido;
         }
-        private ValidationResult ClienteForValidoParaInserir(Cliente registro)
+
+        protected override ValidationResult RegistroForValidoParaInserirBanco(Cliente registro)
         {
             ValidationResult valido = new ValidationResult();
 
@@ -114,7 +71,6 @@ namespace LocadoraVeiculos.Controladores.ModuloServicoCliente
             //}
 
             return valido;
-
         }
     }
 }

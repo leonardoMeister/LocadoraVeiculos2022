@@ -8,7 +8,7 @@ using LocadoraVeiculos.Repositorio.shared;
 using Serilog;
 using System.Collections.Generic;
 
-namespace LocadoraVeiculos.Controladores.ModuloServicoTaxas 
+namespace LocadoraVeiculos.Controladores.ModuloServicoTaxas
 {
     public class ServicoTaxas : ServicoBase<Taxas>
     {
@@ -16,57 +16,13 @@ namespace LocadoraVeiculos.Controladores.ModuloServicoTaxas
         {
 
         }
-        
+
         protected override AbstractValidator<Taxas> PegarValidador()
         {
             return new ValidadorTaxas();
         }
 
-        public override Result<Taxas> InserirNovo(Taxas registro)
-        {
-            var validacaoBanco = TaxasForValidaParaInserir(registro);         //VALIDACAO DO BANCO
-            if (validacaoBanco.IsValid)
-            {
-                return base.InserirNovo(registro);                                  //VALIDACAO DO DOMINIO
-            }
-            else
-            {
-                List<Error> listaErros = new List<Error>();
-
-                foreach (var erro in validacaoBanco.Errors)
-                {
-                    listaErros.Add(new Error(erro.ErrorMessage));
-                    Log.Logger.Warning("Falha ao tentar inserir um Taxas {TaxasID} - {Motivo}",
-                        registro.Id, erro.ErrorMessage);
-                }
-                return Result.Fail(listaErros);
-            }
-        }
-
-        public override Result<Taxas> Editar(Taxas registro)
-        {
-            var validacaoBanco = TaxaForValidaParaEditar(registro);  //VALIDACAO DE BANCO
-
-            if (validacaoBanco.IsValid)
-            {
-                return base.Editar(registro);                              //VALIDACAO DE DOMINIO
-            }
-            else
-            {
-                List<Error> listaErros = new List<Error>();
-
-                foreach (var erro in validacaoBanco.Errors)
-                {
-                    listaErros.Add(new Error(erro.ErrorMessage));
-                    Log.Logger.Warning("Falha ao tentar editar uma Taxa {TaxasID} - {Motivo}",
-                        registro.Id, erro.ErrorMessage);
-                }
-                return Result.Fail(listaErros);
-
-            }
-        }
-
-        private ValidationResult TaxaForValidaParaEditar(Taxas registro)
+        protected override ValidationResult RegistroForValidoParaEditarBanco(Taxas registro)
         {
             ValidationResult valido = new ValidationResult();
 
@@ -75,7 +31,8 @@ namespace LocadoraVeiculos.Controladores.ModuloServicoTaxas
 
             return valido;
         }
-        private ValidationResult TaxasForValidaParaInserir(Taxas registro)
+
+        protected override ValidationResult RegistroForValidoParaInserirBanco(Taxas registro)
         {
             ValidationResult valido = new ValidationResult();
 
@@ -83,7 +40,7 @@ namespace LocadoraVeiculos.Controladores.ModuloServicoTaxas
             if (func1 != null) valido.Errors.Add(new ValidationFailure("Descricao", "Nao pode ter Descrição repetida"));
 
             return valido;
-
         }
+
     }
 }

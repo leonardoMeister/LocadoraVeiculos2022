@@ -11,63 +11,19 @@ using System.Collections.Generic;
 
 namespace LocadoraVeiculos.Controladores.ModuloServicoFuncionario
 {
-    public class ServicoFuncionario : ServicoBase<Funcionario> 
+    public class ServicoFuncionario : ServicoBase<Funcionario>
     {
-        public ServicoFuncionario(RepositorioFuncionarioOrm repo, IContextoPersistencia contexto) : base(repo,contexto)
+        public ServicoFuncionario(RepositorioFuncionarioOrm repo, IContextoPersistencia contexto) : base(repo, contexto)
         {
 
         }
-        
+
         protected override AbstractValidator<Funcionario> PegarValidador()
         {
             return new ValidadorFuncionario();
         }
 
-        public override Result<Funcionario> Editar(Funcionario registro)
-        {
-            var validacaoBanco = FuncionarioForValidoParaEditar(registro);  //VALIDACAO DE BANCO
-
-            if (validacaoBanco.IsValid)
-            {
-                return base.Editar(registro);                              //VALIDACAO DE DOMINIO
-            }
-            else
-            {
-                List<Error> listaErros = new List<Error>();
-
-                foreach (var erro in validacaoBanco.Errors)
-                {
-                    listaErros.Add(new Error(erro.ErrorMessage));                    
-                    Log.Logger.Warning("Falha ao tentar editar Funcionario {FuncionarioID} - {Motivo}",
-                        registro.Id, erro.ErrorMessage);
-                }
-
-                return Result.Fail(listaErros);
-            }
-        }
-
-        public override Result<Funcionario> InserirNovo(Funcionario registro)
-        {
-            var validacaoBanco = FuncionarioForValidoParaInserir(registro);         //VALIDACAO DO BANCO
-            if (validacaoBanco.IsValid)
-            {                
-                return base.InserirNovo(registro);                                  //VALIDACAO DO DOMINIO
-            }
-            else
-            {
-                List<Error> listaErros = new List<Error>();
-
-                foreach (var erro in validacaoBanco.Errors)
-                {
-                    listaErros.Add(new Error(erro.ErrorMessage));
-                    Log.Logger.Warning("Falha ao tentar Inserir Funcionario {FuncionarioID} - {Motivo}",
-                        registro.Id, erro.ErrorMessage);
-                }
-                return Result.Fail(listaErros);
-            }
-        }
-
-        private ValidationResult FuncionarioForValidoParaEditar(Funcionario registro)
+        protected override ValidationResult RegistroForValidoParaEditarBanco(Funcionario registro)
         {
             ValidationResult valido = new ValidationResult();
 
@@ -78,7 +34,8 @@ namespace LocadoraVeiculos.Controladores.ModuloServicoFuncionario
 
             return valido;
         }
-        private ValidationResult FuncionarioForValidoParaInserir(Funcionario registro)
+
+        protected override ValidationResult RegistroForValidoParaInserirBanco(Funcionario registro)
         {
             ValidationResult valido = new ValidationResult();
 
@@ -88,7 +45,7 @@ namespace LocadoraVeiculos.Controladores.ModuloServicoFuncionario
             //if (func2 != null) valido.Errors.Add(new ValidationFailure("login", "Nao pode ter login repetidos"));
 
             return valido;
-
         }
+
     }
 }

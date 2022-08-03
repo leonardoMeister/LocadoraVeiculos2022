@@ -16,58 +16,14 @@ namespace LocadoraVeiculos.Controladores.ModuloServicoGrupoVeiculos
         public ServicoGrupoVeiculos(RepositorioGrupoVeiculoOrm repo, IContextoPersistencia contexto) : base(repo, contexto)
         {
 
-        }        
+        }
 
         protected override AbstractValidator<GrupoVeiculos> PegarValidador()
         {
             return new ValidadorGrupoVeiculos();
         }
 
-        public override Result<GrupoVeiculos> InserirNovo(GrupoVeiculos registro)
-        {
-            var validacaoBanco = GrupoVeiculosForValidoParaInserir(registro);         //VALIDACAO DO BANCO
-            if (validacaoBanco.IsValid)
-            {
-                return base.InserirNovo(registro);                                  //VALIDACAO DO DOMINIO
-            }
-            else
-            {
-                List<Error> listaErros = new List<Error>();
-
-                foreach (var erro in validacaoBanco.Errors)
-                {
-                    listaErros.Add(new Error(erro.ErrorMessage));
-                    Log.Logger.Warning("Falha ao tentar inserir um GrupoVeiculos {GrupoVeiculosID} - {Motivo}",
-                        registro.Id, erro.ErrorMessage);
-                }
-                return Result.Fail(listaErros);
-            }
-        }
-
-        public override Result<GrupoVeiculos> Editar(GrupoVeiculos registro)
-        {
-            var validacaoBanco = GrupoVeiculosForValidoParaEditar(registro);  //VALIDACAO DE BANCO
-
-            if (validacaoBanco.IsValid)
-            {
-                return base.Editar(registro);                              //VALIDACAO DE DOMINIO
-            }
-            else
-            {
-                List<Error> listaErros = new List<Error>();
-
-                foreach (var erro in validacaoBanco.Errors)
-                {
-                    listaErros.Add(new Error(erro.ErrorMessage));
-                    Log.Logger.Warning("Falha ao tentar editar GrupoVeiculos {GrupoVeiculosID} - {Motivo}",
-                        registro.Id, erro.ErrorMessage);
-                }
-                return Result.Fail(listaErros);
-
-            }
-        }
-
-        private ValidationResult GrupoVeiculosForValidoParaEditar(GrupoVeiculos registro)
+        protected override ValidationResult RegistroForValidoParaEditarBanco(GrupoVeiculos registro)
         {
             ValidationResult valido = new ValidationResult();
 
@@ -76,7 +32,8 @@ namespace LocadoraVeiculos.Controladores.ModuloServicoGrupoVeiculos
 
             return valido;
         }
-        private ValidationResult GrupoVeiculosForValidoParaInserir(GrupoVeiculos registro)
+
+        protected override ValidationResult RegistroForValidoParaInserirBanco(GrupoVeiculos registro)
         {
             ValidationResult valido = new ValidationResult();
 
@@ -84,7 +41,7 @@ namespace LocadoraVeiculos.Controladores.ModuloServicoGrupoVeiculos
             //if (func1 != null) valido.Errors.Add(new ValidationFailure("Nome", "Nao pode ter nome repetido"));
 
             return valido;
-
         }
+
     }
 }

@@ -1,8 +1,9 @@
 ﻿using LocadoraVeiculos.Controladores.ModuloServicoGrupoVeiculos;
 using LocadoraVeiculos.Dominio.ModuloGrupoVeiculos;
+using LocadoraVeiculos.Dominio.ModuloLocacao;
+using LocadoraVeiculos.Dominio.ModuloPlanoCobranca;
 using LocadoraVeiculos.Infra.Orm.Compatilhado;
 using LocadoraVeiculos.Infra.Orm.ModuloGrupoVeiculo;
-using LocadoraVeiculos.RepositorioProject.ModuloGrupoVeiculos;
 using Microsoft.Extensions.Configuration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
@@ -25,6 +26,14 @@ namespace LocadoraVeiculos.Testes.TestesIntegradorBanco.TesteIntegradoGrupoVeicu
                 .GetSection("SqlServer")
                 .Value;
             dbContext = new LocadoraVeiculosDbContext(connectionString);
+
+            
+            var locacao = dbContext.Set<Locacao>();
+            locacao.RemoveRange(locacao);
+
+            var planoCobranca = dbContext.Set<PlanoCobranca>();
+            planoCobranca.RemoveRange(planoCobranca);
+
 
             var grupoVeiculos = dbContext.Set<GrupoVeiculos>();
             grupoVeiculos.RemoveRange(grupoVeiculos);
