@@ -17,9 +17,7 @@ namespace LocadoraVeiculos.WinApp.ModuloCliente
             set
             {
                 cliente = value;
-
                 PreencherDadosNaTela();
-                radioButtonPessoaFisica.Checked = true;
 
             }
         }
@@ -30,9 +28,14 @@ namespace LocadoraVeiculos.WinApp.ModuloCliente
         {
             if (cliente.TipoCliente == "PessoaFisica")
             {
+                radioButtonPessoaJuridica.Checked = false;
                 radioButtonPessoaFisica.Checked = true;
             }
-            else radioButtonPessoaJuridica.Checked = true;
+            else if (cliente.TipoCliente == "PessoaJuridica")
+            {
+                radioButtonPessoaFisica.Checked = false;
+                radioButtonPessoaJuridica.Checked = true;
+            }
 
             txtId.Text = Convert.ToString( cliente.Id);
             txtNome.Text = cliente.Nome;
@@ -49,8 +52,7 @@ namespace LocadoraVeiculos.WinApp.ModuloCliente
         public TelaCadastroClienteForm()
         {
             InitializeComponent();
-            radioButtonPessoaFisica.Checked = true;
-
+            radioButtonPessoaFisica.Checked = true;            
         }
 
         private void btnSalvar_Click(object sender, EventArgs e)

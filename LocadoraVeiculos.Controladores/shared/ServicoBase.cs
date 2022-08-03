@@ -35,6 +35,7 @@ namespace LocadoraVeiculos.Repositorio.shared
             }
             else
             {
+                ContextoPersistencia.DesfazerAlteracoes();
                 return GravarErroDeBancoAoInserir(registro, validacao);
             }
 
@@ -49,6 +50,7 @@ namespace LocadoraVeiculos.Repositorio.shared
             }
             else
             {
+                ContextoPersistencia.DesfazerAlteracoes();
                 return GravarErroDeBancoAoEditar(registro, validacao);
             }
 
@@ -199,7 +201,6 @@ namespace LocadoraVeiculos.Repositorio.shared
             }
             catch (Exception ex)
             {
-                ContextoPersistencia.DesfazerAlteracoes();
                 string msgErro = "Falha no sistema ao tentar Editar o Registro";
 
                 Log.Logger.Warning("Falha ao tentar Editar {RegistroType} - {ID} - {Motivo}", registro.GetType(), registro.Id, msgErro);

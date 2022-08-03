@@ -23,14 +23,14 @@ namespace LocadoraVeiculos.Dominio.ModuloCliente
                 .Custom(ValidarTipoCliente);
            
             RuleFor(x => x.Endereco)
-                .Matches(regEx).WithMessage("Nome deve ser sem Caracteres Especiais")
-                .NotNull().WithMessage("Deve ser inserido um endereço")
-                .NotEmpty().WithMessage("Deve ser inserido um endereço")
-                .MinimumLength(8).WithMessage("Deve ter mais que 7 caracteres");
+                .Matches(regEx).WithMessage("Endereco deve ser sem Caracteres Especiais")
+                .NotNull().WithMessage("Endereco Deve ser inserido um endereço")
+                .NotEmpty().WithMessage("Endereco ser inserido um endereço")
+                .MinimumLength(8).WithMessage("Endereco Deve ter mais que 7 caracteres");
             
             RuleFor(x => x.Telefone)
-                .NotNull().WithMessage("Deve ser inserido um telefone")
-                .NotEmpty().WithMessage("Deve ser inserido um telefone")
+                .NotNull().WithMessage("Telefone Deve ser inserido um telefone")
+                .NotEmpty().WithMessage("Telefone Deve ser inserido um telefone")
                 .MinimumLength(13).WithMessage("Telefone deve ser Valido");
             
             RuleFor(x => Regex.IsMatch(x.Telefone, "[^0-9- ]+", RegexOptions.IgnoreCase))
