@@ -27,10 +27,15 @@ namespace LocadoraVeiculos.Controladores.ModuloServicoFuncionario
         {
             ValidationResult valido = new ValidationResult();
 
-            //Funcionario func1 = ((RepositorioFuncionarioOrm)Repositorio).SelecionarPorNome(registro.Nome);
-            //if (func1 != null && func1.Nome != registro.Nome) valido.Errors.Add(new ValidationFailure("Nome", "Nao pode ter nomes repetidos"));
-            //Funcionario func2 = ((RepositorioFuncionarioOrm)Repositorio).SelecionarPorUsuario(registro.Login);
-            //if (func2 != null && func1.Login != registro.Login) valido.Errors.Add(new ValidationFailure("login", "Nao pode ter login repetidos"));
+            Funcionario func1 = ((RepositorioFuncionarioOrm)Repositorio).SelecionarPorNome(registro.Nome);
+            if (func1 != null)
+                if(func1.Nome == registro.Nome && func1.Id != registro.Id)
+                    valido.Errors.Add(new ValidationFailure("Nome", "Nao pode ter nomes repetidos"));
+
+            Funcionario func2 = ((RepositorioFuncionarioOrm)Repositorio).SelecionarPorUsuario(registro.Login);
+            if (func2 != null)
+                if(func2.Login == registro.Login && func2.Id != registro.Id)
+                    valido.Errors.Add(new ValidationFailure("login", "Nao pode ter login repetidos"));
 
             return valido;
         }
@@ -39,10 +44,13 @@ namespace LocadoraVeiculos.Controladores.ModuloServicoFuncionario
         {
             ValidationResult valido = new ValidationResult();
 
-            //var func1 = ((RepositorioFuncionarioOrm)Repositorio).SelecionarPorNome(registro.Nome);
-            //if (func1 != null) valido.Errors.Add(new ValidationFailure("Nome", "Nao pode ter nomes repetidos"));
-            //var func2 = ((RepositorioFuncionarioOrm)Repositorio).SelecionarPorUsuario(registro.Login);
-            //if (func2 != null) valido.Errors.Add(new ValidationFailure("login", "Nao pode ter login repetidos"));
+            var func1 = ((RepositorioFuncionarioOrm)Repositorio).SelecionarPorNome(registro.Nome);
+            if (func1 != null) 
+                valido.Errors.Add(new ValidationFailure("Nome", "Nao pode ter nomes repetidos"));
+
+            var func2 = ((RepositorioFuncionarioOrm)Repositorio).SelecionarPorUsuario(registro.Login);
+            if (func2 != null) 
+                valido.Errors.Add(new ValidationFailure("login", "Nao pode ter login repetidos"));
 
             return valido;
         }

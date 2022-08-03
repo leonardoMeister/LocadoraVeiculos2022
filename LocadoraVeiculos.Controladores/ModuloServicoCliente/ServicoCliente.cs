@@ -49,28 +49,6 @@ namespace LocadoraVeiculos.Controladores.ModuloServicoCliente
                         valido.Errors.Add(new ValidationFailure("Cpf", "Nao pode ter Cpf repetido"));
             }
 
-
-
-            //Cliente func1 = ((RepositorioClienteOrm)Repositorio).SelecionarPorCpf(registro.Cpf);
-            //if (func1 != null && func1.Id != registro.Id)
-            //{
-            //    if (func1.Cpf != "   .   .   -")
-            //    {
-            //        valido.Errors.Add(new ValidationFailure("Cpf", "Nao pode ter Cpf repetido"));
-            //    }
-
-            //}
-
-            //Cliente func2 = ((RepositorioClienteOrm)Repositorio).SelecionarPorCnpj(registro.Cnpj);
-            //if (func2 != null && func2.Id != registro.Id)
-            //{
-            //    if (func2.Cnpj != "  .   .   /    -")
-            //    {
-            //        valido.Errors.Add(new ValidationFailure("Cnpj", "Nao pode ter Cnpj repetido"));
-            //    }
-
-            //}
-
             return valido;
         }
 

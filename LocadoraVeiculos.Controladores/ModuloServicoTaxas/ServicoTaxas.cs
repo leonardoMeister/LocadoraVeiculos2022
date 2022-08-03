@@ -27,7 +27,9 @@ namespace LocadoraVeiculos.Controladores.ModuloServicoTaxas
             ValidationResult valido = new ValidationResult();
 
             Taxas func1 = ((RepositorioTaxaOrm)Repositorio).SelecionarPorDescricao(registro.Descricao);
-            if (func1 != null && func1.Id != registro.Id) valido.Errors.Add(new ValidationFailure("Descricao", "Nao pode ter Descrição repetida"));
+            if (func1 != null) 
+                if(func1.Id != registro.Id)
+                    valido.Errors.Add(new ValidationFailure("Descricao", "Nao pode ter Descrição repetida"));
 
             return valido;
         }
