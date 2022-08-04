@@ -5,6 +5,7 @@ using LocadoraVeiculos.Dominio.ModuloPlanoCobranca;
 using LocadoraVeiculos.Dominio.ModuloTaxas;
 using LocadoraVeiculos.Dominio.ModuloVeiculo;
 using LocadoraVeiculos.Dominio.shared;
+using LocadoraVeiculos.Infra.Configuracao;
 using System;
 using System.Collections.Generic;
 
@@ -38,10 +39,10 @@ namespace LocadoraVeiculos.Dominio.ModuloLocacao
             this.DataRealDaDevolucao = dataRealDaDevolucao;
             this.NivelTanqueEnumDevolucao = nivelTanqueEnumDevolucao;
         }
-         
+
         public Veiculo Veiculo { get; set; }
         public Guid VeiculoId { get; set; }
-         
+
         public Condutores Condutores { get; set; }
         public Guid CondutoresId { get; set; }
 
@@ -70,39 +71,150 @@ namespace LocadoraVeiculos.Dominio.ModuloLocacao
         public decimal ValorLocacao { get; set; }
 
         public decimal GerarValorLocacao()
-        {            
-            decimal valorDia = PegarValorPorDia();
+        {
+            decimal valorTaxas = PegarValorTaxasCadastradas();
+            decimal valorCombustivel = PegarValorDoCombustivel();
+            decimal valorPlano = PegarValorPlanoCobrancaCadastrado();
+            var valorFinal = valorCombustivel + valorPlano + valorTaxas;
+            ValorLocacao = valorTaxas;
+            return valorFinal;
+        }
 
+        private decimal PegarValorTaxasCadastradas()
+        {
+            decimal valor = 0;
 
-
-
-            
-
-
+            foreach (Taxas tax in ListaTaxas)
+            {
+                if (tax.Tipo == "Fixa")
+                {
+                    valor += tax.Valor;
+                }
+                else if (tax.Tipo == "Diaria")
+                {
+                    int dias = PegarNumeroDias();
+                    valor += dias * tax.Valor;
+                }
+            }
+            return valor;
+        }
+        private decimal PegarValorDoCombustivel()
+        {
+            if (StatusDevolucao)
+            {
+                decimal valorLitro = PegarValorDoLitroDoCombustivel();
+                decimal litrosGastos = PegarQuantidadeLitrosGastos();
+                return litrosGastos * valorLitro;
+            }
             return 0;
         }
-
-        private decimal PegarValorDistancia()
+        private decimal PegarQuantidadeLitrosGastos()
         {
-            decimal qilometragemPercorrida = QuilometragemFinal - QuilometragemInicial;
+            decimal valorInicio = PegarRelaçaoDaQuantidadeDeListrosEnum(NivelTanqueEnumInicio);
+            decimal valorfinal = PegarRelaçaoDaQuantidadeDeListrosEnum(NivelTanqueEnumDevolucao);
 
-            return qilometragemPercorrida * PlanoCobranca.ValorKM;
+            if (valorfinal < valorInicio)
+            {
+                return valorInicio - valorfinal;
+            }
+            return 0;
         }
+        private decimal PegarRelaçaoDaQuantidadeDeListrosEnum(NivelTanqueEnum nivelTanqueEnumInicio)
+        {
+            switch (nivelTanqueEnumInicio)
+            {
+                case NivelTanqueEnum.zerado:
+                    return 0;
+                case NivelTanqueEnum.baixo:
+                    return 25;
+                case NivelTanqueEnum.medio:
+                    return 50;
+                case NivelTanqueEnum.alto:
+                    return 75;
+                case NivelTanqueEnum.cheio:
+                    return 100;
+                default:
+                    return 0;
+            }
+        }
+        private decimal PegarValorDoLitroDoCombustivel()
+        {
+            ConfiguracaoAplicacao config = new ConfiguracaoAplicacao();
 
-        private decimal PegarValorPorDia()
+            switch (Veiculo.TipoCombustivel)
+            {
+                case TipoCombustivelEnum.Etanol:
+                    return config.precosCombustiveis.Etanol;
+                case TipoCombustivelEnum.Gasolina:
+                    return config.precosCombustiveis.Gasolina;
+                case TipoCombustivelEnum.Diesel:
+                    return config.precosCombustiveis.Diesel;
+                default:
+                    return 0;
+            }
+        }
+        private decimal PegarValorPlanoCobrancaCadastrado()
+        {
+            decimal valorPlano = 0;
+
+            if (PlanoCobranca.ValorKM != 0)
+                valorPlano += PegarValorDistanciaPlanoCobranca();
+            if (PlanoCobranca.ValorDia != 0)
+                valorPlano += PegarValorPorDiaPlanoCobranca();
+            if (PlanoCobranca.LimiteKM != 0)
+                valorPlano += CalcularMultaDoLimiteDeKmPlanoCobranca();
+
+            return valorPlano;
+        }
+        private decimal CalcularMultaDoLimiteDeKmPlanoCobranca()
+        {
+            ConfiguracaoAplicacao config = new ConfiguracaoAplicacao();
+            if (StatusDevolucao) // ou seja a devolução realmente foi feita
+            {
+                decimal quilometragemPercorrida = QuilometragemFinal - QuilometragemInicial;
+
+                if (quilometragemPercorrida > PlanoCobranca.LimiteKM)
+                {
+                    decimal quilometragemFinalMulta = quilometragemPercorrida - PlanoCobranca.LimiteKM;
+                    decimal valorDeMultaPorKmPercorridoaMaisQueoLimite = quilometragemFinalMulta * config.valoresDasMultas.MultaLimiteKmExcedido;
+                    return valorDeMultaPorKmPercorridoaMaisQueoLimite;
+                }
+            }
+            return 0;
+        }
+        private decimal PegarValorDistanciaPlanoCobranca()
+        {
+            if (StatusDevolucao)
+            {
+                decimal qilometragemPercorrida = QuilometragemFinal - QuilometragemInicial;
+
+                return qilometragemPercorrida * PlanoCobranca.ValorKM;
+            }
+            return 0;
+        }
+        private decimal PegarValorPorDiaPlanoCobranca()
         {
             var valorDia = PlanoCobranca.ValorDia;
 
-            var data = DataLocacao - DataEstimadaDevolucao;
-
-            int dias = data.Days;
+            int dias = PegarNumeroDias();
 
             return valorDia * dias;
         }
-
-        public Locacao Clone()
+        private int PegarNumeroDias()
         {
-            return MemberwiseClone() as Locacao;
+            if (StatusDevolucao)
+            {
+                var data =   DataRealDaDevolucao.Date- DataLocacao.Date;
+
+                return data.Days;
+            }
+            else
+            {
+                var data =  DataEstimadaDevolucao.Date - DataLocacao.Date;
+
+                var dias= data.Days;
+                return dias;
+            }
         }
 
         public override bool Equals(object obj)
@@ -124,7 +236,6 @@ namespace LocadoraVeiculos.Dominio.ModuloLocacao
                    DataRealDaDevolucao == locacao.DataRealDaDevolucao &&
                    NivelTanqueEnumDevolucao == locacao.NivelTanqueEnumDevolucao;
         }
-
         public override int GetHashCode()
         {
             HashCode hash = new HashCode();
@@ -144,8 +255,6 @@ namespace LocadoraVeiculos.Dominio.ModuloLocacao
             hash.Add(DataRealDaDevolucao);
             hash.Add(NivelTanqueEnumDevolucao);
             return hash.ToHashCode();
-        }       
-
-
+        }
     }
 }

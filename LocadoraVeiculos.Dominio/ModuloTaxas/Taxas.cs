@@ -34,7 +34,7 @@ namespace LocadoraVeiculos.Dominio.ModuloTaxas
 
         public override string ToString()
         {
-            return Descricao;
+            return $"{Descricao}, Tipo:{Tipo}, R${Valor}.";
         }
         public override int GetHashCode()
         {

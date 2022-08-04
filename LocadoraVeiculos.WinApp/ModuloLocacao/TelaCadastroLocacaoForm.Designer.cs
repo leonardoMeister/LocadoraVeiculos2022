@@ -48,12 +48,14 @@
             this.label5 = new System.Windows.Forms.Label();
             this.dataDevolucao = new System.Windows.Forms.DateTimePicker();
             this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
             this.listaTaxas = new System.Windows.Forms.CheckedListBox();
             this.label9 = new System.Windows.Forms.Label();
             this.txtId = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.cmbNivelTanque = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.labelValor = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFoto)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -247,15 +249,6 @@
             this.label7.TabIndex = 56;
             this.label7.Text = "Data Devolução";
             // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(281, 670);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(153, 20);
-            this.label8.TabIndex = 57;
-            this.label8.Text = "Valor Total Estimado: ";
-            // 
             // listaTaxas
             // 
             this.listaTaxas.CheckOnClick = true;
@@ -300,11 +293,40 @@
             this.cmbNivelTanque.Size = new System.Drawing.Size(165, 28);
             this.cmbNivelTanque.TabIndex = 61;
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(281, 670);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(153, 20);
+            this.label8.TabIndex = 57;
+            this.label8.Text = "Valor Total Estimado: ";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(177, 711);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(123, 52);
+            this.button1.TabIndex = 63;
+            this.button1.Text = "Simular Valor";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.SimularValorLocacaoClick);
+            // 
+            // labelValor
+            // 
+            this.labelValor.AutoSize = true;
+            this.labelValor.Location = new System.Drawing.Point(430, 670);
+            this.labelValor.Name = "labelValor";
+            this.labelValor.Size = new System.Drawing.Size(0, 20);
+            this.labelValor.TabIndex = 64;
+            // 
             // TelaCadastroLocacaoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(569, 792);
+            this.Controls.Add(this.labelValor);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.cmbNivelTanque);
             this.Controls.Add(this.txtId);
@@ -360,7 +382,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.DateTimePicker dataDevolucao;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.CheckedListBox listaTaxas;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txtId;
@@ -368,5 +389,8 @@
         private System.Windows.Forms.ComboBox cmbNivelTanque;
         private System.Windows.Forms.MaskedTextBox txtKmInicial;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label labelValor;
     }
 }

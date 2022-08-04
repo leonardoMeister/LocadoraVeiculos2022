@@ -62,13 +62,11 @@ namespace LocadoraVeiculos.WinApp.ModuloLocacao
                 return;
             }
 
-            var funcionarioSelecionado = resultado.Value;
-
             TelaCadastroLocacaoForm telaCadastroLocacao = new TelaCadastroLocacaoForm(servicoVeiculo, servicoCondutores, servicoGrupoVeiculos,
                                                                                       servicoPlanoCobranca, servicoTaxas, servicoCliente);
 
             AtualizarRodape("Tela de Edição de Locação");
-            telaCadastroLocacao.Locacao = resultado.Value.Clone();
+            telaCadastroLocacao.Locacao = resultado.Value;
 
             telaCadastroLocacao.GravarRegistro = servicoLocacao.Editar;
             telaCadastroLocacao.AtualizarRodape = AtualizarRodape;
@@ -133,11 +131,12 @@ namespace LocadoraVeiculos.WinApp.ModuloLocacao
 
         public void Inserir()
         {
-            TelaCadastroLocacaoForm telaCadastroVeiculo = new(servicoVeiculo, servicoCondutores, servicoGrupoVeiculos, servicoPlanoCobranca,
+            TelaCadastroLocacaoForm telaCadastroVeiculo = new TelaCadastroLocacaoForm(servicoVeiculo, servicoCondutores, servicoGrupoVeiculos, servicoPlanoCobranca,
                                                               servicoTaxas, servicoCliente);
 
             AtualizarRodape("Tela Adição de Locação");
 
+            telaCadastroVeiculo.locacao = new Locacao();
             telaCadastroVeiculo.GravarRegistro = servicoLocacao.InserirNovo;
             telaCadastroVeiculo.AtualizarRodape = AtualizarRodape;
             telaCadastroVeiculo.ShowDialog();

@@ -9,7 +9,8 @@
 
   "PrecosCombustivel": {
     "Gasolina": "5",
-    "Diesel":"7",
+    "Diesel": "7",
     "Etanol": "3"
-  }
+  },
+  "MultaLimiteKmExcedido": "5"
 }

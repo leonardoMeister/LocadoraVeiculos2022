@@ -117,7 +117,7 @@ namespace LocadoraVeiculos.WinApp.ModuloLocacao
         private Bitmap bmp;
         public Action<string> AtualizarRodape { get; set; }
 
-        Locacao locacao;
+        public Locacao locacao;
         public Locacao Locacao
         {
             get { return locacao; }
@@ -187,38 +187,33 @@ namespace LocadoraVeiculos.WinApp.ModuloLocacao
 
         private void PegarObjetoTela()
         {
+            locacao.NivelTanqueEnumInicio= PegarNivelTanque();
+            locacao.DataEstimadaDevolucao = this.dataDevolucao.Value;
+            locacao.QuilometragemInicial = (txtKmInicial.Text == "") ? 0 : Convert.ToDecimal(txtKmInicial.Text);
 
-            NivelTanqueEnum NivelTanqueEnumInicio = PegarNivelTanque();
-            DateTime dataEstimadaDevolucao = this.dataDevolucao.Value;
-
-            decimal quilometragemInicial = (txtKmInicial.Text == "") ? 0 : Convert.ToDecimal(txtKmInicial.Text);
-
-
-            Veiculo veh = null;
-            if (cmbVeiculo.SelectedIndex != -1) veh = (Veiculo)cmbVeiculo.SelectedItem;
-            Condutores cond = null;
-            if (cmbCondutor.SelectedIndex != -1) cond = (Condutores)cmbCondutor.SelectedItem;
-            Cliente cli = null;
-            if (cmbCliente.SelectedIndex != -1) cli = (Cliente)cmbCliente.SelectedItem;
-            GrupoVeiculos grupo = null;
-            if (cmbGrupoVeiculo.SelectedIndex != -1) grupo = (GrupoVeiculos)cmbGrupoVeiculo.SelectedItem;
-            PlanoCobranca pcobranca = null;
-            if (cmbPlanoCobranca.SelectedIndex != -1) pcobranca = (PlanoCobranca)cmbPlanoCobranca.SelectedItem;
-
+            locacao.Veiculo = null;
+            if (cmbVeiculo.SelectedIndex != -1) locacao.Veiculo = (Veiculo)cmbVeiculo.SelectedItem;
+            locacao.Condutores = null;
+            if (cmbCondutor.SelectedIndex != -1) locacao.Condutores = (Condutores)cmbCondutor.SelectedItem;
+            locacao.Cliente = null;
+            if (cmbCliente.SelectedIndex != -1) locacao.Cliente = (Cliente)cmbCliente.SelectedItem;
+            locacao.GrupoVeiculos = null;
+            if (cmbGrupoVeiculo.SelectedIndex != -1) locacao.GrupoVeiculos = (GrupoVeiculos)cmbGrupoVeiculo.SelectedItem;
+            locacao.PlanoCobranca = null;
+            if (cmbPlanoCobranca.SelectedIndex != -1) locacao.PlanoCobranca = (PlanoCobranca)cmbPlanoCobranca.SelectedItem;
             List<Taxas> taxas = new List<Taxas>();
+            foreach (Taxas tax in listaTaxas.CheckedItems) taxas.Add(tax);
+            locacao.ListaTaxas = taxas;
+            locacao.DataLocacao = DateTime.Now;
 
-            foreach (Taxas tax in listaTaxas.CheckedItems)
-            {
-                taxas.Add(tax);
-            }
-
-            locacao = new Locacao(veh, cond, cli, grupo, pcobranca, DateTime.Now, dataEstimadaDevolucao, quilometragemInicial, NivelTanqueEnumInicio,
-                                  taxas, true, 0, DateTime.MinValue, NivelTanqueEnum.naoInformado);
+            locacao.DataRealDaDevolucao = DateTime.MinValue;
+            locacao.NivelTanqueEnumDevolucao = NivelTanqueEnum.naoInformado;
+            locacao.StatusDevolucao = false;
+            locacao.QuilometragemFinal = 0;
         }
         private void btnSalvar_Click(object sender, EventArgs e)
         {
             PegarObjetoTela();
-
 
             var resultadoValidacao = GravarRegistro(locacao);
 
@@ -254,5 +249,17 @@ namespace LocadoraVeiculos.WinApp.ModuloLocacao
             CarregarFotoVeiculo(vei);
         }
 
+        private void SimularValorLocacaoClick(object sender, EventArgs e)
+        {
+            PegarObjetoTela();
+            try
+            {
+                var valor = locacao.GerarValorLocacao();
+                labelValor.Text = valor.ToString();
+            }catch (Exception ex)
+            {
+                AtualizarRodape("Para gerar uma simulacao de valor favor alimentar todos os campos antes");
+            }
+        }
     }
 }

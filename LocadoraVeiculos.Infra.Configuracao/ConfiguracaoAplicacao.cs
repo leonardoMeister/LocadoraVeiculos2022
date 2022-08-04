@@ -9,6 +9,7 @@ namespace LocadoraVeiculos.Infra.Configuracao
         public ConnectionStrings connectionStrings { get; set; }
         public PrecosCombustiveis precosCombustiveis { get; set; }
         public ConfiguracaoLogs configuracaoLogs { get; set; }
+        public ValoresDasMultas valoresDasMultas { get; set; }
         public ConfiguracaoAplicacao()
         {
 
@@ -33,6 +34,9 @@ namespace LocadoraVeiculos.Infra.Configuracao
             decimal diesel = Convert.ToDecimal(configuracao.GetSection("PrecosCombustivel").GetSection("Diesel").Value);
             decimal etanol = Convert.ToDecimal(configuracao.GetSection("PrecosCombustivel").GetSection("Etanol").Value);
             precosCombustiveis = new PrecosCombustiveis { Diesel = diesel, Gasolina = gasolina, Etanol = etanol };
+
+            decimal valorMulta = Convert.ToDecimal(configuracao.GetSection("MultaLimiteKmExcedido").Value);
+            valoresDasMultas = new ValoresDasMultas { MultaLimiteKmExcedido = valorMulta };
         }
         public class ConnectionStrings
         {
@@ -42,7 +46,11 @@ namespace LocadoraVeiculos.Infra.Configuracao
         {
             public string DiretorioSaida { get; set; }
         }
-        public class PrecosCombustiveis
+        public class ValoresDasMultas
+        {
+            public decimal MultaLimiteKmExcedido { get; set; }
+        }
+        public class PrecosCombustiveis 
         {
             public decimal Gasolina { get; set; }
             public decimal Diesel { get; set; }

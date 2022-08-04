@@ -49,7 +49,7 @@ namespace LocadoraVeiculos.WinApp.ModuloLocacao
 
             foreach (Locacao locacao in grupo)
             {
-                grid.Rows.Add(locacao.Id, locacao.Condutores, locacao.Veiculo, locacao.DataLocacao, locacao.DataEstimadaDevolucao,
+                grid.Rows.Add(locacao.Id, locacao.Condutores, locacao.Veiculo, locacao.DataLocacao.Date, locacao.DataEstimadaDevolucao.Date,
                     locacao.GerarValorLocacao(), locacao.StatusDevolucao );
             }
         }
