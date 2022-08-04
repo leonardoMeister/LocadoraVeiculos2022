@@ -72,7 +72,7 @@ namespace LocadoraVeiculos.WinApp
             btnAdicionarItens.Enabled = configuracao.AdicionarItensHabilitado;
             btnAtualizarItens.Enabled = configuracao.AtualizarItensHabilitado;
             btnFiltrar.Enabled = configuracao.FiltrarHabilitado;
-            btnPDF.Enabled = configuracao.AgruparHabilitado;
+            btnPDF.Enabled = configuracao.BtnPdf;
         }
         private void ConfigurarTooltips(ConfiguracaoToolboxBase configuracao)
         {

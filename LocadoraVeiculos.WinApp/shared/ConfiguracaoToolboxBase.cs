@@ -32,5 +32,7 @@
         public virtual bool FiltrarHabilitado { get { return false; } }
 
         public virtual bool AgruparHabilitado { get { return false; } }
+        public virtual bool BtnPdf { get { return false; } } 
+
     }
 }

@@ -1,6 +1,7 @@
 ﻿using LocadoraVeiculos.Aplicacao.ModuloLocacao;
 using LocadoraVeiculos.Controladores.ModuloServicoTaxas;
 using LocadoraVeiculos.Dominio.ModuloLocacao;
+using LocadoraVeiculos.Infra.Pdf;
 using LocadoraVeiculos.WinApp.ModuloLocacao;
 using LocadoraVeiculos.WinApp.shared;
 using System;
@@ -25,7 +26,36 @@ namespace LocadoraVeiculos.WinApp.ModuloDevolucao
             this.servicoTaxas = servicoTaxas;
             validadorLocacao = validador;
         }
+        public void PDF()
+        {
+            var id = tabelaLocacao.ObtemNumeroLocacaoSelecionada();
 
+            if (id == Guid.Empty)
+            {
+                MessageBox.Show("Selecione uma Locação primeiro",
+                    "Edição de Locação", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            var locacao = servicoLocacao.SelecionarPorId(id).Value;
+
+            FolderBrowserDialog vSalvar = new FolderBrowserDialog();
+
+            if (vSalvar.ShowDialog() == DialogResult.Cancel) return;
+            var nomeLocalParaSalvar = vSalvar.SelectedPath + "\\" + "LocacaoPdf" + ".pdf";
+
+            try
+            {
+                GeradorRelatorioLocacao geraPdf = new GeradorRelatorioLocacao();
+
+                geraPdf.GerarRelatorioPdf(locacao, nomeLocalParaSalvar);
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao Gerar arquivo !!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         public void Editar()
         {
             var id = tabelaLocacao.ObtemNumeroLocacaoSelecionada();
