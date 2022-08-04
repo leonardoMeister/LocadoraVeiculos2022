@@ -27,7 +27,7 @@ namespace LocadoraVeiculos.WinApp.ModuloDevolucao
         public override bool EditarHabilitado => true;
         public override bool InserirHabilitado => false;
         public override bool ExcluirHabilitado => false;
-
+        public override bool BtnPdf => true;
 
     }
 }
