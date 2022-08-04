@@ -16,12 +16,14 @@ namespace LocadoraVeiculos.WinApp.ModuloDevolucao
         ServicoLocacao servicoLocacao;
         Action<string> AtualizarRodape;
         ServicoTaxas servicoTaxas;
-        public ControladorDevolucao(TabelaLocacaoControl tabelaLocacao, ServicoLocacao servicoLocacao, Action<string> atualizarRodape,ServicoTaxas servicoTaxas)
+        ValidadorLocacao validadorLocacao;
+        public ControladorDevolucao(ValidadorLocacao validador,TabelaLocacaoControl tabelaLocacao, ServicoLocacao servicoLocacao, Action<string> atualizarRodape,ServicoTaxas servicoTaxas)
         {
             this.tabelaLocacao = tabelaLocacao;
             this.servicoLocacao = servicoLocacao;
             AtualizarRodape = atualizarRodape;
             this.servicoTaxas = servicoTaxas;
+            validadorLocacao = validador;
         }
 
         public void Editar()
@@ -34,9 +36,10 @@ namespace LocadoraVeiculos.WinApp.ModuloDevolucao
                     "Cadastro Devolução", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
+            
 
             var resultado = servicoLocacao.SelecionarPorId(id);
-
+            
             if (resultado.IsFailed)
             {
                 MessageBox.Show(resultado.Errors[0].Message,
@@ -44,9 +47,13 @@ namespace LocadoraVeiculos.WinApp.ModuloDevolucao
                 return;
             }
 
-            var funcionarioSelecionado = resultado.Value;
-
-            TelaCadastroDevolucaoForm telaCadastroDevolucao = new TelaCadastroDevolucaoForm(servicoTaxas);
+            var locacao = resultado.Value;
+            if (locacao.StatusDevolucao)
+            {
+                MessageBox.Show("Não pode cadastrar uma devolução já realizada", "Selecionar Locacao", MessageBoxButtons.OK,MessageBoxIcon.Error);
+                return;
+            }
+            TelaCadastroDevolucaoForm telaCadastroDevolucao = new TelaCadastroDevolucaoForm(servicoTaxas, validadorLocacao);
 
             AtualizarRodape("Tela de Cadastro de Devolução");
             telaCadastroDevolucao.Locacao = resultado.Value;

@@ -7,6 +7,7 @@ using LocadoraVeiculos.Controladores.ModuloServicoGrupoVeiculos;
 using LocadoraVeiculos.Controladores.ModuloServicoPlanoCobranca;
 using LocadoraVeiculos.Controladores.ModuloServicoTaxas;
 using LocadoraVeiculos.Controladores.ModuloServicoVeiculo;
+using LocadoraVeiculos.Dominio.ModuloLocacao;
 using LocadoraVeiculos.Dominio.shared;
 using LocadoraVeiculos.Infra.Configuracao;
 using LocadoraVeiculos.Infra.Orm.Compatilhado;
@@ -97,7 +98,9 @@ namespace LocadoraVeiculos.WinApp.ServiceLocator
             builder.RegisterType<TabelaLocacaoControl>().AsSelf();
             builder.RegisterType<ControladorLocacao>().AsSelf();
 
+            builder.RegisterType<ValidadorLocacao>().AsSelf();
             builder.RegisterType<ControladorDevolucao>().AsSelf();
+            
 
             IContainer container = builder.Build();
             return container.Resolve<T>();

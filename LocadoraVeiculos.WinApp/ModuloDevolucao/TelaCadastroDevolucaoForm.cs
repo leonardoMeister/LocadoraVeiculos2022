@@ -29,6 +29,7 @@ namespace LocadoraVeiculos.WinApp.ModuloLocacao
                 CarregarTaxas();
                 CarregarCamposTexto();
                 AtualizarNivelTanque();
+                cmbNivelTanque.SelectedIndex = 0;
             }
         }
 
@@ -53,6 +54,7 @@ namespace LocadoraVeiculos.WinApp.ModuloLocacao
             laDataDevolucao.Text = locacao.DataEstimadaDevolucao.Date.ToString();
             laDataLocacao.Text = locacao.DataLocacao.Date.ToString();
             laValorTotal.Text = locacao.ValorLocacao.ToString();
+            labelKmInicial.Text = locacao.QuilometragemInicial.ToString();
         }
         private NivelTanqueEnum PegarNivelTanque()
         {
@@ -79,11 +81,13 @@ namespace LocadoraVeiculos.WinApp.ModuloLocacao
         private Locacao locacao;
         public Func<Locacao, Result<Locacao>> GravarRegistro { get; internal set; }
         public Action<string> AtualizarRodape { get; internal set; }
-        ServicoTaxas servicoTaxas;
 
-        public TelaCadastroDevolucaoForm(ServicoTaxas servicoTaxas)
+        ServicoTaxas servicoTaxas;
+        ValidadorLocacao validador;
+        public TelaCadastroDevolucaoForm(ServicoTaxas servicoTaxas, ValidadorLocacao validador)
         {
             InitializeComponent();
+            this.validador = validador;
             this.servicoTaxas = servicoTaxas;
         }
         private void CarregarFotoVeiculo(Veiculo vei)
@@ -131,11 +135,12 @@ namespace LocadoraVeiculos.WinApp.ModuloLocacao
 
             locacao.ListaTaxas = taxas;
 
-            locacao.QuilometragemFinal = (txtQuilometragemFinal.Text != "")? Convert.ToDecimal(txtQuilometragemFinal.Text): 0;
+            locacao.QuilometragemFinal = (txtQuilometragemFinal.Text != "") ? Convert.ToDecimal(txtQuilometragemFinal.Text) : 0;
 
             locacao.DataRealDaDevolucao = dataRealDevolucao.Value.Date;
 
             locacao.NivelTanqueEnumDevolucao = PegarNivelTanque();
+
 
             locacao.StatusDevolucao = true;
         }
@@ -144,6 +149,29 @@ namespace LocadoraVeiculos.WinApp.ModuloLocacao
         {
             AtualizarRodape("Inserção Cancelada.");
             this.DialogResult = DialogResult.Cancel;
+        }
+
+        private void SimularValor_Click(object sender, EventArgs e)
+        {
+
+            PegarObjetoTela();
+            var validacao = validador.Validate(locacao);
+            if (validacao.IsValid)
+            {
+                try
+                {
+                    var valor = locacao.GerarValorLocacao();
+                    laValorTotal.Text = valor.ToString();
+                }
+                catch (Exception ex)
+                {
+                    AtualizarRodape("Para gerar uma simulacao de valor favor alimentar todos os campos antes");
+                }
+            }
+            else
+            {
+                AtualizarRodape(validacao.Errors[0].ToString());
+            }
         }
     }
 }

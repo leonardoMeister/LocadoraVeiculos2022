@@ -75,8 +75,9 @@ namespace LocadoraVeiculos.Dominio.ModuloLocacao
             decimal valorTaxas = PegarValorTaxasCadastradas();
             decimal valorCombustivel = PegarValorDoCombustivel();
             decimal valorPlano = PegarValorPlanoCobrancaCadastrado();
+
             var valorFinal = valorCombustivel + valorPlano + valorTaxas;
-            ValorLocacao = valorTaxas;
+            ValorLocacao = valorFinal;
             return valorFinal;
         }
 
