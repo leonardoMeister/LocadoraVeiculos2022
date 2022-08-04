@@ -22,17 +22,17 @@ namespace LocadoraVeiculos.WinApp.ModuloLocacao
                         {
                 new DataGridViewTextBoxColumn { DataPropertyName = "Id", HeaderText = "Id"},
 
-                new DataGridViewTextBoxColumn { DataPropertyName = "Modelo", HeaderText = "Modelo"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "Condutor", HeaderText = "Condutor"},
 
-                new DataGridViewTextBoxColumn { DataPropertyName = "Placa", HeaderText = "Placa"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "Veiculo", HeaderText = "Veiculo"},
 
-                new DataGridViewTextBoxColumn { DataPropertyName = "Marca", HeaderText = "Marca"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "DataLocacao", HeaderText = "Data Locacao"},
 
-                new DataGridViewTextBoxColumn { DataPropertyName = "Cor", HeaderText = "Cor"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "DataDevolucao", HeaderText = "Data Devolucao"},
 
-                new DataGridViewTextBoxColumn { DataPropertyName = "Tipo de Combustivel", HeaderText = "Tipo de Combustivel"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "ValorLocacao", HeaderText = "Valor Locacao"},
 
-                new DataGridViewTextBoxColumn { DataPropertyName = "Ano", HeaderText = "Ano"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "StatusDevolucao", HeaderText = "Status Devolucao"}
 
                         };
 
@@ -49,7 +49,8 @@ namespace LocadoraVeiculos.WinApp.ModuloLocacao
 
             foreach (Locacao locacao in grupo)
             {
-                grid.Rows.Add(locacao.Id);
+                grid.Rows.Add(locacao.Id, locacao.Condutores, locacao.Veiculo, locacao.DataLocacao, locacao.DataEstimadaDevolucao,
+                    locacao.GerarValorLocacao(), locacao.StatusDevolucao );
             }
         }
     }

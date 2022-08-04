@@ -5,6 +5,7 @@ using LocadoraVeiculos.WinApp.ModuloLocacao;
 using LocadoraVeiculos.WinApp.shared;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace LocadoraVeiculos.WinApp.ModuloDevolucao
@@ -75,6 +76,7 @@ namespace LocadoraVeiculos.WinApp.ModuloDevolucao
         {
             List<Locacao> locacoes = servicoLocacao.SelecionarTodos().Value;
 
+            locacoes = locacoes.OrderBy(x => x.StatusDevolucao).ToList();
             tabelaLocacao.AtualizarRegistros(locacoes);
 
             return tabelaLocacao;

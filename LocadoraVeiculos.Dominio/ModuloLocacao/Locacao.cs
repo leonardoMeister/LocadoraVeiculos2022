@@ -69,14 +69,17 @@ namespace LocadoraVeiculos.Dominio.ModuloLocacao
         public decimal QuilometragemFinal { get; set; }
         public decimal ValorLocacao { get; set; }
 
-        public void GerarValorLocacao()
+        public decimal GerarValorLocacao()
         {            
             decimal valorDia = PegarValorPorDia();
 
 
 
 
-            decimal valorDistancia = PegarValorDistancia();
+            
+
+
+            return 0;
         }
 
         private decimal PegarValorDistancia()
