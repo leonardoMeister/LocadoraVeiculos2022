@@ -7,6 +7,8 @@ using LocadoraVeiculos.Dominio.ModuloTaxas;
 using LocadoraVeiculos.Dominio.ModuloVeiculo;
 using LocadoraVeiculos.Infra.Configuracao;
 using LocadoraVeiculos.Infra.Orm.Compatilhado;
+using LocadoraVeiculos.Infra.Pdf;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -25,52 +27,30 @@ namespace LocadoraVeiculos.Testes.TestePdf
         {
             var config = new ConfiguracaoAplicacao();
 
-            dbContext = new LocadoraVeiculosDbContext(config.connectionStrings.SqlServer);
+            dbContext = new LocadoraVeiculosDbContext("Data Source=(LOCALDB)\\MSSQLLOCALDB;Initial Catalog=LocadoraVeiculos;Integrated Security = True;Pooling = false;");
 
 
-            var locacoes = dbContext.Set<Locacao>();
-            locacoes.RemoveRange(locacoes);
-
-            var clientes = dbContext.Set<Cliente>();
-            clientes.RemoveRange(clientes);
-
-            var condutores = dbContext.Set<Condutores>();
-            condutores.RemoveRange(condutores);
-
-            var grupoVeiculos = dbContext.Set<GrupoVeiculos>();
-            grupoVeiculos.RemoveRange(grupoVeiculos);
-
-            var planoCobranca = dbContext.Set<PlanoCobranca>();
-            planoCobranca.RemoveRange(planoCobranca);
-
-            var taxas = dbContext.Set<Taxas>();
-            taxas.RemoveRange(taxas);
-
-            var veiculo = dbContext.Set<Veiculo>();
-            veiculo.RemoveRange(veiculo);
-
-            dbContext.SaveChanges();
         }
 
 
         [TestMethod]
-        public void DeveCrirPdf() 
+        public void MetodoParaAjudaraCriaroMalditoPDFLocacaoDevolucao()  
         {
-            GrupoVeiculos grupo = new GrupoVeiculos("Nome do grupo de teste");
+            DbSet<Locacao> locacao = dbContext.Set<Locacao>();
+            var loc = locacao
+                .Include(x => x.PlanoCobranca)
+                .Include(x => x.Cliente)
+                .Include(x => x.Condutores)
+                .Include(x => x.GrupoVeiculos)
+                .Include(x => x.ListaTaxas)
+                .Include(x => x.Veiculo)
+                .FirstOrDefault();
 
-            byte[] foto = new byte[] { };
-            Veiculo vei = new Veiculo("Modelo do Veiculo", "ASD-3021", "Gol", "Rosa", TipoCombustivelEnum.Gasolina, 10, DateTime.Now, 10, foto, grupo);
-            PlanoCobranca plano = new PlanoCobranca("Tipo Grupo 1", 100, 0, 10, grupo);
-            Condutores condutor = new Condutores("Gustavo Paes", "023.599.199.94", "Andre Gargioni", "emailteste@gmail.com", "99-99999-9999", "12323432193", "segunda - feira, 4 de julho de 2022");
-            Cliente cli = new Cliente("Gustavasdasdasdo", "214.432.723.99", "testeasdasdadsasd", "teste@gmail.com", "49 99830-8533",
-            EnumCliente.PessoaFisica.ToString(), "");
-            Taxas taxa = new Taxas("Aluguel Onix", 1500, EnumTaxa.Diaria.ToString());
-            List<Taxas> tax = new List<Taxas>();
-            tax.Add(taxa);
+            var local = @"C:\Users\leozi\OneDrive\Área de Trabalho\LocacaoPdf.pdf";
+            GeradorRelatorioLocacao gerador = new GeradorRelatorioLocacao();
+            gerador.GerarRelatorioPdf(loc, local);
 
-            Locacao locacao = new Locacao(vei, condutor, cli, grupo, plano, DateTime.Now, DateTime.Now, 10, NivelTanqueEnum.medio, tax, false, 100, DateTime.Now, NivelTanqueEnum.alto);
-
-            
+            Assert.IsTrue(true);
         }
     }
 }
